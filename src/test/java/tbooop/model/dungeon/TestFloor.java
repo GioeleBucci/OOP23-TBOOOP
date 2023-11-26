@@ -2,26 +2,17 @@ package tbooop.model.dungeon;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.geometry.Point2D;
-
-public class TestFloor<A> {
+class TestFloor {
 
     @Test
     void moreThanTwoRooms() {
         try {
             new Floor(2);
-            fail();
+            fail("There should be at least 3 rooms in a floor");
         } catch (IllegalArgumentException e) {
             assertFalse(e.getMessage().isBlank());
         }
