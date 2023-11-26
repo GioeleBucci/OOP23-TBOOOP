@@ -35,6 +35,12 @@ public abstract class BaseRoom implements Room {
     /** {@inheritDoc} */
     @Override
     public boolean isExplored() {
-        return this.isExplored;
+        return isExplored;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setExplored() {
+        this.isExplored = true;
     }
 }

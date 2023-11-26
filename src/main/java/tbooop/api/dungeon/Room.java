@@ -33,4 +33,7 @@ public interface Room {
      * @return {@code true} if the room has been visited
      */
     boolean isExplored();
+
+    /** Flags the room as explored. Cannot be undone. */
+    void setExplored();
 }
