@@ -5,6 +5,8 @@ import java.util.Random;
 
 import javafx.geometry.Point2D;
 import tbooop.commons.Directions;
+import tbooop.model.dungeon.rooms.RegularRoom;
+import tbooop.api.dungeon.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -58,39 +60,38 @@ public class Floor {
         placeDoors();
     }
 
-    /** Returns the rooms map.
+    /**
+     * Returns the rooms map.
      * 
      * @return a Map where the key is a room's position and the value the associated
-     * room object
-    */
+     *         room object
+     */
     public Map<Point2D, Room> getRoomsMap() {
         return Collections.unmodifiableMap(this.roomsMap);
     }
 
     private void placeDoors() {
-        for (Map.Entry<Point2D, Room> entry : roomsMap.entrySet()) {
-            Room room = entry.getValue();
-            Point2D roomPos = entry.getKey();
-            List<Point2D> doorsList = new ArrayList<>();
-            for (Point2D offset : Directions.ALL_DIRECTIONS) {
-                Point2D newPoint = roomPos.add(offset);
+        for (final Map.Entry<Point2D, Room> entry : roomsMap.entrySet()) {
+            final List<Directions> doorsList = new ArrayList<>();
+            for (final Directions offset : Directions.getAll()) {
+                final Point2D newPoint = entry.getKey().add(offset.toP2d());
                 if (roomsMap.containsKey(newPoint)) {
-                    doorsList.add(newPoint);
+                    doorsList.add(offset);
                 }
             }
-            room.setDoors(doorsList);
+            entry.getValue().setDoorSet(doorsList);
         }
     }
 
     private Point2D pickSpecialRoom() {
-        Point2D picked = deadEnds.get(RAND.nextInt(deadEnds.size()));
+        final Point2D picked = deadEnds.get(RAND.nextInt(deadEnds.size()));
         deadEnds.remove(picked);
         return picked;
     }
 
     // The boss room is the furthest dead end from the starting room.
     private Point2D pickBossRoom() {
-        Iterator<Point2D> iterator = roomsMap.keySet().iterator();
+        final Iterator<Point2D> iterator = roomsMap.keySet().iterator();
         Point2D lastElement = null;
         while (iterator.hasNext()) {
             lastElement = iterator.next();
@@ -102,9 +103,9 @@ public class Floor {
 
     // A dead end is a room with only one neighbor (except the starting room).
     private List<Point2D> getDeadEnds() {
-        List<Point2D> out = new ArrayList<>();
-        for (Point2D roomPos : roomsMap.keySet()) {
-            if (neighboursAmount(roomPos) == 1 && roomPos != Point2D.ZERO) {
+        final List<Point2D> out = new ArrayList<>();
+        for (final Point2D roomPos : roomsMap.keySet()) {
+            if (neighboursAmount(roomPos) == 1 && !roomPos.equals(Point2D.ZERO)) {
                 out.add(roomPos);
             }
         }
@@ -123,28 +124,26 @@ public class Floor {
     private void generate() {
         roomsMap.clear();
         generatedRooms = 0;
-        Queue<Point2D> queue = new LinkedList<>();
-        Point2D startingRoomPos = Point2D.ZERO;
-        roomsMap.put(startingRoomPos, new Room()); // placeholder: change for true starting room
+        final Queue<Point2D> queue = new LinkedList<>();
+        final Point2D startingRoomPos = Point2D.ZERO;
+        roomsMap.put(startingRoomPos, new RegularRoom()); // placeholder: change for true starting room
         queue.add(startingRoomPos);
         generatedRooms++;
         while (!queue.isEmpty()) {
-            Point2D current = queue.poll();
-            List<Point2D> directions = new ArrayList<>(Directions.ALL_DIRECTIONS);
+            final Point2D current = queue.poll();
+            final List<Directions> directions = new ArrayList<>(Directions.getAll());
             Collections.shuffle(directions);
             // check all neighbouring rooms
-            for (Point2D dir : directions) {
-                Point2D newSpot = current.add(dir);
+            for (final Directions dir : directions) {
+                final Point2D newSpot = current.add(dir.toP2d());
                 // if neighbouring room is already occupied, has more than two neighbours or no
                 // more rooms can be generated, give up
-                if (!roomsMap.containsKey(newSpot) && generatedRooms < roomsAmount && neighboursAmount(newSpot) < 2) {
-                    // Random 50% chance to give up
-                    if (Math.random() > 0.5 && Math.abs(newSpot.getX()) <= MAX_DIST_FROM_START
-                            && Math.abs(newSpot.getY()) <= MAX_DIST_FROM_START) {
-                        roomsMap.put(newSpot, new Room());
-                        queue.add(newSpot);
-                        generatedRooms++;
-                    }
+                if (!roomsMap.containsKey(newSpot) && generatedRooms < roomsAmount && neighboursAmount(newSpot) < 2
+                        && Math.random() > 0.5 && Math.abs(newSpot.getX()) <= MAX_DIST_FROM_START
+                        && Math.abs(newSpot.getY()) <= MAX_DIST_FROM_START) {
+                    roomsMap.put(newSpot, new RegularRoom());
+                    queue.add(newSpot);
+                    generatedRooms++;
                 }
             }
         }
@@ -152,8 +151,8 @@ public class Floor {
 
     private int neighboursAmount(final Point2D pos) {
         int out = 0;
-        for (Point2D offset : Directions.ALL_DIRECTIONS) {
-            Point2D newPos = pos.add(offset);
+        for (final Directions offset : Directions.getAll()) {
+            final Point2D newPos = pos.add(offset.toP2d());
             if (roomsMap.containsKey(newPos)) {
                 out++;
             }
@@ -170,22 +169,21 @@ public class Floor {
      */
     @Override
     public String toString() {
-        String output = "";
         // the lenght of a single side of the square map
         final int mapEdgeLenght = 2 * MAX_DIST_FROM_START + 1;
         String[][] matrix = new String[mapEdgeLenght][mapEdgeLenght];
 
-        Map<Point2D, List<String>> symbols = new HashMap<>();
+        final Map<Point2D, List<String>> symbols = new HashMap<>();
         symbols.put(Point2D.ZERO, List.of("S", "Starting Room"));
         symbols.put(itemRoomPos, List.of("?", "Item Room"));
         symbols.put(bossRoomPos, List.of("!", "Boss Room"));
 
-        for (Point2D room : roomsMap.keySet()) {
-            int x = (int) room.getX() + MAX_DIST_FROM_START;
-            int y = (int) room.getY() + MAX_DIST_FROM_START;
+        for (final Point2D room : roomsMap.keySet()) {
+            final int x = (int) room.getX() + MAX_DIST_FROM_START;
+            final int y = (int) room.getY() + MAX_DIST_FROM_START;
 
             String symbol = "O"; // Default room symbol
-            for (Map.Entry<Point2D, List<String>> entry : symbols.entrySet()) {
+            for (final Map.Entry<Point2D, List<String>> entry : symbols.entrySet()) {
                 if (room.equals(entry.getKey())) {
                     symbol = entry.getValue().get(0);
                     break;
@@ -193,12 +191,13 @@ public class Floor {
             }
             matrix[y][x] = symbol;
         }
+        final StringBuilder output = new StringBuilder();
         for (int i = 0; i < mapEdgeLenght; i++) {
             for (int j = 0; j < mapEdgeLenght; j++) {
-                output += ("[" + (matrix[i][j] == null ? " " : matrix[i][j]) + "]");
+                output.append('[').append(matrix[i][j] == null ? ' ' : matrix[i][j]).append(']');
             }
-            output += "\n";
+            output.append('\n');
         }
-        return output;
+        return output.toString();
     }
 }
