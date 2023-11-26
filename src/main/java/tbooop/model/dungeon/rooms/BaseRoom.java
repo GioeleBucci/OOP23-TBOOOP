@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import tbooop.api.dungeon.Room;
 import tbooop.commons.Directions;
 
 /**

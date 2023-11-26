@@ -6,7 +6,7 @@ import java.util.Random;
 import javafx.geometry.Point2D;
 import tbooop.commons.Directions;
 import tbooop.model.dungeon.rooms.RegularRoom;
-import tbooop.api.dungeon.Room;
+import tbooop.model.dungeon.rooms.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,8 +23,7 @@ import java.util.Objects;
  */
 public class Floor {
     private final Map<Point2D, Room> roomsMap = new LinkedHashMap<>();
-    // dead ends are used for placing special rooms, such as item rooms, shops and
-    // boss rooms
+    // dead ends are used for placing special rooms, such as item rooms, shops and boss rooms
     private List<Point2D> deadEnds;
     private final Point2D bossRoomPos;
     private final Point2D itemRoomPos;
