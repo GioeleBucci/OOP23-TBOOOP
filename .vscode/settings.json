@@ -1,5 +1,7 @@
 {
     "editor.tabSize": 4,
     "editor.wordWrap": "wordWrapColumn",
-    "files.eol": "\n"
+    "files.eol": "\n",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "files.insertFinalNewline": true
 }
