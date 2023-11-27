@@ -1,4 +1,4 @@
-package tbooop.model.core;
+package tbooop.model.core.api;
 
 import javafx.geometry.Point2D;
 

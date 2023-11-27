@@ -1,6 +1,8 @@
-package tbooop.model.core;
+package tbooop.model.core.impl;
 
 import javafx.geometry.Point2D;
+import tbooop.model.core.api.IGameObject;
+
 import java.util.Objects;
 
 /**

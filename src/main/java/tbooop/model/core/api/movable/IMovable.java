@@ -1,7 +1,7 @@
-package tbooop.model.core.movable;
+package tbooop.model.core.api.movable;
 
-import tbooop.model.core.GameObject;
-import tbooop.model.core.IGameObject;
+import tbooop.model.core.api.IGameObject;
+import tbooop.model.core.impl.GameObject;
 
 /**
  * Interface for movable game object.
