@@ -3,6 +3,8 @@ package tbooop.model.dungeon.rooms;
 import org.junit.jupiter.api.Test;
 
 import tbooop.commons.Directions;
+import tbooop.model.dungeon.rooms.impl.RegularRoom;
+
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

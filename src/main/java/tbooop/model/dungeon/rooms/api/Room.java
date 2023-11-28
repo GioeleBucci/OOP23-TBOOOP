@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.rooms;
+package tbooop.model.dungeon.rooms.api;
 
 import java.util.Collection;
 import java.util.Set;

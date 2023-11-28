@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.rooms;
+package tbooop.model.dungeon.rooms.impl;
 
 /** A regular room is a non-special room with enemies inside it. */
 public class RegularRoom extends BaseRoom {

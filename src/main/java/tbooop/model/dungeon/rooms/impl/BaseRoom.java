@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.rooms;
+package tbooop.model.dungeon.rooms.impl;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import tbooop.commons.Directions;
+import tbooop.model.dungeon.rooms.api.Room;
 
 /**
  * Base for all Rooms implementations

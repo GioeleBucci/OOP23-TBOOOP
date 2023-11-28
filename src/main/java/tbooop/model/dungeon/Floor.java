@@ -5,8 +5,8 @@ import java.util.Random;
 
 import javafx.geometry.Point2D;
 import tbooop.commons.Directions;
-import tbooop.model.dungeon.rooms.RegularRoom;
-import tbooop.model.dungeon.rooms.Room;
+import tbooop.model.dungeon.rooms.impl.RegularRoom;
+import tbooop.model.dungeon.rooms.api.Room;
 
 import java.util.ArrayList;
 import java.util.Collections;
