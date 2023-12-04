@@ -2,15 +2,36 @@ package tbooop.commons.api;
 
 /**
  * Represents a 2-dimensional vector.
- * <p>
- * Instances of this class are guaranteed to be immutable.
  */
-public interface SimpleVector extends Coordinate {
+public interface SimpleVector {
+
+    /**
+     * Get the abscissa of this vector.
+     * 
+     * @return the abscissa
+     */
+    double getX();
+
+    /**
+     * Get the ordinate of this vector.
+     * 
+     * @return the ordinate
+     */
+    double getY();
+
+    /**
+     * Get the lenght of this vector.
+     * 
+     * @return the Euclidean norm of the vector
+     */
+    double getLenght();
 
     /**
      * Get a normalized instance of the vector.
+     * <p>
+     * A normalized vector mantains it's original direction but his lenght = 1.
      * 
-     * @return a new normalized vector
+     * @return the normalized vector of this instance
      */
     SimpleVector normalize();
 
