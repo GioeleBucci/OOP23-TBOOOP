@@ -3,7 +3,7 @@ package tbooop.model.dungeon.rooms.api;
 import java.util.Collection;
 import java.util.Set;
 
-import tbooop.commons.Directions;
+import tbooop.commons.Points2d;
 
 /**
  * Base for all Rooms implementations.
@@ -15,17 +15,17 @@ public interface Room {
      * The doors that this room has.
      * 
      * @return a set of directions with an entry for every door present.
-     * @see Directions
+     * @see Points2d
      */
-    Set<Directions> getDoorSet();
+    Set<Points2d> getDoorSet();
 
     /**
      * Takes a collection of directions and sets the doors of the room accordingly.
      * 
      * @param directions a collection of directions
-     * @see Directions
+     * @see Points2d
      */
-    void setDoorSet(Collection<Directions> directions);
+    void setDoorSet(Collection<Points2d> directions);
 
     /**
      * Whether this room has been visited at least once or not.

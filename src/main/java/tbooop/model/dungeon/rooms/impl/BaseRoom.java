@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import tbooop.commons.Directions;
+import tbooop.commons.Points2d;
 import tbooop.model.dungeon.rooms.api.Room;
 
 /**
@@ -17,18 +17,18 @@ import tbooop.model.dungeon.rooms.api.Room;
  */
 public abstract class BaseRoom implements Room {
 
-    private final Set<Directions> doorSet = new HashSet<>();
+    private final Set<Points2d> doorSet = new HashSet<>();
     private boolean isExplored;
 
     /** {@inheritDoc} */
     @Override
-    public void setDoorSet(final Collection<Directions> directions) {
+    public void setDoorSet(final Collection<Points2d> directions) {
         doorSet.addAll(directions);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<Directions> getDoorSet() {
+    public Set<Points2d> getDoorSet() {
         return Collections.unmodifiableSet(doorSet);
     }
 
