@@ -1,7 +1,7 @@
 package tbooop.model.core.impl;
 
 import javafx.geometry.Point2D;
-import tbooop.model.core.api.IGameObject;
+import tbooop.model.core.api.GameObject;
 
 import java.util.Objects;
 
@@ -9,7 +9,7 @@ import java.util.Objects;
  * A GameObject is an abstraction of anything that is present in the game.
  * Every class must estend it, directly or not.
  */
-public abstract class GameObject implements IGameObject {
+public abstract class GameObjectImpl implements GameObject {
 
     private Point2D position;
 
@@ -20,7 +20,7 @@ public abstract class GameObject implements IGameObject {
      *                 Point2D})
      * @throws NullPointerException if any parameter passed is null
      */
-    protected GameObject(final Point2D position) {
+    protected GameObjectImpl(final Point2D position) {
         this.position = Objects.requireNonNull(position);
     }
 
