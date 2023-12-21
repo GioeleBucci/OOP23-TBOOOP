@@ -82,7 +82,9 @@ public class Floor {
                 if (roomsMap.containsKey(newPoint)) {
                     final Room neighbour = roomsMap.get(newPoint);
                     // check if neighbour room needs a key to enter
-                    final Door door = neighbour.isSpecial() ? new SpecialDoor(neighbour) : new RegularDoor(neighbour);
+                    final Door door = neighbour.isSpecial() || entry.getValue().isSpecial()
+                            ? new SpecialDoor(neighbour)
+                            : new RegularDoor(neighbour);
                     entry.getValue().addDoor(offset, door);
                 }
             }

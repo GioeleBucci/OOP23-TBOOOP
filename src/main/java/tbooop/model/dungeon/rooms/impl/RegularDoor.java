@@ -18,7 +18,7 @@ public class RegularDoor implements Door {
      * @param room the room this door leads to
      */
     public RegularDoor(final Room room) {
-        this.room = Objects.requireNonNull(room);
+        this.room =  Objects.requireNonNull(room);
     }
 
     /** {@inheritDoc} */
