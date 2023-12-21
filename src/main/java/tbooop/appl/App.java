@@ -5,6 +5,9 @@ package tbooop.appl;
 
 import java.util.logging.Logger;
 
+import javafx.application.Application;
+import tbooop.view.View;
+
 /** Main application entry-point's class. */
 
 public final class App {
@@ -19,6 +22,7 @@ public final class App {
 
     public static void main(final String[] args) {
         final Logger logger = Logger.getLogger(App.class.getName());
-        logger.info("Hello, world!");
+        logger.info("Main thread started.");
+        Application.launch(View.class, args);
     }
 }
