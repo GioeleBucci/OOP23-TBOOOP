@@ -1,9 +1,8 @@
 package tbooop.model.dungeon.rooms.api;
 
-import java.util.Collection;
-import java.util.Set;
+import java.util.Map;
 
-import tbooop.commons.Points2d;
+import tbooop.commons.Point2ds;
 
 /**
  * Base for all Rooms implementations.
@@ -14,26 +13,35 @@ public interface Room {
     /**
      * The doors that this room has.
      * 
-     * @return a set of directions with an entry for every door present.
-     * @see Points2d
+     * @return a map with an entry for each direction in which a door is present.
+     * @see Point2ds
      */
-    Set<Points2d> getDoorSet();
+    Map<Point2ds, Door> getDoorMap();
 
     /**
-     * Takes a collection of directions and sets the doors of the room accordingly.
+     * Adds a door to this room.
      * 
-     * @param directions a collection of directions
-     * @see Points2d
+     * @param direction where the door is located
+     * @param door      the door to add
+     * @see Point2ds
      */
-    void setDoorSet(Collection<Points2d> directions);
+    void addDoor(Point2ds direction, Door door);
 
     /**
      * Whether this room has been visited at least once or not.
      * 
-     * @return {@code true} if the room has been visited
+     * @return whether the room has been visited
      */
     boolean isExplored();
 
     /** Flags the room as explored. Cannot be undone. */
     void setExplored();
+
+    /**
+     * Whether this room is special or not.
+     * 
+     * @return whether the room is special
+     */
+    boolean isSpecial();
+
 }

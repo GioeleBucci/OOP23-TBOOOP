@@ -3,10 +3,14 @@ package tbooop.model.dungeon;
 import java.util.Queue;
 import java.util.Random;
 
-import tbooop.commons.Points2d;
+import tbooop.commons.Point2ds;
 import tbooop.commons.Point2d;
+import tbooop.model.dungeon.rooms.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.impl.RegularRoom;
+import tbooop.model.dungeon.rooms.impl.SpecialDoor;
+import tbooop.model.dungeon.rooms.impl.SpecialRoom;
 import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.dungeon.rooms.api.Door;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,14 +26,14 @@ import java.util.Objects;
  * A Floor is a series of rooms organized in a square grid layout.
  */
 public class Floor {
+    /** maximum distance in each axis a room can be from the starting room (0;0). */
+    public static final int MAX_DIST_FROM_START = 3;
     private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();
     // dead ends are used for placing special rooms, such as item rooms, shops and
     // boss rooms
     private List<Point2d> deadEnds;
     private final Point2d bossRoomPos;
     private final Point2d itemRoomPos;
-    // maximum distance in each axis a room can be from the starting room
-    private static final int MAX_DIST_FROM_START = 3;
     private static final int SPECIAL_ROOMS_AMOUNT = 2;
     private static final int MINIMUM_ROOMS_AMOUNT = SPECIAL_ROOMS_AMOUNT + 1;
 
@@ -57,6 +61,7 @@ public class Floor {
         } while (generatedRooms != rooms || deadEnds.size() < SPECIAL_ROOMS_AMOUNT);
         bossRoomPos = pickBossRoom();
         itemRoomPos = pickSpecialRoom();
+        roomsMap.put(itemRoomPos, new SpecialRoom());
         placeDoors();
     }
 
@@ -72,14 +77,15 @@ public class Floor {
 
     private void placeDoors() {
         for (final Map.Entry<Point2d, Room> entry : roomsMap.entrySet()) {
-            final List<Points2d> doorsList = new ArrayList<>();
-            for (final Points2d offset : Points2d.getAll()) {
+            for (final Point2ds offset : Point2ds.getAll()) {
                 final Point2d newPoint = entry.getKey().add(offset.toP2d());
                 if (roomsMap.containsKey(newPoint)) {
-                    doorsList.add(offset);
+                    final Room neighbour = roomsMap.get(newPoint);
+                    // check if neighbour room needs a key to enter
+                    final Door door = neighbour.isSpecial() ? new SpecialDoor(neighbour) : new RegularDoor(neighbour);
+                    entry.getValue().addDoor(offset, door);
                 }
             }
-            entry.getValue().setDoorSet(doorsList);
         }
     }
 
@@ -131,10 +137,10 @@ public class Floor {
         generatedRooms++;
         while (!queue.isEmpty()) {
             final Point2d current = queue.poll();
-            final List<Points2d> directions = new ArrayList<>(Points2d.getAll());
+            final List<Point2ds> directions = new ArrayList<>(Point2ds.getAll());
             Collections.shuffle(directions);
             // check all neighbouring rooms
-            for (final Points2d dir : directions) {
+            for (final Point2ds dir : directions) {
                 final Point2d newSpot = current.add(dir.toP2d());
                 // if neighbouring room is already occupied, has more than two neighbours or no
                 // more rooms can be generated, give up
@@ -151,7 +157,7 @@ public class Floor {
 
     private int neighboursAmount(final Point2d pos) {
         int out = 0;
-        for (final Points2d offset : Points2d.getAll()) {
+        for (final Point2ds offset : Point2ds.getAll()) {
             final Point2d newPos = pos.add(offset.toP2d());
             if (roomsMap.containsKey(newPos)) {
                 out++;

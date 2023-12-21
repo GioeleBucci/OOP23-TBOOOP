@@ -6,6 +6,12 @@ public class RegularRoom extends BaseRoom {
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return "BaseRoom [doorSet=" + getDoorSet() + ", isExplored=" + isExplored() + "]";
+        return "BaseRoom [doorSet=" + getDoorMap() + ", isExplored=" + isExplored() + "]\n";
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isSpecial() {
+        return false;
     }
 }
