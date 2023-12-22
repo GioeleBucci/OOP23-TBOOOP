@@ -62,8 +62,9 @@ public class MinimapRenderer {
     /** Initializes the minimap. */
     private void init() {
         final double squareSize = View.WIDTH / 5;
-        final double squareX = View.WIDTH - squareSize;
-        final double squareY = 0;
+        final double offset = squareSize / 6; // a subtle offset to the windows margins
+        final double squareX = View.WIDTH - (squareSize + offset);
+        final double squareY = offset;
 
         final Rectangle square = new Rectangle(squareX, squareY, squareSize, squareSize);
         square.setFill(Color.TRANSPARENT);
