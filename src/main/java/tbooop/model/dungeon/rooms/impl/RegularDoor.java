@@ -1,7 +1,7 @@
 package tbooop.model.dungeon.rooms.impl;
 
 import tbooop.model.dungeon.rooms.api.Door;
-import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.dungeon.rooms.api.RoomView;
 
 import java.util.Objects;
 
@@ -10,21 +10,21 @@ import java.util.Objects;
  */
 public class RegularDoor implements Door {
 
-    private final Room room;
+    private final RoomView room;
 
     /**
      * Creates a regular door.
      * 
      * @param room the room this door leads to
      */
-    public RegularDoor(final Room room) {
-        this.room =  Objects.requireNonNull(room);
+    public RegularDoor(final RoomView room) {
+        this.room = Objects.requireNonNull(room);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Room getRoom() {
-        return Objects.requireNonNull(room, "No room has been set!");
+    public RoomView getRoom() {
+        return room;
     }
 
     /** {@inheritDoc} */

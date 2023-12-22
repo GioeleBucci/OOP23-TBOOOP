@@ -4,7 +4,7 @@ package tbooop.model.dungeon.rooms.api;
 public interface Door {
 
     /** @return the room this door leads to. */
-    Room getRoom();
+    RoomView getRoom();
 
     /** @return whether this door is special or not. */
     boolean isSpecial();

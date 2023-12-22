@@ -1,7 +1,5 @@
 package tbooop.model.dungeon.rooms.api;
 
-import java.util.Map;
-
 import tbooop.commons.Point2ds;
 
 /**
@@ -9,14 +7,7 @@ import tbooop.commons.Point2ds;
  * 
  * @see {@link tbooop.model.dungeon.Floor Floor}
  */
-public interface Room {
-    /**
-     * The doors that this room has.
-     * 
-     * @return a map with an entry for each direction in which a door is present.
-     * @see Point2ds
-     */
-    Map<Point2ds, Door> getDoorMap();
+public interface Room extends RoomView {
 
     /**
      * Adds a door to this room.
@@ -27,21 +18,7 @@ public interface Room {
      */
     void addDoor(Point2ds direction, Door door);
 
-    /**
-     * Whether this room has been visited at least once or not.
-     * 
-     * @return whether the room has been visited
-     */
-    boolean isExplored();
-
     /** Flags the room as explored. Cannot be undone. */
     void setExplored();
-
-    /**
-     * Whether this room is special or not.
-     * 
-     * @return whether the room is special
-     */
-    boolean isSpecial();
 
 }
