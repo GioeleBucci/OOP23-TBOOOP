@@ -1,11 +1,11 @@
 package tbooop.model.dungeon.rooms.impl;
 
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.HashMap;
+import java.util.Map;
 
-import tbooop.commons.Points2d;
+import tbooop.commons.Point2ds;
+import tbooop.model.dungeon.rooms.api.Door;
 import tbooop.model.dungeon.rooms.api.Room;
 
 /**
@@ -17,19 +17,19 @@ import tbooop.model.dungeon.rooms.api.Room;
  */
 public abstract class BaseRoom implements Room {
 
-    private final Set<Points2d> doorSet = new HashSet<>();
+    private final Map<Point2ds, Door> doorMap = new HashMap<>();
     private boolean isExplored;
 
     /** {@inheritDoc} */
     @Override
-    public void setDoorSet(final Collection<Points2d> directions) {
-        doorSet.addAll(directions);
+    public void addDoor(final Point2ds direction, final Door door) {
+        doorMap.put(direction, door);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<Points2d> getDoorSet() {
-        return Collections.unmodifiableSet(doorSet);
+    public Map<Point2ds, Door> getDoorMap() {
+        return Collections.unmodifiableMap(doorMap);
     }
 
     /** {@inheritDoc} */

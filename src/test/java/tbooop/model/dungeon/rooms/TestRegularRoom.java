@@ -2,10 +2,9 @@ package tbooop.model.dungeon.rooms;
 
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.Points2d;
+import tbooop.commons.Point2ds;
+import tbooop.model.dungeon.rooms.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.impl.RegularRoom;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -15,7 +14,9 @@ class TestRegularRoom {
     void checkFields() {
         final RegularRoom room = new RegularRoom();
         assertFalse(room.isExplored());
-        room.setDoorSet(List.of(Points2d.UP, Points2d.UP));
-        assertEquals(1, room.getDoorSet().size());
+        // only one door per axis
+        room.addDoor(Point2ds.UP, new RegularDoor(new RegularRoom()));
+        room.addDoor(Point2ds.UP, new RegularDoor(new RegularRoom()));
+        assertEquals(1, room.getDoorMap().size());
     }
 }

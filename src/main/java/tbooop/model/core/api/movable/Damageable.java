@@ -6,7 +6,7 @@ package tbooop.model.core.api.movable;
  * It represents the methods that everything can take damage in the game must have.
  */
 
-public interface IDamageable extends IMovable {
+public interface Damageable extends Movable {
 
     /**
      * This method it's used to reduce the health of a Damageable GameObject.

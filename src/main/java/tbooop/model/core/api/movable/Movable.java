@@ -1,7 +1,6 @@
 package tbooop.model.core.api.movable;
 
-import tbooop.model.core.api.IGameObject;
-import tbooop.model.core.impl.GameObject;
+import tbooop.model.core.api.GameObject;
 
 /**
  * Interface for movable game object.
@@ -9,7 +8,7 @@ import tbooop.model.core.impl.GameObject;
  * It represents the methods that everything can move in the game must have.
  */
 
-public interface IMovable extends IGameObject {
+public interface Movable extends GameObject {
 
     /**
      * This method it's used to update the status of a GameObject.

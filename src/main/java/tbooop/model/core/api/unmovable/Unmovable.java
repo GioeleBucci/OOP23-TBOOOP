@@ -1,6 +1,6 @@
 package tbooop.model.core.api.unmovable;
 
-import tbooop.model.core.api.IGameObject;
+import tbooop.model.core.api.GameObject;
 
 /**
  * Interface for unmovable game object.
@@ -8,6 +8,6 @@ import tbooop.model.core.api.IGameObject;
  * It represents a tag interface for unmovable game objects.
  */
 
-public interface IUnmovable extends IGameObject {
+public interface Unmovable extends GameObject {
 
 }

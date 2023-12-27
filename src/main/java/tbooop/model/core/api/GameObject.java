@@ -7,7 +7,7 @@ import javafx.geometry.Point2D;
  * <p>
  * It represents the methods that everything in the game must have.
  */
-public interface IGameObject {
+public interface GameObject {
 
     /**
      * The position of this GameObject, expressed as a Point2D.
