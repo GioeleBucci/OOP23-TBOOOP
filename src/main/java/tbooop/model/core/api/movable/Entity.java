@@ -1,6 +1,6 @@
 package tbooop.model.core.api.movable;
 
-import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+import tbooop.commons.Vector2d;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameObject;
@@ -15,7 +15,7 @@ public abstract class Entity extends GameObjectImpl implements Damageable {
 
     private int maxHealth;      // NOPMD suppressed as it is a false positive
     private int currentHealth;
-    private Vector2D velocity;  // NOPMD suppressed as it is a false positive
+    private Vector2d velocity;  // NOPMD suppressed as it is a false positive
 
     /**
      * Create a new istance of a Entity.
@@ -28,7 +28,7 @@ public abstract class Entity extends GameObjectImpl implements Damageable {
      * @throws NullPointerException if any parameter passed is null
      */
 
-    protected Entity(final Point2d position, final int maxHealth, final int currentHealth, final Vector2D velocity) {
+    protected Entity(final Point2d position, final int maxHealth, final int currentHealth, final Vector2d velocity) {
         super(position);
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
@@ -71,8 +71,8 @@ public abstract class Entity extends GameObjectImpl implements Damageable {
      * This method it is used to get the velocity with a safe method.
      * @return immutableVelocity
      */
-    protected Vector2D getVelocity() {
-        final Vector2D immutableVelocity = this.velocity;
+    protected Vector2d getVelocity() {
+        final Vector2d immutableVelocity = this.velocity;
         return immutableVelocity; // NOPMD suppressed as it is a false positive
     }
 }
