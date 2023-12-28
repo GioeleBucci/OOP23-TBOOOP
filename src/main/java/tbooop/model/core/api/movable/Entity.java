@@ -2,15 +2,16 @@ package tbooop.model.core.api.movable;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
-import javafx.geometry.Point2D;
-import tbooop.model.core.impl.GameObject;
+import tbooop.commons.Point2d;
+import tbooop.model.core.api.GameObject;
+import tbooop.model.core.impl.GameObjectImpl;
 
 /**
  * A Entity is an abstraction of anything that is Damageable and Movable in the game.
  * Every object can take damage and can move must extends this abstact class.
  */
 
-public abstract class Entity extends GameObject implements IDamageable {
+public abstract class Entity extends GameObjectImpl implements Damageable {
 
     private int maxHealth;      // NOPMD suppressed as it is a false positive
     private int currentHealth;
@@ -27,7 +28,7 @@ public abstract class Entity extends GameObject implements IDamageable {
      * @throws NullPointerException if any parameter passed is null
      */
 
-    protected Entity(final Point2D position, final int maxHealth, final int currentHealth, final Vector2D velocity) {
+    protected Entity(final Point2d position, final int maxHealth, final int currentHealth, final Vector2D velocity) {
         super(position);
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;

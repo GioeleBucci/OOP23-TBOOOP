@@ -1,6 +1,6 @@
 package tbooop.model.core.api;
 
-import javafx.geometry.Point2D;
+import tbooop.commons.Point2d;
 
 /**
  * Interface for game objects.
@@ -15,7 +15,7 @@ public interface GameObject {
      * @return the position of this object.
      * @see {@link javafx.geometry.Point2D Point2D}
      */
-    Point2D getPosition();
+    Point2d getPosition();
 
     /**
      * Sets the position of this GameObject, expressed as a Point2D.
@@ -23,5 +23,5 @@ public interface GameObject {
      * @param newPos the new position of this object.
      * @see {@link javafx.geometry.Point2D Point2D}
      */
-    void setPosition(Point2D newPos);
+    void setPosition(Point2d newPos);
 }
