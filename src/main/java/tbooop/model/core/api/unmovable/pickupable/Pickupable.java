@@ -12,9 +12,9 @@ import tbooop.model.core.api.unmovable.Unmovable;
 public interface Pickupable extends Unmovable {
 
     /**
-    * Changes the state of the object it takes
-    * as a parameter, following the collection
-    * of a game item.
+    * Determines the condition under which 
+    * a game entity comes into contact 
+    * with an object.
     */
-    void onPickup();
+    void onCollision();
 }
