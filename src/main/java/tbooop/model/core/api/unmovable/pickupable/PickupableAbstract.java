@@ -9,9 +9,15 @@ package tbooop.model.core.api.unmovable.pickupable;
  * be implemented by single different
  * classes.
  */
-public abstract class PickupableAbstract implements Pickupable{
-    
-    public void onCollision(){
+public abstract class PickupableAbstract implements Pickupable {
+
+    /**
+    * Determines the condition under which 
+    * a game entity comes into contact 
+    * with an object.
+    */
+    @Override
+    public void onCollision() {
     }
 
     /**
