@@ -1,6 +1,5 @@
 package tbooop.model.core.api.unmovable.pickupable;
 
-import tbooop.commons.Point2d;
 import tbooop.commons.api.CircleCollider;
 import tbooop.model.core.api.unmovable.Unmovable;
 
@@ -17,14 +16,11 @@ public interface Pickupable extends Unmovable {
     * Determines the condition under which 
     * a game entity comes into contact 
     * with an object.
+    *
+    * @param player player CircleCollider
+    * @param item   item CircleCollider
+    * @return true if is colliding
     */
-    boolean isColliding(final CircleCollider player, final CircleCollider item);
+    boolean isColliding(CircleCollider player, CircleCollider item);
 
-    /**
-    * Generates a new random Point2d
-    * that is consistent with the 
-    * game map dimensions.
-    */
-    //INCONSISTENT NOW, MAP DIMENSIONS UNKNOWN !!!
-    Point2d randomCoordinatesGenerator();
 }
