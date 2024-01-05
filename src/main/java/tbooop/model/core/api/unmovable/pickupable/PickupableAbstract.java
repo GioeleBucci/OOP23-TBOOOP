@@ -1,6 +1,5 @@
 package tbooop.model.core.api.unmovable.pickupable;
 
-import tbooop.commons.Point2d;
 import tbooop.commons.api.CircleCollider;
 
 /**
@@ -21,24 +20,7 @@ public abstract class PickupableAbstract implements Pickupable {
     */
     @Override
     public boolean isColliding(final CircleCollider player, final CircleCollider item) {
-        if(item.isColliding(player)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    /**
-    * Generates a new random Point2d
-    * that is consistent with the 
-    * game map dimensions.
-    */
-    //INCONSISTENT NOW, MAP DIMENSIONS UNKNOWN !!!
-    @Override
-    public Point2d randomCoordinatesGenerator(){
-        double randomX = (Math.random()*5);
-        double randomY = (Math.random()*5);
-        return new Point2d(randomX, randomY);
+        return item.isColliding(player);
     }
 
     /**
