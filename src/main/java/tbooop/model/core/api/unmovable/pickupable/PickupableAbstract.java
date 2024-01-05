@@ -1,5 +1,7 @@
 package tbooop.model.core.api.unmovable.pickupable;
 
+import tbooop.commons.api.CircleCollider;
+
 /**
  * Abstract class for pickupable items
  * <p>
@@ -17,7 +19,12 @@ public abstract class PickupableAbstract implements Pickupable {
     * with an object.
     */
     @Override
-    public void onCollision() {
+    public boolean isColliding(final CircleCollider player, final CircleCollider item) {
+        if(item.isColliding(player)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
