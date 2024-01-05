@@ -1,5 +1,6 @@
 package tbooop.model.core.api.unmovable.pickupable;
 
+import tbooop.commons.api.CircleCollider;
 import tbooop.model.core.api.unmovable.Unmovable;
 
 /**
@@ -16,5 +17,5 @@ public interface Pickupable extends Unmovable {
     * a game entity comes into contact 
     * with an object.
     */
-    void onCollision();
+    boolean isColliding(final CircleCollider player, final CircleCollider item);
 }
