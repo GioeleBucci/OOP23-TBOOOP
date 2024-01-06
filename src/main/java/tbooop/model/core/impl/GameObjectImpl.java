@@ -1,6 +1,6 @@
 package tbooop.model.core.impl;
 
-import javafx.geometry.Point2D;
+import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameObject;
 
 import java.util.Objects;
@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public abstract class GameObjectImpl implements GameObject {
 
-    private Point2D position;
+    private Point2d position;
 
     /**
      * Create a new istance of a GameObject.
@@ -20,19 +20,19 @@ public abstract class GameObjectImpl implements GameObject {
      *                 Point2D})
      * @throws NullPointerException if any parameter passed is null
      */
-    protected GameObjectImpl(final Point2D position) {
+    protected GameObjectImpl(final Point2d position) {
         this.position = Objects.requireNonNull(position);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Point2D getPosition() {
+    public Point2d getPosition() {
         return this.position;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setPosition(final Point2D newPos) {
+    public void setPosition(final Point2d newPos) {
         this.position = Objects.requireNonNull(newPos);
     }
 
