@@ -1,6 +1,7 @@
 package tbooop.model.core.api;
 
 import tbooop.commons.Point2d;
+import tbooop.commons.api.CircleCollider;
 
 /**
  * Interface for game objects.
@@ -10,18 +11,42 @@ import tbooop.commons.Point2d;
 public interface GameObject {
 
     /**
+     * Updates the state of this GameObject (like his position), based off the time
+     * elapsed since the last frame.
+     * 
+     * @param deltaTime the time elapsed since the last frame
+     */
+    void updateState(long deltaTime);
+
+    /**
+     * Sets the position of this GameObject, expressed as a Point2D.
+     * <p>
+     * <i>Note</i>: Moving a GameObject will update it's collider accordingly
+     * 
+     * @param newPos the new position of this object.
+     * @throws UnsupportedOperationException if the object is unmovable
+     */
+    void setPosition(Point2d newPos);
+
+    /**
      * The position of this GameObject, expressed as a Point2D.
      * 
      * @return the position of this object.
-     * @see {@link javafx.geometry.Point2D Point2D}
      */
     Point2d getPosition();
 
     /**
-     * Sets the position of this GameObject, expressed as a Point2D.
+     * The collider (or hitbox) of this GameObject.
      * 
-     * @param newPos the new position of this object.
-     * @see {@link javafx.geometry.Point2D Point2D}
+     * @return the collider of this object.
      */
-    void setPosition(Point2d newPos);
+    CircleCollider getCollider();
+
+    /**
+     * The tag of this GameObject.
+     * 
+     * @return the tag of this object.
+     */
+    GameTag getTag();
+
 }

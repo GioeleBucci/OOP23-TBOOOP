@@ -1,6 +1,7 @@
 package tbooop.model.core.api.unmovable.pickupable;
 
 import tbooop.commons.Point2d;
+import tbooop.model.core.api.GameTag;
 
 /**
  * Class rapresenting "Heart" item in the
@@ -25,18 +26,6 @@ public class Heart extends PickupableAbstract {
         final double randomX = Math.random() * MAP_DIMENSION;
         final double randomY = Math.random() * MAP_DIMENSION;
         return new Point2d(randomX, randomY);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public Point2d getPosition() {
-        return this.heartPosition;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setPosition(final Point2d newPos) {
-        this.heartPosition = newPos;
     }
 
     /**
