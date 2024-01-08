@@ -11,14 +11,6 @@ import tbooop.model.core.api.GameObject;
 public interface Movable extends GameObject {
 
     /**
-     * This method it's used to update the status of a GameObject.
-     * <p>
-     * 
-     * @param deltaTime is the time needed for each update
-     */
-    void update(long deltaTime);
-
-    /**
      * It is used when a GameObject collides with another GameObject and trigger an
      * event.
      * <p>

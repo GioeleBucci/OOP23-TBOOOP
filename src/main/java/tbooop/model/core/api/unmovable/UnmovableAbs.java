@@ -24,8 +24,8 @@ public abstract class UnmovableAbs extends GameObjectAbs implements Unmovable {
         super(position, colliderRadius, tag);
     }
 
-    @Override
     /** {@inheritDoc} */
+    @Override
     /* note: this method is final so that the subclasses cannot override it */
     public final void setPosition(final Point2d newPos) {
         throw new UnsupportedOperationException("Cannot change the position of an unmovable GameObject.");
