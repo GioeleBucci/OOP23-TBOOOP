@@ -1,7 +1,8 @@
-package tbooop.model.core.api.movable;
+package tbooop.model.core.api.movable.enemy;
 
 import tbooop.commons.Point2d;
 import tbooop.commons.Vector2d;
+import tbooop.model.core.api.movable.Entity;
 
 /**
  * Abstract Enemy class which contains the essential components of an enemy.

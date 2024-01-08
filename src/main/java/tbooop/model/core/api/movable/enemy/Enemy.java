@@ -1,4 +1,6 @@
-package tbooop.model.core.api.movable;
+package tbooop.model.core.api.movable.enemy;
+
+import tbooop.model.core.api.movable.Damageable;
 
 /**
  * An Enemy is a game object that can move on a 2D space, it automatically
