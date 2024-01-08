@@ -12,7 +12,7 @@ import java.util.Objects;
  * A GameObject is an abstraction of anything that is present in the game.
  * Every class must estend it, directly or not.
  */
-public abstract class GameObjectImpl implements GameObject {
+public abstract class GameObjectAbs implements GameObject {
 
     private Point2d position;
     private CircleCollider collider;
@@ -30,11 +30,11 @@ public abstract class GameObjectImpl implements GameObject {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected GameObjectImpl(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected GameObjectAbs(final Point2d position, final double colliderRadius, final GameTag tag) {
         this.position = Objects.requireNonNull(position);
         this.colliderRadius = colliderRadius;
         this.collider = new CircleColliderImpl(position, colliderRadius);
-        this.tag = tag;
+        this.tag = Objects.requireNonNull(tag);
     }
 
     /** {@inheritDoc} */
