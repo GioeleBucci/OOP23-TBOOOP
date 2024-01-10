@@ -48,6 +48,12 @@ public abstract class AbstractHealth implements Health {
         this.setCurrentHealth(this.currentHealth + amount);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void increaseMaxHealth(final int amount) {
+        this.setMaxHealth(this.maxHealth + amount);
+    }
+
     /**
      * Change the current health value.
      * 
