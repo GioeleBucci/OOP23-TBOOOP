@@ -1,4 +1,4 @@
-package tbooop.model.core.api.movable.enemy;
+package tbooop.model.enemy.api;
 
 import tbooop.model.core.api.movable.Damageable;
 

@@ -1,4 +1,4 @@
-package tbooop.model.core.api.movable.enemy.ai;
+package tbooop.model.enemy.api.ai;
 
 /**
  * A movement ai is a class that contains an algorithm which tells an
