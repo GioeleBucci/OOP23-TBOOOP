@@ -62,4 +62,13 @@ public class PlayerHealth implements Health {
     public void maxRecovery() {
         this.currentHealth = this.maxHealth;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void reduceHealth(final int amount) {
+        if (amount < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.currentHealth = this.currentHealth - amount;
+    }
 }
