@@ -63,6 +63,7 @@ public class PlayerHealth implements Health {
         this.currentHealth = this.maxHealth;
     }
 
+    /* nota di simone: sto metodo l'ho aggiunto io perché sennò non compila */
     /** {@inheritDoc} */
     @Override
     public void reduceHealth(final int amount) {
