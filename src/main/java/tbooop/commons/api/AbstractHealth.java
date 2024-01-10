@@ -5,7 +5,7 @@ package tbooop.commons.api;
  */
 public abstract class AbstractHealth implements Health {
 
-    private final int maxHealth;
+    private int maxHealth;
     private int currentHealth;
 
     /**
@@ -36,12 +36,29 @@ public abstract class AbstractHealth implements Health {
        return this.maxHealth;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void reduceHealth(final int amount) {
-        if (amount < 0) {
+    /**
+     * Change the current health value.
+     * 
+     * @param value the value set as current health.
+     * @throws IllegalArgumentException if value is a negative number.
+     */
+    protected void setCurrentHealth(final int value) {
+        if (value < 0) {
             throw new IllegalArgumentException();
         }
-        this.currentHealth = this.currentHealth - amount;
+        this.currentHealth = value;
+    }
+
+    /**
+     * Change the current health value.
+     * 
+     * @param value the value to set as max Health.
+     * @throws IllegalArgumentException if value is a negative number.
+     */
+    protected void setMaxHealth(final int value) {
+        if (value < 0) {
+            throw new IllegalArgumentException();
+        }
+        this.maxHealth = value;
     }
 }

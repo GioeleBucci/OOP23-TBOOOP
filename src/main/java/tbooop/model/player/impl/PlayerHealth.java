@@ -1,14 +1,11 @@
 package tbooop.model.player.impl;
 
-import tbooop.commons.api.Health;
+import tbooop.commons.api.AbstractHealth;
 
 /**
  * Represents a Health of an Object.
  */
-public class PlayerHealth implements Health {
-
-    private int maxHealth;
-    private int currentHealth;
+public class PlayerHealth extends AbstractHealth {
 
     /**
     * Create a new istance of a Health.
@@ -18,58 +15,46 @@ public class PlayerHealth implements Health {
     * @throws NullPointerException if any parameter passed is null
     */
     public PlayerHealth(final int maxHealth) {
-        this.maxHealth = maxHealth;
-        this.currentHealth = maxHealth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getCurrenthHealth() {
-        return this.currentHealth;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getMaxHealth() {
-       return this.maxHealth;
+        super(maxHealth);
     }
 
     /**
      * Increase the max health by 1.
      */
     public void increaseMaxHealth() {
-        this.maxHealth = this.maxHealth + 1;
+        setMaxHealth(getMaxHealth() + 1);
     }
 
     /**
      * Increase the current health by 1.
-     * @return
-     * Return TRUE if the increase can be done.
-     * <p> 
-     * Return FALSE if the increase can't be done.
+     * @throws IllegalArgumentException if the input parameter is
+     * a negative number.
      */
-    public boolean recovery() {
-        if (this.currentHealth < this.maxHealth) {
-            this.currentHealth = this.currentHealth + 1;
-            return true;
+    public void recovery() {
+        setCurrentHealth(getCurrenthHealth() + 1);
+        checkHealth();
+    }
+
+    private void checkHealth() {
+        if (getCurrenthHealth() > getMaxHealth()) {
+            setCurrentHealth(getCurrenthHealth() - 1);
         }
-        return false;
     }
 
     /**
      * Set the current health equals to the max health.
      */
     public void maxRecovery() {
-        this.currentHealth = this.maxHealth;
+        setCurrentHealth(getMaxHealth()); 
     }
 
-    /* nota di simone: sto metodo l'ho aggiunto io perché sennò non compila */
-    /** {@inheritDoc} */
-    @Override
+    /** 
+     * Reduce the current Health. 
+     * @param amount the value to remove from current health.
+     * @throws IllegalArgumentException if the input parameter is
+     * a negative number.
+     */
     public void reduceHealth(final int amount) {
-        if (amount < 0) {
-            throw new IllegalArgumentException();
-        }
-        this.currentHealth = this.currentHealth - amount;
+       setCurrentHealth(getCurrenthHealth() - 1);
     }
 }
