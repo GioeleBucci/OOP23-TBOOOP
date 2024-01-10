@@ -1,11 +1,11 @@
-package tbooop.commons;
+package tbooop.model.player.impl;
 
 import tbooop.commons.api.Health;
 
 /**
  * Represents a Health of an Object.
  */
-public class HealthImpl implements Health {
+public class PlayerHealth implements Health {
 
     private int maxHealth;
     private int currentHealth;
@@ -17,7 +17,7 @@ public class HealthImpl implements Health {
     *
     * @throws NullPointerException if any parameter passed is null
     */
-    public HealthImpl(final int maxHealth) {
+    public PlayerHealth(final int maxHealth) {
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
     }
@@ -34,14 +34,20 @@ public class HealthImpl implements Health {
        return this.maxHealth;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Increase the max health by 1.
+     */
     public void increaseMaxHealth() {
         this.maxHealth = this.maxHealth + 1;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Increase the current health by 1.
+     * @return
+     * Return TRUE if the increase can be done.
+     * <p> 
+     * Return FALSE if the increase can't be done.
+     */
     public boolean recovery() {
         if (this.currentHealth < this.maxHealth) {
             this.currentHealth = this.currentHealth + 1;
@@ -50,8 +56,9 @@ public class HealthImpl implements Health {
         return false;
     }
 
-    /** {@inheritDoc} */
-    @Override
+    /**
+     * Set the current health equals to the max health.
+     */
     public void maxRecovery() {
         this.currentHealth = this.maxHealth;
     }
