@@ -17,12 +17,6 @@ public interface Damageable extends Movable {
     void takeDamage(int damage);
 
     /**
-     * This method it is used to communicate the death of an Damageable GameObject.
-     * <p>
-     */
-    void die();
-
-    /**
      *  This method it is used to get the current health of an Damageable GameObject.
      * <p>
      * 

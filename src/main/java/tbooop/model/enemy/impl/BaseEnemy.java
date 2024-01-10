@@ -35,11 +35,4 @@ public class BaseEnemy extends AbstractEnemy {
         throw new UnsupportedOperationException("Unimplemented method 'onCollision'");
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void die() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'die'");
-    }
-
 }
