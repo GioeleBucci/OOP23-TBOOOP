@@ -23,9 +23,8 @@ public interface Health {
     void decreaseHealth(int amount);
 
     /**
-     * Increases the current healt value
-     * @param amount to add to the current health
+     * Increases the current healt value.
+     * @param amount to add to the current health.
      */
     void increaseHealth(int amount);
 }
-
