@@ -3,7 +3,6 @@ package tbooop.model.core.api.movable;
 import tbooop.commons.Vector2d;
 
 import tbooop.commons.Point2d;
-import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
 
@@ -40,17 +39,9 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
 
     /** {@inheritDoc} */
     @Override
-    public abstract void onCollision(GameObject gameObj);
-
-    /** {@inheritDoc} */
-    @Override
     public void takeDamage(final int damage) {
         this.currentHealth = this.currentHealth - damage;
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public abstract void die();
 
     /** {@inheritDoc} */
     @Override
