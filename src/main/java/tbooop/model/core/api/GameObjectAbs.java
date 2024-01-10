@@ -1,10 +1,8 @@
-package tbooop.model.core.impl;
+package tbooop.model.core.api;
 
 import tbooop.commons.CircleColliderImpl;
 import tbooop.commons.Point2d;
 import tbooop.commons.api.CircleCollider;
-import tbooop.model.core.api.GameObject;
-import tbooop.model.core.api.GameTag;
 
 import java.util.Objects;
 

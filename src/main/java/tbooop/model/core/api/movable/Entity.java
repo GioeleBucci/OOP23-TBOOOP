@@ -4,8 +4,8 @@ import tbooop.commons.Vector2d;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameObject;
+import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.core.impl.GameObjectAbs;
 
 /**
  * A Entity is an abstraction of anything that is Damageable and Movable in the

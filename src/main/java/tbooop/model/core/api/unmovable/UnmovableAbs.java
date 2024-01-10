@@ -1,8 +1,8 @@
 package tbooop.model.core.api.unmovable;
 
 import tbooop.commons.Point2d;
+import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.core.impl.GameObjectAbs;
 
 /**
  * Abstract class for unmovable game objects.
