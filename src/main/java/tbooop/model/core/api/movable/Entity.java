@@ -1,7 +1,7 @@
 package tbooop.model.core.api.movable;
 
 import tbooop.commons.Vector2d;
-
+import tbooop.commons.api.Health;
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
@@ -13,8 +13,7 @@ import tbooop.model.core.api.GameTag;
  */
 public abstract class Entity extends GameObjectAbs implements Damageable {
 
-    private int maxHealth; // NOPMD suppressed as it is a false positive
-    private int currentHealth;
+    private final Health health;
     private Vector2d velocity; // NOPMD suppressed as it is a false positive
 
     /**
@@ -28,30 +27,29 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * @throws NullPointerException if any parameter passed is null
      */
 
-    protected Entity(final Point2d position, final int maxHealth, final int currentHealth, final Vector2d velocity) {
+    protected Entity(final Point2d position, final Health health, final Vector2d velocity) {
         // TODO ho messo un tag a caso e un uno come raggio del circle collider
         super(position, 1, GameTag.ENEMY);
-        this.currentHealth = currentHealth;
-        this.maxHealth = maxHealth;
+        this.health = health;
         this.velocity = velocity;
     }
 
     /** {@inheritDoc} */
     @Override
     public void takeDamage(final int damage) {
-        this.currentHealth = this.currentHealth - damage;
+        this.health.decreaseHealth(damage);
     }
 
     /** {@inheritDoc} */
     @Override
     public int getHealth() {
-        return this.currentHealth;
+        return this.health.getCurrenthHealth();
     }
 
     /** {@inheritDoc} */
     @Override
     public int getMaxHealth() {
-        return this.maxHealth;
+        return this.health.getMaxHealth();
     }
 
     /**
