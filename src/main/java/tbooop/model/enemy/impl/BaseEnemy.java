@@ -35,4 +35,11 @@ public class BaseEnemy extends AbstractEnemy {
         throw new UnsupportedOperationException("Unimplemented method 'onCollision'");
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void updateState(final long deltaTime) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
+    }
+
 }

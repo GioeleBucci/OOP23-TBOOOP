@@ -15,4 +15,12 @@ public interface Health {
      * @return max health.
      */
     int getMaxHealth();
+
+    /**
+     * Decreases the current healt value.
+     * @param amount to subtract from the current health.
+     */
+    void decreaseHealth(int amount);
+
 }
+

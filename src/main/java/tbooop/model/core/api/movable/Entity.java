@@ -11,7 +11,6 @@ import tbooop.model.core.api.GameTag;
  * game.
  * Every object can take damage and can move must extends this abstact class.
  */
-
 public abstract class Entity extends GameObjectAbs implements Damageable {
 
     private int maxHealth; // NOPMD suppressed as it is a false positive
@@ -63,12 +62,6 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     protected Vector2d getVelocity() {
         final Vector2d immutableVelocity = this.velocity;
         return immutableVelocity; // NOPMD suppressed as it is a false positive
-    }
-
-    @Override
-    public void updateState(final long deltaTime) {
-        // TODO Auto-generated method stub
-
     }
 
 }
