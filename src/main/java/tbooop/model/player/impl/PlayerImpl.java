@@ -43,8 +43,8 @@ public class PlayerImpl extends Entity implements Player {
     /** {@inheritDoc} */
     @Override
     public void recovery() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recovery'");
+        increaseHealth(1);
+        checkHealth();
     }
 
     /** {@inheritDoc} */
@@ -54,11 +54,10 @@ public class PlayerImpl extends Entity implements Player {
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
     }
 
-    /* 
     private void checkHealth() {
-        if (getCurrenthHealth() > getMaxHealth()) {
-            setCurrentHealth(getCurrenthHealth() - 1);
+        if (getHealth() > getMaxHealth()) {
+            takeDamage(1);
         }
     }
-    */
+    
 }
