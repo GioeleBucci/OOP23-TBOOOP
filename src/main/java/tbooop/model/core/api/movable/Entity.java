@@ -31,6 +31,9 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
         super(position, 1, GameTag.ENEMY);
         this.health = health;
         this.velocity = velocity;
+        this.direction = new Vector2d(
+            super.getPosition().getX(),
+            super.getPosition().getY());
     }
 
     /** {@inheritDoc} */
@@ -54,11 +57,26 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     /**
      * This method it is used to get the velocity with a safe method.
      * 
-     * @return immutableVelocity
+     * @return immutableDirection
      */
     protected Vector2d getDirection() {
-        final Vector2d immutableVelocity = this.direction;
-        return immutableVelocity; // NOPMD suppressed as it is a false positive
+        return new Vector2d(this.direction);
+    }
+
+    /**
+     * Sets the Entity's velocity value.
+     * @param newValue the new value.
+     */
+    protected void setVelocity(final double newValue) {
+        this.velocity = newValue;
+    }
+
+    /**
+     * Getter for the Entity's velocity.
+     * @return the velocity value.
+     */
+    protected double getVelocity() {
+        return this.velocity;
     }
 
     /**
