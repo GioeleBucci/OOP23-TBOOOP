@@ -70,7 +70,8 @@ public class View extends Application {
     @Override
     public void init() throws Exception {
         logger.info("View thread started");
-        logger.info("Window resolution set at: " + (int) WIDTH + "x" + (int) HEIGHT);
+        logger.info("Window resolution set at: " + (int) WIDTH + "x" + (int) HEIGHT +
+                ".\n(Upscale factor = " + UPSCALE_FACTOR + ")");
     }
 
     /** {@inheritDoc} */
