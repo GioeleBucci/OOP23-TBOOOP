@@ -14,6 +14,7 @@ import tbooop.model.player.api.Player;
 */
 public class PlayerImpl extends Entity implements Player {
 
+    private int damage;
     /**
      * Create a new istance of a Entity.
      * 
@@ -25,6 +26,7 @@ public class PlayerImpl extends Entity implements Player {
      */
     protected PlayerImpl(final Point2d position, final Health health, final Vector2d velocity) {
         super(position, health, velocity);
+        this.damage = 1;
     }
 
     /** {@inheritDoc} */
@@ -45,6 +47,14 @@ public class PlayerImpl extends Entity implements Player {
     public void recovery() {
         increaseHealth(1);
         checkHealth();
+    }
+
+    /**
+    * This method increases the amount of damage the Player can do.
+    * @param amount it's the amount of damege to increase.
+    */
+    public void increaseDamage(final int amount) {
+        this.damage = this.damage + amount;
     }
 
     /** {@inheritDoc} */
