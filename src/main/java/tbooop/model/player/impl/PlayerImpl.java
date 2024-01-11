@@ -15,6 +15,7 @@ import tbooop.model.player.api.Player;
 public class PlayerImpl extends Entity implements Player {
 
     private int damage;
+    private int keys;
     /**
      * Create a new istance of a Entity.
      * 
@@ -60,6 +61,12 @@ public class PlayerImpl extends Entity implements Player {
     public void recovery() {
         increaseHealth(1);
         checkHealth();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void pickupKeys() {
+        this.keys = this.keys + 1;
     }
 
     private void checkHealth() {
