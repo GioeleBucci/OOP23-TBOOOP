@@ -14,13 +14,22 @@ import tbooop.model.player.api.Player;
 */
 public class PlayerImpl extends Entity implements Player {
 
-    protected PlayerImpl(Point2d position, Health health, Vector2d velocity) {
-        super(position, health , velocity);
+    /**
+     * Create a new istance of a Entity.
+     * 
+     * @param position      starting position (as a {@link javafx.geometry.Point2D
+     *                      Point2D})
+     * @param health the entity's health
+     * @param velocity      it is the Entity velocity
+     * @throws NullPointerException if any parameter passed is null
+     */
+    protected PlayerImpl(final Point2d position, final Health health, final Vector2d velocity) {
+        super(position, health, velocity);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void onCollision(GameObject gameObj) {
+    public void onCollision(final GameObject gameObj) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'onCollision'");
     }
@@ -39,12 +48,13 @@ public class PlayerImpl extends Entity implements Player {
         throw new UnsupportedOperationException("Unimplemented method 'recovery'");
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void updateState(long deltaTime) {
+    public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
     }
-    
+
     /* 
     private void checkHealth() {
         if (getCurrenthHealth() > getMaxHealth()) {
