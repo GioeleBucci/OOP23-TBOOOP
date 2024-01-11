@@ -5,6 +5,7 @@ import tbooop.commons.api.Health;
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
+import java.util.Objects;
 
 /**
  * A Entity is an abstraction of anything that is Damageable and Movable in the
@@ -52,6 +53,15 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     @Override
     public int getMaxHealth() {
         return this.health.getMaxHealth();
+    }
+
+    /**
+     * Sets the Entity's direction value.
+     * @param newDir the new direction.
+     * @throws NullPointerException is the passed parameter is null.
+     */
+    protected void setDirection(final Vector2d newDir) {
+        this.direction = Objects.requireNonNull(newDir);
     }
 
     /**
