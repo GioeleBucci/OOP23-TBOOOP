@@ -38,8 +38,20 @@ public class PlayerImpl extends Entity implements Player {
 
     /** {@inheritDoc} */
     @Override
+    public void updateState(final long deltaTime) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void maxRecovery() {
         increaseHealth(getMaxHealth() - getHealth());
+    }
+
+    /** {@inheritDoc} */
+    public void increaseDamage(final int amount) {
+        this.damage = this.damage + amount;
     }
 
     /** {@inheritDoc} */
@@ -47,21 +59,6 @@ public class PlayerImpl extends Entity implements Player {
     public void recovery() {
         increaseHealth(1);
         checkHealth();
-    }
-
-    /**
-    * This method increases the amount of damage the Player can do.
-    * @param amount it's the amount of damege to increase.
-    */
-    public void increaseDamage(final int amount) {
-        this.damage = this.damage + amount;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void updateState(final long deltaTime) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
     }
 
     private void checkHealth() {
