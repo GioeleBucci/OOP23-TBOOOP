@@ -14,7 +14,7 @@ import tbooop.model.core.api.GameTag;
 public abstract class Entity extends GameObjectAbs implements Damageable {
 
     private final Health health;
-    private Vector2d velocity; // NOPMD suppressed as it is a false positive
+    private Vector2d direction; // NOPMD suppressed as it is a false positive
 
     /**
      * Create a new istance of a Entity.
@@ -22,14 +22,14 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * @param position      starting position (as a {@link javafx.geometry.Point2D
      *                      Point2D})
      * @param health the entity's health
-     * @param velocity      it is the Entity velocity
+     * @param direction      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
 
-    protected Entity(final Point2d position, final Health health, final Vector2d velocity) {
+    protected Entity(final Point2d position, final Health health, final Vector2d direction) {
         super(position, 1, GameTag.ENEMY);
         this.health = health;
-        this.velocity = velocity;
+        this.direction = direction;
     }
 
     /** {@inheritDoc} */
@@ -55,8 +55,8 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * 
      * @return immutableVelocity
      */
-    protected Vector2d getVelocity() {
-        final Vector2d immutableVelocity = this.velocity;
+    protected Vector2d getDirection() {
+        final Vector2d immutableVelocity = this.direction;
         return immutableVelocity; // NOPMD suppressed as it is a false positive
     }
 
