@@ -20,7 +20,7 @@ public abstract class AbstractEnemy extends Entity implements Enemy {
     protected AbstractEnemy(
         final Point2d position,
         final Health health,
-        final Vector2d velocity) {
+        final double velocity) {
         super(position, health, velocity);
         //TODO Auto-generated constructor stub
     }
