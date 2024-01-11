@@ -26,4 +26,9 @@ public interface Player extends Damageable {
     * @param amount it's the amount of damege to increase.
     */
     void increaseDamage(int amount);
+
+    /**
+    * This method increases the number of keys in the player's possession.
+    */
+    void pickupKeys();
 }
