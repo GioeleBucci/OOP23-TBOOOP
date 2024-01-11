@@ -15,7 +15,7 @@ import java.util.Objects;
 public abstract class Entity extends GameObjectAbs implements Damageable {
 
     private final Health health;
-    private Vector2d direction; // NOPMD suppressed as it is a false positive
+    private Vector2d direction;
     private double velocity;
 
     /**
