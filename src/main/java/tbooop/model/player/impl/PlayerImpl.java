@@ -1,7 +1,6 @@
 package tbooop.model.player.impl;
 
 import tbooop.commons.Point2d;
-import tbooop.commons.Vector2d;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.movable.Entity;
@@ -25,7 +24,7 @@ public class PlayerImpl extends Entity implements Player {
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
-    protected PlayerImpl(final Point2d position, final Health health, final Vector2d velocity) {
+    protected PlayerImpl(final Point2d position, final Health health, final double velocity) {
         super(position, health, velocity);
         this.damage = 1;
     }

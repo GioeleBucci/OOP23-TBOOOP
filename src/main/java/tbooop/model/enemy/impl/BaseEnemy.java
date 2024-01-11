@@ -1,7 +1,6 @@
 package tbooop.model.enemy.impl;
 
 import tbooop.commons.Point2d;
-import tbooop.commons.Vector2d;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.enemy.api.AbstractEnemy;

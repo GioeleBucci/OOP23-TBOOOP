@@ -23,7 +23,7 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * @param position      starting position (as a {@link javafx.geometry.Point2D
      *                      Point2D})
      * @param health the entity's health
-     * @param direction      it is the Entity velocity
+     * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
 
