@@ -1,8 +1,9 @@
-package tbooop.model.core.impl;
+package tbooop.model.items.impl;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.core.api.unmovable.pickupable.PickupableAbstract;
+import tbooop.model.items.api.PickupableAbstract;
+import tbooop.model.player.api.Player;
 
 /**
  * Class rapresenting "Heart" item in the
@@ -11,9 +12,7 @@ import tbooop.model.core.api.unmovable.pickupable.PickupableAbstract;
  */
 public class Heart extends PickupableAbstract {
 
-    private static final int MAP_DIMENSION = 5;
-    // private Point2d heartPosition = randomPointGenerator(); leggi commento in costruttore
-
+    //private final Point2d heartPosition = randomPointGenerator();
     /**
      * Create a new istance of a Heart.
      * 
@@ -27,38 +26,25 @@ public class Heart extends PickupableAbstract {
      */
     protected Heart(final Point2d position, final double colliderRadius, final GameTag tag) {
         /*
-         * TODO dato che la super è la prima istruzione che può esserci nel costruttore
+         * dato che la super è la prima istruzione che può esserci nel costruttore
          * per far si che la posizione sia l'output di randomPointGenerator bisognerebbe
          * mettere il metodo statico oppure usare un blocco di inizializzazione static {
          * } (ho fatto una cosa del genere in View.java nel package view). Ci sono
          * probabilmente anche altri modi.
          */
         super(position, colliderRadius, tag);
-        randomPointGenerator();
     }
-
-    // private final CircleColliderImpl heartCollider = new
-    // CircleColliderImpl(this.heartPosition, 2);
 
     /**
-     * Generates a new random Point2d
-     * that is consistent with the
-     * game map dimensions.
-     *
-     * @return new Point2D
-     */
-    private Point2d randomPointGenerator() {
-        // INCONSISTENT NOW, CASUAL MAP DIMENSIONS !!!
-        final double randomX = Math.random() * MAP_DIMENSION;
-        final double randomY = Math.random() * MAP_DIMENSION;
-        return new Point2d(randomX, randomY);
-    }
-
-    /** {@inheritDoc} */
+     * When the Heart item is picked up by
+     * the player, its health will be
+     * increased by one.
+     * 
+     * @param player
+    */
     @Override
-    public void onPickup() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onPickup'");
+    public void onPickup(final Player player) {
+        player.recovery();
     }
 
     /** {@inheritDoc} */
