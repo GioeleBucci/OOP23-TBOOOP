@@ -67,4 +67,12 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     public void increaseMaxHealth(final int amount){
         this.health.increaseMaxHealth(amount);
     }
+
+    /**
+     * Increases the current healt value.
+     * @param amount to add to the current health.
+     */
+    void increaseHealth(int amount){
+        this.health.increaseHealth(amount);
+    }
 }
