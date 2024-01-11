@@ -56,6 +56,22 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     }
 
     /**
+     * Increases the current healt value.
+     * @param amount to add to the max health.
+     */
+    public void increaseMaxHealth(final int amount) {
+        this.health.increaseMaxHealth(amount);
+    }
+
+    /**
+     * Increases the current healt value.
+     * @param amount to add to the current health.
+     */
+    public void increaseHealth(final int amount) {
+        this.health.increaseHealth(amount);
+    }
+
+    /**
      * Sets the Entity's direction value.
      * @param newDir the new direction.
      * @throws NullPointerException is the passed parameter is null.
@@ -87,21 +103,5 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      */
     protected double getVelocity() {
         return this.velocity;
-    }
-
-    /**
-     * Increases the current healt value.
-     * @param amount to add to the max health.
-     */
-    public void increaseMaxHealth(final int amount) {
-        this.health.increaseMaxHealth(amount);
-    }
-
-    /**
-     * Increases the current healt value.
-     * @param amount to add to the current health.
-     */
-    public void increaseHealth(final int amount) {
-        this.health.increaseHealth(amount);
     }
 }
