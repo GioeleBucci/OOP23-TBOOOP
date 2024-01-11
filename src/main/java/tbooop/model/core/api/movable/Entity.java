@@ -27,10 +27,9 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * @throws NullPointerException if any parameter passed is null
      */
 
-    protected Entity(final Point2d position, final Health health, final Vector2d direction, final double velocity) {
+    protected Entity(final Point2d position, final Health health, final double velocity) {
         super(position, 1, GameTag.ENEMY);
         this.health = health;
-        this.direction = direction;
         this.velocity = velocity;
     }
 
