@@ -27,7 +27,6 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      */
 
     protected Entity(final Point2d position, final Health health, final Vector2d velocity) {
-        // TODO ho messo un tag a caso e un uno come raggio del circle collider
         super(position, 1, GameTag.ENEMY);
         this.health = health;
         this.velocity = velocity;
@@ -61,4 +60,19 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
         return immutableVelocity; // NOPMD suppressed as it is a false positive
     }
 
+    /**
+     * Increases the current healt value.
+     * @param amount to add to the max health.
+     */
+    public void increaseMaxHealth(final int amount) {
+        this.health.increaseMaxHealth(amount);
+    }
+
+    /**
+     * Increases the current healt value.
+     * @param amount to add to the current health.
+     */
+    public void increaseHealth(final int amount) {
+        this.health.increaseHealth(amount);
+    }
 }
