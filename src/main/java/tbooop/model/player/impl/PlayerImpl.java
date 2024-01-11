@@ -50,6 +50,7 @@ public class PlayerImpl extends Entity implements Player {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void increaseDamage(final int amount) {
         this.damage = this.damage + amount;
     }

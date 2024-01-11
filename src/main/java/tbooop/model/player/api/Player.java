@@ -25,5 +25,5 @@ public interface Player extends Damageable {
     * This method increases the amount of damage the Player can do.
     * @param amount it's the amount of damege to increase.
     */
-    void increaseDamage(final int amount);
+    void increaseDamage(int amount);
 }
