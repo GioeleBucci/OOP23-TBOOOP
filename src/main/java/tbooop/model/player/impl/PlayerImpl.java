@@ -59,5 +59,5 @@ public class PlayerImpl extends Entity implements Player {
             takeDamage(1);
         }
     }
-    
+
 }
