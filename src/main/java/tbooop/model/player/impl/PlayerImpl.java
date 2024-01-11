@@ -37,8 +37,7 @@ public class PlayerImpl extends Entity implements Player {
     /** {@inheritDoc} */
     @Override
     public void maxRecovery() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'maxRecovery'");
+        increaseHealth(getMaxHealth() - getHealth());
     }
 
     /** {@inheritDoc} */
