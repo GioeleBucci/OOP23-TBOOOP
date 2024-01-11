@@ -1,7 +1,7 @@
 package tbooop.model.core.api.unmovable.pickupable;
 
 import tbooop.commons.Point2d;
-import tbooop.commons.api.CircleCollider;
+import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
 
@@ -16,6 +16,8 @@ import tbooop.model.core.api.unmovable.UnmovableAbs;
  */
 public abstract class PickupableAbstract extends UnmovableAbs implements Pickupable {
 
+    private static final double MAP_HEIGHT_LIMIT = RoomBounds.HEIGHT;
+    private static final double MAP_WIDTH_LIMIT = RoomBounds.WIDTH;
     /**
      * Create a new istance of a Pickup.
      * 
@@ -31,9 +33,16 @@ public abstract class PickupableAbstract extends UnmovableAbs implements Pickupa
         super(position, colliderRadius, tag);
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isColliding(final CircleCollider player, final CircleCollider item) {
-        return item.isColliding(player);
+    /**
+     * Generates a new random Point2d
+     * that is consistent with the
+     * game map dimensions.
+     *
+     * @return new Point2D
+     */
+    protected Point2d randomPointGenerator() {
+        final double randomX = Math.random() * MAP_WIDTH_LIMIT;
+        final double randomY = Math.random() * MAP_HEIGHT_LIMIT;
+        return new Point2d(randomX, randomY);
     }
 }
