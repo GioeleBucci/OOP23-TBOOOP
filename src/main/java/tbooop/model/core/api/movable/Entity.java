@@ -15,6 +15,7 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
 
     private final Health health;
     private Vector2d direction; // NOPMD suppressed as it is a false positive
+    private double velocity;
 
     /**
      * Create a new istance of a Entity.
@@ -26,10 +27,11 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * @throws NullPointerException if any parameter passed is null
      */
 
-    protected Entity(final Point2d position, final Health health, final Vector2d direction) {
+    protected Entity(final Point2d position, final Health health, final Vector2d direction, final double velocity) {
         super(position, 1, GameTag.ENEMY);
         this.health = health;
         this.direction = direction;
+        this.velocity = velocity;
     }
 
     /** {@inheritDoc} */
