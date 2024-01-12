@@ -10,11 +10,11 @@ public final class RoomBounds {
     /**
      * The height of a room (not necessairly in pixels).
      */
-    public static final double HEIGHT = 364;
+    public static final double HEIGHT = 207;
     /**
      * The width of a room (not necessairly in pixels).
      */
-    public static final double WIDTH = 207;
+    public static final double WIDTH = 364;
 
     /**
      * Whether the position passed is out of room bounds.
