@@ -32,7 +32,7 @@ public class View extends Application {
      * fullscreen).
      * </p>
      */
-    public static final double SCALE_PERCENTAGE = 0.7;
+    private static final double SCALE_PERCENTAGE = 0.7;
 
     /** The width of this window. */
     public static final double WIDTH;
@@ -70,8 +70,8 @@ public class View extends Application {
     @Override
     public void init() throws Exception {
         logger.info("View thread started");
-        logger.info("Window resolution set at: " + (int) WIDTH + "x" + (int) HEIGHT +
-                ".\n(Upscale factor = " + UPSCALE_FACTOR + ")");
+        logger.info("Window resolution set at: " + (int) WIDTH + "x" + (int) HEIGHT
+                + ".\n(Upscale factor = " + UPSCALE_FACTOR + ")");
     }
 
     /** {@inheritDoc} */

@@ -15,7 +15,6 @@ public class RoomRenderer {
     private final Group root = new Group();
     private final MinimapRenderer minimapRenderer;
 
-    private static final double VERTICAL_DISPLACEMENT = 0.75;
     private static final int FLIP_VERTICALLY = -180;
     private static final int ROTATE_LEFT = -90;
 
@@ -65,22 +64,22 @@ public class RoomRenderer {
             final ImageView door = createDoor(entry.getValue());
             switch (entry.getKey()) {
                 case UP -> {
-                    door.setX(View.WIDTH / 2 - door.getFitWidth() / 2);
-                    door.setY(door.getFitHeight() / 4);
+                    door.setX(DoorPositions.TOP.getX());
+                    door.setY(DoorPositions.TOP.getY());
                 }
                 case DOWN -> {
-                    door.setX(View.WIDTH / 2 - door.getFitWidth() / 2);
-                    door.setY(View.HEIGHT - door.getFitHeight() * VERTICAL_DISPLACEMENT);
+                    door.setX(DoorPositions.BOTTOM.getX());
+                    door.setY(DoorPositions.BOTTOM.getY());
                     door.rotateProperty().set(FLIP_VERTICALLY);
                 }
                 case LEFT -> {
-                    door.setX(door.getFitWidth() / 4);
-                    door.setY(View.HEIGHT / 2 - door.getFitHeight() / 2);
+                    door.setX(DoorPositions.LEFT.getX());
+                    door.setY(DoorPositions.LEFT.getY());
                     door.rotateProperty().set(ROTATE_LEFT);
                 }
                 case RIGHT -> {
-                    door.setX(View.WIDTH - door.getFitWidth());
-                    door.setY(View.HEIGHT / 2 - door.getFitHeight() / 2);
+                    door.setX(DoorPositions.RIGHT.getX());
+                    door.setY(DoorPositions.RIGHT.getY());
                     door.rotateProperty().set(-ROTATE_LEFT);
                 }
                 default -> throw new IllegalStateException("Unexpected value: " + entry.getKey());
