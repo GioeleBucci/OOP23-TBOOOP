@@ -5,6 +5,7 @@ import tbooop.commons.api.Health;
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
+import java.util.Objects;
 
 /**
  * A Entity is an abstraction of anything that is Damageable and Movable in the
@@ -14,7 +15,8 @@ import tbooop.model.core.api.GameTag;
 public abstract class Entity extends GameObjectAbs implements Damageable {
 
     private final Health health;
-    private Vector2d velocity; // NOPMD suppressed as it is a false positive
+    private Vector2d direction;
+    private double velocity;
 
     /**
      * Create a new istance of a Entity.
@@ -26,10 +28,13 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * @throws NullPointerException if any parameter passed is null
      */
 
-    protected Entity(final Point2d position, final Health health, final Vector2d velocity) {
+    protected Entity(final Point2d position, final Health health, final double velocity) {
         super(position, 1, GameTag.ENEMY);
         this.health = health;
         this.velocity = velocity;
+        this.direction = new Vector2d(
+            super.getPosition().getX(),
+            super.getPosition().getY());
     }
 
     /** {@inheritDoc} */
@@ -51,16 +56,6 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     }
 
     /**
-     * This method it is used to get the velocity with a safe method.
-     * 
-     * @return immutableVelocity
-     */
-    protected Vector2d getVelocity() {
-        final Vector2d immutableVelocity = this.velocity;
-        return immutableVelocity; // NOPMD suppressed as it is a false positive
-    }
-
-    /**
      * Increases the current healt value.
      * @param amount to add to the max health.
      */
@@ -74,5 +69,39 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      */
     public void increaseHealth(final int amount) {
         this.health.increaseHealth(amount);
+    }
+
+    /**
+     * Sets the Entity's direction value.
+     * @param newDir the new direction.
+     * @throws NullPointerException is the passed parameter is null.
+     */
+    protected void setDirection(final Vector2d newDir) {
+        this.direction = Objects.requireNonNull(newDir);
+    }
+
+    /**
+     * This method it is used to get the velocity with a safe method.
+     * 
+     * @return immutableDirection
+     */
+    protected Vector2d getDirection() {
+        return new Vector2d(this.direction);
+    }
+
+    /**
+     * Sets the Entity's velocity value.
+     * @param newValue the new value.
+     */
+    protected void setVelocity(final double newValue) {
+        this.velocity = newValue;
+    }
+
+    /**
+     * Getter for the Entity's velocity.
+     * @return the velocity value.
+     */
+    protected double getVelocity() {
+        return this.velocity;
     }
 }

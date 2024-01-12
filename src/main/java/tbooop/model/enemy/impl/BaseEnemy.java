@@ -1,7 +1,6 @@
 package tbooop.model.enemy.impl;
 
 import tbooop.commons.Point2d;
-import tbooop.commons.Vector2d;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.enemy.api.AbstractEnemy;
@@ -22,7 +21,7 @@ public class BaseEnemy extends AbstractEnemy {
     protected BaseEnemy(
         final Point2d position,
         final Health health,
-        final Vector2d velocity) {
+        final double velocity) {
         super(position, health, velocity);
         //TODO Auto-generated constructor stub
     }
