@@ -20,7 +20,7 @@ public final class DoorPositions {
     private static final double WALL_THICKNESS = (View.WIDTH - RoomBounds.WIDTH * View.UPSCALE_FACTOR) / 2;
     private static final double DOOR_W;
     private static final double DOOR_H;
-    private static final double DISPLACEMENT = 5 / 6;
+    private static final double DISPLACEMENT = 5.0 / 6;
 
     static {
         /*
