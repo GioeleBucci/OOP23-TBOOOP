@@ -41,7 +41,7 @@ public class RoomRenderer {
     }
 
     private ImageView createDoor(final Door door) {
-        final Image doorImg = new Image(door.isSpecial() ? "door_special_open.png" : "door_open.png");
+        final Image doorImg = new Image(door.isSpecial() ? "/door_special_open.png" : "/door_open.png");
         final ImageView doorImageView = new ImageView(doorImg);
         doorImageView.setFitWidth(doorImg.getWidth() * View.UPSCALE_FACTOR);
         doorImageView.setFitHeight(doorImg.getHeight() * View.UPSCALE_FACTOR);
@@ -50,7 +50,7 @@ public class RoomRenderer {
     }
 
     private void addCommandsOnStartingRoom() {
-        final Image doorImg = new Image("commands.png");
+        final Image doorImg = new Image("/commands.png");
         final ImageView img = new ImageView(doorImg);
         img.setFitWidth(doorImg.getWidth() * View.UPSCALE_FACTOR);
         img.setFitHeight(doorImg.getHeight() * View.UPSCALE_FACTOR);

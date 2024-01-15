@@ -79,7 +79,7 @@ public class View extends Application {
     public void start(final Stage stage) throws Exception {
         stage.initStyle(StageStyle.UNIFIED);
 
-        final Image img = new Image("room.png");
+        final Image img = new Image("/room.png");
         final ImageView background = new ImageView(img);
         background.fitWidthProperty().bind(stage.widthProperty());
         background.fitHeightProperty().bind(stage.heightProperty());
