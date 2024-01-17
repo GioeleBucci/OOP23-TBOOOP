@@ -13,7 +13,6 @@ public class ItemShopRoom extends BaseRoom {
     /** {@inheritDoc} */
     @Override
     public boolean isSpecial() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'isSpecial'");
+        return true;
     }
 }
