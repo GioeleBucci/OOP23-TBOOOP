@@ -13,7 +13,7 @@ import tbooop.model.dungeon.rooms.api.Room;
  * A room can have up to 4 doors and a series of rooms
  * create a floor.
  * 
- * @see {@link tbooop.model.dungeon.Floor Floor}
+ * @see {@link tbooop.model.dungeon.floor.BaseFloor Floor}
  */
 public abstract class BaseRoom implements Room {
 

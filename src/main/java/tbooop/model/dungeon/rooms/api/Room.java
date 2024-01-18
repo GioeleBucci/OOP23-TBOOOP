@@ -5,7 +5,7 @@ import tbooop.commons.Point2ds;
 /**
  * Base for all Rooms implementations.
  * 
- * @see {@link tbooop.model.dungeon.Floor Floor}
+ * @see {@link tbooop.model.dungeon.floor.BaseFloor Floor}
  */
 public interface Room extends RoomView {
 

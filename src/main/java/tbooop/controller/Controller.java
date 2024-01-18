@@ -4,8 +4,8 @@ import java.util.logging.Logger;
 
 import tbooop.commons.Point2d;
 import tbooop.commons.Point2ds;
-import tbooop.model.dungeon.Floor;
-import tbooop.model.dungeon.LevelFloor;
+import tbooop.model.dungeon.floor.LevelFloor;
+import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.view.View;
 
 /**

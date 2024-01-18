@@ -1,7 +1,7 @@
-package tbooop.model.dungeon;
+package tbooop.model.dungeon.floor;
 
 /** A floor that gets more rooms the higher its level is. */
-public class LevelFloor extends Floor {
+public class LevelFloor extends BaseFloor {
 
     private static final int MINIMUM_ROOMS_AMOUNT = 5;
     private static final double MULTIPLIER = 2.6;
@@ -12,7 +12,7 @@ public class LevelFloor extends Floor {
      * {@code Math.random() * 2 + 5 + level * 2.6}.
      * 
      * @param floorLevel floor number, used to determine the amount of rooms spawned
-     * @see Floor
+     * @see BaseFloor
      */
     public LevelFloor(final int floorLevel) {
         super((int) (Math.random() * 2 + MINIMUM_ROOMS_AMOUNT + floorLevel * MULTIPLIER));
