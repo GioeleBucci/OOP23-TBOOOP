@@ -2,6 +2,7 @@ package tbooop.model.enemy.api;
 
 import tbooop.commons.Point2d;
 import tbooop.commons.api.Health;
+import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.Entity;
 
 /**
@@ -20,7 +21,7 @@ public abstract class AbstractEnemy extends Entity implements Enemy {
         final Point2d position,
         final Health health,
         final double velocity) {
-        super(position, health, velocity);
+        super(position, health, velocity, GameTag.ENEMY);
         //TODO Auto-generated constructor stub
     }
 }
