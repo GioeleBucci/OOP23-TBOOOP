@@ -1,9 +1,11 @@
-package tbooop.commons.api;
+package tbooop.commons;
+
+import tbooop.commons.api.Health;
 
 /**
- * Abstract Health class, it contains some essential features.
+ * Health class, it contains some essential features.
  */
-public abstract class AbstractHealth implements Health {
+public class HealthImpl implements Health {
 
     private int maxHealth;
     private int currentHealth;
@@ -16,7 +18,7 @@ public abstract class AbstractHealth implements Health {
      * @throws IllegalArgumentException if the input parameter is
      * a negative number.
      */
-    protected AbstractHealth(final int maxHealth) {
+    public HealthImpl(final int maxHealth) {
         if (maxHealth < 0) {
             throw new IllegalArgumentException();
         }

@@ -1,8 +1,8 @@
 package tbooop.model.player.impl;
 
-
 import tbooop.commons.Point2d;
 import tbooop.commons.Point2ds;
+import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
@@ -28,7 +28,7 @@ public class PlayerImpl extends Entity implements Player {
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
-    protected PlayerImpl(final Point2d position, final Health health, final double velocity) {
+    public PlayerImpl(final Point2d position, final Health health, final double velocity) {
         super(position, health, velocity, GameTag.PLAYER);
         this.damage = 1;
         this.coin = 10;
@@ -76,9 +76,15 @@ public class PlayerImpl extends Entity implements Player {
     /** {@inheritDoc} */
     @Override
     public void move(final Point2ds direction) {
-        this.setPosition(getPosition()
+        final Point2d control = getPosition()
         .add(direction.toP2d())
-        .mul(getVelocity()));
+        .mul(getVelocity());
+
+        if (RoomBounds.outOfBounds(control)) {
+            this.setPosition(getPosition()
+            .add(direction.toP2d())
+            .mul(getVelocity()));
+        }
     }
 
     /** {@inheritDoc} */
