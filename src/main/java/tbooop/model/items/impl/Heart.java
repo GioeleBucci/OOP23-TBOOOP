@@ -11,8 +11,6 @@ import tbooop.model.player.api.Player;
  * will increase its health of one unit.
  */
 public class Heart extends PickupableAbstract {
-
-    //private final Point2d heartPosition = randomPointGenerator();
     /**
      * Create a new istance of a Heart.
      * 
@@ -54,4 +52,8 @@ public class Heart extends PickupableAbstract {
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void setInShop() {
+    }
 }
