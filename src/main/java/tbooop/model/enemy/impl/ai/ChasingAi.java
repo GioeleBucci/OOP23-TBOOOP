@@ -22,7 +22,7 @@ public class ChasingAi implements MovementAi {
      * 
      * @param player the player that will be chased
      */
-    public ChasingAi(final Player player) {
+    protected ChasingAi(final Player player) {
         this.player = Objects.requireNonNull(player);
     }
 
