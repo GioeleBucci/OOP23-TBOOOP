@@ -26,7 +26,7 @@ import java.util.Objects;
 /**
  * A Floor is a series of rooms organized in a square grid layout.
  */
-public class BaseFloor implements Floor {
+public abstract class BaseFloor implements Floor {
     /** maximum distance in each axis a room can be from the starting room (0;0). */
     public static final int MAX_DIST_FROM_START = 3;
     private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();

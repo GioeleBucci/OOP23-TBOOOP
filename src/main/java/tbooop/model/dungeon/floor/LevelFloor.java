@@ -24,4 +24,10 @@ public class LevelFloor extends BaseFloor {
     public String toString() {
         return "Floor " + floorLevel + ":\n" + super.toString();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getLevel() {
+        return this.floorLevel;
+    }
 }

@@ -16,4 +16,11 @@ public interface Floor {
      */
     Map<Point2d, Room> getRoomsMap();
 
+    /**
+     * Returns the level of this floor.
+     * 
+     * @return this floor's difficulty level
+     */
+    int getLevel();
+
 }
