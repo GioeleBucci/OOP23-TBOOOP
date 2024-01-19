@@ -28,7 +28,7 @@ public class PlayerImpl extends Entity implements Player {
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
-    protected PlayerImpl(final Point2d position, final Health health, final double velocity) {
+    public PlayerImpl(final Point2d position, final Health health, final double velocity) {
         super(position, health, velocity, GameTag.PLAYER);
         this.damage = 1;
         this.coin = 10;
