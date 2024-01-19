@@ -67,7 +67,7 @@ public class BaseEnemy extends AbstractEnemy {
                 "deltaTime can't be negative.");
         }
         final Point2d newPos = this.ai.newPosition(
-            super.getPosition(), deltaTime);
+            super.getPosition(), deltaTime, super.getVelocity());
         if (!RoomBounds.outOfBounds(newPos)) {
             super.setPosition(newPos);
         }

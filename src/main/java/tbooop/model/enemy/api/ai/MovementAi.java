@@ -13,7 +13,8 @@ public interface MovementAi {
      * 
      * @param initialPosition the current position where to move from
      * @param deltaTime the time passed since the previous position update
+     * @param velocity the enemy's velocity
      * @return the new position
      */
-    Point2d newPosition(Point2d initialPosition, long deltaTime);
+    Point2d newPosition(Point2d initialPosition, long deltaTime, double    velocity);
 }
