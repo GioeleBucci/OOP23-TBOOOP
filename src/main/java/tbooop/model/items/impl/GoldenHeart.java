@@ -3,6 +3,8 @@ package tbooop.model.items.impl;
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.items.api.PickupableAbstract;
+import tbooop.model.items.api.PickupablePrices;
+import tbooop.model.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 
 /**
@@ -11,6 +13,9 @@ import tbooop.model.player.api.Player;
  * will increase its health to max level.
  */
 public class GoldenHeart extends PickupableAbstract {
+
+    private final int itemCost = PickupablePrices.GOLDENHEART_PRICE.getItemPrice();
+    private PickupableStatus itemTag = PickupableStatus.NORMAL;
     /**
      * Create a new istance of a GoldenHeart.
      * 
@@ -33,7 +38,14 @@ public class GoldenHeart extends PickupableAbstract {
     */
     @Override
     public void onPickup(final Player player) {
-        player.maxRecovery();
+        if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
+            if (player.getCoin() >= this.itemCost) {
+                player.maxRecovery();
+                player.setCoin(-itemCost);
+            }
+        } else {
+            player.maxRecovery();
+        }
     }
 
     /** {@inheritDoc} */
@@ -46,5 +58,6 @@ public class GoldenHeart extends PickupableAbstract {
     /** {@inheritDoc} */
     @Override
     public void setInShop() {
+        this.itemTag = PickupableStatus.SPECIAL;
     }
 }

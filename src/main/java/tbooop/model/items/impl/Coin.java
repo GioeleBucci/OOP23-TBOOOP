@@ -12,6 +12,8 @@ import tbooop.model.player.api.Player;
  * and will be used in the items shop.
  */
 public class Coin extends PickupableAbstract {
+
+    private static final int COIN_VALUE = 1;
     /**
      * Create a new istance of a Coin.
      * 
@@ -34,7 +36,7 @@ public class Coin extends PickupableAbstract {
     */
     @Override
     public void onPickup(final Player player) {
-        //WAITING FOR COIN METHODS IN PLAYER IMPL
+        player.setCoin(COIN_VALUE);
     }
 
     /** {@inheritDoc} */

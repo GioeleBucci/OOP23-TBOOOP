@@ -4,6 +4,8 @@ import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.items.api.PickupableAbstract;
 import tbooop.model.player.api.Player;
+import tbooop.model.items.api.PickupablePrices;
+import tbooop.model.items.api.PickupableStatus;
 
 /**
  * Class rapresenting "Heart" item in the
@@ -11,6 +13,9 @@ import tbooop.model.player.api.Player;
  * will increase its health of one unit.
  */
 public class Heart extends PickupableAbstract {
+
+    private final int itemCost = PickupablePrices.HEART_PRICE.getItemPrice();
+    private PickupableStatus itemTag = PickupableStatus.NORMAL;
     /**
      * Create a new istance of a Heart.
      * 
@@ -42,7 +47,14 @@ public class Heart extends PickupableAbstract {
     */
     @Override
     public void onPickup(final Player player) {
-        player.recovery();
+        if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
+            if (player.getCoin() >= this.itemCost) {
+                player.recovery();
+                player.setCoin(-itemCost);
+            }
+        } else {
+            player.recovery();
+        }
     }
 
     /** {@inheritDoc} */
@@ -55,5 +67,6 @@ public class Heart extends PickupableAbstract {
     /** {@inheritDoc} */
     @Override
     public void setInShop() {
+        this.itemTag = PickupableStatus.SPECIAL;
     }
 }
