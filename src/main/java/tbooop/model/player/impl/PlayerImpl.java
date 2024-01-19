@@ -1,6 +1,8 @@
 package tbooop.model.player.impl;
 
+
 import tbooop.commons.Point2d;
+import tbooop.commons.Point2ds;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
@@ -67,6 +69,12 @@ public class PlayerImpl extends Entity implements Player {
     @Override
     public void pickupKeys() {
         this.keys = this.keys + 1;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void move(final Point2ds direction) {
+        this.setPosition(getPosition().add(direction.toP2d()));
     }
 
     private void checkHealth() {
