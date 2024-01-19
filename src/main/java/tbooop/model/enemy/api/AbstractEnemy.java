@@ -58,8 +58,14 @@ public abstract class AbstractEnemy extends Entity implements Enemy {
      * Updates the enemy's position.
      * 
      * @param deltaTime the time passed since the previous position update
+     * @throws IllegalArgumentException if deltaTime is negative
      */
     protected void move(final long deltaTime) {
+        // DA DISCUTERE!
+        if (deltaTime < 0) {
+            throw new IllegalArgumentException(
+                "deltaTime can't be negative.");
+        }
         final Point2d newPos = this.ai.newPosition(
             super.getPosition(), deltaTime);
         if (!RoomBounds.outOfBounds(newPos)) {
