@@ -1,4 +1,4 @@
-package tbooop.model.dungeon;
+package tbooop.model.dungeon.floor;
 
 import java.util.Queue;
 import java.util.Random;
@@ -10,6 +10,7 @@ import tbooop.model.dungeon.rooms.impl.RegularRoom;
 import tbooop.model.dungeon.rooms.impl.SpecialDoor;
 import tbooop.model.dungeon.rooms.impl.SpecialRoom;
 import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.model.dungeon.rooms.api.Door;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import java.util.Objects;
 /**
  * A Floor is a series of rooms organized in a square grid layout.
  */
-public class Floor {
+public class BaseFloor implements Floor {
     /** maximum distance in each axis a room can be from the starting room (0;0). */
     public static final int MAX_DIST_FROM_START = 3;
     private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();
@@ -48,7 +49,7 @@ public class Floor {
      * @throws NullPointerException     if null is passed
      * @throws IllegalArgumentException if a number < 3 is passed
      */
-    protected Floor(final int rooms) {
+    protected BaseFloor(final int rooms) {
         this.roomsAmount = Objects.requireNonNull(rooms);
         if (roomsAmount < MINIMUM_ROOMS_AMOUNT) {
             throw new IllegalArgumentException("You must pass a number greater than " + MINIMUM_ROOMS_AMOUNT);
@@ -71,6 +72,7 @@ public class Floor {
      * @return a Map where the key is a room's position and the value the associated
      *         room object
      */
+    @Override
     public Map<Point2d, Room> getRoomsMap() {
         return Collections.unmodifiableMap(this.roomsMap);
     }

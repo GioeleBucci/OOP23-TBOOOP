@@ -43,4 +43,9 @@ public class Coin extends PickupableAbstract {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setInShop() {
+    }
 }
