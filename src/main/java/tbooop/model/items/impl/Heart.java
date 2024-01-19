@@ -47,12 +47,12 @@ public class Heart extends PickupableAbstract {
     */
     @Override
     public void onPickup(final Player player) {
-        if(this.itemTag.equals(PickupableStatus.SPECIAL)){
-            if(player.getCoin() >= this.itemCost){
+        if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
+            if (player.getCoin() >= this.itemCost) {
                 player.recovery();
                 player.setCoin(-itemCost);
             }
-        }else{
+        } else {
             player.recovery();
         }
     }
