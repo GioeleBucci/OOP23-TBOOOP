@@ -34,6 +34,18 @@ public interface Player extends Damageable {
     void pickupKeys();
 
     /**
+    * This method change the number of coin in the player's  possession.
+    * @param amount it's the amount of coin to change.
+    */
+    void setCoin(int amount);
+
+    /**
+     * This method return the amount of coin in the player's possession.
+     * @return the amount of coin.
+     */
+    int getCoin();
+
+    /**
      * This method it's used for moving the playere in the four direction.
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */
