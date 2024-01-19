@@ -32,6 +32,6 @@ class TestPlayer {
         assertEquals(1, player.getHealth());
         player.increaseMaxHealth(2);
         assertEquals(3, player.getMaxHealth());
-        assertEquals(1, player.getHealth());
+        assertEquals(3, player.getHealth());
     }
 }
