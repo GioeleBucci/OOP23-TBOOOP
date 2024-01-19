@@ -1,6 +1,8 @@
 package tbooop.model.player.impl;
 
+
 import tbooop.commons.Point2d;
+import tbooop.commons.Point2ds;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
@@ -16,6 +18,7 @@ public class PlayerImpl extends Entity implements Player {
 
     private int damage;
     private int keys;
+    private int coin;
     /**
      * Create a new istance of a Entity.
      * 
@@ -28,6 +31,7 @@ public class PlayerImpl extends Entity implements Player {
     protected PlayerImpl(final Point2d position, final Health health, final double velocity) {
         super(position, health, velocity, GameTag.PLAYER);
         this.damage = 1;
+        this.coin = 10;
     }
 
     /** {@inheritDoc} */
@@ -69,10 +73,27 @@ public class PlayerImpl extends Entity implements Player {
         this.keys = this.keys + 1;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void move(final Point2ds direction) {
+        this.setPosition(getPosition().add(direction.toP2d()));
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setCoin(final int amount) {
+        this.coin = this.coin + amount;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getCoin() {
+        return this.coin;
+    }
+
     private void checkHealth() {
         if (getHealth() > getMaxHealth()) {
             takeDamage(1);
         }
     }
-
 }

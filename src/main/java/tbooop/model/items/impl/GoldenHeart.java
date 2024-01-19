@@ -11,7 +11,6 @@ import tbooop.model.player.api.Player;
  * will increase its health to max level.
  */
 public class GoldenHeart extends PickupableAbstract {
-
     /**
      * Create a new istance of a GoldenHeart.
      * 
@@ -42,5 +41,10 @@ public class GoldenHeart extends PickupableAbstract {
     public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void setInShop() {
     }
 }

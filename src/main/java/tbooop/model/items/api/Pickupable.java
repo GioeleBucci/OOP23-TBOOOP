@@ -20,4 +20,11 @@ public interface Pickupable extends Unmovable {
      * @param player istance of player
      */
     void onPickup(Player player);
+
+    /**
+     * Sets the item as "special"
+     * when it's spawned in the
+     * item shop room.
+     */
+    void setInShop();
 }

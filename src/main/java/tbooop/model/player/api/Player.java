@@ -1,6 +1,7 @@
 package tbooop.model.player.api;
 
 import tbooop.model.core.api.movable.Damageable;
+import tbooop.commons.Point2ds;
 
 /**
  * A Player is a game object that can move on a 2D space,
@@ -31,4 +32,22 @@ public interface Player extends Damageable {
     * This method increases the number of keys in the player's possession.
     */
     void pickupKeys();
+
+    /**
+    * This method change the number of coin in the player's  possession.
+    * @param amount it's the amount of coin to change.
+    */
+    void setCoin(int amount);
+
+    /**
+     * This method return the amount of coin in the player's possession.
+     * @return the amount of coin.
+     */
+    int getCoin();
+
+    /**
+     * This method it's used for moving the playere in the four direction.
+     * @param direction can be UP,DOWN,LEFT,RIGHT.
+     */
+    void move(Point2ds direction);
 }

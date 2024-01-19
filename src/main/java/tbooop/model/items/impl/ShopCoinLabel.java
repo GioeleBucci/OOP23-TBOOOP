@@ -6,15 +6,13 @@ import tbooop.model.items.api.PickupableAbstract;
 import tbooop.model.player.api.Player;
 
 /**
- * Class rapresenting "Key" item in the
- * game. When it's picked up, it will
- * increase the number of the keys
- * owned by the player, and they will be
- * used to open doors.
+ * Class rapresenting a static object
+ * that will be used to contain and show
+ * items price in the shop room.
  */
-public class Key extends PickupableAbstract {
+public class ShopCoinLabel extends PickupableAbstract {
     /**
-     * Create a new istance of a Key.
+     * Create a new istance of a Coin Label.
      * 
      * @param position       spawn position (as a {@link javafx.geometry.Point2D
      *                       Point2D})
@@ -24,18 +22,15 @@ public class Key extends PickupableAbstract {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected Key(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected ShopCoinLabel(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
-    /**
-     * When the Key is picked
-     * up it will increase the number
-     * of keys owned by the player.
-    */
+    /** {@inheritDoc} */
     @Override
     public void onPickup(final Player player) {
-        player.pickupKeys();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onPickup'");
     }
 
     /** {@inheritDoc} */
