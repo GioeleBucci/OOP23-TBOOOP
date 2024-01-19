@@ -28,7 +28,6 @@ public class BaseEnemy extends AbstractEnemy {
         final Player player,
         final MovementAi ai) {
         super(position, health, velocity, player, ai);
-        //TODO Auto-generated constructor stub
     }
 
 }
