@@ -61,6 +61,12 @@ public final class Point2d implements SimplePoint {
 
     /** {@inheritDoc} */
     @Override
+    public Point2d mul(double scalar) {
+        return toP2d(this.vector.scalarMultiply(scalar));
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public double distance(final SimplePoint coord) {
         return this.vector.distance(toV2d(coord));
     }

@@ -45,4 +45,12 @@ public interface SimplePoint {
      */
     Point2d subtract(SimplePoint point);
 
+    /**
+     * Multiply this element by a scalar.
+     * 
+     * @param scalar the scalar to multiply by
+     * @return a new Point
+     */
+    Point2d mul(double scalar);
+
 }
