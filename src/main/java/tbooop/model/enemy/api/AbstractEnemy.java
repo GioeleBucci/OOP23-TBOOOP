@@ -39,7 +39,6 @@ public abstract class AbstractEnemy extends Entity implements Enemy {
         this.ai = Objects.requireNonNull(ai);
     }
 
-    // DA DISCUTERE!
     /** {@inheritDoc} */
     @Override
     public void onCollision(final GameObject gameObj) {
