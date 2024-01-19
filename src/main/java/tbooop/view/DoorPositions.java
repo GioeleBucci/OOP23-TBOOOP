@@ -28,7 +28,7 @@ public final class DoorPositions {
          * original size by the upscale factor, then perform some calculations to
          * determine where each door should be placed.
          */
-        final Image reference = new Image("door_open.png");
+        final Image reference = new Image("/door_open.png");
         DOOR_W = reference.getWidth() * View.UPSCALE_FACTOR;
         DOOR_H = reference.getHeight() * View.UPSCALE_FACTOR;
         final double widthMiddle = View.WIDTH / 2 - DOOR_W / 2;

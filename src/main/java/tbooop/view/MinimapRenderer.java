@@ -9,13 +9,13 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import tbooop.commons.Point2d;
 import tbooop.commons.Point2ds;
-import tbooop.model.dungeon.Floor;
+import tbooop.model.dungeon.floor.BaseFloor;
 import tbooop.model.dungeon.rooms.api.Door;
 
 /** Renders a minimap. */
 public class MinimapRenderer {
     private final Group root = new Group();
-    private static final int MAP_SIZE = Floor.MAX_DIST_FROM_START * 2 + 1;
+    private static final int MAP_SIZE = BaseFloor.MAX_DIST_FROM_START * 2 + 1;
     private static final Color UNEXPLORED_COLOR = Color.GRAY;
     private static final Color EXPLORED_COLOR = Color.WHITESMOKE;
     private final Map<Point2d, Rectangle> map = new HashMap<>();
@@ -82,7 +82,7 @@ public class MinimapRenderer {
                 smallerSquare.setArcWidth(10);
                 smallerSquare.setArcHeight(10);
                 smallerSquare.setFill(Color.TRANSPARENT);
-                map.put(new Point2d(i - Floor.MAX_DIST_FROM_START, j - Floor.MAX_DIST_FROM_START), smallerSquare);
+                map.put(new Point2d(i - BaseFloor.MAX_DIST_FROM_START, j - BaseFloor.MAX_DIST_FROM_START), smallerSquare);
                 root.getChildren().add(smallerSquare);
             }
         }

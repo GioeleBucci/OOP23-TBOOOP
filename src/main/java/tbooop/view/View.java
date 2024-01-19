@@ -59,7 +59,7 @@ public class View extends Application {
         final double screenHeight = bounds.getHeight();
 
         // the following reference image will be used to correctly scale the window
-        final Image reference = new Image("room.png");
+        final Image reference = new Image("/room.png");
         final double aspectRatio = reference.getWidth() / reference.getHeight();
         HEIGHT = screenHeight * SCALE_PERCENTAGE;
         WIDTH = HEIGHT * aspectRatio; // maintain same aspect ratio
@@ -79,7 +79,7 @@ public class View extends Application {
     public void start(final Stage stage) throws Exception {
         stage.initStyle(StageStyle.UNIFIED);
 
-        final Image img = new Image("room.png");
+        final Image img = new Image("/room.png");
         final ImageView background = new ImageView(img);
         background.fitWidthProperty().bind(stage.widthProperty());
         background.fitHeightProperty().bind(stage.heightProperty());

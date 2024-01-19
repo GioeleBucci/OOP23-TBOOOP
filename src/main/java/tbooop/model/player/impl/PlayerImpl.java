@@ -76,7 +76,9 @@ public class PlayerImpl extends Entity implements Player {
     /** {@inheritDoc} */
     @Override
     public void move(final Point2ds direction) {
-        this.setPosition(getPosition().add(direction.toP2d()));
+        this.setPosition(getPosition()
+        .add(direction.toP2d())
+        .mul(getVelocity()));
     }
 
     /** {@inheritDoc} */
