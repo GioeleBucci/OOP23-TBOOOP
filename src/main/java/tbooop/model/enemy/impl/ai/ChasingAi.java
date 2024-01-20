@@ -35,7 +35,8 @@ public class ChasingAi implements MovementAi {
             .normalize();
         return new Point2d(direction.getX(), direction.getY())
             .mul(deltaTime)
-            .mul(velocity);
+            .mul(velocity)
+            .add(initialPosition);
     }
 
 }
