@@ -30,37 +30,38 @@ class TestChasingAi {
 
     @Test
     void testSingleMove() {
-        // only positive coordinates
+        final Set<Point2d> positions = new HashSet<>();
         this.player.setPosition(new Point2d(1.0, 1.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(1.0, 2.0), 1, 1.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(1.0, 0.0), 1, 1.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(2.0, 1.0), 1, 1.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(0.0, 1.0), 1, 1.0));
+        // only positive coordinates
+        positions.add(new Point2d(1.0, 2.0));
+        positions.add(new Point2d(1.0, 0.0));
+        positions.add(new Point2d(2.0, 1.0));
+        positions.add(new Point2d(0.0, 1.0));
+        positions.forEach(p -> assertEquals(
+            player.getPosition(), ai.newPosition(p, 1, 1)));
         // negative and positive coordinates
         this.player.setPosition(new Point2d(0.0, 0.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(0.0, -1.0), 1, 1.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(0.0, 1.0), 1, 1.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(-1.0, 0.0), 1, 1.0));
-        assertEquals(player.getPosition(), ai.newPosition(
-            new Point2d(1.0, 0.0), 1, 1.0));
+        positions.clear();
+        positions.add(new Point2d(0.0, -1.0));
+        positions.add(new Point2d(0.0, 1.0));
+        positions.add(new Point2d(-1.0, 0.0));
+        positions.add(new Point2d(1.0, 0.0));
+        positions.forEach(p -> assertEquals(
+            player.getPosition(), ai.newPosition(p, 1, 1)));
         // different resulting positions
-        assertNotEquals(player.getPosition(), ai.newPosition(
-            new Point2d(1.0, 1.0), 1, 1.0));
-        assertNotEquals(player.getPosition(), ai.newPosition(
-            new Point2d(-1.0, -1.0), 1, 1.0));
+        positions.clear();
+        positions.add(new Point2d(1.0, 1.0));
+        positions.add(new Point2d(-1.0, -1.0));
+        positions.add(new Point2d(-1.0, 1.0));
+        positions.add(new Point2d(1.0, -1.0));
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
-        assertNotEquals(player.getPosition(), ai.newPosition(
-            new Point2d(-1.0, 1.1), 1, 1.0));
-        assertNotEquals(player.getPosition(), ai.newPosition(
-            new Point2d(0.9, -1.0), 1, 1.0));
+        positions.add(new Point2d(-1.0, 1.1));
+        positions.add(new Point2d(0.9, -1.0));
+        positions.forEach(p -> {
+            assertNotEquals(player.getPosition(), ai.newPosition(p, 1, 1));
+            assertTrue(player.getPosition().distance(ai.newPosition(p, 1, 1)) <= 1);
+        });
         // CHECKSTYLE: MagicNumber ON
     }
 
