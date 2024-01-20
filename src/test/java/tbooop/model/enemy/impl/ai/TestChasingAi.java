@@ -2,6 +2,7 @@ package tbooop.model.enemy.impl.ai;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import java.util.Set;
 import java.util.HashSet;
 
 import tbooop.commons.Point2d;
+import tbooop.commons.RoomBounds;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
@@ -78,6 +80,26 @@ class TestChasingAi {
             }
             assertEquals(player.getPosition(), p);
         });
+    }
+
+    @Test
+    void testDiagonalMovement() {
+        final Set<Point2d> positions = new HashSet<>();
+        // CHECKSTYLE: MagicNumber OFF
+        // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
+        positions.add(new Point2d(0.0, 0.0));
+        positions.add(new Point2d(0.0, RoomBounds.HEIGHT));
+        positions.add(new Point2d(RoomBounds.WIDTH, 0.0));
+        positions.add(new Point2d(RoomBounds.WIDTH, RoomBounds.HEIGHT));
+        this.player.setPosition(
+            new Point2d(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
+        positions.forEach(p -> {
+            for (int i = 0; i < 400; i++) {
+                p = this.ai.newPosition(p, 1, 1);
+            }
+            assertTrue(player.getPosition().distance(p) <= 1);
+        });
+        // CHECKSTYLE: MagicNumber ON
     }
 
 }
