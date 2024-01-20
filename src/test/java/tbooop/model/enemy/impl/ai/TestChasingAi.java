@@ -9,8 +9,10 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Random;
 
 import tbooop.commons.Point2d;
+import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.player.api.Player;
@@ -21,6 +23,7 @@ class TestChasingAi {
 
     private MovementAi ai;
     private Player player;
+    private final Random rand = new Random();
 
     @BeforeEach
     void initAi() {
@@ -101,6 +104,75 @@ class TestChasingAi {
             assertTrue(player.getPosition().distance(p) <= 1);
         });
         // CHECKSTYLE: MagicNumber ON
+    }
+
+    @Test
+    void testMovingPlayer() {
+        final Set<Point2d> positions = new HashSet<>();
+        // CHECKSTYLE: MagicNumber OFF
+        // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
+        for (int i = 0; i < 50; i++) {
+            positions.add(new Point2d(
+                rand.nextDouble(0.0, RoomBounds.WIDTH),
+                rand.nextDouble(0.0, RoomBounds.HEIGHT)));
+        }
+        this.player.setPosition(
+            new Point2d(RoomBounds.WIDTH / 2.0, RoomBounds.HEIGHT / 2.0));
+        //player moves up
+        for (int i = 0; i < 50; i++) {
+            this.player.setPosition(
+                this.player.getPosition().add(Point2ds.UP.toP2d()));
+            positions.forEach(p -> {
+                p = this.ai.newPosition(p, 1, 1);
+                assertTrue(this.isGettingCloser(p));
+            });
+        }
+        //player moves down-right
+        for (int i = 0; i < 50; i++) {
+            this.player.setPosition(
+                this.player.getPosition().add(
+                Point2ds.UP.toP2d()).add(Point2ds.RIGHT.toP2d()));
+            positions.forEach(p -> {
+                p = this.ai.newPosition(p, 1, 1);
+                assertTrue(this.isGettingCloser(p));
+            });
+        }
+        //player moves left
+        for (int i = 0; i < 100; i++) {
+            this.player.setPosition(
+                this.player.getPosition().add(Point2ds.LEFT.toP2d()));
+           positions.forEach(p -> {
+               p = this.ai.newPosition(p, 1, 1);
+               assertTrue(this.isGettingCloser(p));
+            });
+        }
+        //player moves up-right
+        for (int i = 0; i < 50; i++) {
+            this.player.setPosition(
+                this.player.getPosition().add(
+                Point2ds.RIGHT.toP2d()).add(Point2ds.UP.toP2d()));
+            positions.forEach(p -> {
+                p = this.ai.newPosition(p, 1, 1);
+                assertTrue(this.isGettingCloser(p));
+            });
+        }
+        //chasing positions reach the player
+        positions.forEach(p -> {
+            for (int i = 0; i < 400; i++) {
+                p = this.ai.newPosition(p, 1, 1);
+            }
+            assertTrue(player.getPosition().distance(p) <= 1);
+        });
+        // CHECKSTYLE: MagicNumber ON
+    }
+
+    private boolean isGettingCloser(final Point2d p) {
+        if (p.distance(this.player.getPosition()) > 1) {
+            return this.ai.newPosition(p, 1, 1)
+                .distance(this.player.getPosition())
+                <= p.distance(player.getPosition());
+        }
+        return true;
     }
 
 }
