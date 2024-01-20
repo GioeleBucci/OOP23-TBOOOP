@@ -24,16 +24,17 @@ class TestChasingAi {
     private MovementAi ai;
     private Player player;
     private final Random rand = new Random();
+    private final Set<Point2d> positions = new HashSet<>();
 
     @BeforeEach
     void initAi() {
         this.player = new PlayerImpl(new Point2d(0.0, 0.0), new HealthImpl(1), 1.0);
         this.ai = new ChasingAi(this.player);
+        positions.clear();
     }
 
     @Test
     void testSingleMove() {
-        final Set<Point2d> positions = new HashSet<>();
         this.player.setPosition(new Point2d(1.0, 1.0));
         // only positive coordinates
         positions.add(new Point2d(1.0, 2.0));
@@ -70,7 +71,6 @@ class TestChasingAi {
 
     @Test
     void testLinearMovement() {
-        final Set<Point2d> positions = new HashSet<>();
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         positions.add(new Point2d(0.0, 100.0));
@@ -88,7 +88,6 @@ class TestChasingAi {
 
     @Test
     void testDiagonalMovement() {
-        final Set<Point2d> positions = new HashSet<>();
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         positions.add(new Point2d(0.0, 0.0));
@@ -108,7 +107,6 @@ class TestChasingAi {
 
     @Test
     void testMovingPlayer() {
-        final Set<Point2d> positions = new HashSet<>();
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         for (int i = 0; i < 50; i++) {
@@ -119,43 +117,15 @@ class TestChasingAi {
         this.player.setPosition(
             new Point2d(RoomBounds.WIDTH / 2.0, RoomBounds.HEIGHT / 2.0));
         //player moves up
-        for (int i = 0; i < 50; i++) {
-            this.player.setPosition(
-                this.player.getPosition().add(Point2ds.UP.toP2d()));
-            positions.forEach(p -> {
-                p = this.ai.newPosition(p, 1, 1);
-                assertTrue(this.isGettingCloser(p));
-            });
-        }
+        this.movePlayerAndAi(50, Point2ds.UP.toP2d());
         //player moves down-right
-        for (int i = 0; i < 50; i++) {
-            this.player.setPosition(
-                this.player.getPosition().add(
-                Point2ds.UP.toP2d()).add(Point2ds.RIGHT.toP2d()));
-            positions.forEach(p -> {
-                p = this.ai.newPosition(p, 1, 1);
-                assertTrue(this.isGettingCloser(p));
-            });
-        }
+        this.movePlayerAndAi(50,
+            Point2ds.RIGHT.toP2d().add(Point2ds.DOWN.toP2d()));
         //player moves left
-        for (int i = 0; i < 100; i++) {
-            this.player.setPosition(
-                this.player.getPosition().add(Point2ds.LEFT.toP2d()));
-           positions.forEach(p -> {
-               p = this.ai.newPosition(p, 1, 1);
-               assertTrue(this.isGettingCloser(p));
-            });
-        }
+        this.movePlayerAndAi(100, Point2ds.LEFT.toP2d());
         //player moves up-right
-        for (int i = 0; i < 50; i++) {
-            this.player.setPosition(
-                this.player.getPosition().add(
-                Point2ds.RIGHT.toP2d()).add(Point2ds.UP.toP2d()));
-            positions.forEach(p -> {
-                p = this.ai.newPosition(p, 1, 1);
-                assertTrue(this.isGettingCloser(p));
-            });
-        }
+        this.movePlayerAndAi(50,
+            Point2ds.RIGHT.toP2d().add(Point2ds.UP.toP2d()));
         //chasing positions reach the player
         positions.forEach(p -> {
             for (int i = 0; i < 400; i++) {
@@ -164,6 +134,17 @@ class TestChasingAi {
             assertTrue(player.getPosition().distance(p) <= 1);
         });
         // CHECKSTYLE: MagicNumber ON
+    }
+
+    private void movePlayerAndAi(final int steps, final Point2d newPos) {
+        for (int i = 0; i < steps; i++) {
+            this.player.setPosition(
+                this.player.getPosition().add(newPos));
+           positions.forEach(p -> {
+               p = this.ai.newPosition(p, 1, 1);
+               assertTrue(this.isGettingCloser(p));
+            });
+        }
     }
 
     private boolean isGettingCloser(final Point2d p) {
