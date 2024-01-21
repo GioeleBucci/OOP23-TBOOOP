@@ -1,4 +1,4 @@
-package tbooop.model.items.api;
+package tbooop.model.pickupables.api;
 
 /**
  * Rapresents if the item is special

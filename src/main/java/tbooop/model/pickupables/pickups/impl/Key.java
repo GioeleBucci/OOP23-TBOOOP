@@ -1,8 +1,8 @@
-package tbooop.model.items.impl;
+package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.items.api.PickupableAbstract;
+import tbooop.model.pickupables.api.PickupableAbstract;
 import tbooop.model.player.api.Player;
 
 /**
@@ -24,7 +24,7 @@ public class Key extends PickupableAbstract {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected Key(final Point2d position, final double colliderRadius, final GameTag tag) {
+    public Key(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

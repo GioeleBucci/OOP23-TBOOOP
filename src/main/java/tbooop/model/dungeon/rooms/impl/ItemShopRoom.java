@@ -8,11 +8,6 @@ package tbooop.model.dungeon.rooms.impl;
  * allowed to enter this room using a
  * special key.
  */
-public class ItemShopRoom extends BaseRoom {
+public class ItemShopRoom extends SpecialRoom {
 
-    /** {@inheritDoc} */
-    @Override
-    public boolean isSpecial() {
-        return true;
-    }
 }
