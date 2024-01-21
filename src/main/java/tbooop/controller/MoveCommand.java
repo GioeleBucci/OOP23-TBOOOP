@@ -5,6 +5,9 @@ import tbooop.commons.Point2ds;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.player.api.Player;
 
+/**
+ * .
+ */
 public class MoveCommand implements PlayerCommand {
 
     private final Point2ds direction;
@@ -14,12 +17,13 @@ public class MoveCommand implements PlayerCommand {
      * 
      * @param direction the view
      */
-    public MoveCommand(Point2ds direction) {
+    public MoveCommand(final Point2ds direction) {
         this.direction = direction;
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void execute(Player player) {
+    public void execute(final Player player) {
         player.move(direction);
     }
 }
