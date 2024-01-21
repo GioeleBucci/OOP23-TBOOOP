@@ -5,8 +5,8 @@ import java.util.Objects;
 import tbooop.commons.Point2d;
 import tbooop.commons.Vector2d;
 import tbooop.commons.api.SimpleVector;
+import tbooop.model.core.api.movable.Movable;
 import tbooop.model.enemy.api.ai.MovementAi;
-import tbooop.model.player.api.Player;
 
 /**
  * A movement ai that chases the player.
@@ -15,14 +15,14 @@ import tbooop.model.player.api.Player;
  */
 public class ChasingAi implements MovementAi {
 
-    private final Player player;
+    private final Movable player;
 
     /**
      * Creates an istance of a ChasingAi.
      * 
      * @param player the player that will be chased
      */
-    protected ChasingAi(final Player player) {
+    protected ChasingAi(final Movable player) {
         this.player = Objects.requireNonNull(player);
     }
 
