@@ -39,6 +39,7 @@ class TestPlayer {
     @Test 
     void playerPosition() {
         assertEquals(new Point2d(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
+        player.updateState(1);
         player.move(Point2ds.UP);
         assertEquals(new Point2d(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2 - 1 * 2), player.getPosition());
     }
