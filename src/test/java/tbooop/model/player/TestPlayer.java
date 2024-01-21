@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2d;
+import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.model.player.impl.PlayerImpl;
 
@@ -33,5 +34,12 @@ class TestPlayer {
         player.increaseMaxHealth(2);
         assertEquals(3, player.getMaxHealth());
         assertEquals(3, player.getHealth());
+    }
+
+    @Test 
+    void playerPosition() {
+        assertEquals(new Point2d((RoomBounds.HEIGHT / 2), (RoomBounds.WIDTH / 2)), player.getPosition());
+        player.move(Point2ds.UP);
+        assertEquals(new Point2d(RoomBounds.HEIGHT, ((RoomBounds.WIDTH / 2)-1)*2), player.getPosition());
     }
 }
