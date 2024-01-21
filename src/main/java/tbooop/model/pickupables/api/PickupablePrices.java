@@ -1,4 +1,4 @@
-package tbooop.model.items.api;
+package tbooop.model.pickupables.api;
 
 /**
  * Rapresents prices for every item
