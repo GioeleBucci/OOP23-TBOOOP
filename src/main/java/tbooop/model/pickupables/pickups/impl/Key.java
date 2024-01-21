@@ -24,7 +24,7 @@ public class Key extends PickupableAbstract {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected Key(final Point2d position, final double colliderRadius, final GameTag tag) {
+    public Key(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
