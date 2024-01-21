@@ -24,7 +24,7 @@ public abstract class EnemyDecorator implements Enemy {
      * @param concreteEnemy the enemy stored and decorated.
      */
     protected EnemyDecorator(final Enemy concreteEnemy) {
-        this.concretEnemy = Objects.requireNonNull(null);
+        this.concretEnemy = Objects.requireNonNull(concreteEnemy);
     }
 
     /** {@inheritDoc} */
