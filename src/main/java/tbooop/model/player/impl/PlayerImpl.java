@@ -19,6 +19,7 @@ public class PlayerImpl extends Entity implements Player {
     private int damage;
     private int keys;
     private int coin;
+    private long deltaTime;
     /**
      * Create a new istance of a Entity.
      * 
@@ -44,8 +45,7 @@ public class PlayerImpl extends Entity implements Player {
     /** {@inheritDoc} */
     @Override
     public void updateState(final long deltaTime) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
+        this.deltaTime = deltaTime;
     }
 
     /** {@inheritDoc} */
@@ -76,11 +76,11 @@ public class PlayerImpl extends Entity implements Player {
     /** {@inheritDoc} */
     @Override
     public void move(final Point2ds direction) {
-        final Point2d control = getPosition()
-        .add(direction.toP2d().mul(getVelocity()));
+        final Point2d nextPosition = getPosition()
+        .add(direction.toP2d().mul(getVelocity()).mul(deltaTime));
 
-        if (!RoomBounds.outOfBounds(control)) {
-            this.setPosition(control);
+        if (!RoomBounds.outOfBounds(nextPosition)) {
+            this.setPosition(nextPosition);
         }
     }
 
