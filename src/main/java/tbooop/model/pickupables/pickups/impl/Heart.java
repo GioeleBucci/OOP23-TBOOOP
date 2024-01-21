@@ -1,11 +1,11 @@
-package tbooop.model.items.impl;
+package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.items.api.PickupableAbstract;
+import tbooop.model.pickupables.api.PickupableAbstract;
+import tbooop.model.pickupables.api.PickupablePrices;
+import tbooop.model.pickupables.api.PickupableStatus;
 import tbooop.model.player.api.Player;
-import tbooop.model.items.api.PickupablePrices;
-import tbooop.model.items.api.PickupableStatus;
 
 /**
  * Class rapresenting "Heart" item in the

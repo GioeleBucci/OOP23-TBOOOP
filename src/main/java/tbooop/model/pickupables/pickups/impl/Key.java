@@ -1,21 +1,20 @@
-package tbooop.model.items.impl;
+package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.items.api.PickupableAbstract;
+import tbooop.model.pickupables.api.PickupableAbstract;
 import tbooop.model.player.api.Player;
 
 /**
- * Class rapresenting "Coin" item in
- * the game.
- * Coins will be collected by the player
- * and will be used in the items shop.
+ * Class rapresenting "Key" item in the
+ * game. When it's picked up, it will
+ * increase the number of the keys
+ * owned by the player, and they will be
+ * used to open doors.
  */
-public class Coin extends PickupableAbstract {
-
-    private static final int COIN_VALUE = 1;
+public class Key extends PickupableAbstract {
     /**
-     * Create a new istance of a Coin.
+     * Create a new istance of a Key.
      * 
      * @param position       spawn position (as a {@link javafx.geometry.Point2D
      *                       Point2D})
@@ -25,18 +24,18 @@ public class Coin extends PickupableAbstract {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected Coin(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected Key(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
     /**
-     * When the Coin is picked
+     * When the Key is picked
      * up it will increase the number
-     * of coins owned by the player.
+     * of keys owned by the player.
     */
     @Override
     public void onPickup(final Player player) {
-        player.setCoin(COIN_VALUE);
+        player.pickupKeys();
     }
 
     /** {@inheritDoc} */
