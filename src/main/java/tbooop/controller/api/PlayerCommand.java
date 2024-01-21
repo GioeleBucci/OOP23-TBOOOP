@@ -7,7 +7,7 @@ import tbooop.model.player.api.Player;
  * Each command can be triggered by a different source, and executes 
  * some type action on the Player.
  */
-public interface Command {
+public interface PlayerCommand {
     /**
      * Excecute some type of action on the Player.
      * 
