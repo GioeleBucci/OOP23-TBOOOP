@@ -1,4 +1,4 @@
-package tbooop.model.items.api;
+package tbooop.model.pickupables.api;
 
 import tbooop.commons.Point2d;
 import tbooop.commons.RoomBounds;
