@@ -7,9 +7,9 @@ import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
+import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.AbstractEnemy;
 import tbooop.model.enemy.api.ai.MovementAi;
-import tbooop.model.player.api.Player;
 
 /**
  * basic enemy class, it can only move and be damaged/killed, but it does not
@@ -17,7 +17,7 @@ import tbooop.model.player.api.Player;
  */
 public class BaseEnemy extends AbstractEnemy {
 
-    private final Player player;
+    private final Damageable player;
     private final MovementAi ai;
 
     /**
@@ -33,7 +33,7 @@ public class BaseEnemy extends AbstractEnemy {
         final Point2d position,
         final Health health,
         final double velocity,
-        final Player player,
+        final Damageable player,
         final MovementAi ai) {
         super(position, health, velocity);
         this.player = Objects.requireNonNull(player);
