@@ -35,12 +35,16 @@ public class BaseEnemy extends AbstractEnemy {
     }
 
     /** {@inheritDoc}
+     * @throws NullPointerException if gameObj is null
+     * <p>
      * In BaseEnemy this method by itself will not perform any action,
      * however it can be overridden by, for example, a decorator in order to
      * define a behaviour for it.
     */
     @Override
-    public void onCollision(final GameObject gameObj) { }
+    public void onCollision(final GameObject gameObj) {
+        Objects.requireNonNull(gameObj);
+    }
 
     /** {@inheritDoc} */
     @Override
