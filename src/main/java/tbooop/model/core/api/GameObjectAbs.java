@@ -16,7 +16,7 @@ public abstract class GameObjectAbs implements GameObject {
     private CircleCollider collider;
     private final double colliderRadius;
     private final GameTag tag;
-    private boolean isDestroyed = false;
+    private boolean isDestroyed;
 
     /**
      * Create a new istance of a GameObject.

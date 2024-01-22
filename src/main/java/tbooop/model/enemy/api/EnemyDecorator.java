@@ -81,4 +81,16 @@ public abstract class EnemyDecorator implements Enemy {
         return this.concretEnemy.getTag();
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public final void destroy() {
+        this.concretEnemy.destroy();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public final boolean isDestroyed() {
+        return this.concretEnemy.isDestroyed();
+    }
+
 }
