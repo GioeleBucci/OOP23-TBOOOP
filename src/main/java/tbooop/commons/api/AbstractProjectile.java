@@ -7,26 +7,25 @@ import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
 
 /**
- * Represents a Projectile.
+ * This class contains the essential implementation for all projectiles.
  */
 public abstract class AbstractProjectile extends GameObjectAbs implements Projectile {
 
     private static final double PROJECTILE_RADIUS = 0.1;
     private final Vector2d direction;
     private final double velocity;
+
     /**
-     * Create a new istance of a Entity.
+     * Creates an instance of a projectile.
      * 
-     * @param direction .
-     * @param initialPoint .
-     * @param velocity      it is the Entity velocity
-     * @throws NullPointerException if any parameter passed is null
+     * @param direction the projectile's direction
+     * @param initialPoint the starting position
+     * @param velocity the projectile's velocity
      */
     protected AbstractProjectile(
         final Vector2d direction, 
         final Point2d initialPoint, 
         final double velocity) {
-
         super(initialPoint, PROJECTILE_RADIUS, GameTag.PROJECTILE);
         this.direction = direction;
         this.velocity = velocity;
@@ -39,12 +38,13 @@ public abstract class AbstractProjectile extends GameObjectAbs implements Projec
     }
 
     /**
-     * it's used for moving the projectile.
-     * @param deltaTime
+     * Updates the projectile's position by making it advance
+     * on the same straight direction.
+     * 
+     * @param deltaTime the amount of time passed since the last movement
      */
-    public void move(final long deltaTime) {
+    protected void move(final long deltaTime) {
         final Point2d nextPosition = getPosition().add(new Point2d(direction.getX(), direction.getY()).mul(velocity * deltaTime));
-
         if (!RoomBounds.outOfBounds(nextPosition)) {
             this.setPosition(nextPosition);
         } else {
