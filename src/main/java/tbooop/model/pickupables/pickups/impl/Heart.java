@@ -27,7 +27,7 @@ public class Heart extends PickupableAbstract {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    public Heart(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected Heart(final Point2d position, final double colliderRadius, final GameTag tag) {
         /*
          * dato che la super è la prima istruzione che può esserci nel costruttore
          * per far si che la posizione sia l'output di randomPointGenerator bisognerebbe
