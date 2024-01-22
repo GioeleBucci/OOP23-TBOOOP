@@ -71,10 +71,7 @@ public final class Point2d implements SimplePoint {
         return this.vector.distance(toV2d(coord));
     }
 
-    /**
-     * Two vectors are considered equal if they have the same
-     * coordinates.
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj) {
         if (obj instanceof SimplePoint) {
@@ -83,24 +80,30 @@ public final class Point2d implements SimplePoint {
         return false;
     }
 
-    /** Returns an hash code value. */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return this.vector.hashCode();
     }
 
-    /** Returns a string representation. */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.vector.toString();
     }
 
-    private static Vector2D toV2d(final SimplePoint p) {
-        return new Vector2D(p.getX(), p.getY());
+    /** {@inheritDoc} */
+    @Override
+    public Vector2d toV2d(final Point2d p) {
+        return new Vector2d(p.getX(), p.getY());
     }
 
     private static Point2d toP2d(final Vector2D v) {
         return new Point2d(v.getX(), v.getY());
+    }
+
+    private static Vector2D toV2d(final SimplePoint p) {
+        return new Vector2D(p.getX(), p.getY());
     }
 
 }
