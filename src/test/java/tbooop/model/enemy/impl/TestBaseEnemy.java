@@ -28,17 +28,17 @@ class TestBaseEnemy {
     @BeforeEach
     void initEnemy() {
         this.enemy = new BaseEnemy(
-            BASE_POS, new HealthImpl(ENEMY_HP), 1.0, player, new ChasingAi(this.player));
+            BASE_POS, new HealthImpl(ENEMY_HP), 1.0, new ChasingAi(this.player));
     }
 
     @Test
     void testAttack() {
         this.enemy.onCollision(this.player);
-        assertEquals(this.player.getHealth(), PLAYER_HP - 1);
+        assertEquals(PLAYER_HP, this.player.getHealth());
         this.enemy.onCollision(this.player);
-        assertEquals(this.player.getHealth(), PLAYER_HP - 2);
+        assertEquals(PLAYER_HP, this.player.getHealth());
         this.enemy.onCollision(this.player);
-        assertEquals(this.player.getHealth(), PLAYER_HP - 3);
+        assertEquals(PLAYER_HP, this.player.getHealth());
     }
 
     @Test

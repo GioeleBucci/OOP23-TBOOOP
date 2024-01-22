@@ -6,8 +6,6 @@ import tbooop.commons.Point2d;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObject;
-import tbooop.model.core.api.GameTag;
-import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.AbstractEnemy;
 import tbooop.model.enemy.api.ai.MovementAi;
 
@@ -17,7 +15,6 @@ import tbooop.model.enemy.api.ai.MovementAi;
  */
 public class BaseEnemy extends AbstractEnemy {
 
-    private final Damageable player;
     private final MovementAi ai;
 
     /**
@@ -26,27 +23,24 @@ public class BaseEnemy extends AbstractEnemy {
      * @param position on the 2D map
      * @param health the enemy's health
      * @param velocity determines how fast the enemy moves
-     * @param player the game's player
      * @param ai the enemy's movement ai
      */
     protected BaseEnemy(
         final Point2d position,
         final Health health,
         final double velocity,
-        final Damageable player,
         final MovementAi ai) {
         super(position, health, velocity);
-        this.player = Objects.requireNonNull(player);
         this.ai = Objects.requireNonNull(ai);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc}
+     * In BaseEnemy this method by itself will not perform any action,
+     * however it can be overridden by, for example, a decorator in order to
+     * define a behaviour for it.
+    */
     @Override
-    public void onCollision(final GameObject gameObj) {
-        if (gameObj.getTag().equals(GameTag.PLAYER)) {
-            this.player.takeDamage(1);
-        }
-    }
+    public void onCollision(final GameObject gameObj) { }
 
     /** {@inheritDoc} */
     @Override

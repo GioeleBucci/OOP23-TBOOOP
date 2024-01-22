@@ -1,13 +1,18 @@
 package tbooop.model.enemy.impl;
 
+import tbooop.model.core.api.GameObject;
+import tbooop.model.core.api.GameTag;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;
+import tbooop.model.player.api.Player;
 
 /**
  * a Melee decorator makes the enemy deal more damage when
  * a physical collision with the player happens.
  */
 public class Melee extends EnemyDecorator {
+
+    private static final int DAMAGE_AMOUNT = 1;
 
     /**
      * Creates an instance of a Melee decoration.
@@ -16,6 +21,15 @@ public class Melee extends EnemyDecorator {
      */
     protected Melee(final Enemy concreteEnemy) {
         super(concreteEnemy);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onCollision(final GameObject gameObj) {
+        super.onCollision(gameObj);
+        if (gameObj.getTag().equals(GameTag.PLAYER) && gameObj instanceof Player) {
+            ((Player) gameObj).takeDamage(DAMAGE_AMOUNT);
+        }
     }
 
 }
