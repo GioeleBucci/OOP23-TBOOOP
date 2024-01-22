@@ -10,7 +10,7 @@ public interface EnemyFactory {
      * Creates and returns an enemy that is able to chase the player and
      * deals damage to it when a physical contact happens.
      * 
-     * @return an istance of a melee enemy
+     * @return an istance of a melee enemy.
      */
     Enemy melee();
 }
