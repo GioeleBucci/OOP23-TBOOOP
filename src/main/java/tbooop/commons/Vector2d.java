@@ -71,10 +71,7 @@ public final class Vector2d implements SimpleVector {
         return toVector(this.vector.scalarMultiply(a));
     }
 
-    /**
-     * Two Vectors are considered equal if they have the same
-     * coordinates.
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj) {
         if (obj instanceof SimpleVector) {
@@ -83,16 +80,22 @@ public final class Vector2d implements SimpleVector {
         return false;
     }
 
-    /** Returns an hash code value. */
+    /** {@inheritDoc} */
     @Override
     public int hashCode() {
         return this.vector.hashCode();
     }
 
-    /** Returns a string representation. */
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return this.vector.toString();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Point2d toP2d(final Vector2d v) {
+        return new Point2d(v.getX(), v.getY());
     }
 
     private Vector2d toVector(final Vector2D v) {
