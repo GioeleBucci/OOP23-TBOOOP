@@ -77,7 +77,7 @@ public class PlayerImpl extends Entity implements Player {
     @Override
     public void move(final Point2ds direction) {
         final Point2d nextPosition = getPosition()
-        .add(direction.toP2d().mul(getVelocity()).mul(deltaTime));
+        .add(direction.toP2d().mul(getVelocity() * deltaTime));
 
         if (!RoomBounds.outOfBounds(nextPosition)) {
             this.setPosition(nextPosition);
