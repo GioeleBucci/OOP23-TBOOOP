@@ -28,7 +28,8 @@ public class EnemyFactoryImpl implements EnemyFactory {
     /** {@inheritDoc} */
     @Override
     public Enemy melee() {
-        return new BaseEnemy(new Point2d(0, 0), new HealthImpl(MELEE_HP), 1, new ChasingAi(this.player));
+        return new Melee(new BaseEnemy(new Point2d(0, 0),
+            new HealthImpl(MELEE_HP), 1, new ChasingAi(this.player)));
     }
 
 }
