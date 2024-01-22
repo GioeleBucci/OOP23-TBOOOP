@@ -32,12 +32,17 @@ public abstract class AbstractProjectile extends GameObjectAbs implements Projec
         this.velocity = velocity;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void updateState(final long deltaTime) {
+        this.move(deltaTime);
+    }
+
     /**
      * it's used for moving the projectile.
      * @param deltaTime
      */
     public void move(final long deltaTime) {
-
         final Point2d nextPosition = getPosition().add(new Point2d(direction.getX(), direction.getY()).mul(velocity * deltaTime));
 
         if (!RoomBounds.outOfBounds(nextPosition)) {
