@@ -19,7 +19,7 @@ public abstract class AbstractProjectile implements Projectile {
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
-    public AbstractProjectile(
+    protected AbstractProjectile(
         final Vector2d direction, 
         final Point2d initialPoint, 
         final double velocity) {
@@ -44,7 +44,4 @@ public abstract class AbstractProjectile implements Projectile {
         }
     }
 
-     /** {@inheritDoc} */
-    @Override
-    public abstract void disappear();
 }
