@@ -3,12 +3,15 @@ package tbooop.commons.api;
 import tbooop.commons.Point2d;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.Vector2d;
+import tbooop.model.core.api.GameObjectAbs;
+import tbooop.model.core.api.GameTag;
 
 /**
  * Represents a Projectile.
  */
-public abstract class AbstractProjectile implements Projectile {
+public abstract class AbstractProjectile extends GameObjectAbs implements Projectile {
 
+    private static final double PROJECTILE_RADIUS = 0.1;
     private final Vector2d direction;
     private final double velocity;
     /**
@@ -24,8 +27,8 @@ public abstract class AbstractProjectile implements Projectile {
         final Point2d initialPoint, 
         final double velocity) {
 
+        super(initialPoint, PROJECTILE_RADIUS, GameTag.PROJECTILE);
         this.direction = direction;
-        setPosition(initialPoint);
         this.velocity = velocity;
     }
 
