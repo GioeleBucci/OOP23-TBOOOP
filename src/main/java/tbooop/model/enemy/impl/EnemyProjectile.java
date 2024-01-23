@@ -23,7 +23,6 @@ public class EnemyProjectile extends AbstractProjectile {
      */
     protected EnemyProjectile(final Vector2d direction, final Point2d initialPoint, final double velocity) {
         super(direction, initialPoint, velocity);
-        //TODO Auto-generated constructor stub
     }
 
     /** {@inheritDoc} */
