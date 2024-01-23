@@ -19,7 +19,7 @@ public interface GameObject {
     void updateState(long deltaTime);
 
     /**
-     * Sets the position of this GameObject, expressed as a Point2D.
+     * Sets the position of this GameObject, expressed as a Point2d.
      * <p>
      * <i>Note</i>: Moving a GameObject will update it's collider accordingly
      * 
@@ -29,7 +29,7 @@ public interface GameObject {
     void setPosition(Point2d newPos);
 
     /**
-     * The position of this GameObject, expressed as a Point2D.
+     * The position of this GameObject, expressed as a Point2d.
      * 
      * @return the position of this object.
      */

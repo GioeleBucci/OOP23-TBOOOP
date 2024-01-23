@@ -21,8 +21,7 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     /**
      * Create a new istance of a Entity.
      * 
-     * @param position      starting position (as a {@link javafx.geometry.Point2D
-     *                      Point2D})
+     * @param position      starting position
      * @param health the entity's health
      * @param velocity      it is the Entity velocity
      * @param tag specifies the type of entity

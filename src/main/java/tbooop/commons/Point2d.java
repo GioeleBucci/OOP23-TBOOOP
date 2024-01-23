@@ -94,8 +94,8 @@ public final class Point2d implements SimplePoint {
 
     /** {@inheritDoc} */
     @Override
-    public Vector2d toV2d(final Point2d p) {
-        return new Vector2d(p.getX(), p.getY());
+    public Vector2d toV2d() {
+        return new Vector2d(this.getX(), this.getY());
     }
 
     private static Point2d toP2d(final Vector2D v) {
