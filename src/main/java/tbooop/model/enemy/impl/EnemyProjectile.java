@@ -13,7 +13,7 @@ import tbooop.model.player.api.Player;
  */
 public class EnemyProjectile extends AbstractProjectile {
 
-    private static final int DAMAGE_AMOUNT = 1;
+    private static final int PROJECTILE_DAMAGE = 1;
     /**
      * Creates an instance of an enemy projectile.
      * 
@@ -36,7 +36,7 @@ public class EnemyProjectile extends AbstractProjectile {
     @Override
     public void onCollision(final GameObject gameObj) {
         if (gameObj.getTag().equals(GameTag.PLAYER) && gameObj instanceof Player) {
-            ((Player) gameObj).takeDamage(DAMAGE_AMOUNT);
+            ((Player) gameObj).takeDamage(PROJECTILE_DAMAGE);
         }
     }
 
