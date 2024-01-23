@@ -2,6 +2,7 @@ package tbooop.commons;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
+import tbooop.commons.api.SimplePoint;
 import tbooop.commons.api.SimpleVector;
 
 /**
@@ -94,8 +95,8 @@ public final class Vector2d implements SimpleVector {
 
     /** {@inheritDoc} */
     @Override
-    public Point2d toP2d(final Vector2d v) {
-        return new Point2d(v.getX(), v.getY());
+    public SimplePoint toP2d() {
+        return new Point2d(this.getX(), this.getY());
     }
 
     private Vector2d toVector(final Vector2D v) {
