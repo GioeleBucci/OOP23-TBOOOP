@@ -13,6 +13,8 @@ import tbooop.model.player.api.Player;
 public class Melee extends EnemyDecorator {
 
     private static final int DAMAGE_AMOUNT = 1;
+    private static final long TIME_BETWEEN_HITS = 1000;
+    private long timeSinceLastHit;
 
     /**
      * Creates an instance of a Melee decoration.
@@ -25,9 +27,18 @@ public class Melee extends EnemyDecorator {
 
     /** {@inheritDoc} */
     @Override
+    public void updateState(final long deltaTime) {
+        super.updateState(deltaTime);
+        this.timeSinceLastHit += deltaTime;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void onCollision(final GameObject gameObj) {
         super.onCollision(gameObj);
-        if (gameObj.getTag().equals(GameTag.PLAYER) && gameObj instanceof Player) {
+        if (gameObj.getTag().equals(GameTag.PLAYER) && gameObj instanceof Player
+        && this.timeSinceLastHit >= TIME_BETWEEN_HITS) {
+            this.timeSinceLastHit = 0;
             ((Player) gameObj).takeDamage(DAMAGE_AMOUNT);
         }
     }
