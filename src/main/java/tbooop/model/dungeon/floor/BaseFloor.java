@@ -4,7 +4,8 @@ import java.util.Queue;
 import java.util.Random;
 
 import tbooop.commons.Point2ds;
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.model.dungeon.rooms.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.impl.RegularRoom;
 import tbooop.model.dungeon.rooms.impl.SpecialDoor;
@@ -115,7 +116,7 @@ public abstract class BaseFloor implements Floor {
     private List<Point2d> getDeadEnds() {
         final List<Point2d> out = new ArrayList<>();
         for (final Point2d roomPos : roomsMap.keySet()) {
-            if (neighboursAmount(roomPos) == 1 && !roomPos.equals(Point2d.ZERO)) {
+            if (neighboursAmount(roomPos) == 1 && !roomPos.equals(Point2dImpl.ZERO)) {
                 out.add(roomPos);
             }
         }
@@ -135,7 +136,7 @@ public abstract class BaseFloor implements Floor {
         roomsMap.clear();
         generatedRooms = 0;
         final Queue<Point2d> queue = new LinkedList<>();
-        final Point2d startingRoomPos = Point2d.ZERO;
+        final Point2d startingRoomPos = Point2dImpl.ZERO;
         roomsMap.put(startingRoomPos, new RegularRoom()); // placeholder: change for true starting room
         queue.add(startingRoomPos);
         generatedRooms++;
@@ -184,7 +185,7 @@ public abstract class BaseFloor implements Floor {
         String[][] matrix = new String[mapEdgeLenght][mapEdgeLenght];
 
         final Map<Point2d, List<String>> symbols = new HashMap<>();
-        symbols.put(Point2d.ZERO, List.of("S", "Starting Room"));
+        symbols.put(Point2dImpl.ZERO, List.of("S", "Starting Room"));
         symbols.put(itemRoomPos, List.of("?", "Item Room"));
         symbols.put(bossRoomPos, List.of("!", "Boss Room"));
 

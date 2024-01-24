@@ -3,7 +3,8 @@ package tbooop.view;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.model.dungeon.rooms.api.Door;
 
@@ -33,7 +34,7 @@ public class RoomRenderer {
      */
     public void changeRoom(final Point2d newRoomPos, final Map<Point2ds, Door> doorMap) {
         root.getChildren().removeIf(node -> node instanceof ImageView); // FIXME this is ugly
-        if (newRoomPos.equals(Point2d.ZERO)) {
+        if (newRoomPos.equals(Point2dImpl.ZERO)) {
             addCommandsOnStartingRoom();
         }
         placeDoors(doorMap);

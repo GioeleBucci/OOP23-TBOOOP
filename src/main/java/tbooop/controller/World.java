@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 import tbooop.commons.HealthImpl;
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
@@ -19,9 +20,9 @@ import tbooop.model.player.impl.PlayerImpl;
  */
 public class World {
     private final List<GameObject> gameObjects = new ArrayList<>();
-    private final Player player = new PlayerImpl(Point2d.ZERO, new HealthImpl(1), 1.0);
+    private final Player player = new PlayerImpl(Point2dImpl.ZERO, new HealthImpl(1), 1.0);
     private Floor floor = new LevelFloor(1);
-    private Point2d currentRoom = Point2d.ZERO;
+    private Point2d currentRoom = Point2dImpl.ZERO;
 
     /*
      * All the following methods are protected because they shouldn't be used

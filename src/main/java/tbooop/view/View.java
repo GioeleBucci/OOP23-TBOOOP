@@ -12,7 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2ds;
 import tbooop.controller.Controller;
 import tbooop.model.dungeon.rooms.api.Door;
