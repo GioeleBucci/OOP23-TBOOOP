@@ -2,7 +2,7 @@ package tbooop.model.enemy.api;
 
 import java.util.Objects;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.commons.api.CircleCollider;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;

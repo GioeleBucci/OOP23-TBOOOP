@@ -1,8 +1,9 @@
 package tbooop.model.core.api.movable;
 
-import tbooop.commons.Vector2d;
+import tbooop.commons.api.Vector2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Health;
-import ;
 import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
 import java.util.Objects;
@@ -32,7 +33,7 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
         super(position, 1, tag);
         this.health = health;
         this.velocity = velocity;
-        this.direction = new Vector2d(
+        this.direction = new Vector2dImpl(
             super.getPosition().getX(),
             super.getPosition().getY());
     }
@@ -87,7 +88,7 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      * @return immutableDirection
      */
     protected Vector2d getDirection() {
-        return new Vector2d(this.direction);
+        return new Vector2dImpl(this.direction);
     }
 
     /**
