@@ -76,7 +76,7 @@ public final class Vector2dImpl implements Vector2d {
     @Override
     public boolean equals(final Object obj) {
         if (obj instanceof Vector2d) {
-            return this.vector.equals(toV2d((Vector2d) obj));
+            return this.vector.equals(toV2D((Vector2d) obj));
         }
         return false;
     }
@@ -103,7 +103,7 @@ public final class Vector2dImpl implements Vector2d {
         return new Vector2dImpl(v.getX(), v.getY());
     }
 
-    private static Vector2D toV2d(final Vector2d p) {
+    private Vector2D toV2D(final Vector2d p) {
         return new Vector2D(p.getX(), p.getY());
     }
 

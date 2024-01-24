@@ -51,13 +51,13 @@ public final class Point2dImpl implements Point2d {
     /** {@inheritDoc} */
     @Override
     public Point2d add(final Point2d point) {
-        return toP2d(this.vector.add(toV2d(point)));
+        return toP2d(this.vector.add(toV2D(point)));
     }
 
     /** {@inheritDoc} */
     @Override
     public Point2d subtract(final Point2d point) {
-        return toP2d(this.vector.subtract(toV2d(point)));
+        return toP2d(this.vector.subtract(toV2D(point)));
     }
 
     /** {@inheritDoc} */
@@ -69,14 +69,14 @@ public final class Point2dImpl implements Point2d {
     /** {@inheritDoc} */
     @Override
     public double distance(final Point2d coord) {
-        return this.vector.distance(toV2d(coord));
+        return this.vector.distance(toV2D(coord));
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj) {
         if (obj instanceof Point2d) {
-            return this.vector.equals(toV2d((Point2d) obj));
+            return this.vector.equals(toV2D((Point2d) obj));
         }
         return false;
     }
@@ -99,11 +99,11 @@ public final class Point2dImpl implements Point2d {
         return new Vector2dImpl(getX(), getY());
     }
 
-    private static Point2d toP2d(final Vector2D v) {
+    private Point2d toP2d(final Vector2D v) {
         return new Point2dImpl(v.getX(), v.getY());
     }
 
-    private static Vector2D toV2d(final Point2d p) {
+    private Vector2D toV2D(final Point2d p) {
         return new Vector2D(p.getX(), p.getY());
     }
 

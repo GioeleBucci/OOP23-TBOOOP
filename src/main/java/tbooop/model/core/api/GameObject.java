@@ -63,7 +63,7 @@ public interface GameObject {
     boolean isDestroyed();
 
     /**
-     * Gets called whenever GameObject object collides with the player
+     * Gets called whenever GameObject object collides with the player.
      * <p>
      * 
      * @param player the player
