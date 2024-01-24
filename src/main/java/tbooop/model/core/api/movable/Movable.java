@@ -10,12 +10,5 @@ import tbooop.model.core.api.GameObject;
 
 public interface Movable extends GameObject {
 
-    /**
-     * It is used when a GameObject collides with another GameObject and trigger an
-     * event.
-     * <p>
-     * 
-     * @param gameObj it is a GameObject
-     */
-    void onCollision(GameObject gameObj);
+
 }

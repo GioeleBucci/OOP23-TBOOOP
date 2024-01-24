@@ -2,6 +2,7 @@ package tbooop.model.core.api;
 
 import tbooop.commons.CircleColliderImpl;
 import tbooop.commons.api.Point2d;
+import tbooop.model.player.api.Player;
 import tbooop.commons.api.CircleCollider;
 
 import java.util.Objects;
@@ -21,7 +22,7 @@ public abstract class GameObjectAbs implements GameObject {
     /**
      * Create a new istance of a GameObject.
      * 
-     * @param position       starting position 
+     * @param position       starting position
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position
@@ -70,6 +71,11 @@ public abstract class GameObjectAbs implements GameObject {
     @Override
     public boolean isDestroyed() {
         return this.isDestroyed;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void onCollision(Player player) {
     }
 
 }

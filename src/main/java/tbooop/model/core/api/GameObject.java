@@ -1,6 +1,7 @@
 package tbooop.model.core.api;
 
 import tbooop.commons.api.Point2d;
+import tbooop.model.player.api.Player;
 import tbooop.commons.api.CircleCollider;
 
 /**
@@ -60,5 +61,13 @@ public interface GameObject {
      * @return true if this GameObject is destroyed.
      */
     boolean isDestroyed();
+
+    /**
+     * Gets called whenever GameObject object collides with the player
+     * <p>
+     * 
+     * @param player the player
+     */
+    void onCollision(Player player);
 
 }
