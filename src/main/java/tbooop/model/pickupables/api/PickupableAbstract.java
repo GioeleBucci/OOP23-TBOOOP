@@ -21,8 +21,7 @@ public abstract class PickupableAbstract extends UnmovableAbs implements Pickupa
     /**
      * Create a new istance of a Pickup.
      * 
-     * @param position       starting position (as a {@link javafx.geometry.Point2d
-     *                       Point2d})
+     * @param position       starting position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position
