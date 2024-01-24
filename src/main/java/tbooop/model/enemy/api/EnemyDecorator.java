@@ -4,8 +4,8 @@ import java.util.Objects;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.CircleCollider;
-import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
+import tbooop.model.player.api.Player;
 
 /**
  * An enemy decorator is an object that stores either a concrete
@@ -47,8 +47,8 @@ public abstract class EnemyDecorator implements Enemy {
 
     /** {@inheritDoc} */
     @Override
-    public void onCollision(final GameObject gameObj) {
-        this.concretEnemy.onCollision(gameObj);
+    public void onCollision(final Player player) {
+        this.concretEnemy.onCollision(player);
     }
 
     /** {@inheritDoc} */

@@ -9,6 +9,4 @@ import tbooop.model.core.api.GameObject;
  */
 
 public interface Movable extends GameObject {
-
-
 }

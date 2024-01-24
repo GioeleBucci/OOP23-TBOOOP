@@ -1,7 +1,5 @@
 package tbooop.model.enemy.impl;
 
-import tbooop.model.core.api.GameObject;
-import tbooop.model.core.api.GameTag;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;
 import tbooop.model.player.api.Player;
@@ -34,12 +32,11 @@ public class Melee extends EnemyDecorator {
 
     /** {@inheritDoc} */
     @Override
-    public void onCollision(final GameObject gameObj) {
-        super.onCollision(gameObj);
-        if (gameObj.getTag().equals(GameTag.PLAYER) && gameObj instanceof Player
-        && this.timeSinceLastHit >= TIME_BETWEEN_HITS) {
+    public void onCollision(final Player player) {
+        super.onCollision(player);
+        if (this.timeSinceLastHit >= TIME_BETWEEN_HITS) {
             this.timeSinceLastHit = 0;
-            ((Player) gameObj).takeDamage(DAMAGE_AMOUNT);
+            player.takeDamage(DAMAGE_AMOUNT);
         }
     }
 

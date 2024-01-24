@@ -5,9 +5,9 @@ import java.util.Objects;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
-import tbooop.model.core.api.GameObject;
 import tbooop.model.enemy.api.AbstractEnemy;
 import tbooop.model.enemy.api.ai.MovementAi;
+import tbooop.model.player.api.Player;
 
 /**
  * basic enemy class, it can only move and be damaged/killed, but it does not
@@ -42,8 +42,8 @@ public class BaseEnemy extends AbstractEnemy {
      * define a behaviour for it.
     */
     @Override
-    public void onCollision(final GameObject gameObj) {
-        Objects.requireNonNull(gameObj);
+    public void onCollision(final Player player) {
+        Objects.requireNonNull(player);
     }
 
     /** {@inheritDoc} */

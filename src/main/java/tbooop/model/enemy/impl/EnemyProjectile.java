@@ -3,8 +3,6 @@ package tbooop.model.enemy.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.AbstractProjectile;
-import tbooop.model.core.api.GameObject;
-import tbooop.model.core.api.GameTag;
 import tbooop.model.player.api.Player;
 
 /**
@@ -34,10 +32,8 @@ public class EnemyProjectile extends AbstractProjectile {
 
     /** {@inheritDoc} */
     @Override
-    public void onCollision(final GameObject gameObj) {
-        if (gameObj.getTag().equals(GameTag.PLAYER) && gameObj instanceof Player) {
-            ((Player) gameObj).takeDamage(PROJECTILE_DAMAGE);
-        }
+    public void onCollision(final Player player) {
+        player.takeDamage(PROJECTILE_DAMAGE);
     }
 
 }
