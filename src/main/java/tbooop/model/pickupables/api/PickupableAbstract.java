@@ -22,8 +22,8 @@ public abstract class PickupableAbstract extends UnmovableAbs implements Pickupa
     /**
      * Create a new istance of a Pickup.
      * 
-     * @param position       starting position (as a {@link javafx.geometry.Point2D
-     *                       Point2D})
+     * @param position       starting position (as a {@link javafx.geometry.Point2d
+     *                       Point2d})
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position
@@ -39,7 +39,7 @@ public abstract class PickupableAbstract extends UnmovableAbs implements Pickupa
      * that is consistent with the
      * game map dimensions.
      *
-     * @return new Point2D
+     * @return new Point2d
      */
     protected Point2d randomPointGenerator() {
         final double randomX = Math.random() * MAP_WIDTH_LIMIT;
