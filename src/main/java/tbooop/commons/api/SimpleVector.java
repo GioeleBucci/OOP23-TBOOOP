@@ -1,8 +1,5 @@
 package tbooop.commons.api;
 
-import tbooop.commons.Point2d;
-import tbooop.commons.Vector2d;
-
 /**
  * Represents a 2-dimensional vector.
  */
@@ -56,9 +53,8 @@ public interface SimpleVector {
     /**
      * Get a Point2d from this istance.
      * 
-     * @param v the vector to add
      * @return a new vector
      */
-    Point2d toP2d(Vector2d v);
+    SimplePoint toP2d();
 
 }

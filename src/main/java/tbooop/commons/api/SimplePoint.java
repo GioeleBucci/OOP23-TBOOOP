@@ -57,9 +57,8 @@ public interface SimplePoint {
     /**
      * Get a Vector2d from this instance.
      * 
-     * @param p the Point2d to convert
      * @return a new Point2d
      */
-    Vector2d toV2d(Point2d p);
+    Vector2d toV2d();
 
 }
