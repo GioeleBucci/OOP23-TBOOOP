@@ -1,6 +1,6 @@
 package tbooop.model.pickupables.items.api;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
 
