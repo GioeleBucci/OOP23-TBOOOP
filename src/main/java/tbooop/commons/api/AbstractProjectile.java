@@ -1,8 +1,7 @@
 package tbooop.commons.api;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
-import tbooop.commons.Vector2d;
 import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
 
@@ -18,14 +17,14 @@ public abstract class AbstractProjectile extends GameObjectAbs implements Projec
     /**
      * Creates an instance of a projectile.
      * 
-     * @param direction the projectile's direction
+     * @param direction    the projectile's direction
      * @param initialPoint the starting position
-     * @param velocity the projectile's velocity
+     * @param velocity     the projectile's velocity
      */
     protected AbstractProjectile(
-        final Vector2d direction, 
-        final Point2d initialPoint, 
-        final double velocity) {
+            final Vector2d direction,
+            final Point2d initialPoint,
+            final double velocity) {
         super(initialPoint, PROJECTILE_RADIUS, GameTag.PROJECTILE);
         this.direction = direction;
         this.velocity = velocity;
@@ -44,7 +43,8 @@ public abstract class AbstractProjectile extends GameObjectAbs implements Projec
      * @param deltaTime the amount of time passed since the last movement
      */
     protected void move(final long deltaTime) {
-        final Point2d nextPosition = getPosition().add(new Point2d(direction.getX(), direction.getY()).mul(velocity * deltaTime));
+        final Point2d nextPosition = getPosition()
+                .add(new Point2dImpl(direction.getX(), direction.getY()).mul(velocity * deltaTime));
         if (!RoomBounds.outOfBounds(nextPosition)) {
             this.setPosition(nextPosition);
         } else {

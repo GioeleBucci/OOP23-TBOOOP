@@ -1,7 +1,8 @@
 package tbooop.view;
 
 import javafx.scene.image.Image;
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
 
 /** Contains the positions of the doors, expressed as Point2ds. */
@@ -33,10 +34,10 @@ public final class DoorPositions {
         DOOR_H = reference.getHeight() * View.UPSCALE_FACTOR;
         final double widthMiddle = View.WIDTH / 2 - DOOR_W / 2;
         final double heightMiddle = View.HEIGHT / 2 - DOOR_H / 2;
-        TOP = new Point2d(widthMiddle, WALL_THICKNESS - DOOR_H * DISPLACEMENT);
-        BOTTOM = new Point2d(widthMiddle, View.HEIGHT - WALL_THICKNESS + DOOR_H * 1 / 4);
-        LEFT = new Point2d(WALL_THICKNESS - DOOR_W * DISPLACEMENT, heightMiddle);
-        RIGHT = new Point2d(View.WIDTH - WALL_THICKNESS + DOOR_W * 1 / 8, heightMiddle);
+        TOP = new Point2dImpl(widthMiddle, WALL_THICKNESS - DOOR_H * DISPLACEMENT);
+        BOTTOM = new Point2dImpl(widthMiddle, View.HEIGHT - WALL_THICKNESS + DOOR_H * 1 / 4);
+        LEFT = new Point2dImpl(WALL_THICKNESS - DOOR_W * DISPLACEMENT, heightMiddle);
+        RIGHT = new Point2dImpl(View.WIDTH - WALL_THICKNESS + DOOR_W * 1 / 8, heightMiddle);
     }
 
     /* Don't let anyone instantiate this class. */

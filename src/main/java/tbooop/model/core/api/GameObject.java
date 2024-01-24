@@ -1,6 +1,6 @@
 package tbooop.model.core.api;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.commons.api.CircleCollider;
 
 /**

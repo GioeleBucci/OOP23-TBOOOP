@@ -1,7 +1,7 @@
 package tbooop.model.core.api;
 
 import tbooop.commons.CircleColliderImpl;
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.commons.api.CircleCollider;
 
 import java.util.Objects;

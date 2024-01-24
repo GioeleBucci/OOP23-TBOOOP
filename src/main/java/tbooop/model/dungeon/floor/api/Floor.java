@@ -2,7 +2,7 @@ package tbooop.model.dungeon.floor.api;
 
 import java.util.Map;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.model.dungeon.rooms.api.Room;
 
 /** Interface for floor. */

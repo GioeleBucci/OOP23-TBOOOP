@@ -3,7 +3,7 @@ package tbooop.commons.api;
 /**
  * Represents a simple 2-dimensional point.
  */
-public interface SimplePoint {
+public interface Point2d {
 
     /**
      * Get the abscissa of this point.
@@ -25,7 +25,7 @@ public interface SimplePoint {
      * @param c the Point to measure the distance from
      * @return the distance between the two points
      */
-    double distance(SimplePoint c);
+    double distance(Point2d c);
 
     /**
      * Add a value to this element.
@@ -33,7 +33,7 @@ public interface SimplePoint {
      * @param point the Point to add
      * @return a new Point
      */
-    SimplePoint add(SimplePoint point);
+    Point2d add(Point2d point);
 
     /**
      * Subtract a value to this element.
@@ -41,7 +41,7 @@ public interface SimplePoint {
      * @param point the Point to subtract
      * @return a new Point
      */
-    SimplePoint subtract(SimplePoint point);
+    Point2d subtract(Point2d point);
 
     /**
      * Multiply this element by a scalar.
@@ -49,13 +49,13 @@ public interface SimplePoint {
      * @param scalar the scalar to multiply by
      * @return a new Point
      */
-    SimplePoint mul(double scalar);
+    Point2d mul(double scalar);
 
     /**
      * Get a Vector2d from this instance.
      * 
      * @return a new Point2d
      */
-    SimpleVector toV2d();
+    Vector2d toV2d();
 
 }

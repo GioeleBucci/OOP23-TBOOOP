@@ -1,10 +1,10 @@
 package tbooop.model.pickupables.items.impl;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.PickupableAbstract;
-import tbooop.model.pickupables.api.PickupablePrices;
-import tbooop.model.pickupables.api.PickupableStatus;
+import tbooop.model.pickupables.items.api.ItemsAbs;
+import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 
 /**
@@ -12,15 +12,14 @@ import tbooop.model.player.api.Player;
  * game. If picked up by the player, it
  * will increase its health to max level.
  */
-public class GoldenHeart extends PickupableAbstract {
+public class GoldenHeart extends ItemsAbs {
 
     private final int itemCost = PickupablePrices.GOLDENHEART_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     /**
      * Create a new istance of a GoldenHeart.
      * 
-     * @param position       spawn position (as a {@link javafx.geometry.Point2D
-     *                       Point2D})
+     * @param position       spawn position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position
@@ -46,6 +45,7 @@ public class GoldenHeart extends PickupableAbstract {
         } else {
             player.maxRecovery();
         }
+        destroy();
     }
 
     /** {@inheritDoc} */

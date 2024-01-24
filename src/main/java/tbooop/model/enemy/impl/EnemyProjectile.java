@@ -1,7 +1,7 @@
 package tbooop.model.enemy.impl;
 
-import tbooop.commons.Point2d;
-import tbooop.commons.Vector2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.AbstractProjectile;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;

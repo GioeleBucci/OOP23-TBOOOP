@@ -8,7 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import tbooop.commons.HealthImpl;
-import tbooop.commons.Point2d;
+import tbooop.commons.Point2dImpl;
+import tbooop.commons.api.Point2d;
 import tbooop.commons.RoomBounds;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.impl.ai.ChasingAi;
@@ -17,7 +18,7 @@ import tbooop.model.player.impl.PlayerImpl;
 
 class TestMelee {
 
-    private static final Point2d BASE_POS = new Point2d(0, 0);
+    private static final Point2d BASE_POS = new Point2dImpl(0, 0);
     private static final int ENEMY_HP = 100;
     private static final int PLAYER_HP = 100;
 
@@ -74,7 +75,7 @@ class TestMelee {
     @Test
     void testMovement() {
         this.melee.setPosition(
-            new Point2d(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
+            new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         for (int i = 0; i < 400; i++) {
@@ -106,7 +107,7 @@ class TestMelee {
     void testDoubleMeleeMovement() {
         final Enemy doubleMelee = new Melee(this.melee);
         doubleMelee.setPosition(
-            new Point2d(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
+            new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         for (int i = 0; i < 400; i++) {
@@ -138,7 +139,7 @@ class TestMelee {
     void testTripleMeleeMovement() {
         final Enemy tripleMelee = new Melee(new Melee(this.melee));
         tripleMelee.setPosition(
-            new Point2d(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
+            new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         for (int i = 0; i < 400; i++) {

@@ -1,8 +1,8 @@
 package tbooop.model.pickupables.pickups.impl;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.PickupableAbstract;
+import tbooop.model.pickupables.pickups.api.PickupsAbs;
 import tbooop.model.player.api.Player;
 
 /**
@@ -11,14 +11,13 @@ import tbooop.model.player.api.Player;
  * Coins will be collected by the player
  * and will be used in the items shop.
  */
-public class Coin extends PickupableAbstract {
+public class Coin extends PickupsAbs {
 
     private static final int COIN_VALUE = 1;
     /**
      * Create a new istance of a Coin.
      * 
-     * @param position       spawn position (as a {@link javafx.geometry.Point2D
-     *                       Point2D})
+     * @param position       spawn position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position
@@ -37,6 +36,7 @@ public class Coin extends PickupableAbstract {
     @Override
     public void onPickup(final Player player) {
         player.setCoin(COIN_VALUE);
+        destroy();
     }
 
     /** {@inheritDoc} */
@@ -44,10 +44,5 @@ public class Coin extends PickupableAbstract {
     public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setInShop() {
     }
 }

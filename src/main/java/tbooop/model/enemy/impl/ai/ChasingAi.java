@@ -2,9 +2,10 @@ package tbooop.model.enemy.impl.ai;
 
 import java.util.Objects;
 
-import tbooop.commons.Point2d;
-import tbooop.commons.Vector2d;
-import tbooop.commons.api.SimpleVector;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Point2dImpl;
+import tbooop.commons.Vector2dImpl;
+import tbooop.commons.api.Vector2d;
 import tbooop.model.core.api.movable.Movable;
 import tbooop.model.enemy.api.ai.MovementAi;
 
@@ -33,10 +34,10 @@ public class ChasingAi implements MovementAi {
             return initialPosition;
         }
         final Point2d distance = this.player.getPosition().subtract(initialPosition);
-        final SimpleVector direction = new Vector2d(
+        final Vector2d direction = new Vector2dImpl(
             distance.getX(), distance.getY())
             .normalize();
-        return new Point2d(direction.getX(), direction.getY())
+        return new Point2dImpl(direction.getX(), direction.getY())
             .mul(deltaTime)
             .mul(velocity)
             .add(initialPosition);

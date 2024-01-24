@@ -1,5 +1,7 @@
 package tbooop.commons;
 
+import tbooop.commons.api.Point2d;
+
 /**
  * Dimensions for the rooms.
  * <br>

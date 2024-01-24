@@ -1,6 +1,6 @@
 package tbooop.controller;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2ds;
 import tbooop.controller.api.Event;
 import tbooop.controller.api.EventFactory;
