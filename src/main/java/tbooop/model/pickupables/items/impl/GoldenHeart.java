@@ -45,6 +45,7 @@ public class GoldenHeart extends PickupableAbstract {
         } else {
             player.maxRecovery();
         }
+        destroy();
     }
 
     /** {@inheritDoc} */

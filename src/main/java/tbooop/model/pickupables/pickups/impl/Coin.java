@@ -36,6 +36,7 @@ public class Coin extends PickupableAbstract {
     @Override
     public void onPickup(final Player player) {
         player.setCoin(COIN_VALUE);
+        destroy();
     }
 
     /** {@inheritDoc} */

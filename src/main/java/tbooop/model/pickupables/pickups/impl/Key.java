@@ -35,6 +35,7 @@ public class Key extends PickupableAbstract {
     @Override
     public void onPickup(final Player player) {
         player.pickupKeys();
+        destroy();
     }
 
     /** {@inheritDoc} */
