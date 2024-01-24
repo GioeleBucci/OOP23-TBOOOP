@@ -12,7 +12,7 @@ public abstract class UnmovableAbs extends GameObjectAbs implements Unmovable {
     /**
      * Create a new istance of an unmovable GameObject.
      * 
-     * @param position       starting position (as a Point2d)
+     * @param position       starting position
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position
