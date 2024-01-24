@@ -2,7 +2,7 @@ package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.PickupableAbstract;
+import tbooop.model.pickupables.pickups.api.PickupsAbs;
 import tbooop.model.player.api.Player;
 
 /**
@@ -11,7 +11,7 @@ import tbooop.model.player.api.Player;
  * Coins will be collected by the player
  * and will be used in the items shop.
  */
-public class Coin extends PickupableAbstract {
+public class Coin extends PickupsAbs {
 
     private static final int COIN_VALUE = 1;
     /**
@@ -44,10 +44,5 @@ public class Coin extends PickupableAbstract {
     public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setInShop() {
     }
 }

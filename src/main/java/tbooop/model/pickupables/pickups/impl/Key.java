@@ -2,7 +2,7 @@ package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.PickupableAbstract;
+import tbooop.model.pickupables.pickups.api.PickupsAbs;
 import tbooop.model.player.api.Player;
 
 /**
@@ -12,7 +12,7 @@ import tbooop.model.player.api.Player;
  * owned by the player, and they will be
  * used to open doors.
  */
-public class Key extends PickupableAbstract {
+public class Key extends PickupsAbs {
     /**
      * Create a new istance of a Key.
      * 
@@ -43,10 +43,5 @@ public class Key extends PickupableAbstract {
     public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setInShop() {
     }
 }

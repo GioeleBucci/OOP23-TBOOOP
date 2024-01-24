@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Arrays;
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.Pickupable;
+import tbooop.model.pickupables.pickups.api.Pickups;
 
 /**
  * Class implementing logic for pickups
@@ -18,7 +18,7 @@ public class PickupsLogic {
 
     private final Point2d location = new Point2d(2.0, 2.0);
     private static final int PICKUPS_NUMBER = 3;
-    private final List<Pickupable> list = Arrays.asList(new Coin(this.location, 2.0, GameTag.PICKUP), 
+    private final List<Pickups> list = Arrays.asList(new Coin(this.location, 2.0, GameTag.PICKUP), 
                                                 new Heart(this.location, 2.0, GameTag.PICKUP),
                                                 new Key(this.location, 2.0, GameTag.PICKUP));
     private final Random random = new Random();
@@ -28,7 +28,7 @@ public class PickupsLogic {
      * 
      * @return a random Pickupable
      */
-    public Pickupable getRandomPickup() {
+    public Pickups getRandomPickup() {
         return list.get(random.nextInt(PICKUPS_NUMBER));
     }
 }

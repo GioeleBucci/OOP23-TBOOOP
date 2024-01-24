@@ -2,7 +2,7 @@ package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.PickupableAbstract;
+import tbooop.model.pickupables.pickups.api.PickupsAbs;
 import tbooop.model.player.api.Player;
 
 /**
@@ -10,7 +10,7 @@ import tbooop.model.player.api.Player;
  * game. If picked up by the player, it
  * will increase its health of one unit.
  */
-public class Heart extends PickupableAbstract {
+public class Heart extends PickupsAbs {
 
     /**
      * Create a new istance of a Heart.
@@ -51,10 +51,5 @@ public class Heart extends PickupableAbstract {
     public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setInShop() {
     }
 }
