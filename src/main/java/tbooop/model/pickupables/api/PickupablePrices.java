@@ -6,9 +6,7 @@ package tbooop.model.pickupables.api;
  */
 public enum PickupablePrices {
     /**Price for GoldenHeart item.*/
-    GOLDENHEART_PRICE(15),
-    /**Price for Heart item.*/
-    HEART_PRICE(10);
+    GOLDENHEART_PRICE(15);
 
     private int itemPrice;
     /**Getter for the value of every item price.
