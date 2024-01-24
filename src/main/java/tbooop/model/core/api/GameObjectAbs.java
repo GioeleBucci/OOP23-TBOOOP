@@ -21,7 +21,7 @@ public abstract class GameObjectAbs implements GameObject {
     /**
      * Create a new istance of a GameObject.
      * 
-     * @param position       starting position
+     * @param position       starting position 
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position

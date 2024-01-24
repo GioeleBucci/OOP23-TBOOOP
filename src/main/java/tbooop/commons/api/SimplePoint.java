@@ -1,8 +1,5 @@
 package tbooop.commons.api;
 
-import tbooop.commons.Point2d;
-import tbooop.commons.Vector2d;
-
 /**
  * Represents a simple 2-dimensional point.
  */
@@ -36,7 +33,7 @@ public interface SimplePoint {
      * @param point the Point to add
      * @return a new Point
      */
-    Point2d add(SimplePoint point);
+    SimplePoint add(SimplePoint point);
 
     /**
      * Subtract a value to this element.
@@ -44,7 +41,7 @@ public interface SimplePoint {
      * @param point the Point to subtract
      * @return a new Point
      */
-    Point2d subtract(SimplePoint point);
+    SimplePoint subtract(SimplePoint point);
 
     /**
      * Multiply this element by a scalar.
@@ -52,14 +49,13 @@ public interface SimplePoint {
      * @param scalar the scalar to multiply by
      * @return a new Point
      */
-    Point2d mul(double scalar);
+    SimplePoint mul(double scalar);
 
     /**
      * Get a Vector2d from this instance.
      * 
-     * @param p the Point2d to convert
      * @return a new Point2d
      */
-    Vector2d toV2d(Point2d p);
+    SimpleVector toV2d();
 
 }
