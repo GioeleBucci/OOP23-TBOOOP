@@ -25,7 +25,7 @@ public abstract class ItemsAbs extends UnmovableAbs implements Items {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected ItemsAbs (final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected ItemsAbs(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 }
