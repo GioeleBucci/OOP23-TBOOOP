@@ -17,8 +17,7 @@ public class Coin extends PickupableAbstract {
     /**
      * Create a new istance of a Coin.
      * 
-     * @param position       spawn position (as a {@link javafx.geometry.Point2D
-     *                       Point2D})
+     * @param position       spawn position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
      *                       The center of the collider will be this game object's
      *                       position
