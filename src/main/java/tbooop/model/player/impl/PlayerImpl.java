@@ -1,6 +1,6 @@
 package tbooop.model.player.impl;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;

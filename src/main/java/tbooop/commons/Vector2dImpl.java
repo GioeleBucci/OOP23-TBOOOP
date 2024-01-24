@@ -2,18 +2,18 @@ package tbooop.commons;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
-import tbooop.commons.api.SimplePoint;
-import tbooop.commons.api.SimpleVector;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Vector2d;
 
 /**
  * This class represents a 2-dimensional Vector.
  * <p>
  * Instances of this class are guaranteed to be immutable.
  */
-public final class Vector2d implements SimpleVector {
+public final class Vector2dImpl implements Vector2d {
 
     /** Expands to {@code new Vector2d(0, 0)}. */
-    public static final Vector2d ZERO = new Vector2d(0, 0);
+    public static final Vector2d ZERO = new Vector2dImpl(0, 0);
 
     private final Vector2D vector;
 
@@ -23,7 +23,7 @@ public final class Vector2d implements SimpleVector {
      * @param x abscissa
      * @param y ordinate
      */
-    public Vector2d(final double x, final double y) {
+    public Vector2dImpl(final double x, final double y) {
         vector = new Vector2D(x, y);
     }
 
@@ -32,7 +32,7 @@ public final class Vector2d implements SimpleVector {
      * 
      * @param vector the vector to clone
      */
-    public Vector2d(final Vector2d vector) {
+    public Vector2dImpl(final Vector2d vector) {
         this(vector.getX(), vector.getY());
     }
 
@@ -56,27 +56,27 @@ public final class Vector2d implements SimpleVector {
 
     /** {@inheritDoc} */
     @Override
-    public SimpleVector normalize() {
+    public Vector2d normalize() {
         return toVector(this.vector.normalize());
     }
 
     /** {@inheritDoc} */
     @Override
-    public SimpleVector negate() {
+    public Vector2d negate() {
         return toVector(this.vector.negate());
     }
 
     /** {@inheritDoc} */
     @Override
-    public SimpleVector scalarMultiply(final double a) {
+    public Vector2d scalarMultiply(final double a) {
         return toVector(this.vector.scalarMultiply(a));
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj) {
-        if (obj instanceof SimpleVector) {
-            return this.vector.equals(toV2d((SimpleVector) obj));
+        if (obj instanceof Vector2d) {
+            return this.vector.equals(toV2d((Vector2d) obj));
         }
         return false;
     }
@@ -95,15 +95,15 @@ public final class Vector2d implements SimpleVector {
 
     /** {@inheritDoc} */
     @Override
-    public SimplePoint toP2d() {
-        return new Point2d(getX(), getY());
+    public Point2d toP2d() {
+        return new Point2dImpl(getX(), getY());
     }
 
     private Vector2d toVector(final Vector2D v) {
-        return new Vector2d(v.getX(), v.getY());
+        return new Vector2dImpl(v.getX(), v.getY());
     }
 
-    private static Vector2D toV2d(final SimpleVector p) {
+    private static Vector2D toV2d(final Vector2d p) {
         return new Vector2D(p.getX(), p.getY());
     }
 

@@ -2,17 +2,18 @@ package tbooop.commons;
 
 import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
-import tbooop.commons.api.SimplePoint;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Vector2d;
 
 /**
  * This class represents a 2-dimensional point.
  * <p>
  * Instances of this class are guaranteed to be immutable.
  */
-public final class Point2d implements SimplePoint {
+public final class Point2dImpl implements Point2d {
 
     /** Expands to {@code new Point2d(0, 0)}. */
-    public static final Point2d ZERO = new Point2d(0, 0);
+    public static final Point2dImpl ZERO = new Point2dImpl(0, 0);
 
     private final Vector2D vector;
 
@@ -22,7 +23,7 @@ public final class Point2d implements SimplePoint {
      * @param x abscissa
      * @param y ordinate
      */
-    public Point2d(final double x, final double y) {
+    public Point2dImpl(final double x, final double y) {
         vector = new Vector2D(x, y);
     }
 
@@ -31,7 +32,7 @@ public final class Point2d implements SimplePoint {
      * 
      * @param point the point to clone
      */
-    public Point2d(final Point2d point) {
+    public Point2dImpl(final Point2d point) {
         this(point.getX(), point.getY());
     }
 
@@ -49,13 +50,13 @@ public final class Point2d implements SimplePoint {
 
     /** {@inheritDoc} */
     @Override
-    public Point2d add(final SimplePoint point) {
+    public Point2d add(final Point2d point) {
         return toP2d(this.vector.add(toV2d(point)));
     }
 
     /** {@inheritDoc} */
     @Override
-    public Point2d subtract(final SimplePoint point) {
+    public Point2d subtract(final Point2d point) {
         return toP2d(this.vector.subtract(toV2d(point)));
     }
 
@@ -67,15 +68,15 @@ public final class Point2d implements SimplePoint {
 
     /** {@inheritDoc} */
     @Override
-    public double distance(final SimplePoint coord) {
+    public double distance(final Point2d coord) {
         return this.vector.distance(toV2d(coord));
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj) {
-        if (obj instanceof SimplePoint) {
-            return this.vector.equals(toV2d((SimplePoint) obj));
+        if (obj instanceof Point2d) {
+            return this.vector.equals(toV2d((Point2d) obj));
         }
         return false;
     }
@@ -95,14 +96,14 @@ public final class Point2d implements SimplePoint {
     /** {@inheritDoc} */
     @Override
     public Vector2d toV2d() {
-        return new Vector2d(getX(), getY());
+        return new Vector2dImpl(getX(), getY());
     }
 
     private static Point2d toP2d(final Vector2D v) {
-        return new Point2d(v.getX(), v.getY());
+        return new Point2dImpl(v.getX(), v.getY());
     }
 
-    private static Vector2D toV2d(final SimplePoint p) {
+    private static Vector2D toV2d(final Point2d p) {
         return new Vector2D(p.getX(), p.getY());
     }
 

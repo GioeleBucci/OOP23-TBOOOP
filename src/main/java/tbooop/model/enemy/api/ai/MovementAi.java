@@ -1,6 +1,6 @@
 package tbooop.model.enemy.api.ai;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 
 /**
  * A movement ai is a class that contains an algorithm which tells an

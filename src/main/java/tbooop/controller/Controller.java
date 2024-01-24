@@ -2,7 +2,8 @@ package tbooop.controller;
 
 import java.util.logging.Logger;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
@@ -23,7 +24,7 @@ public class Controller {
     private final View view;
     private final Logger logger = Logger.getLogger(Controller.class.getName());
     private Floor floor = new LevelFloor(LEVEL);
-    private Point2d currentRoom = Point2d.ZERO;
+    private Point2d currentRoom = Point2dImpl.ZERO;
 
     /**
      * Creates a new controller.
@@ -39,7 +40,7 @@ public class Controller {
      */
     public void changeFloor() {
         this.floor = new LevelFloor(LEVEL);
-        this.currentRoom = Point2d.ZERO;
+        this.currentRoom = Point2dImpl.ZERO;
         final var firstRoom = floor.getRoomsMap().get(currentRoom).getDoorMap();
         logger.info(floor.toString());
         view.changeRooms(currentRoom, firstRoom);
