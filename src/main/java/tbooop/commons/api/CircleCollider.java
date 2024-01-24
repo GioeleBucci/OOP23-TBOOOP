@@ -1,7 +1,5 @@
 package tbooop.commons.api;
 
-import tbooop.commons.Point2d;
-
 /** Representation of a circular collider. */
 public interface CircleCollider {
 

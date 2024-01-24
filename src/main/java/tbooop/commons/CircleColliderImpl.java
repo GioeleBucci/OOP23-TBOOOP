@@ -1,6 +1,8 @@
 package tbooop.commons;
 
 import tbooop.commons.api.CircleCollider;
+import tbooop.commons.api.Point2d;
+
 import java.util.Objects;
 
 /** A simple circle collider. */

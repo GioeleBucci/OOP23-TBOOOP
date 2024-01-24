@@ -3,7 +3,7 @@ package tbooop.commons.api;
 /**
  * Represents a 2-dimensional vector.
  */
-public interface SimpleVector {
+public interface Vector2d {
 
     /**
      * Get the abscissa of this vector.
@@ -33,14 +33,14 @@ public interface SimpleVector {
      * 
      * @return the normalized vector of this instance
      */
-    SimpleVector normalize();
+    Vector2d normalize();
 
     /**
      * Get the opposite of the instance.
      * 
      * @return a new vector which is the opposite of this one
      */
-    SimpleVector negate();
+    Vector2d negate();
 
     /**
      * Multiply the vector by a scalar.
@@ -48,13 +48,13 @@ public interface SimpleVector {
      * @param a scalar
      * @return a new vector
      */
-    SimpleVector scalarMultiply(double a);
+    Vector2d scalarMultiply(double a);
 
     /**
      * Get a Point2d from this istance.
      * 
      * @return a new vector
      */
-    SimplePoint toP2d();
+    Point2d toP2d();
 
 }

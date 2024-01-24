@@ -1,6 +1,7 @@
 package tbooop.model.pickupables.api;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
@@ -43,6 +44,6 @@ public abstract class PickupableAbstract extends UnmovableAbs implements Pickupa
     protected Point2d randomPointGenerator() {
         final double randomX = Math.random() * MAP_WIDTH_LIMIT;
         final double randomY = Math.random() * MAP_HEIGHT_LIMIT;
-        return new Point2d(randomX, randomY);
+        return new Point2dImpl(randomX, randomY);
     }
 }

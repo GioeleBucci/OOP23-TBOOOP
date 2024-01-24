@@ -1,6 +1,6 @@
 package tbooop.model.pickupables.impl;
 
-import tbooop.commons.Point2d;
+import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableAbstract;
 import tbooop.model.player.api.Player;

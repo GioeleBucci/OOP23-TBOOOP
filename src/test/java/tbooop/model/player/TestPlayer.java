@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import tbooop.commons.HealthImpl;
-import tbooop.commons.Point2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.model.player.impl.PlayerImpl;
@@ -21,7 +21,7 @@ class TestPlayer {
     @BeforeAll
     static void initPlayer() {
         player = new PlayerImpl(
-            new Point2d(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), 
+            new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), 
             new HealthImpl(1),
             2);
     }
@@ -38,9 +38,9 @@ class TestPlayer {
 
     @Test 
     void playerPosition() {
-        assertEquals(new Point2d(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
+        assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
         player.updateState(1);
         player.move(Point2ds.UP);
-        assertEquals(new Point2d(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2 - 1 * 2), player.getPosition());
+        assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2 - 1 * 2), player.getPosition());
     }
 }
