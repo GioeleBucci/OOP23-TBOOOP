@@ -96,8 +96,9 @@ public class PlayerImpl extends Entity implements Player {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void shoot(Vector2d direction) {
+    public void shoot(final Vector2d direction) {
         this.timeSinceLastShoot += this.deltaTime;
         if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
             this.timeSinceLastShoot = 0;
