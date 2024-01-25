@@ -33,6 +33,12 @@ public class Heart extends PickupsAbs {
         super(position, colliderRadius, tag);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void onCollision(final Player player){
+        onPickup(player);
+    }
+
     /**
      * When the Heart item is picked up by
      * the player, its health will be
@@ -40,8 +46,7 @@ public class Heart extends PickupsAbs {
      * 
      * @param player
     */
-    @Override
-    public void onPickup(final Player player) {
+    private void onPickup(final Player player) {
         player.recovery();
         destroy();
     }

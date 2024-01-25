@@ -3,7 +3,6 @@ package tbooop.model.pickupables.items.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.items.api.ItemsAbs;
-import tbooop.model.player.api.Player;
 
 /**
  * Class rapresenting a static object
@@ -23,13 +22,6 @@ public class ShopCoinLabel extends ItemsAbs {
      */
     protected ShopCoinLabel(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onPickup(final Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onPickup'");
     }
 
     /** {@inheritDoc} */

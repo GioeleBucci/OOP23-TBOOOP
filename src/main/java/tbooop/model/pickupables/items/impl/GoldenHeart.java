@@ -30,13 +30,18 @@ public class GoldenHeart extends ItemsAbs {
         super(position, colliderRadius, tag);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void onCollision(final Player player){
+        onPickup(player);
+    }
+
     /**
      * When the GoldenHeart is picked up
      * by the player, its health will
      * be fulled to max level.
     */
-    @Override
-    public void onPickup(final Player player) {
+    private void onPickup(final Player player) {
         if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
             if (player.getCoin() >= this.itemCost) {
                 player.maxRecovery();
