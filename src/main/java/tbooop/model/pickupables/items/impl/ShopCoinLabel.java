@@ -43,4 +43,11 @@ public class ShopCoinLabel extends ItemsAbs {
     @Override
     public void setInShop() {
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getPrice() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getPrice'");
+    }
 }

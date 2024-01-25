@@ -60,4 +60,10 @@ public class GoldenHeart extends ItemsAbs {
     public void setInShop() {
         this.itemTag = PickupableStatus.SPECIAL;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getPrice() {
+        return this.itemCost;
+    }
 }
