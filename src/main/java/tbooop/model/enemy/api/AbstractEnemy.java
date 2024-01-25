@@ -3,12 +3,12 @@ package tbooop.model.enemy.api;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.core.api.movable.Entity;
+import tbooop.model.core.api.movable.AbstractEntity;
 
 /**
  * Abstract Enemy class which contains the essential components of an enemy.
  */
-public abstract class AbstractEnemy extends Entity implements Enemy {
+public abstract class AbstractEnemy extends AbstractEntity implements Enemy {
 
     /**
      * creates a new istance of an Enemy.
