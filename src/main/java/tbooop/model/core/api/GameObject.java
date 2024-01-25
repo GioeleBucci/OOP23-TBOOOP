@@ -51,11 +51,6 @@ public interface GameObject {
     GameTag getTag();
 
     /**
-     * Destroy this GameObject.
-     */
-    void destroy();
-
-    /**
      * Returns true if this GameObject is destroyed.
      * 
      * @return true if this GameObject is destroyed.

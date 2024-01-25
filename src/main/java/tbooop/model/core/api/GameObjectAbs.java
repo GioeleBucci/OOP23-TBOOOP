@@ -61,9 +61,10 @@ public abstract class GameObjectAbs implements GameObject {
         return this.tag;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void destroy() {
+    /**
+     * Destroy this GameObject.
+     */
+    protected void destroy() {
         this.isDestroyed = true;
     }
 
