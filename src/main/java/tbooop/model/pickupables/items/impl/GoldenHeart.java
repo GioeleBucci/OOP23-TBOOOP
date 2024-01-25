@@ -30,9 +30,12 @@ public class GoldenHeart extends ItemsAbs {
         super(position, colliderRadius, tag);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} 
+     * 
+     * @param player
+    */
     @Override
-    public void onCollision(final Player player){
+    public void onCollision(final Player player) {
         onPickup(player);
     }
 
@@ -40,6 +43,8 @@ public class GoldenHeart extends ItemsAbs {
      * When the GoldenHeart is picked up
      * by the player, its health will
      * be fulled to max level.
+     * 
+     * @param player
     */
     private void onPickup(final Player player) {
         if (this.itemTag.equals(PickupableStatus.SPECIAL)) {

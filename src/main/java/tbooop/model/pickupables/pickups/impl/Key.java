@@ -27,16 +27,21 @@ public class Key extends PickupsAbs {
         super(position, colliderRadius, tag);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} 
+     * 
+     * @param player
+    */
     @Override
-    public void onCollision(final Player player){
+    public void onCollision(final Player player) {
         onPickup(player);
     }
-    
+
     /**
      * When the Key is picked
      * up it will increase the number
      * of keys owned by the player.
+     * 
+     * @param player
     */
     private void onPickup(final Player player) {
         player.pickupKeys();

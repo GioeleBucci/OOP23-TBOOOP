@@ -28,9 +28,12 @@ public class Coin extends PickupsAbs {
         super(position, colliderRadius, tag);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} 
+     * 
+     * @param player
+    */
     @Override
-    public void onCollision(final Player player){
+    public void onCollision(final Player player) {
         onPickup(player);
     }
 
@@ -38,6 +41,8 @@ public class Coin extends PickupsAbs {
      * When the Coin is picked
      * up it will increase the number
      * of coins owned by the player.
+     * 
+     * @param player
     */
     private void onPickup(final Player player) {
         player.setCoin(COIN_VALUE);

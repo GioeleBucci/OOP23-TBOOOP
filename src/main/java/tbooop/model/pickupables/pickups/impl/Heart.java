@@ -33,9 +33,12 @@ public class Heart extends PickupsAbs {
         super(position, colliderRadius, tag);
     }
 
-    /** {@inheritDoc} */
+    /** {@inheritDoc} 
+     * 
+     * @param player
+    */
     @Override
-    public void onCollision(final Player player){
+    public void onCollision(final Player player) {
         onPickup(player);
     }
 
