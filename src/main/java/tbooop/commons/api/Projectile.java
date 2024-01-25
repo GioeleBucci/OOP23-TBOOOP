@@ -1,5 +1,7 @@
 package tbooop.commons.api;
 
+import javax.swing.text.html.parser.Entity;
+
 import tbooop.model.core.api.movable.Movable;
 
 /**
@@ -14,4 +16,10 @@ public interface Projectile extends Movable {
     * Removes the projectile from the game.
     */ 
     void disappear();
+
+    /**
+     * Manages the collisions of the projectile.
+     * @param entity should be an Enemy or Player
+     */
+    void projectileCollision(Entity entity);
 }

@@ -2,6 +2,9 @@ package tbooop.model.player.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
+
+import javax.swing.text.html.parser.Entity;
+
 import tbooop.commons.api.AbstractProjectile;
 
 /**
@@ -29,14 +32,13 @@ public class PlayerProjectile extends AbstractProjectile {
     /** {@inheritDoc} */
     @Override
     public void disappear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'disappear'");
+        this.destroy();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void updateState(final long deltaTime) {
+    public void projectileCollision(final Entity entity) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
+        throw new UnsupportedOperationException("Unimplemented method 'projectileCollision'");
     }
 }
