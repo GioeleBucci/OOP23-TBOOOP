@@ -2,6 +2,7 @@ package tbooop.model.player.api;
 
 import tbooop.model.core.api.movable.Damageable;
 import tbooop.commons.Point2ds;
+import tbooop.commons.api.Vector2d;
 
 /**
  * A Player is a game object that can move on a 2D space,
@@ -46,8 +47,15 @@ public interface Player extends Damageable {
     int getCoin();
 
     /**
-     * This method it's used for moving the playere in the four direction.
+     * This method it's used for moving the player in the four direction.
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */
     void move(Point2ds direction);
+
+    /**
+     * This method it's used for shooting in the four direction.
+     * @param direction can be UP,DOWN,LEFT,RIGHT.
+     * @param deltaTime it's the time between two shots.
+     */
+    void shoot(Vector2d direction, long deltaTime);
 }

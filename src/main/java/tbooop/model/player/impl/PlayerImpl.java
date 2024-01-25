@@ -1,6 +1,7 @@
 package tbooop.model.player.impl;
 
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Vector2d;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
@@ -15,10 +16,12 @@ import tbooop.model.player.api.Player;
 */
 public class PlayerImpl extends Entity implements Player {
 
+    private static final long TIME_BETWEEN_SHOTS = 500;
     private int damage;
     private int keys;
     private int coin;
     private long deltaTime;
+    private long timeSinceLastShoot;
     /**
      * Create a new istance of a Entity.
      * 
@@ -91,6 +94,15 @@ public class PlayerImpl extends Entity implements Player {
     private void checkHealth() {
         if (getHealth() > getMaxHealth()) {
             takeDamage(1);
+        }
+    }
+
+    @Override
+    public void shoot(Vector2d direction, long deltaTime) {
+        this.timeSinceLastShoot += deltaTime;
+        if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
+            this.timeSinceLastShoot = 0;
+            //PlayerProjectile shooted = new PlayerProjectile(direction, getPosition(), getVelocity()*2);
         }
     }
 }
