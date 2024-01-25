@@ -6,7 +6,7 @@ import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.core.api.movable.Entity;
+import tbooop.model.core.api.movable.AbstractEntity;
 import tbooop.model.player.api.Player;
 
 /**
@@ -14,7 +14,7 @@ import tbooop.model.player.api.Player;
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public class PlayerImpl extends Entity implements Player {
+public class PlayerImpl extends AbstractEntity implements Player {
 
     private static final long TIME_BETWEEN_SHOTS = 500;
     private int damage;
