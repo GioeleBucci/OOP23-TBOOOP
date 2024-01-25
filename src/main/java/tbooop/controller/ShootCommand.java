@@ -23,8 +23,6 @@ public class ShootCommand implements PlayerCommand {
     /** {@inheritDoc} */
     @Override
     public void execute(final Player player) {
-        player.move(direction);
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'execute'");
+        player.shoot(direction.toP2d().toV2d());
     }
 }

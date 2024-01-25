@@ -3,7 +3,6 @@ package tbooop.model.player.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.AbstractProjectile;
-import tbooop.model.player.api.Player;
 
 /**
  * A Player projectile is movable GameObject that travels in a straight line.
@@ -32,13 +31,6 @@ public class PlayerProjectile extends AbstractProjectile {
     public void disappear() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'disappear'");
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onCollision(final Player player) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onCollision'");
     }
 
     /** {@inheritDoc} */

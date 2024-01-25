@@ -55,7 +55,6 @@ public interface Player extends Damageable {
     /**
      * This method it's used for shooting in the four direction.
      * @param direction can be UP,DOWN,LEFT,RIGHT.
-     * @param deltaTime it's the time between two shots.
      */
-    void shoot(Vector2d direction, long deltaTime);
+    void shoot(Vector2d direction);
 }

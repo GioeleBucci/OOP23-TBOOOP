@@ -25,9 +25,8 @@ public class PlayerImpl extends Entity implements Player {
     /**
      * Create a new istance of a Entity.
      * 
-     * @param position      starting position (as a {@link javafx.geometry.Point2D
-     *                      Point2D})
-     * @param health the entity's health
+     * @param position      starting position
+     * @param health        the entity's health
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
@@ -98,8 +97,8 @@ public class PlayerImpl extends Entity implements Player {
     }
 
     @Override
-    public void shoot(Vector2d direction, long deltaTime) {
-        this.timeSinceLastShoot += deltaTime;
+    public void shoot(Vector2d direction) {
+        this.timeSinceLastShoot += this.deltaTime;
         if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
             this.timeSinceLastShoot = 0;
             //PlayerProjectile shooted = new PlayerProjectile(direction, getPosition(), getVelocity()*2);
