@@ -41,7 +41,7 @@ public class EnemyProjectile extends AbstractProjectile {
 
     /** {@inheritDoc} */
     @Override
-    public void projectileCollision(Entity entity) {
+    public void projectileCollision(final Entity entity) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'projectileCollision'");
     }
