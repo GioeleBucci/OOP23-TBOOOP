@@ -2,11 +2,15 @@ package tbooop.model.core.api.movable;
 
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Projectile;
 import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameObjectAbs;
 import tbooop.model.core.api.GameTag;
+
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Entity is an abstraction of anything that is Damageable and Movable in the
@@ -18,6 +22,7 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
     private final Health health;
     private Vector2d direction;
     private double velocity;
+    private final Set<Projectile> shotProjectiles = new HashSet<>();
 
     /**
      * Create a new istance of a Entity.
@@ -71,6 +76,15 @@ public abstract class Entity extends GameObjectAbs implements Damageable {
      */
     public void increaseHealth(final int amount) {
         this.health.increaseHealth(amount);
+    }
+
+    /**
+     * Returns the latest projectiles that have been shot. 
+     * 
+     * @return the set of projectiles
+     */
+    public Set<Projectile> getShotProjectiles() {
+        return new HashSet<>(this.shotProjectiles);
     }
 
     /**
