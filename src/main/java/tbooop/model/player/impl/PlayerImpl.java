@@ -4,7 +4,6 @@ import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
-import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.player.api.Player;
@@ -33,13 +32,6 @@ public class PlayerImpl extends Entity implements Player {
         super(position, health, velocity, GameTag.PLAYER);
         this.damage = 1;
         this.coin = 10;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onCollision(final GameObject gameObj) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'onCollision'");
     }
 
     /** {@inheritDoc} */
