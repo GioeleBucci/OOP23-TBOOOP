@@ -2,6 +2,9 @@ package tbooop.model.enemy.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
+
+import javax.swing.text.html.parser.Entity;
+
 import tbooop.commons.api.AbstractProjectile;
 import tbooop.model.player.api.Player;
 
@@ -34,6 +37,12 @@ public class EnemyProjectile extends AbstractProjectile {
     @Override
     public void onCollision(final Player player) {
         player.takeDamage(PROJECTILE_DAMAGE);
+    }
+
+    @Override
+    public void projectileCollision(Entity entity) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'projectileCollision'");
     }
 
 }
