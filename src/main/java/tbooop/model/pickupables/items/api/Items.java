@@ -17,4 +17,11 @@ public interface Items extends Unmovable {
      * item shop room.
      */
     void setInShop();
+
+    /**
+     * Returns item's price.
+     * 
+     * @return item's price.
+     */
+    int getPrice();
 }
