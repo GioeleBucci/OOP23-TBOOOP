@@ -39,6 +39,7 @@ public class EnemyProjectile extends AbstractProjectile {
         player.takeDamage(PROJECTILE_DAMAGE);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void projectileCollision(Entity entity) {
         // TODO Auto-generated method stub
