@@ -28,7 +28,8 @@ public class ChasingAi implements MovementAi {
 
     /** {@inheritDoc} */
     @Override
-    public Point2d newPosition(final Point2d initialPosition, final long deltaTime, final double velocity) {
+    public Point2d newPosition(final Point2d initialPosition,
+    final long deltaTime, final double velocity) {
         if (initialPosition.equals(player.getPosition())) {
             return initialPosition;
         }
