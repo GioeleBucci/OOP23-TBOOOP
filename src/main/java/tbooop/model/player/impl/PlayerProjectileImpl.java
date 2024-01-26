@@ -3,6 +3,7 @@ package tbooop.model.player.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.model.core.api.movable.Entity;
+import tbooop.model.player.api.PlayerProjectile;
 import tbooop.commons.api.AbstractProjectile;
 
 /**
@@ -10,8 +11,9 @@ import tbooop.commons.api.AbstractProjectile;
  * It's not damageable, however it can damage Enemies.
  * It disappears when colliding either into a map border or an Enemies.
  */
-public class PlayerProjectileImpl extends AbstractProjectile {
+public class PlayerProjectileImpl extends AbstractProjectile implements PlayerProjectile{
 
+    private int damage;
     /**
     * Create a new istance of a Player Projectile.
     * 
@@ -36,7 +38,13 @@ public class PlayerProjectileImpl extends AbstractProjectile {
     /** {@inheritDoc} */
     @Override
     public void projectileCollision(final Entity entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'projectileCollision'");
+        if(damage!=0){
+            
+        }
+    }
+
+    @Override
+    public void setDamage(int amount) {
+        this.damage = amount;
     }
 }
