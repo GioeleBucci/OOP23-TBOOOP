@@ -38,7 +38,7 @@ public abstract class AbstractProjectile extends AbstractMovable implements Proj
      */
     protected void move(final long deltaTime) {
         final Point2d nextPosition = getPosition()
-            .add(new Point2dImpl(super.getDirection().getX(), super.getDirection().getY())
+            .add(new Point2dImpl(super.getDirection().toP2d())
             .mul(super.getVelocity() * deltaTime));
         if (!RoomBounds.outOfBounds(nextPosition)) {
             this.setPosition(nextPosition);
