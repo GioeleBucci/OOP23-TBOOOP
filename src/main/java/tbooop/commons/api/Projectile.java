@@ -12,11 +12,6 @@ import tbooop.model.core.api.movable.Movable;
 public interface Projectile extends Movable {
 
     /**
-    * Removes the projectile from the game.
-    */ 
-    void disappear();
-
-    /**
      * Manages the collisions of the projectile.
      * @param entity should be an Enemy or Player
      */

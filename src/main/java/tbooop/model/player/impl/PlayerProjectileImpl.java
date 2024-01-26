@@ -32,12 +32,6 @@ public class PlayerProjectileImpl extends AbstractProjectile implements PlayerPr
 
     /** {@inheritDoc} */
     @Override
-    public void disappear() {
-        this.destroy();
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void projectileCollision(final Entity entity) {
         if (entity instanceof Enemy) {
             entity.takeDamage(damage);

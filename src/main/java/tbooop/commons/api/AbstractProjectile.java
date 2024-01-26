@@ -43,7 +43,7 @@ public abstract class AbstractProjectile extends AbstractMovable implements Proj
         if (!RoomBounds.outOfBounds(nextPosition)) {
             this.setPosition(nextPosition);
         } else {
-            disappear();
+            super.destroy();
         }
     }
 

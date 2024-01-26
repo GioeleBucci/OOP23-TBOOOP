@@ -27,13 +27,6 @@ public class EnemyProjectile extends AbstractProjectile {
 
     /** {@inheritDoc} */
     @Override
-    public void disappear() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'disappear'");
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void onCollision(final Player player) {
         player.takeDamage(PROJECTILE_DAMAGE);
     }
