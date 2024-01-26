@@ -3,6 +3,8 @@ package tbooop.model.enemy.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 
+import java.util.Objects;
+
 import tbooop.commons.api.AbstractProjectile;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.player.api.Player;
@@ -34,8 +36,11 @@ public class EnemyProjectile extends AbstractProjectile {
     /** {@inheritDoc} */
     @Override
     public void projectileCollision(final Entity entity) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'projectileCollision'");
+        Objects.requireNonNull(entity);
+        if (entity instanceof Player) {
+            entity.takeDamage(PROJECTILE_DAMAGE);
+            super.destroy();
+        }
     }
 
 }
