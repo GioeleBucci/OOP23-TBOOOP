@@ -28,7 +28,7 @@ public class ItemShopLogic {
     public Map<Items, Items> getItemsPool() {
         final Map<Items, Items> itemsMap = new HashMap<>();
         itemsMap.put(new GoldenHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP), 
-                    new ShopCoinLabel(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
+                    new ItemPriceLabel(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
         return itemsMap;
     }
 }
