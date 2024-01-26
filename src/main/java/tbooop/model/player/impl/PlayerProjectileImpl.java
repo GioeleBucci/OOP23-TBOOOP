@@ -3,6 +3,7 @@ package tbooop.model.player.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.model.core.api.movable.Entity;
+import tbooop.model.enemy.api.Enemy;
 import tbooop.model.player.api.PlayerProjectile;
 import tbooop.commons.api.AbstractProjectile;
 
@@ -38,11 +39,12 @@ public class PlayerProjectileImpl extends AbstractProjectile implements PlayerPr
     /** {@inheritDoc} */
     @Override
     public void projectileCollision(final Entity entity) {
-        if(damage!=0){
-            
+        if(entity instanceof Enemy){
+            entity.takeDamage(damage);
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setDamage(int amount) {
         this.damage = amount;
