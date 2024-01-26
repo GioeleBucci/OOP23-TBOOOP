@@ -33,10 +33,10 @@ public class ChasingAi implements MovementAi {
         if (Objects.requireNonNull(initialPosition).equals(player.getPosition())) {
             return initialPosition;
         }
-        final Point2d temp = new Vector2dImpl(this.player.getPosition()
+        final Point2d playerDir = new Vector2dImpl(this.player.getPosition()
             .subtract(initialPosition).toV2d())
             .normalize().toP2d();
-        return new Point2dImpl(temp)
+        return new Point2dImpl(playerDir)
             .mul(deltaTime)
             .mul(velocity)
             .add(initialPosition);
