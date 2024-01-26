@@ -7,8 +7,8 @@ import tbooop.commons.api.Projectile;
  * It's not damageable, however it can damage Enemies.
  * It disappears when colliding either into a map border or an Enemies.
  */
-public interface PlayerProjectile extends Projectile{
-    
+public interface PlayerProjectile extends Projectile {
+
     /**
     * This method set the amount of damage the Player can do.
     * @param amount the amount of damage to set.

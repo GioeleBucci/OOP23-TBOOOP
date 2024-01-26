@@ -12,7 +12,7 @@ import tbooop.commons.api.AbstractProjectile;
  * It's not damageable, however it can damage Enemies.
  * It disappears when colliding either into a map border or an Enemies.
  */
-public class PlayerProjectileImpl extends AbstractProjectile implements PlayerProjectile{
+public class PlayerProjectileImpl extends AbstractProjectile implements PlayerProjectile {
 
     private int damage;
     /**
@@ -39,14 +39,14 @@ public class PlayerProjectileImpl extends AbstractProjectile implements PlayerPr
     /** {@inheritDoc} */
     @Override
     public void projectileCollision(final Entity entity) {
-        if(entity instanceof Enemy){
+        if (entity instanceof Enemy) {
             entity.takeDamage(damage);
         }
     }
 
     /** {@inheritDoc} */
     @Override
-    public void setDamage(int amount) {
+    public void setDamage(final int amount) {
         this.damage = amount;
     }
 }
