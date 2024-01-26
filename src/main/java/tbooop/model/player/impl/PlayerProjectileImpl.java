@@ -10,7 +10,7 @@ import tbooop.commons.api.AbstractProjectile;
  * It's not damageable, however it can damage Enemies.
  * It disappears when colliding either into a map border or an Enemies.
  */
-public class PlayerProjectile extends AbstractProjectile {
+public class PlayerProjectileImpl extends AbstractProjectile {
 
     /**
     * Create a new istance of a Player Projectile.
@@ -20,7 +20,7 @@ public class PlayerProjectile extends AbstractProjectile {
     * @param velocity      it is the Projectile velocity
     * @throws NullPointerException if any parameter passed is null
     */
-    protected PlayerProjectile(
+    protected PlayerProjectileImpl(
         final Vector2d direction, 
         final Point2d initialPoint, 
         final double velocity) {
