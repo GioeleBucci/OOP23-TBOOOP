@@ -6,6 +6,7 @@ import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameTag;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -41,4 +42,19 @@ public abstract class AbstractEntity extends AbstractDamageable implements Entit
         return new HashSet<>(this.shotProjectiles);
     }
 
+    /**
+     * Adds a projectile in the set shotProjectiles.
+     * @param projectile the projectile to add in the set.
+     * @throws NullPointerException if the projectile is null.
+     */
+    protected void addProjectile(final Projectile projectile) {
+        this.shotProjectiles.add(Objects.requireNonNull(projectile));
+    }
+
+    /**
+     * Clear the set shotProjectiles.
+     */
+    protected void removeProjectiles() {
+        this.shotProjectiles.clear();
+    }
 }

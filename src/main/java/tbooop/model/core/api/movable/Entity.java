@@ -15,5 +15,4 @@ public interface Entity extends Damageable {
      * @return the set of projectiles
      */
     Set<Projectile> getShotProjectiles();
-
 }
