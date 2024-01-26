@@ -8,6 +8,7 @@ import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
 import tbooop.model.player.api.Player;
+import tbooop.model.player.api.PlayerProjectile;
 
 /**
  * A Player is a game object that can move on a 2D space,
@@ -102,7 +103,8 @@ public class PlayerImpl extends AbstractEntity implements Player {
         this.timeSinceLastShoot += this.deltaTime;
         if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
             this.timeSinceLastShoot = 0;
-            //PlayerProjectile shooted = new PlayerProjectile(direction, getPosition(), getVelocity()*2);
+            final PlayerProjectile shooted = new PlayerProjectileImpl(direction, getPosition(), getVelocity() * 2);
+            shooted.setDamage(damage);
         }
     }
 }
