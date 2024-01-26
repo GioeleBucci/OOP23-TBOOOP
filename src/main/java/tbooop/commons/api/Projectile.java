@@ -1,7 +1,6 @@
 package tbooop.commons.api;
 
-import javax.swing.text.html.parser.Entity;
-
+import tbooop.model.core.api.movable.Entity;
 import tbooop.model.core.api.movable.Movable;
 
 /**

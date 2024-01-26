@@ -2,9 +2,7 @@ package tbooop.model.player.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
-
-import javax.swing.text.html.parser.Entity;
-
+import tbooop.model.core.api.movable.Entity;
 import tbooop.commons.api.AbstractProjectile;
 
 /**
