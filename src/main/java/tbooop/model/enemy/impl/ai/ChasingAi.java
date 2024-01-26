@@ -5,7 +5,6 @@ import java.util.Objects;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Vector2dImpl;
-import tbooop.commons.api.Vector2d;
 import tbooop.model.core.api.movable.Movable;
 import tbooop.model.enemy.api.ai.MovementAi;
 
@@ -33,11 +32,10 @@ public class ChasingAi implements MovementAi {
         if (initialPosition.equals(player.getPosition())) {
             return initialPosition;
         }
-        final Point2d distance = this.player.getPosition().subtract(initialPosition);
-        final Vector2d direction = new Vector2dImpl(
-            distance.getX(), distance.getY())
-            .normalize();
-        return new Point2dImpl(direction.getX(), direction.getY())
+        final Point2d temp = new Vector2dImpl(this.player.getPosition()
+            .subtract(initialPosition).toV2d())
+            .normalize().toP2d();
+        return new Point2dImpl(temp)
             .mul(deltaTime)
             .mul(velocity)
             .add(initialPosition);
