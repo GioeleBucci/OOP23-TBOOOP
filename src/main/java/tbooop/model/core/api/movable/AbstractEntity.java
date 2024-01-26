@@ -42,12 +42,9 @@ public abstract class AbstractEntity extends AbstractDamageable implements Entit
         return new HashSet<>(this.shotProjectiles);
     }
 
-    /**
-     * Adds a projectile in the set shotProjectiles.
-     * @param projectile the projectile to add in the set.
-     * @throws NullPointerException if the projectile is null.
-     */
-    protected void addProjectile(final Projectile projectile) {
+    /** {@inheritDoc} */
+    @Override
+    public void addProjectile(final Projectile projectile) {
         this.shotProjectiles.add(Objects.requireNonNull(projectile));
     }
 
