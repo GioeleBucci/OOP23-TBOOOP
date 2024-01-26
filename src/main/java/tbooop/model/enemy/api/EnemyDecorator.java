@@ -1,8 +1,10 @@
 package tbooop.model.enemy.api;
 
 import java.util.Objects;
+import java.util.Set;
 
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Projectile;
 import tbooop.commons.api.CircleCollider;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.player.api.Player;
@@ -85,6 +87,12 @@ public abstract class EnemyDecorator implements Enemy {
     @Override
     public final boolean isDestroyed() {
         return this.concretEnemy.isDestroyed();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public final Set<Projectile> getShotProjectiles() {
+        return this.concretEnemy.getShotProjectiles();
     }
 
 }
