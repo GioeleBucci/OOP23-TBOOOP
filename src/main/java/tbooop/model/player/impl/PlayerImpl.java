@@ -100,11 +100,13 @@ public class PlayerImpl extends AbstractEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void shoot(final Vector2d direction) {
+        removeProjectiles();
         this.timeSinceLastShoot += this.deltaTime;
         if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
             this.timeSinceLastShoot = 0;
             final PlayerProjectile shooted = new PlayerProjectileImpl(direction, getPosition(), getVelocity() * 2);
             shooted.setDamage(damage);
+            addProjectile(shooted);
         }
     }
 }
