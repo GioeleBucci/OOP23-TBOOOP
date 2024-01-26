@@ -30,7 +30,7 @@ public class ChasingAi implements MovementAi {
     @Override
     public Point2d newPosition(final Point2d initialPosition,
     final long deltaTime, final double velocity) {
-        if (initialPosition.equals(player.getPosition())) {
+        if (Objects.requireNonNull(initialPosition).equals(player.getPosition())) {
             return initialPosition;
         }
         final Point2d temp = new Vector2dImpl(this.player.getPosition()
