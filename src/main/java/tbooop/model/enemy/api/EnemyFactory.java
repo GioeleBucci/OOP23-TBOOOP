@@ -1,5 +1,7 @@
 package tbooop.model.enemy.api;
 
+import tbooop.commons.Point2ds;
+
 /**
  * An enemy factory is an object that handles the creation of enemies.
  * Each method returns a particular enemy configuration.
@@ -13,4 +15,18 @@ public interface EnemyFactory {
      * @return an istance of a melee enemy.
      */
     Enemy melee();
+
+    /**
+     * Creates and returns an enemy that moves left-right or up-down
+     * and can shoot projectiles against the player.
+     * <p>
+     * If initialDirection is LEFT or RIGHT the shooter will move left-right,
+     * vice versa if it is UP or DOWN the shooter will move up-down.
+     * 
+     * @param initialDirection it determines if the shooter moves up-down or left-right
+     * @return an instance of a shooter
+     * @throws NullPointerException if the parameter is null
+     */
+    Enemy shooter(Point2ds initialDirection);
+
 }
