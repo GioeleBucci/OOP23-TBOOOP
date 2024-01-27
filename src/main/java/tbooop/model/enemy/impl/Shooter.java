@@ -4,9 +4,9 @@ import java.util.Objects;
 
 import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Vector2d;
+import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;
-import tbooop.model.player.api.Player;
 
 /**
  * a Shooter decorator allows the enemy to shoot a projectile
@@ -18,7 +18,7 @@ public class Shooter extends EnemyDecorator {
 
     private static final long TIME_BETWEEN_SHOTS = 1000;
     private static final double PROJECTILE_VELOCITY = 0.01;
-    private final Player player;
+    private final Damageable player;
     private long timeSinceLastShoot;
 
     /**
@@ -28,7 +28,7 @@ public class Shooter extends EnemyDecorator {
      * @param player the player towards whom the projectiles are shot
      * @throws NullPointerException if any parameter is null
      */
-    protected Shooter(final Enemy concreteEnemy, final Player player) {
+    protected Shooter(final Enemy concreteEnemy, final Damageable player) {
         super(Objects.requireNonNull(concreteEnemy));
         this.player = Objects.requireNonNull(player);
     }
