@@ -6,10 +6,13 @@ import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import tbooop.commons.api.Projectile;
 import tbooop.controller.api.CommandListener;
 import tbooop.controller.api.Event;
 import tbooop.controller.api.EventListener;
 import tbooop.controller.api.PlayerCommand;
+import tbooop.model.core.api.GameObject;
+import tbooop.model.core.api.movable.Entity;
 
 import java.util.logging.Logger;
 
@@ -20,7 +23,7 @@ import java.util.logging.Logger;
 public final class GameEngine implements EventListener, CommandListener {
 
     private final List<Event> eventQueue = new ArrayList<>();
-    // private final World world = new World();
+    private final World world = new World();
     private final Logger logger = Logger.getLogger(GameEngine.class.getName());
     private final BlockingQueue<PlayerCommand> cmdQueue = new ArrayBlockingQueue<>(100);
 
@@ -44,10 +47,24 @@ public final class GameEngine implements EventListener, CommandListener {
         // gameOver();
     }
 
-    private void updateGame(final long elapsed) {
-        // TODO Auto-generated method stub
-        logger.info("elapsed: " + elapsed);
-        throw new UnsupportedOperationException("Unimplemented method 'updateGame'");
+    private void updateGame(final long dt) {
+        world.getPlayer().updateState(dt);
+        // update all projectiles
+        for (final Projectile projectile : world.getProjectiles()) {
+            // update all gameObjects
+            for (final GameObject gameObj : world.getGameObjects()) {
+                // GameObject-Player collision
+                if (gameObj.getCollider().isColliding(world.getPlayer().getCollider())) {
+                    gameObj.onPlayerCollision(world.getPlayer());
+                }
+                // Projectile-Entity collision
+                if (gameObj instanceof Entity && gameObj.getCollider().isColliding(projectile.getCollider())) {
+                    projectile.onEntityCollision((Entity) gameObj);
+                }
+                gameObj.updateState(dt);
+            }
+            projectile.updateState(dt);
+        }
     }
 
     @Override
