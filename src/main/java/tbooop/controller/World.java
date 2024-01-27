@@ -1,11 +1,12 @@
 package tbooop.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Objects;
 
 import tbooop.commons.HealthImpl;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Projectile;
 import tbooop.commons.Point2dImpl;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.dungeon.floor.LevelFloor;
@@ -19,7 +20,9 @@ import tbooop.model.player.impl.PlayerImpl;
  * the player, the current floor, and the current room.
  */
 public class World {
-    private final List<GameObject> gameObjects = new ArrayList<>();
+    private final Set<GameObject> gameObjects = new HashSet<>();
+    private final Set<Projectile> projectiles = new HashSet<>();
+
     private final Player player = new PlayerImpl(Point2dImpl.ZERO, new HealthImpl(1), 1.0);
     private Floor floor = new LevelFloor(1);
     private Point2d currentRoom = Point2dImpl.ZERO;
@@ -34,8 +37,17 @@ public class World {
      *
      * @return the list of game objects
      */
-    protected List<GameObject> getGameObjects() {
+    protected Set<GameObject> getGameObjects() {
         return gameObjects;
+    }
+
+    /**
+     * Returns the list of game objects in the world.
+     *
+     * @return the list of game objects
+     */
+    protected Set<Projectile> getProjectiles() {
+        return projectiles;
     }
 
     /**
