@@ -21,7 +21,8 @@ public class PickupsLogic {
     private static final int PICKUPS_NUMBER = 3;
     private final List<Pickups> list = Arrays.asList(new Coin(this.location, 2.0, GameTag.PICKUP), 
                                                 new Heart(this.location, 2.0, GameTag.PICKUP),
-                                                new Key(this.location, 2.0, GameTag.PICKUP));
+                                                new Key(this.location, 2.0, GameTag.PICKUP),
+                                                new Bill(this.location, 2.0, GameTag.PICKUP));
     private final Random random = new Random();
 
     /**
