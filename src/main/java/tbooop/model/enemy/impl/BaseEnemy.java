@@ -42,7 +42,7 @@ public class BaseEnemy extends AbstractEnemy {
      * define a behaviour for it.
     */
     @Override
-    public void onCollision(final Player player) {
+    public void onPlayerCollision(final Player player) {
         Objects.requireNonNull(player);
     }
 

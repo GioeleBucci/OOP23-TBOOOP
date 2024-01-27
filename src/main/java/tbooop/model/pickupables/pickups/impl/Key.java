@@ -32,7 +32,7 @@ public class Key extends PickupsAbs {
      * @param player
     */
     @Override
-    public void onCollision(final Player player) {
+    public void onPlayerCollision(final Player player) {
         onPickup(player);
     }
 

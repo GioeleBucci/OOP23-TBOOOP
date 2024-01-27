@@ -34,11 +34,11 @@ class TestBaseEnemy {
 
     @Test
     void testAttack() {
-        this.enemy.onCollision(this.player);
+        this.enemy.onPlayerCollision(this.player);
         assertEquals(PLAYER_HP, this.player.getHealth());
-        this.enemy.onCollision(this.player);
+        this.enemy.onPlayerCollision(this.player);
         assertEquals(PLAYER_HP, this.player.getHealth());
-        this.enemy.onCollision(this.player);
+        this.enemy.onPlayerCollision(this.player);
         assertEquals(PLAYER_HP, this.player.getHealth());
     }
 

@@ -76,7 +76,7 @@ public abstract class GameObjectAbs implements GameObject {
 
     /** {@inheritDoc} */
     @Override
-    public void onCollision(final Player player) {
+    public void onPlayerCollision(final Player player) {
     }
 
 }

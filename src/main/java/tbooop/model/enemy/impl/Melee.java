@@ -32,8 +32,8 @@ public class Melee extends EnemyDecorator {
 
     /** {@inheritDoc} */
     @Override
-    public void onCollision(final Player player) {
-        super.onCollision(player);
+    public void onPlayerCollision(final Player player) {
+        super.onPlayerCollision(player);
         if (this.timeSinceLastHit >= TIME_BETWEEN_HITS) {
             this.timeSinceLastHit = 0;
             player.takeDamage(DAMAGE_AMOUNT);

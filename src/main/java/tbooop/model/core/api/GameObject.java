@@ -63,6 +63,6 @@ public interface GameObject {
      * 
      * @param player the player
      */
-    void onCollision(Player player);
+    void onPlayerCollision(Player player);
 
 }

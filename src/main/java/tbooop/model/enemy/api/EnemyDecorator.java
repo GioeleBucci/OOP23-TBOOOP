@@ -49,8 +49,8 @@ public abstract class EnemyDecorator implements Enemy {
 
     /** {@inheritDoc} */
     @Override
-    public void onCollision(final Player player) {
-        this.concretEnemy.onCollision(player);
+    public void onPlayerCollision(final Player player) {
+        this.concretEnemy.onPlayerCollision(player);
     }
 
     /** {@inheritDoc} */

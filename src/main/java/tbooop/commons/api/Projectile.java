@@ -15,5 +15,5 @@ public interface Projectile extends Movable {
      * Manages the collisions of the projectile.
      * @param entity should be an Enemy or Player
      */
-    void projectileCollision(Entity entity);
+    void onEntityCollision(Entity entity);
 }

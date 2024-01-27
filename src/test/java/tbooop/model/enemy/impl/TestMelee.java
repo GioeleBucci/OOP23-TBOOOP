@@ -52,13 +52,13 @@ class TestMelee {
     @Test
     void testAttack() {
         this.melee.updateState(1000);
-        this.melee.onCollision(this.player);
+        this.melee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 1);
         this.melee.updateState(1000);
-        this.melee.onCollision(this.player);
+        this.melee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 2);
         this.melee.updateState(1000);
-        this.melee.onCollision(this.player);
+        this.melee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 3);
     }
 
@@ -90,15 +90,15 @@ class TestMelee {
     void testDoubleMelee() {
         final Enemy doubleMelee = new Melee(this.melee);
         doubleMelee.updateState(1000);
-        doubleMelee.onCollision(this.player);
+        doubleMelee.onPlayerCollision(this.player);
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         assertEquals(this.player.getHealth(), PLAYER_HP - 2);
         doubleMelee.updateState(1000);
-        doubleMelee.onCollision(this.player);
+        doubleMelee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 4);
         doubleMelee.updateState(1000);
-        doubleMelee.onCollision(this.player);
+        doubleMelee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 6);
         // CHECKSTYLE: MagicNumber ON
     }
@@ -122,15 +122,15 @@ class TestMelee {
     void testTripleMelee() {
         final Enemy tripleMelee = new Melee(new Melee(this.melee));
         tripleMelee.updateState(1000);
-        tripleMelee.onCollision(this.player);
+        tripleMelee.onPlayerCollision(this.player);
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         assertEquals(this.player.getHealth(), PLAYER_HP - 3);
         tripleMelee.updateState(1000);
-        tripleMelee.onCollision(this.player);
+        tripleMelee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 6);
         tripleMelee.updateState(1000);
-        tripleMelee.onCollision(this.player);
+        tripleMelee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 9);
         // CHECKSTYLE: MagicNumber OFF
     }
