@@ -14,6 +14,7 @@ import tbooop.model.enemy.api.ai.MovementAi;
 public class BouncingAi implements MovementAi {
 
     private Point2d direction;
+    private final double radius;
 
     /**
      * Creates an instance of a BouncingAi.
@@ -21,22 +22,37 @@ public class BouncingAi implements MovementAi {
      * that the ai should follow.
      * 
      * @param initialDirection the initial direction
-     * @throws NullPointerException if the parameter is null
+     * @param radius the ai's collider radius
+     * @throws NullPointerException if initialDirection is null
+     * @throws IllegarArgumentException if radius is negative
      */
-    public BouncingAi(final Point2d initialDirection) {
+    public BouncingAi(final Point2d initialDirection, final double radius) {
+        if (radius < 0) {
+            throw new IllegalArgumentException("radius can't be negative");
+        }
         this.direction = Objects.requireNonNull(initialDirection);
+        this.radius = radius;
     }
 
     /** {@inheritDoc} */
     @Override
     public Point2d newPosition(final Point2d initialPosition, final long deltaTime, final double velocity) {
-        final Point2d tempPos = nextPos(Objects.requireNonNull(initialPosition), deltaTime, velocity);
-        if (tempPos.getX() <= 0 || tempPos.getX() >= RoomBounds.WIDTH) {
+        Point2d tempPos = nextPos(Objects.requireNonNull(initialPosition), deltaTime, velocity);
+        if (tempPos.getX() - this.radius <= 0) {
+            tempPos = new Point2dImpl(this.radius, tempPos.getY());
             this.invertDirectionOnX();
-        } else if (tempPos.getY() <= 0 || tempPos.getY() >= RoomBounds.HEIGHT) {
+        } else if (tempPos.getX() + this.radius >= RoomBounds.WIDTH) {
+            tempPos = new Point2dImpl(RoomBounds.WIDTH - this.radius, tempPos.getY());
+            this.invertDirectionOnX();
+        }
+        if (tempPos.getY() - this.radius <= 0) {
+            tempPos = new Point2dImpl(tempPos.getX(), this.radius);
+            this.invertDirectionOnY();
+        } else if (tempPos.getY() + this.radius >= RoomBounds.HEIGHT) {
+            tempPos = new Point2dImpl(tempPos.getX(), RoomBounds.HEIGHT - this.radius);
             this.invertDirectionOnY();
         }
-        return nextPos(initialPosition, deltaTime, velocity);
+        return nextPos(tempPos, deltaTime, velocity);
     }
 
     private void invertDirectionOnX() {
