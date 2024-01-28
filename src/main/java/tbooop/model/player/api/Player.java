@@ -57,4 +57,10 @@ public interface Player extends Damageable {
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */
     void shoot(Vector2d direction);
+
+    /**
+     * Increases the player's speed by a certain amount.
+     * @param amount the amount to increase;
+     */
+    void increaseVelocity(double amount);
 }

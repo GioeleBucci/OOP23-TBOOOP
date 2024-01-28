@@ -109,4 +109,10 @@ public class PlayerImpl extends AbstractEntity implements Player {
             addProjectile(shooted);
         }
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void increaseVelocity(final double amount) {
+        setVelocity(getVelocity() + amount);
+    }
 }
