@@ -17,10 +17,12 @@ import tbooop.model.player.api.PlayerProjectile;
 */
 public class PlayerImpl extends AbstractEntity implements Player {
 
+    private static final int PROJECTILE_VELOCITY_INCREMENT = 10;
     private static final long TIME_BETWEEN_SHOTS = 500;
     private int damage;
     private int keys;
     private int coin;
+    private double projectileVelocity;
     private long deltaTime;
     private long timeSinceLastShoot;
     /**
@@ -35,6 +37,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
         super(position, health, velocity, GameTag.PLAYER);
         this.damage = 1;
         this.coin = 10;
+        this.projectileVelocity = velocity * 2;
     }
 
     /** {@inheritDoc} */
@@ -104,7 +107,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
         this.timeSinceLastShoot += this.deltaTime;
         if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
             this.timeSinceLastShoot = 0;
-            final PlayerProjectile shooted = new PlayerProjectileImpl(direction, getPosition(), getVelocity() * 2);
+            final PlayerProjectile shooted = new PlayerProjectileImpl(direction, getPosition(), this.projectileVelocity);
             shooted.setDamage(damage);
             addProjectile(shooted);
         }
@@ -114,5 +117,11 @@ public class PlayerImpl extends AbstractEntity implements Player {
     @Override
     public void increaseVelocity(final double amount) {
         setVelocity(getVelocity() + amount);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void increaseProjectileVelocity() {
+        this.projectileVelocity = this.projectileVelocity + PROJECTILE_VELOCITY_INCREMENT;
     }
 }

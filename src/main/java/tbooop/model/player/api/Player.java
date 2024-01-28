@@ -63,4 +63,9 @@ public interface Player extends Damageable {
      * @param amount the amount to increase;
      */
     void increaseVelocity(double amount);
+
+    /**
+     * Increases the projectile's speed by 10.
+     */
+    void increaseProjectileVelocity();
 }
