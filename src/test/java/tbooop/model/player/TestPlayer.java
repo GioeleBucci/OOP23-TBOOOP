@@ -1,6 +1,7 @@
 package tbooop.model.player;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ import tbooop.model.player.impl.PlayerImpl;
 
 class TestPlayer {
 
+    private static final int MOVES = 999;
     private static PlayerImpl player;
 
     /**
@@ -42,5 +44,17 @@ class TestPlayer {
         player.updateState(1);
         player.move(Point2ds.UP);
         assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2 - 1 * 2), player.getPosition());
+
+        for (int i = 0; i < MOVES; i++) {
+            player.move(Point2ds.UP);
+        }
+
+        for (int i = 0; i < MOVES; i++) {
+            player.move(Point2ds.LEFT);
+        }
+
+        if (RoomBounds.outOfBounds(player.getPosition())) {
+            fail();
+        }
     }
 }
