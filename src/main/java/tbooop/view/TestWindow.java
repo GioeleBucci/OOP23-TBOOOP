@@ -1,5 +1,7 @@
 package tbooop.view;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import javafx.application.Application;
@@ -25,6 +27,8 @@ import tbooop.model.player.impl.PlayerImpl;
 
 public class TestWindow extends Application {
 
+    private Map<GameObject, ImageView> map = new HashMap<>();
+
     private static final double WINDOW_WIDTH = 728;
     private static final double WINDOW_HEIGHT = WINDOW_WIDTH * 9 / 16;
     private double WINDOW_SIZE_CHANGE = WINDOW_WIDTH / 10;
@@ -44,8 +48,7 @@ public class TestWindow extends Application {
         System.out.println("world position: " + gobj.getPosition());
         System.out.println("screen position: " + worldToScreenPos(gobj.getPosition()));
 
-        addImg("down2.png", worldToScreenPos(gobj.getPosition()));
-        addImg("commands.png", Point2dImpl.ZERO);
+        addToMap("down2.png", gobj);
 
         // Add event handlers for key presses
         scene.setOnKeyPressed(event -> {
@@ -59,8 +62,14 @@ public class TestWindow extends Application {
                 primaryStage.setFullScreen(!primaryStage.isFullScreen());
             } else if (event.getCode() == KeyCode.W) {
                 gobj.setPosition(gobj.getPosition().add(new Point2dImpl(0, -10)));
-                System.out.println(gobj.getPosition());
+            } else if (event.getCode() == KeyCode.S) {
+                gobj.setPosition(gobj.getPosition().add(new Point2dImpl(0, 10)));
+            } else if (event.getCode() == KeyCode.A) {
+                gobj.setPosition(gobj.getPosition().add(new Point2dImpl(-10, 0)));
+            } else if (event.getCode() == KeyCode.D) {
+                gobj.setPosition(gobj.getPosition().add(new Point2dImpl(10, 0)));
             }
+            updateMap();
         });
 
         // Set the scene on the stage
@@ -69,8 +78,11 @@ public class TestWindow extends Application {
         primaryStage.show();
     }
 
-    private void renderGobjs(Set<GameObject> gameObjects) {
-        for (GameObject gameObject : gameObjects) {
+    private void updateMap() {
+        for (var entry : map.entrySet()) {
+            Point2d newPos = worldToScreenPos(entry.getKey().getPosition());
+            entry.getValue().setTranslateX(newPos.getX() - entry.getValue().getX());
+            entry.getValue().setTranslateY(newPos.getY() - entry.getValue().getY());
         }
     }
 
@@ -82,18 +94,26 @@ public class TestWindow extends Application {
                 worldPos.getY() * scene.getHeight() / RoomBounds.HEIGHT);
     }
 
-    private void addImg(String pathToImg, Point2d position) {
+    private void addToMap(String pathToImg, GameObject gobj) {
+
         // Create an image view
         Image img = new Image(pathToImg);
         ImageView imgView = new ImageView(img);
+
+        map.put(gobj, imgView);
 
         // // Set the translation
         // imgView.setX(position.getX());
         // imgView.setY(position.getY());
 
         // Bind the image view's position to the scene's size
-        imgView.xProperty().bind(scene.widthProperty().multiply(position.getX() / scene.widthProperty().get()));
-        imgView.yProperty().bind(scene.heightProperty().multiply(position.getY() / scene.heightProperty().get()));
+
+        Point2d startPos = worldToScreenPos(gobj.getPosition());
+
+        imgView.xProperty().bind(scene.widthProperty()
+                .multiply(startPos.getX() / scene.widthProperty().get()));
+        imgView.yProperty().bind(scene.heightProperty()
+                .multiply(startPos.getY() / scene.heightProperty().get()));
 
         // Bind the image view's size to the scene's size
         imgView.fitWidthProperty()
