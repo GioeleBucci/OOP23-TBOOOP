@@ -7,44 +7,77 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 import tbooop.commons.api.Projectile;
-import tbooop.controller.api.CommandListener;
+import tbooop.controller.api.Controller;
 import tbooop.controller.api.Event;
-import tbooop.controller.api.EventListener;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.movable.Entity;
+import tbooop.view.ViewImpl;
+import tbooop.view.api.View;
 
 import java.util.logging.Logger;
 
+import javafx.application.Application;
+import javafx.application.Platform;
+
 /**
- * The GameEngine class is responsible for managing the game loop and processing
- * events.
+ * This class is responsible for managing the game loop and processing events.
  */
-public final class GameEngine implements EventListener, CommandListener {
+public final class ControllerImpl implements Controller {
 
-    private final List<Event> eventQueue = new ArrayList<>();
     private final World world = new World();
-    private final Logger logger = Logger.getLogger(GameEngine.class.getName());
-    private final BlockingQueue<PlayerCommand> cmdQueue = new ArrayBlockingQueue<>(100);
+    private final List<Event> eventQueue = new ArrayList<>();
+    private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
+    private static final int COMMAND_QUEUE_SIZE = 20;
+    private final BlockingQueue<PlayerCommand> cmdQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
+    private final View view;
+    private boolean playerAdded;
 
-    private static final int FPS = 60;
-    private static final long REFRESH_PERIOD = 1L / FPS * 1000; // in ms
+    private static final int FPS = 10; // frames per second
+    private static final long REFRESH_PERIOD = (long) (1.0 / FPS * 1000); // in ms
+
+    /**
+     * Constructs a new Controller.
+     * 
+     * @param view the view that this controller will use
+     */
+    public ControllerImpl(final View view) {
+        this.view = Objects.requireNonNull(view);
+    }
 
     /**
      * The main game loop that processes input and updates the game state.
      */
+    @Override
     public void mainLoop() {
         long prevStartTime = System.currentTimeMillis();
         while (true) {
             final long startTime = System.currentTimeMillis();
             final long elapsed = startTime - prevStartTime;
-            // processInput();
+            processInput();
             updateGame(elapsed);
-            // render();
+            updateView();
             waitForNextFrame(startTime);
             prevStartTime = startTime;
         }
         // gameOver();
+    }
+
+    private void processInput() {
+        if (!cmdQueue.isEmpty()) {
+            cmdQueue.poll().execute(world.getPlayer());
+            logger.info("Player at: " + world.getPlayer().getPosition().toString());
+        }
+    }
+
+    private void updateView() {
+        Platform.runLater(() -> {
+            if (!playerAdded) {
+                this.view.addGameObject(world.getPlayer());
+                playerAdded = true;
+            }
+            this.view.update();
+        });
     }
 
     private void updateGame(final long dt) {
@@ -88,5 +121,14 @@ public final class GameEngine implements EventListener, CommandListener {
                 logger.fine("InterruptedException occurred while waiting for next frame: " + ex.getMessage());
             }
         }
+    }
+
+    /**
+     * Starts the game.
+     * 
+     * @param args
+     */
+    public static void main(final String[] args) {
+        Application.launch(ViewImpl.class, args);
     }
 }
