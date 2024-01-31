@@ -8,6 +8,7 @@ import tbooop.commons.HealthImpl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Projectile;
 import tbooop.commons.Point2dImpl;
+import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
@@ -23,7 +24,8 @@ public class World {
     private final Set<GameObject> gameObjects = new HashSet<>();
     private final Set<Projectile> projectiles = new HashSet<>();
 
-    private final Player player = new PlayerImpl(Point2dImpl.ZERO, new HealthImpl(1), 1.0);
+    private final Player player = new PlayerImpl(new Point2dImpl(RoomBounds.WIDTH / 2,
+            RoomBounds.HEIGHT / 3), new HealthImpl(1), .05);
     private Floor floor = new LevelFloor(1);
     private Point2d currentRoom = Point2dImpl.ZERO;
 
@@ -37,7 +39,7 @@ public class World {
      *
      * @return the list of game objects
      */
-    protected Set<GameObject> getGameObjects() {
+    public Set<GameObject> getGameObjects() {
         return gameObjects;
     }
 
@@ -46,7 +48,7 @@ public class World {
      *
      * @return the list of game objects
      */
-    protected Set<Projectile> getProjectiles() {
+    public Set<Projectile> getProjectiles() {
         return projectiles;
     }
 
@@ -55,7 +57,7 @@ public class World {
      *
      * @return the player
      */
-    protected Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
@@ -64,7 +66,7 @@ public class World {
      *
      * @return the current floor
      */
-    protected Floor getFloor() {
+    public Floor getFloor() {
         return floor;
     }
 
@@ -82,7 +84,7 @@ public class World {
      *
      * @return the current room
      */
-    protected Point2d getCurrentRoom() {
+    public Point2d getCurrentRoom() {
         return currentRoom;
     }
 
