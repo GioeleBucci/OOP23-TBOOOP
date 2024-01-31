@@ -25,7 +25,7 @@ public class World {
     private final Set<Projectile> projectiles = new HashSet<>();
 
     private final Player player = new PlayerImpl(new Point2dImpl(RoomBounds.WIDTH / 2,
-            RoomBounds.HEIGHT / 3), new HealthImpl(1), .05);
+            RoomBounds.HEIGHT / 3), new HealthImpl(1), .1);
     private Floor floor = new LevelFloor(1);
     private Point2d currentRoom = Point2dImpl.ZERO;
 

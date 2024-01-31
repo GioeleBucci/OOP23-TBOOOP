@@ -33,26 +33,39 @@ public final class ViewImpl extends Application implements View {
     private final Map<GameObject, ImageView> map = new HashMap<>();
 
     private final Logger logger = Logger.getLogger(ViewImpl.class.getName());
-    private static final double INITIAL_HEIGHT = Screen.getPrimary().getVisualBounds().getHeight();
-    private static final double INITIAL_WIDTH = INITIAL_HEIGHT * RoomBounds.WIDTH / RoomBounds.HEIGHT;
+    // private static final double INITIAL_HEIGHT =
+    // Screen.getPrimary().getVisualBounds().getHeight();
+    public static final double BASE_ROOM_W = 468;
+    public static final double BASE_ROOM_H = 311;
+    private static final double WALL_THICKNESS = BASE_ROOM_W - RoomBounds.WIDTH / 2;
+
+    // private static final double INITIAL_WIDTH = BASE_ROOM_H * RoomBounds.WIDTH /
+    // RoomBounds.HEIGHT;
     private final Group root = new Group();
     private final Controller controller = new ControllerImpl(this);
     private Scene scene;
     private InputManager inputManager;
-    private static final double BASE_ROOM_W = 468;
-    private static final double WALL_THICKNESS = BASE_ROOM_W - RoomBounds.WIDTH / 2;
     private Rectangle rect;
+    private double barsize;
+    private Stage stage;
+    private double stageAspectRatio;
+
+    public double getStageAspectRatio() {
+        return stageAspectRatio;
+    }
 
     @Override
     public void start(final Stage primaryStage) {
-
-        this.inputManager = new InputManager(controller, primaryStage);
+        this.stage = primaryStage;
 
         primaryStage.setResizable(false);
 
         // Create a scene
-        scene = new Scene(root, INITIAL_WIDTH, INITIAL_HEIGHT);
+        scene = new Scene(root, BASE_ROOM_W, BASE_ROOM_H);
+
         setBackgroundImage("tileset/room.png");
+
+        this.inputManager = new InputManager(controller, this);
 
         // Add event handlers for key presses
         scene.setOnKeyPressed(event -> {
@@ -61,7 +74,7 @@ public final class ViewImpl extends Application implements View {
         });
 
         // TEST
-        double upscaleFactor = scene.getWidth() / 468;
+        double upscaleFactor = scene.getWidth() / BASE_ROOM_W;
         rect = new Rectangle(RoomBounds.WIDTH * upscaleFactor, RoomBounds.HEIGHT * upscaleFactor, Color.RED);
         // rect.setX(scene.getWidth() / 2 - rect.getWidth() / 2);
         // rect.setY(scene.getHeight() / 2 - rect.getHeight() / 2);
@@ -82,10 +95,20 @@ public final class ViewImpl extends Application implements View {
         primaryStage.setTitle("TBOOOP!");
         primaryStage.show();
 
+        /// TEST CALCULATE WINDOW BAR SIZE
+        barsize = primaryStage.getHeight() - scene.getHeight();
+        System.out.println("barsize is " + barsize);
+
+        /// END TEST
+
         final Thread thread = new Thread(() -> {
             controller.mainLoop();
         });
         thread.start();
+
+        logger.info("w: " + scene.getWidth());
+        logger.info("w: " + primaryStage.getWidth());
+        stageAspectRatio = stage.getWidth() / stage.getHeight();
     }
 
     /**
@@ -115,9 +138,11 @@ public final class ViewImpl extends Application implements View {
          * used:
          * RoomBounds.WIDTH : scene.getWidth() = gameObject.getPosition().getX() : x
          */
+        var xThickness = (scene.getWidth() - rect.getWidth()) / 2;
+        var yThickness = (scene.getHeight() - rect.getHeight()) / 2;
         return new Point2dImpl(
-                worldPos.getX() * scene.getWidth() / RoomBounds.WIDTH,
-                worldPos.getY() * scene.getHeight() / RoomBounds.HEIGHT);
+                worldPos.getX() * rect.getWidth() / RoomBounds.WIDTH + xThickness,
+                worldPos.getY() * rect.getHeight() / RoomBounds.HEIGHT + yThickness);
     }
 
     private void addToMap(final String pathToImg, final GameObject gobj) {
@@ -135,16 +160,16 @@ public final class ViewImpl extends Application implements View {
         final Point2d startPos = worldToScreenPos(gobj.getPosition());
 
         // Bind the image view's position to the scene's size
-        imgView.xProperty().bind(scene.widthProperty()
-                .multiply(startPos.getX() / scene.widthProperty().get()));
-        imgView.yProperty().bind(scene.heightProperty()
-                .multiply(startPos.getY() / scene.heightProperty().get()));
+        imgView.xProperty().bind(rect.widthProperty()
+                .multiply(startPos.getX() / rect.widthProperty().get()));
+        imgView.yProperty().bind(rect.heightProperty()
+                .multiply(startPos.getY() / rect.heightProperty().get()));
 
         // Bind the image view's size to the scene's size
         imgView.fitWidthProperty()
-                .bind(scene.widthProperty().multiply(img.getWidth() / scene.widthProperty().get()));
+                .bind(rect.widthProperty().multiply(img.getWidth() / rect.widthProperty().get()));
         imgView.fitHeightProperty()
-                .bind(scene.heightProperty().multiply(img.getHeight() / scene.heightProperty().get()));
+                .bind(rect.heightProperty().multiply(img.getHeight() / rect.heightProperty().get()));
 
         // Add the image view to the layout pane
         root.getChildren().add(imgView);
@@ -166,5 +191,17 @@ public final class ViewImpl extends Application implements View {
         backgroundImageView.fitWidthProperty().bind(scene.widthProperty());
         backgroundImageView.fitHeightProperty().bind(scene.heightProperty());
         root.getChildren().add(backgroundImageView);
+    }
+
+    public double getBarsize() {
+        return barsize;
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public Stage getStage() {
+        return stage;
     }
 }

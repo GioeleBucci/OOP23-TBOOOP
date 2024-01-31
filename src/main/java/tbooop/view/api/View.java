@@ -1,5 +1,7 @@
 package tbooop.view.api;
 
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import tbooop.model.core.api.GameObject;
 
 /**
@@ -20,5 +22,13 @@ public interface View {
      * This method should be called each frame.
      */
     void update();
+
+    public double getBarsize();
+
+    public Stage getStage();
+
+    public Scene getScene();
+
+    public double getStageAspectRatio();
 
 }

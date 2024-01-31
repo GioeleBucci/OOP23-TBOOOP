@@ -33,7 +33,7 @@ public final class ControllerImpl implements Controller {
     private final View view;
     private boolean playerAdded;
 
-    private static final int FPS = 10; // frames per second
+    private static final int FPS = 60; // frames per second
     private static final long REFRESH_PERIOD = (long) (1.0 / FPS * 1000); // in ms
 
     /**
@@ -66,7 +66,7 @@ public final class ControllerImpl implements Controller {
     private void processInput() {
         if (!cmdQueue.isEmpty()) {
             cmdQueue.poll().execute(world.getPlayer());
-            logger.info("Player at: " + world.getPlayer().getPosition().toString());
+            // logger.info("Player at: " + world.getPlayer().getPosition().toString());
         }
     }
 
@@ -102,7 +102,7 @@ public final class ControllerImpl implements Controller {
 
     @Override
     public void notifyEvent(final Event event) {
-        logger.info("new event recieved.");
+        // logger.info("new event recieved.");
         eventQueue.add(event);
     }
 

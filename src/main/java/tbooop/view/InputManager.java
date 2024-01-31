@@ -10,6 +10,7 @@ import tbooop.controller.MoveCommand;
 import tbooop.controller.ShootCommand;
 import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
+import tbooop.view.api.View;
 
 /**
  * The InputManager class handles user input and triggers the corresponding
@@ -18,7 +19,7 @@ import tbooop.controller.api.PlayerCommand;
 public class InputManager {
 
     private final Controller commandListener;
-    private final Stage stage;
+    private final View view;
     private static final double WINDOW_SCALE_PERCENTAGE = 0.1;
 
     /**
@@ -27,9 +28,9 @@ public class InputManager {
      * @param controller the controller commands will be sent to
      * @param stage      the main stage of the view
      */
-    public InputManager(final Controller controller, final Stage stage) {
+    public InputManager(final Controller controller, final View view) {
         this.commandListener = controller;
-        this.stage = stage;
+        this.view = view;
     }
 
     /**
@@ -51,7 +52,7 @@ public class InputManager {
             case SHOOT_DOWN -> sendCommand(new ShootCommand(Point2ds.DOWN));
             case SHOOT_LEFT -> sendCommand(new ShootCommand(Point2ds.LEFT));
             case SHOOT_RIGHT -> sendCommand(new ShootCommand(Point2ds.RIGHT));
-            case FULLSCREEN -> stage.setFullScreen(!stage.isFullScreen());
+            case FULLSCREEN -> view.getStage().setFullScreen(!view.getStage().isFullScreen());
             case ZOOM_IN -> resizeWindow(true);
             case ZOOM_OUT -> resizeWindow(false);
             default -> {
@@ -64,13 +65,17 @@ public class InputManager {
     }
 
     private void resizeWindow(final boolean scaleUp) {
-        final double newWidth = stage.getWidth()
+        System.out.println("stage w: " + view.getStage().getWidth());
+        System.out.println("scene w: " + view.getScene().getWidth());
+        final double newWidth = view.getStage().getWidth()
                 * (1 + (scaleUp ? WINDOW_SCALE_PERCENTAGE : WINDOW_SCALE_PERCENTAGE * -1));
         if (newWidth < RoomBounds.WIDTH) {
             return;
         }
-        stage.setWidth(newWidth);
-        stage.setHeight(newWidth * RoomBounds.HEIGHT / RoomBounds.WIDTH);
+        view.getStage().setWidth(newWidth);
+        // view.getStage().setHeight((newWidth * RoomBounds.HEIGHT / RoomBounds.WIDTH) +
+        // view.getBarsize());
+        view.getStage().setHeight((newWidth / view.getStageAspectRatio()));
     }
 
 }
