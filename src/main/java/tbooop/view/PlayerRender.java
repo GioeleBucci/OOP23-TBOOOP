@@ -1,7 +1,6 @@
 package tbooop.view;
 
 import javafx.scene.Group;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
@@ -10,6 +9,7 @@ import tbooop.commons.api.Point2d;
 public class PlayerRender {
     private final Group root = new Group();
     private final Point2d startingPlayerPoint;
+    private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
     private ImageView playerSprite = new ImageView();
 
     /** 
@@ -35,8 +35,19 @@ public class PlayerRender {
     }
 
     public void goDown(Point2d newPos) {
-        this.playerSprite.setX(newPos.getX());
-        this.playerSprite.setY(newPos.getY());
+        this.playerRenderSprite.goDown(playerSprite, newPos);
+    }
+
+    public void goRight(Point2d newPos) {
+        this.playerRenderSprite.goRight(playerSprite, newPos);
+    }
+
+    public void goUp(Point2d newPos) {
+        this.playerRenderSprite.goUp(playerSprite, newPos);
+    }
+
+    public void goLeft(Point2d newPos) {
+        this.playerRenderSprite.goLeft(playerSprite, newPos);
     }
 }
 

@@ -20,25 +20,25 @@ public class PlayerRenderSprite {
 
     public PlayerRenderSprite() {
         downSprite = List.of(
-            new Image("Player/down/down1.png"), 
-            new Image("Player/down/down2.png"), 
-            new Image("Player/down/down3.png"), 
-            new Image("Player/down/down4.png"));
+            new Image("player/down/down1.png"), 
+            new Image("player/down/down2.png"), 
+            new Image("player/down/down3.png"), 
+            new Image("player/down/down4.png"));
         upSprite = List.of(
-            new Image("Player/up/up1.png"), 
-            new Image("Player/up/up2.png"), 
-            new Image("Player/up/up3.png"), 
-            new Image("Player/up/up4.png"));
+            new Image("player/up/up1.png"), 
+            new Image("player/up/up2.png"), 
+            new Image("player/up/up3.png"), 
+            new Image("player/up/up4.png"));
         leftSprite = List.of(
-            new Image("Player/left/left1.png"), 
-            new Image("Player/left/left2.png"), 
-            new Image("Player/left/left3.png"), 
-            new Image("Player/left/left4.png"));
+            new Image("player/left/left1.png"), 
+            new Image("player/left/left2.png"), 
+            new Image("player/left/left3.png"), 
+            new Image("player/left/left4.png"));
         rightSprite = List.of(
-            new Image("Player/right/right1.png"), 
-            new Image("Player/right/right2.png"), 
-            new Image("Player/right/right3.png"), 
-            new Image("Player/right/right4.png"));
+            new Image("player/right/right1.png"), 
+            new Image("player/right/right2.png"), 
+            new Image("player/right/right3.png"), 
+            new Image("player/right/right4.png"));
     }
 
     public void goDown(ImageView player, Point2d newPos){
@@ -49,6 +49,39 @@ public class PlayerRenderSprite {
             this.counterDown ++;
         } else {
             this.counterDown = 0;
+        }
+    }
+
+    public void goUp(ImageView player, Point2d newPos){
+        player.setImage(upSprite.get(counterUp));
+        player.setX(newPos.getX());
+        player.setY(newPos.getY());
+        if (counterUp < 3) {
+            this.counterUp ++;
+        } else {
+            this.counterUp = 0;
+        }
+    }
+
+    public void goLeft(ImageView player, Point2d newPos){
+        player.setImage(leftSprite.get(counterLeft));
+        player.setX(newPos.getX());
+        player.setY(newPos.getY());
+        if (counterLeft < 3) {
+            this.counterLeft ++;
+        } else {
+            this.counterLeft = 0;
+        }
+    }
+
+    public void goRight(ImageView player, Point2d newPos){
+        player.setImage(rightSprite.get(counterRight));
+        player.setX(newPos.getX());
+        player.setY(newPos.getY());
+        if (counterRight < 3) {
+            this.counterRight ++;
+        } else {
+            this.counterRight = 0;
         }
     }
 }
