@@ -1,6 +1,8 @@
 package tbooop.view;
 
 import javafx.scene.Group;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class HealthRender {
     
@@ -14,7 +16,7 @@ public class HealthRender {
     }
 
     private void init() {
-        
+        Image heart = new Image();
     }
 
     public void toggledHealth() {
