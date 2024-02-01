@@ -3,6 +3,7 @@ package tbooop.view.player;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import tbooop.commons.Point2dImpl;
+import tbooop.commons.Point2ds;
 import tbooop.commons.api.Point2d;
 
 /** Renders a Player. */
@@ -34,20 +35,28 @@ public class PlayerRender {
         playerSprite.setY(this.startingPlayerPoint.getY());
     }
 
-    public void goDown(Point2d newPos) {
-        this.playerRenderSprite.goDown(playerSprite, newPos);
-    }
-
-    public void goRight(Point2d newPos) {
-        this.playerRenderSprite.goRight(playerSprite, newPos);
-    }
-
-    public void goUp(Point2d newPos) {
-        this.playerRenderSprite.goUp(playerSprite, newPos);
-    }
-
-    public void goLeft(Point2d newPos) {
-        this.playerRenderSprite.goLeft(playerSprite, newPos);
+    /**
+     * Move the sprite in one of four direction.
+     * @param newPos new position.
+     * @param direction the direction (UP,DOWN,LEFT,RIGHT).
+     */
+    public void move(Point2d newPos, Point2ds direction){
+        switch (direction) {
+            case DOWN:
+                this.playerRenderSprite.goDown(playerSprite, newPos);
+                break;
+            case UP:
+                this.playerRenderSprite.goUp(playerSprite, newPos);
+                break;
+            case LEFT:
+                this.playerRenderSprite.goLeft(playerSprite, newPos);
+                break;
+            case RIGHT:
+                this.playerRenderSprite.goRight(playerSprite, newPos);
+                break;
+            default:
+                break;
+        }
     }
 }
 
