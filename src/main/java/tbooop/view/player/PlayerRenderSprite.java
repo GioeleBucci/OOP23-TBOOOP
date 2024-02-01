@@ -41,45 +41,45 @@ public class PlayerRenderSprite {
             new Image("player/right/right4.png"));
     }
 
-    public void goDown(ImageView player, Point2d newPos){
+    public void goDown(final ImageView player, final Point2d newPos) {
         player.setImage(downSprite.get(counterDown));
         player.setX(newPos.getX());
         player.setY(newPos.getY());
         if (counterDown < 3) {
-            this.counterDown ++;
+            this.counterDown = this.counterDown + 1;
         } else {
             this.counterDown = 0;
         }
     }
 
-    public void goUp(ImageView player, Point2d newPos){
+    public void goUp(final ImageView player, final Point2d newPos) {
         player.setImage(upSprite.get(counterUp));
         player.setX(newPos.getX());
         player.setY(newPos.getY());
         if (counterUp < 3) {
-            this.counterUp ++;
+            this.counterUp = this.counterUp + 1;
         } else {
             this.counterUp = 0;
         }
     }
 
-    public void goLeft(ImageView player, Point2d newPos){
+    public void goLeft(final ImageView player, final Point2d newPos) {
         player.setImage(leftSprite.get(counterLeft));
         player.setX(newPos.getX());
         player.setY(newPos.getY());
         if (counterLeft < 3) {
-            this.counterLeft ++;
+            this.counterLeft = counterLeft + 1;
         } else {
             this.counterLeft = 0;
         }
     }
 
-    public void goRight(ImageView player, Point2d newPos){
+    public void goRight(final ImageView player, final Point2d newPos) {
         player.setImage(rightSprite.get(counterRight));
         player.setX(newPos.getX());
         player.setY(newPos.getY());
         if (counterRight < 3) {
-            this.counterRight ++;
+            this.counterRight = this.counterRight + 1;
         } else {
             this.counterRight = 0;
         }
