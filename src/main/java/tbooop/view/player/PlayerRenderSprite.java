@@ -7,17 +7,23 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tbooop.commons.api.Point2d;
 
+/**
+ * It's the class for animate the Player.
+ */
 public class PlayerRenderSprite {
-    
+
     private int counterDown;
     private int counterLeft;
     private int counterRight;
     private int counterUp;
-    private List<Image> downSprite = new ArrayList<>();
-    private List<Image> upSprite = new ArrayList<>();
-    private List<Image> leftSprite = new ArrayList<>();
-    private List<Image> rightSprite = new ArrayList<>();
+    private List<Image> downSprite;
+    private List<Image> upSprite;
+    private List<Image> leftSprite;
+    private List<Image> rightSprite;
 
+    /**
+     * It's the class for animate the Player.
+     */
     public PlayerRenderSprite() {
         downSprite = List.of(
             new Image("player/down/down1.png"), 
@@ -41,6 +47,11 @@ public class PlayerRenderSprite {
             new Image("player/right/right4.png"));
     }
 
+    /**
+     * Move the player down.
+     * @param player 
+     * @param newPos new position.
+     */
     public void goDown(final ImageView player, final Point2d newPos) {
         player.setImage(downSprite.get(counterDown));
         player.setX(newPos.getX());
@@ -52,6 +63,11 @@ public class PlayerRenderSprite {
         }
     }
 
+    /**
+     * Move the player up.
+     * @param player 
+     * @param newPos new position.
+     */
     public void goUp(final ImageView player, final Point2d newPos) {
         player.setImage(upSprite.get(counterUp));
         player.setX(newPos.getX());
@@ -63,6 +79,11 @@ public class PlayerRenderSprite {
         }
     }
 
+    /**
+     * Move the player left.
+     * @param player 
+     * @param newPos new position.
+     */
     public void goLeft(final ImageView player, final Point2d newPos) {
         player.setImage(leftSprite.get(counterLeft));
         player.setX(newPos.getX());
@@ -74,6 +95,11 @@ public class PlayerRenderSprite {
         }
     }
 
+    /**
+     * Move the player right.
+     * @param player 
+     * @param newPos new position.
+     */
     public void goRight(final ImageView player, final Point2d newPos) {
         player.setImage(rightSprite.get(counterRight));
         player.setX(newPos.getX());
