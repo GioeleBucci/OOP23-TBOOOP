@@ -1,6 +1,9 @@
 package tbooop.controller;
 
 import java.util.Set;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+
 import java.util.HashSet;
 import java.util.Objects;
 
@@ -20,6 +23,10 @@ import tbooop.model.player.impl.PlayerImpl;
  * game objects,
  * the player, the current floor, and the current room.
  */
+@SuppressFBWarnings(value = {
+        "EI_EXPOSE_REP" // may expose internal representation by returning reference to mutable object
+}, justification = "This class is a container of game objects, that the controller needs check and modify"
+        + "and for that reason exposing the internal representation is necessary.")
 public class World {
     private final Set<GameObject> gameObjects = new HashSet<>();
     private final Set<Projectile> projectiles = new HashSet<>();
@@ -28,11 +35,6 @@ public class World {
             RoomBounds.HEIGHT / 2), new HealthImpl(1), .1);
     private Floor floor = new LevelFloor(1);
     private Point2d currentRoom = Point2dImpl.ZERO;
-
-    /*
-     * All the following methods are protected because they shouldn't be used
-     * outside of the controller
-     */
 
     /**
      * Returns the list of game objects in the world.

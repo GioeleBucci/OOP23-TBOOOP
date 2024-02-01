@@ -9,7 +9,7 @@ import tbooop.controller.MoveCommand;
 import tbooop.controller.ShootCommand;
 import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
-import tbooop.view.api.ViewUnm;
+import tbooop.view.api.ViewElements;
 
 /**
  * The InputManager class handles user input and triggers the corresponding
@@ -18,7 +18,7 @@ import tbooop.view.api.ViewUnm;
 public class InputManager {
 
     private final Controller commandListener;
-    private final ViewUnm view;
+    private final ViewElements view;
     private static final double WINDOW_SCALE_PERCENTAGE = 0.1;
 
     /**
@@ -27,7 +27,7 @@ public class InputManager {
      * @param controller the controller commands will be sent to
      * @param view       the main view
      */
-    public InputManager(final Controller controller, final ViewUnm view) {
+    public InputManager(final Controller controller, final ViewElements view) {
         this.commandListener = controller;
         this.view = view;
     }

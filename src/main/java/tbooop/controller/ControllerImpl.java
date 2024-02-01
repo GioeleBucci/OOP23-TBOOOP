@@ -16,6 +16,7 @@ import tbooop.view.api.View;
 
 import java.util.logging.Logger;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.application.Platform;
 
@@ -40,6 +41,7 @@ public final class ControllerImpl implements Controller {
      * 
      * @param view the view that this controller will use
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "View is needed according to MVC.")
     public ControllerImpl(final View view) {
         this.view = Objects.requireNonNull(view);
     }
