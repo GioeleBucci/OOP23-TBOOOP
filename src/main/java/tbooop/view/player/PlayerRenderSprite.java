@@ -1,4 +1,4 @@
-package tbooop.view;
+package tbooop.view.player;
 
 import java.util.List;
 import java.util.ArrayList;

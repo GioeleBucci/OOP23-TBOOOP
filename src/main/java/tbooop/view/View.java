@@ -16,6 +16,8 @@ import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2ds;
 import tbooop.controller.Controller;
 import tbooop.model.dungeon.rooms.api.Door;
+import tbooop.view.player.PlayerRender;
+
 import java.util.Map;
 
 /** View. */

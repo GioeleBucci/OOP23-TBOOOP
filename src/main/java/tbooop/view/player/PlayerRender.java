@@ -1,4 +1,4 @@
-package tbooop.view;
+package tbooop.view.player;
 
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
