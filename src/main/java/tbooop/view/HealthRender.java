@@ -12,7 +12,7 @@ public class HealthRender {
     private int scale;
     private static final int SCALE_PERCENTAGE = 25;
     private final Group root = new Group();
-    private List<ImageView> heartList = new ArrayList<>();
+    private final List<ImageView> heartList = new ArrayList<>();
 
     /** 
      * @param parentRoot the root this attaches to
@@ -25,7 +25,7 @@ public class HealthRender {
 
     private void init(final int healtPoint) {
         for (int i = 0; i < healtPoint; i++) {
-            ImageView heartView = new ImageView("full_hearth.png");
+            final ImageView heartView = new ImageView("full_hearth.png");
             root.getChildren().add(heartView);
             heartView.setScaleX(2.0);
             heartView.setScaleY(2.0);
@@ -55,7 +55,7 @@ public class HealthRender {
      * Add a new Heart.
      */
     public void addMaxHealth() {
-        ImageView heartView = new ImageView("full_hearth.png");
+        final ImageView heartView = new ImageView("full_hearth.png");
         root.getChildren().add(heartView);
         heartView.setScaleX(2.0);
         heartView.setScaleY(2.0);
