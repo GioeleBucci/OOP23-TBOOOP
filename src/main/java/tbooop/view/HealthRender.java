@@ -9,8 +9,9 @@ import javafx.scene.image.ImageView;
 /** Renders a Hearth. */
 public class HealthRender {
 
+    private static final double HEART_SIZE = 2.3;
     private int scale;
-    private static final int SCALE_PERCENTAGE = 25;
+    private static final int SCALE_PERCENTAGE = 28;
     private final Group root = new Group();
     private final List<ImageView> heartList = new ArrayList<>();
 
@@ -27,8 +28,8 @@ public class HealthRender {
         for (int i = 0; i < healtPoint; i++) {
             final ImageView heartView = new ImageView("full_hearth.png");
             root.getChildren().add(heartView);
-            heartView.setScaleX(2.0);
-            heartView.setScaleY(2.0);
+            heartView.setScaleX(HEART_SIZE);
+            heartView.setScaleY(HEART_SIZE);
             this.scale = this.scale + 1;
             heartView.setLayoutX(scale * SCALE_PERCENTAGE);
             heartList.add(heartView);
@@ -57,8 +58,8 @@ public class HealthRender {
     public void addMaxHealth() {
         final ImageView heartView = new ImageView("full_hearth.png");
         root.getChildren().add(heartView);
-        heartView.setScaleX(2.0);
-        heartView.setScaleY(2.0);
+        heartView.setScaleX(HEART_SIZE);
+        heartView.setScaleY(HEART_SIZE);
         this.scale = this.scale + 1;
         heartView.setLayoutX(scale * SCALE_PERCENTAGE);
         heartList.add(heartView);

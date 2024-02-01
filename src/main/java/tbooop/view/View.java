@@ -94,7 +94,7 @@ public class View extends Application {
         stage.show();
 
         this.roomRenderer = new RoomRenderer(root);
-        this.healthRender = new HealthRender(root, 1);
+        this.healthRender = new HealthRender(root, 10);
         addMaxHealth();
 
         scene.setOnKeyPressed(event -> {
