@@ -11,7 +11,6 @@ import tbooop.controller.api.Controller;
 import tbooop.controller.api.Event;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.core.api.GameObject;
-import tbooop.model.core.api.movable.Entity;
 import tbooop.view.ViewImpl;
 import tbooop.view.api.View;
 
@@ -66,7 +65,6 @@ public final class ControllerImpl implements Controller {
     private void processInput() {
         if (!cmdQueue.isEmpty()) {
             cmdQueue.poll().execute(world.getPlayer());
-            // logger.info("Player at: " + world.getPlayer().getPosition().toString());
         }
     }
 
@@ -74,6 +72,12 @@ public final class ControllerImpl implements Controller {
         Platform.runLater(() -> {
             if (!playerAdded) {
                 this.view.addGameObject(world.getPlayer());
+                //// TEST
+                // final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).melee();
+                // enemy.setPosition(new Point2dImpl(200, 100));
+                // world.getGameObjects().add(enemy);
+                // this.view.addGameObject(enemy);
+                //// END TEST
                 playerAdded = true;
             }
             this.view.update();
@@ -85,18 +89,19 @@ public final class ControllerImpl implements Controller {
         // update all projectiles
         for (final Projectile projectile : world.getProjectiles()) {
             // update all gameObjects
-            for (final GameObject gameObj : world.getGameObjects()) {
-                // GameObject-Player collision
-                if (gameObj.getCollider().isColliding(world.getPlayer().getCollider())) {
-                    gameObj.onPlayerCollision(world.getPlayer());
-                }
-                // Projectile-Entity collision
-                if (gameObj instanceof Entity && gameObj.getCollider().isColliding(projectile.getCollider())) {
-                    projectile.onEntityCollision((Entity) gameObj);
-                }
-                gameObj.updateState(dt);
-            }
             projectile.updateState(dt);
+        }
+        for (final GameObject gameObj : world.getGameObjects()) {
+            // GameObject-Player collision
+            if (gameObj.getCollider().isColliding(world.getPlayer().getCollider())) {
+                gameObj.onPlayerCollision(world.getPlayer());
+            }
+            // Projectile-Entity collision
+            // if (gameObj instanceof Entity &&
+            // gameObj.getCollider().isColliding(projectile.getCollider())) {
+            // projectile.onEntityCollision((Entity) gameObj);
+            // }
+            gameObj.updateState(dt);
         }
     }
 

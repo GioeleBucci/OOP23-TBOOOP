@@ -1,13 +1,11 @@
 package tbooop.view.api;
 
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import tbooop.model.core.api.GameObject;
 
 /**
  * Interface for the main game view.
  */
-public interface View {
+public interface View extends ViewUnm {
 
     /**
      * Adds a game object to the view.
@@ -18,17 +16,10 @@ public interface View {
 
     /**
      * Updates the view.
-     * <br></br>
+     * <br>
+     * </br>
      * This method should be called each frame.
      */
     void update();
-
-    public double getBarsize();
-
-    public Stage getStage();
-
-    public Scene getScene();
-
-    public double getStageAspectRatio();
 
 }

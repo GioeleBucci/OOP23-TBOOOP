@@ -3,14 +3,13 @@ package tbooop.view;
 import java.util.Optional;
 
 import javafx.scene.input.KeyCode;
-import javafx.stage.Stage;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.controller.MoveCommand;
 import tbooop.controller.ShootCommand;
 import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
-import tbooop.view.api.View;
+import tbooop.view.api.ViewUnm;
 
 /**
  * The InputManager class handles user input and triggers the corresponding
@@ -19,16 +18,16 @@ import tbooop.view.api.View;
 public class InputManager {
 
     private final Controller commandListener;
-    private final View view;
+    private final ViewUnm view;
     private static final double WINDOW_SCALE_PERCENTAGE = 0.1;
 
     /**
      * Constructs an InputManager object with the specified controller and stage.
      *
      * @param controller the controller commands will be sent to
-     * @param stage      the main stage of the view
+     * @param view       the main view
      */
-    public InputManager(final Controller controller, final View view) {
+    public InputManager(final Controller controller, final ViewUnm view) {
         this.commandListener = controller;
         this.view = view;
     }
@@ -65,8 +64,6 @@ public class InputManager {
     }
 
     private void resizeWindow(final boolean scaleUp) {
-        System.out.println("stage w: " + view.getStage().getWidth());
-        System.out.println("scene w: " + view.getScene().getWidth());
         final double newWidth = view.getStage().getWidth()
                 * (1 + (scaleUp ? WINDOW_SCALE_PERCENTAGE : WINDOW_SCALE_PERCENTAGE * -1));
         if (newWidth < RoomBounds.WIDTH) {
@@ -75,7 +72,7 @@ public class InputManager {
         view.getStage().setWidth(newWidth);
         // view.getStage().setHeight((newWidth * RoomBounds.HEIGHT / RoomBounds.WIDTH) +
         // view.getBarsize());
-        view.getStage().setHeight((newWidth / view.getStageAspectRatio()));
+        view.getStage().setHeight(newWidth / view.getStageAspectRatio());
     }
 
 }
