@@ -16,7 +16,7 @@ public class HealthRender {
 
     /** 
      * @param parentRoot the root this attaches to
-     *  @param initialHealth the initial Player health
+     * @param initialHealth the initial Player health
      */
     public HealthRender(final Group parentRoot, final int initialHealth) {
         parentRoot.getChildren().add(this.root);

@@ -95,7 +95,7 @@ public class View extends Application {
 
         this.roomRenderer = new RoomRenderer(root);
         this.healthRender = new HealthRender(root, 1);
-        this.healthRender.addMaxHealth();
+        addMaxHealth();
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.SPACE) {
@@ -125,5 +125,9 @@ public class View extends Application {
      */
     public void changeRooms(final Point2d newPoint, final Map<Point2ds, Door> doorMap) {
         roomRenderer.changeRoom(newPoint, doorMap);
+    }
+
+    private void addMaxHealth() {
+        this.healthRender.addMaxHealth();
     }
 }
