@@ -49,7 +49,6 @@ public class View extends Application {
     public static final double UPSCALE_FACTOR;
 
     private RoomRenderer roomRenderer;
-    private HealthRender healthRender;
     private final Controller controller = new Controller(this);
     private final Logger logger = Logger.getLogger(View.class.getName());
     private final Group root = new Group();
@@ -94,8 +93,6 @@ public class View extends Application {
         stage.show();
 
         this.roomRenderer = new RoomRenderer(root);
-        this.healthRender = new HealthRender(root, 10);
-        addMaxHealth();
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.SPACE) {
@@ -125,9 +122,5 @@ public class View extends Application {
      */
     public void changeRooms(final Point2d newPoint, final Map<Point2ds, Door> doorMap) {
         roomRenderer.changeRoom(newPoint, doorMap);
-    }
-
-    private void addMaxHealth() {
-        this.healthRender.addMaxHealth();
     }
 }
