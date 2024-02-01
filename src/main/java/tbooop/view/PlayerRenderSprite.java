@@ -2,7 +2,10 @@ package tbooop.view;
 
 import java.util.List;
 import java.util.ArrayList;
+
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import tbooop.commons.api.Point2d;
 
 public class PlayerRenderSprite {
     
@@ -38,4 +41,14 @@ public class PlayerRenderSprite {
             new Image("Player/right/right4.png"));
     }
 
+    public void goDown(ImageView player, Point2d newPos){
+        player.setImage(downSprite.get(counterDown));
+        player.setX(newPos.getX());
+        player.setY(newPos.getY());
+        if (counterDown < 3) {
+            this.counterDown ++;
+        } else {
+            this.counterDown = 0;
+        }
+    }
 }
