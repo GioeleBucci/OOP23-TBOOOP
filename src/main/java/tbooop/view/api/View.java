@@ -5,7 +5,7 @@ import tbooop.model.core.api.GameObject;
 /**
  * Interface for the main game view.
  */
-public interface View extends ViewUnm {
+public interface View extends ViewElements {
 
     /**
      * Adds a game object to the view.

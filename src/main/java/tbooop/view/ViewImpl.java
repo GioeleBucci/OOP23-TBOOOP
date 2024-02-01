@@ -2,6 +2,8 @@ package tbooop.view;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -21,6 +23,9 @@ import tbooop.view.api.View;
 /**
  * The main view.
  */
+
+@SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable view elements"
+        + "is required to distribute the work load between the various view components.")
 public final class ViewImpl extends Application implements View {
     /** The base width of the room. */
     public static final double BASE_ROOM_W = 468;
@@ -29,13 +34,22 @@ public final class ViewImpl extends Application implements View {
 
     private final Map<GameObject, ImageView> gameObjMap = new HashMap<>();
 
-    private final Group root = new Group();
-    private final Controller controller = new ControllerImpl(this);
+    private final Group root;
+    private final Controller controller;
+    private final InputManager inputManager;
     private Scene scene;
-    private InputManager inputManager;
     private Rectangle walkableArea;
     private Stage stage;
     private double stageAspectRatio;
+
+    /**
+     * Constructs a new View.
+     */
+    public ViewImpl() {
+        this.root = new Group();
+        this.controller = new ControllerImpl(this);
+        this.inputManager = new InputManager(controller, this);
+    }
 
     @Override
     public void start(final Stage stage) {
@@ -48,7 +62,6 @@ public final class ViewImpl extends Application implements View {
 
         setBackgroundImage("tileset/room.png");
 
-        this.inputManager = new InputManager(controller, this);
         // Redirect keyboard events to the input manager
         scene.setOnKeyPressed(event -> {
             inputManager.handleInput(event.getCode());
@@ -83,19 +96,25 @@ public final class ViewImpl extends Application implements View {
     /** {@inheritDoc} */
     @Override
     public Scene getScene() {
-        return scene;
+        return this.scene;
     }
 
     /** {@inheritDoc} */
     @Override
     public Stage getStage() {
-        return stage;
+        return this.stage;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public Group getRoot() {
+        return this.root;
     }
 
     /** {@inheritDoc} */
     @Override
     public double getStageAspectRatio() {
-        return stageAspectRatio;
+        return this.stageAspectRatio;
     }
 
     /**
