@@ -1,7 +1,6 @@
 package tbooop.view.player;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,10 +15,10 @@ public class PlayerRenderSprite {
     private int counterLeft;
     private int counterRight;
     private int counterUp;
-    private List<Image> downSprite;
-    private List<Image> upSprite;
-    private List<Image> leftSprite;
-    private List<Image> rightSprite;
+    private final List<Image> downSprite;
+    private final List<Image> upSprite;
+    private final List<Image> leftSprite;
+    private final List<Image> rightSprite;
 
     /**
      * It's the class for animate the Player.

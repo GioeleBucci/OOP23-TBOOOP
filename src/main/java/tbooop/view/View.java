@@ -16,7 +16,6 @@ import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2ds;
 import tbooop.controller.Controller;
 import tbooop.model.dungeon.rooms.api.Door;
-import tbooop.view.player.PlayerRender;
 
 import java.util.Map;
 
@@ -51,7 +50,6 @@ public class View extends Application {
     public static final double UPSCALE_FACTOR;
 
     private RoomRenderer roomRenderer;
-    private PlayerRender playerRender;
     private final Controller controller = new Controller(this);
     private final Logger logger = Logger.getLogger(View.class.getName());
     private final Group root = new Group();
@@ -96,7 +94,6 @@ public class View extends Application {
         stage.show();
 
         this.roomRenderer = new RoomRenderer(root);
-        this.playerRender = new PlayerRender(root);
 
         scene.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.SPACE) {
