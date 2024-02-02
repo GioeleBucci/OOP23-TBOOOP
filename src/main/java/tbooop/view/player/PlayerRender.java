@@ -5,7 +5,7 @@ import javafx.scene.image.ImageView;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.api.Point2d;
-import tbooop.model.player.api.Player;
+import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.ViewElements;
 
@@ -16,16 +16,17 @@ public class PlayerRender extends ViewComponent {
     private final Point2d startingPlayerPoint;
     private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
     private ImageView playerSprite = new ImageView();
-
+    private UnmodifiablePlayer player;
     /** 
      * @param view the root this attaches to
      */
-    public PlayerRender(final ViewElements view, Player player) {
+    public PlayerRender(final ViewElements view, UnmodifiablePlayer player) {
         super(view);
         startingPlayerPoint = new Point2dImpl(
             view.getRoot().getScene().getWidth() / 2, 
             view.getRoot().getScene().getHeight() / 2);
 
+        this.player = player;
         init();
     }
 
@@ -65,6 +66,6 @@ public class PlayerRender extends ViewComponent {
     /** {@inheritDoc} */
     @Override
     public void update() {
-
+        move(player.getPoint2ds());
     }
 }
