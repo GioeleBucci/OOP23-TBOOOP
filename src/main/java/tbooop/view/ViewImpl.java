@@ -1,7 +1,9 @@
 package tbooop.view;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
@@ -19,7 +21,8 @@ import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObject;
 import tbooop.view.api.View;
-import tbooop.view.player.DemoHealth;
+import tbooop.view.api.ViewComponent;
+import tbooop.view.player.HealthView;
 
 /**
  * The main view.
@@ -34,6 +37,7 @@ public final class ViewImpl extends Application implements View {
     public static final double BASE_ROOM_H = 311;
 
     private final Map<GameObject, ImageView> gameObjMap = new HashMap<>();
+    private final Set<ViewComponent> viewComponents = new HashSet<>();
 
     private final Group root;
     private final Controller controller;
@@ -77,7 +81,7 @@ public final class ViewImpl extends Application implements View {
         thread.start();
         stageAspectRatio = stage.getWidth() / stage.getHeight();
         new DemoComponent(this).drawSquare();
-        new DemoHealth(this).drawHeart(walkableArea);
+        new HealthView(this).drawHeart(walkableArea);
     }
 
     /** {@inheritDoc} */
@@ -94,6 +98,9 @@ public final class ViewImpl extends Application implements View {
     @Override
     public void update() {
         updateView();
+        for (var component: viewComponents) {
+            component.update();
+        }
     }
 
     /** {@inheritDoc} */

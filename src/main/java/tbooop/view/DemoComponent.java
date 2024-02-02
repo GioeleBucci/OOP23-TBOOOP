@@ -32,8 +32,14 @@ public class DemoComponent extends ViewComponent {
      */
     public void drawSquare() {
         final Rectangle rect = new Rectangle(100, 100, Color.RED);
-        //addToRoot(rect);
+        addToRoot(rect);
         logger.info("View Component demo: square drawn");
+    }
+
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
 }

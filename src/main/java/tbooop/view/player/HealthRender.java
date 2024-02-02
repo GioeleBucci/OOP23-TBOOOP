@@ -39,7 +39,8 @@ public class HealthRender {
             .multiply(heartView.getImage().getHeight() / walkableArea.heightProperty().get()));
 
             this.scale = this.scale + 1;
-            heartView.setLayoutX(scale * SCALE_PERCENTAGE);
+            //heartView.xProperty().bind(heartView.getScene().xProperty());
+            heartView.setLayoutX(this.scale * SCALE_PERCENTAGE);
 
             heartList.add(heartView);
         }
@@ -74,6 +75,11 @@ public class HealthRender {
         heartList.add(heartView);
     }
 
+    /**
+     * return an ImageView.
+     * @param index
+     * @return ImageView
+     */
     public ImageView toNode(int index) {
         return heartList.get(index);
     }

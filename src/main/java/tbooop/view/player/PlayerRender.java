@@ -5,9 +5,11 @@ import javafx.scene.image.ImageView;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.api.Point2d;
+import tbooop.view.api.ViewComponent;
+import tbooop.view.api.ViewElements;
 
 /** Renders a Player. */
-public class PlayerRender {
+public class PlayerRender extends ViewComponent {
     private static final double PLAYER_SCALE = 1.5;
     private final Group root = new Group();
     private final Point2d startingPlayerPoint;
@@ -17,11 +19,11 @@ public class PlayerRender {
     /** 
      * @param parentRoot the root this attaches to
      */
-    public PlayerRender(final Group parentRoot) {
-        parentRoot.getChildren().add(this.root);
+    public PlayerRender(ViewElements view) {
+        super(view);
         startingPlayerPoint = new Point2dImpl(
-            parentRoot.getScene().getWidth() / 2, 
-            parentRoot.getScene().getHeight() / 2);
+            view.getRoot().getScene().getWidth() / 2, 
+            view.getRoot().getScene().getHeight() / 2);
 
         init();
     }
@@ -41,22 +43,27 @@ public class PlayerRender {
      * @param newPos new position.
      * @param direction the direction (UP,DOWN,LEFT,RIGHT).
      */
-    public void move(final Point2d newPos, final Point2ds direction) {
+    public void move(final Point2ds direction) {
         switch (direction) {
             case DOWN:
-                this.playerRenderSprite.goDown(playerSprite, newPos);
+                this.playerRenderSprite.goDown(playerSprite);
                 break;
             case UP:
-                this.playerRenderSprite.goUp(playerSprite, newPos);
+                this.playerRenderSprite.goUp(playerSprite);
                 break;
             case LEFT:
-                this.playerRenderSprite.goLeft(playerSprite, newPos);
+                this.playerRenderSprite.goLeft(playerSprite);
                 break;
             case RIGHT:
-                this.playerRenderSprite.goRight(playerSprite, newPos);
+                this.playerRenderSprite.goRight(playerSprite);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void update() {
+        
     }
 }
