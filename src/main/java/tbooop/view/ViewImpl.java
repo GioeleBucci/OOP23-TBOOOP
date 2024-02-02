@@ -98,7 +98,7 @@ public final class ViewImpl extends Application implements View {
     @Override
     public void update() {
         updateView();
-        for (var component: viewComponents) {
+        for (final var component: viewComponents) {
             component.update();
         }
     }

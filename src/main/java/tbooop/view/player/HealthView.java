@@ -24,7 +24,7 @@ public class HealthView extends ViewComponent {
      * @param walkableArea it's the game field.
      */
     public void drawHeart(final Rectangle walkableArea) {
-        HealthRender healthPoint = new HealthRender(INITIAL_HEART, walkableArea);
+        final HealthRender healthPoint = new HealthRender(INITIAL_HEART, walkableArea);
 
         for (int i = 0; i < INITIAL_HEART; i++) {
             addToRoot(healthPoint.toNode(i));
