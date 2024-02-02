@@ -19,6 +19,7 @@ import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObject;
 import tbooop.view.api.View;
+import tbooop.view.player.DemoHealth;
 
 /**
  * The main view.
@@ -76,6 +77,7 @@ public final class ViewImpl extends Application implements View {
         thread.start();
         stageAspectRatio = stage.getWidth() / stage.getHeight();
         new DemoComponent(this).drawSquare();
+        new DemoHealth(this).drawHeart(walkableArea);
     }
 
     /** {@inheritDoc} */
