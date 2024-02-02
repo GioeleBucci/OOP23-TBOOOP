@@ -17,13 +17,14 @@ public class HealthRender {
     private final List<ImageView> heartList = new ArrayList<>();
 
     /** 
-     * @param initialHealth the initial Player health
+     * @param initialHealth the initial Player health.
+     * @param walkableArea it's the game field.
      */
-    public HealthRender(final int initialHealth, Rectangle walkableArea) {
+    public HealthRender(final int initialHealth, final Rectangle walkableArea) {
         init(initialHealth, walkableArea);
     }
 
-    private void init(final int healtPoint, Rectangle walkableArea) {
+    private void init(final int healtPoint, final Rectangle walkableArea) {
         for (int i = 0; i < healtPoint; i++) {
             final ImageView heartView = new ImageView("full_hearth.png");
             root.getChildren().add(heartView);
@@ -32,7 +33,7 @@ public class HealthRender {
             .bind(walkableArea
             .widthProperty()
             .multiply(heartView.getImage().getWidth() / walkableArea.widthProperty().get()));
-    
+
             heartView.fitHeightProperty()
             .bind(walkableArea
             .heightProperty()
@@ -80,7 +81,7 @@ public class HealthRender {
      * @param index
      * @return ImageView
      */
-    public ImageView toNode(int index) {
+    public ImageView toNode(final int index) {
         return heartList.get(index);
     }
 }

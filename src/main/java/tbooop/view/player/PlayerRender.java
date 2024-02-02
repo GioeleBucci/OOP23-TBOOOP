@@ -17,9 +17,9 @@ public class PlayerRender extends ViewComponent {
     private ImageView playerSprite = new ImageView();
 
     /** 
-     * @param parentRoot the root this attaches to
+     * @param view the root this attaches to
      */
-    public PlayerRender(ViewElements view) {
+    public PlayerRender(final ViewElements view) {
         super(view);
         startingPlayerPoint = new Point2dImpl(
             view.getRoot().getScene().getWidth() / 2, 
@@ -40,7 +40,6 @@ public class PlayerRender extends ViewComponent {
 
     /**
      * Move the sprite in one of four direction.
-     * @param newPos new position.
      * @param direction the direction (UP,DOWN,LEFT,RIGHT).
      */
     public void move(final Point2ds direction) {
@@ -65,6 +64,6 @@ public class PlayerRender extends ViewComponent {
     /** {@inheritDoc} */
     @Override
     public void update() {
-        
+
     }
 }
