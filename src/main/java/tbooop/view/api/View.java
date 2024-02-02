@@ -1,6 +1,6 @@
 package tbooop.view.api;
 
-import tbooop.model.core.api.GameObject;
+import tbooop.model.core.api.GameObjectUnmodifiable;
 
 /**
  * Interface for the main game view.
@@ -12,7 +12,7 @@ public interface View extends ViewElements {
      * 
      * @param gameObject the game object to add
      */
-    void addGameObject(GameObject gameObject);
+    void addGameObject(GameObjectUnmodifiable gameObject);
 
     /**
      * Updates the view.
