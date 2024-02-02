@@ -15,7 +15,7 @@ import tbooop.view.api.ViewElements;
  * The InputManager class handles user input and triggers the corresponding
  * events.
  */
-public class InputManager {
+public final class InputManager {
 
     private final Controller commandListener;
     private final ViewElements view;
@@ -70,8 +70,6 @@ public class InputManager {
             return;
         }
         view.getStage().setWidth(newWidth);
-        // view.getStage().setHeight((newWidth * RoomBounds.HEIGHT / RoomBounds.WIDTH) +
-        // view.getBarsize());
         view.getStage().setHeight(newWidth / view.getStageAspectRatio());
     }
 
