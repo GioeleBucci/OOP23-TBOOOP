@@ -23,6 +23,7 @@ public class HealthView extends ViewComponent {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void update() {
         // TODO Auto-generated method stub

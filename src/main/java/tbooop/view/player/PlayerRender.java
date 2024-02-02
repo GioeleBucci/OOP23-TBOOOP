@@ -62,6 +62,7 @@ public class PlayerRender extends ViewComponent {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void update() {
         
