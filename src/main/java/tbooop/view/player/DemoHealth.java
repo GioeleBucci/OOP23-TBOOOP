@@ -7,12 +7,17 @@ import tbooop.view.api.ViewElements;
 public class DemoHealth extends ViewComponent{
     
 
+    private static final int INITIAL_HEART = 6;
+
     public DemoHealth(final ViewElements view){
         super(view);
     }
 
     public void drawHeart(Rectangle walkableArea) {
-        HealthRender healthPoint = new HealthRender(6, walkableArea);
-        addToRoot(healthPoint.toNode(0));
+        HealthRender healthPoint = new HealthRender(INITIAL_HEART, walkableArea);
+
+        for (int i = 0; i < INITIAL_HEART; i++) {
+            addToRoot(healthPoint.toNode(i));
+        }
     }
 }

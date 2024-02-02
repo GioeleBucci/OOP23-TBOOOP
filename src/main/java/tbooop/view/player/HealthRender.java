@@ -12,7 +12,7 @@ public class HealthRender {
 
     private static final double HEART_SIZE = 2.2;
     private int scale;
-    private static final int SCALE_PERCENTAGE = 28;
+    private static final int SCALE_PERCENTAGE = 15;
     private final Group root = new Group();
     private final List<ImageView> heartList = new ArrayList<>();
 
@@ -37,6 +37,9 @@ public class HealthRender {
             .bind(walkableArea
             .heightProperty()
             .multiply(heartView.getImage().getHeight() / walkableArea.heightProperty().get()));
+
+            this.scale = this.scale + 1;
+            heartView.setLayoutX(scale * SCALE_PERCENTAGE);
 
             heartList.add(heartView);
         }
