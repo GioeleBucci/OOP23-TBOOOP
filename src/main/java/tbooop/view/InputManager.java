@@ -3,6 +3,7 @@ package tbooop.view;
 import java.util.Optional;
 
 import javafx.scene.input.KeyCode;
+import javafx.stage.Screen;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.controller.MoveCommand;
@@ -69,8 +70,14 @@ public final class InputManager {
         if (newWidth < RoomBounds.WIDTH) {
             return;
         }
+        if (newWidth / view.getStageAspectRatio()
+        > Screen.getPrimary().getVisualBounds().getHeight()) {
+            view.getStage().setFullScreen(true);
+            return;
+        }
         view.getStage().setWidth(newWidth);
         view.getStage().setHeight(newWidth / view.getStageAspectRatio());
+        view.getStage().centerOnScreen();
     }
 
 }
