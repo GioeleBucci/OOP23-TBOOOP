@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.api.Point2d;
+import tbooop.model.player.api.Player;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.ViewElements;
 
@@ -19,7 +20,7 @@ public class PlayerRender extends ViewComponent {
     /** 
      * @param view the root this attaches to
      */
-    public PlayerRender(final ViewElements view) {
+    public PlayerRender(final ViewElements view, Player player) {
         super(view);
         startingPlayerPoint = new Point2dImpl(
             view.getRoot().getScene().getWidth() / 2, 

@@ -25,6 +25,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     private double projectileVelocity;
     private long deltaTime;
     private long timeSinceLastShoot;
+    
     /**
      * Create a new istance of a Entity.
      * 
@@ -123,5 +124,15 @@ public class PlayerImpl extends AbstractEntity implements Player {
     @Override
     public void increaseProjectileVelocity() {
         this.projectileVelocity = this.projectileVelocity + PROJECTILE_VELOCITY_INCREMENT;
+    }
+
+    @Override
+    public Point2ds getPoint2ds() {
+        for (final var point2d : Point2ds.getAll()) {
+            if(getDirection().toP2d().equals(point2d.toP2d())) {
+                return point2d;
+            }
+        }
+        throw new IllegalArgumentException();
     }
 }
