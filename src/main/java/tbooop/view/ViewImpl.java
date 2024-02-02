@@ -75,6 +75,7 @@ public final class ViewImpl extends Application implements View {
         });
         thread.start();
         stageAspectRatio = stage.getWidth() / stage.getHeight();
+        new DemoComponent(this).drawSquare();
     }
 
     /** {@inheritDoc} */
