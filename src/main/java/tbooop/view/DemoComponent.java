@@ -36,4 +36,11 @@ public class DemoComponent extends ViewComponent {
         logger.info("View Component demo: square drawn");
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void update() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'update'");
+    }
+
 }

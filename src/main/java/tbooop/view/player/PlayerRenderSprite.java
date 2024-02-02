@@ -4,7 +4,6 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tbooop.commons.api.Point2d;
 
 /**
  * It's the class for animate the Player.
@@ -49,12 +48,9 @@ public class PlayerRenderSprite {
     /**
      * Move the player down.
      * @param player 
-     * @param newPos new position.
      */
-    public void goDown(final ImageView player, final Point2d newPos) {
+    public void goDown(final ImageView player) {
         player.setImage(downSprite.get(counterDown));
-        player.setX(newPos.getX());
-        player.setY(newPos.getY());
         if (counterDown < 3) {
             this.counterDown = this.counterDown + 1;
         } else {
@@ -65,12 +61,9 @@ public class PlayerRenderSprite {
     /**
      * Move the player up.
      * @param player 
-     * @param newPos new position.
      */
-    public void goUp(final ImageView player, final Point2d newPos) {
+    public void goUp(final ImageView player) {
         player.setImage(upSprite.get(counterUp));
-        player.setX(newPos.getX());
-        player.setY(newPos.getY());
         if (counterUp < 3) {
             this.counterUp = this.counterUp + 1;
         } else {
@@ -81,12 +74,9 @@ public class PlayerRenderSprite {
     /**
      * Move the player left.
      * @param player 
-     * @param newPos new position.
      */
-    public void goLeft(final ImageView player, final Point2d newPos) {
+    public void goLeft(final ImageView player) {
         player.setImage(leftSprite.get(counterLeft));
-        player.setX(newPos.getX());
-        player.setY(newPos.getY());
         if (counterLeft < 3) {
             this.counterLeft = counterLeft + 1;
         } else {
@@ -97,12 +87,9 @@ public class PlayerRenderSprite {
     /**
      * Move the player right.
      * @param player 
-     * @param newPos new position.
      */
-    public void goRight(final ImageView player, final Point2d newPos) {
+    public void goRight(final ImageView player) {
         player.setImage(rightSprite.get(counterRight));
-        player.setX(newPos.getX());
-        player.setY(newPos.getY());
         if (counterRight < 3) {
             this.counterRight = this.counterRight + 1;
         } else {

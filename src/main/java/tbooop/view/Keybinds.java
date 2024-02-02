@@ -51,12 +51,12 @@ public enum Keybinds {
     /**
      * Keybind for zooming in.
      */
-    ZOOM_IN(KeyCode.PLUS),
+    ZOOM_IN(KeyCode.P),
 
     /**
      * Keybind for zooming out.
      */
-    ZOOM_OUT(KeyCode.MINUS),
+    ZOOM_OUT(KeyCode.M),
 
     /**
      * Keybind for toggling fullscreen mode.

@@ -6,7 +6,7 @@ import javafx.scene.Node;
 /**
  * Represents an empty view component.
  */
-public class ViewComponent {
+public abstract class ViewComponent {
 
     private final Group root;
     private final ViewElements view;
@@ -39,5 +39,10 @@ public class ViewComponent {
     public ViewElements getView() {
         return view;
     }
+
+    /**
+     * To update ViewComponent.
+     */
+    public abstract void update();
 
 }
