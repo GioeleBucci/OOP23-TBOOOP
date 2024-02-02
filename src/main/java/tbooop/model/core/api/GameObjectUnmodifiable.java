@@ -4,7 +4,7 @@ import tbooop.commons.api.CircleCollider;
 import tbooop.commons.api.Point2d;
 
 /**
- * GameObjectUnmodifiable
+ * Represents an unmodifiable GameObject.
  */
 public interface GameObjectUnmodifiable {
     /**
