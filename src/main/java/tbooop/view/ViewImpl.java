@@ -20,9 +20,11 @@ import tbooop.commons.api.Point2d;
 import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObjectUnmodifiable;
+import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.View;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.player.HealthView;
+import tbooop.view.player.PlayerRender;
 
 /**
  * The main view.
@@ -82,6 +84,10 @@ public final class ViewImpl extends Application implements View {
         stageAspectRatio = stage.getWidth() / stage.getHeight();
         new DemoComponent(this).drawSquare();
         new HealthView(this).drawHeart(walkableArea);
+    }
+
+    public void addPlayer(final UnmodifiablePlayer player) {
+        new PlayerRender(this,player);
     }
 
     /** {@inheritDoc} */

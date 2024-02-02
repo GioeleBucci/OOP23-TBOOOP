@@ -73,7 +73,7 @@ public final class ControllerImpl implements Controller {
     private void updateView() {
         Platform.runLater(() -> {
             if (!playerAdded) {
-                this.view.addGameObject(world.getPlayer());
+                this.view.addPlayer(world.getPlayer());
                 //// TEST
                 // final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).melee();
                 // enemy.setPosition(new Point2dImpl(200, 100));
