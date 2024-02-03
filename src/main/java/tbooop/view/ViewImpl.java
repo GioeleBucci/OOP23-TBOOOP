@@ -72,7 +72,7 @@ public final class ViewImpl extends Application implements View {
         // Redirect keyboard events to the input manager
         scene.setOnKeyPressed(event -> {
             inputManager.handleInput(event.getCode());
-            updateView();
+            update();
         });
 
         setWalkableArea();
@@ -87,7 +87,9 @@ public final class ViewImpl extends Application implements View {
     }
 
     public void addPlayer(final UnmodifiablePlayer player) {
-        new PlayerRender(this,player);
+       PlayerRender playerRender = new PlayerRender(this,player,this.walkableArea);
+        viewComponents.add(playerRender);
+        gameObjMap.put(player, playerRender.getSprite());
     }
 
     /** {@inheritDoc} */
@@ -97,15 +99,15 @@ public final class ViewImpl extends Application implements View {
          * TODO usare una classe con la logica per far si che la scelta della sprite
          * dipenda dal tipo di GameObject!!
          */
-        addGameObjectToView("down2.png", gameObject);
+        //addGameObjectToView("down2.png", gameObject);
     }
 
     /** {@inheritDoc} */
     @Override
     public void update() {
         updateView();
-        for (final var component: viewComponents) {
-            component.update();
+        for (ViewComponent viewComponent : viewComponents) {
+            viewComponent.update();
         }
     }
 

@@ -2,8 +2,10 @@ package tbooop.view.player;
 
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
+import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Point2d;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.ViewComponent;
@@ -17,25 +19,35 @@ public class PlayerRender extends ViewComponent {
     private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
     private ImageView playerSprite = new ImageView();
     private UnmodifiablePlayer player;
+    private final Rectangle walkableArea;
     /** 
      * @param view the root this attaches to
      */
-    public PlayerRender(final ViewElements view, UnmodifiablePlayer player) {
+    public PlayerRender(final ViewElements view, UnmodifiablePlayer player, final Rectangle walkableArea) {
         super(view);
         startingPlayerPoint = new Point2dImpl(
             view.getRoot().getScene().getWidth() / 2, 
             view.getRoot().getScene().getHeight() / 2);
 
         this.player = player;
+        this.walkableArea = walkableArea;
         init();
     }
 
     private void init() {
         this.playerSprite = new ImageView("Player/down/down1.png");
-        root.getChildren().add(playerSprite);
-        root.getScene().getWindow().getWidth();
-        playerSprite.setScaleX(PLAYER_SCALE);
-        playerSprite.setScaleY(PLAYER_SCALE);
+        getView().getRoot().getChildren().add(playerSprite);
+
+        playerSprite.fitWidthProperty()
+            .bind(walkableArea
+            .widthProperty()
+            .multiply(playerSprite.getImage().getWidth() / walkableArea.widthProperty().get()));
+        
+        playerSprite.fitHeightProperty()
+            .bind(walkableArea
+            .heightProperty()
+            .multiply(playerSprite.getImage().getHeight() / walkableArea.heightProperty().get()));
+        
         playerSprite.setX(this.startingPlayerPoint.getX());
         playerSprite.setY(this.startingPlayerPoint.getY());
     }
@@ -66,6 +78,12 @@ public class PlayerRender extends ViewComponent {
     /** {@inheritDoc} */
     @Override
     public void update() {
-        move(player.getPoint2ds());
+        if (player.getPoint2ds().isPresent()) {
+            move(player.getPoint2ds().get());
+        }
+    }
+
+    public ImageView getSprite() {
+        return this.playerSprite;
     }
 }

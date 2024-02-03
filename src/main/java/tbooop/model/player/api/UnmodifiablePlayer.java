@@ -1,15 +1,17 @@
 package tbooop.model.player.api;
 
 import tbooop.commons.Point2ds;
+import tbooop.model.core.api.GameObjectUnmodifiable;
+import java.util.Optional;
 
 /**
  * Unmodifiable Player.
  */
-public interface UnmodifiablePlayer {
+public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
     
     /**
      * Get one of four direction (UP,DOWN,LEFT,RIGHT).
      * @return
      */
-    Point2ds getPoint2ds();
+    Optional<Point2ds> getPoint2ds();
 }

@@ -2,6 +2,7 @@ package tbooop.model.player.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
@@ -9,6 +10,7 @@ import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.api.PlayerProjectile;
+import java.util.Optional;
 
 /**
  * A Player is a game object that can move on a 2D space,
@@ -78,6 +80,8 @@ public class PlayerImpl extends AbstractEntity implements Player {
         final Point2d nextPosition = getPosition()
         .add(direction.toP2d().mul(getVelocity() * deltaTime));
 
+        setDirection(direction.toP2d().toV2d());
+
         if (!RoomBounds.outOfBounds(nextPosition)) {
             this.setPosition(nextPosition);
         }
@@ -127,12 +131,17 @@ public class PlayerImpl extends AbstractEntity implements Player {
     }
 
     @Override
-    public Point2ds getPoint2ds() {
+    public Optional<Point2ds> getPoint2ds() {
         for (final var point2d : Point2ds.getAll()) {
             if(getDirection().toP2d().equals(point2d.toP2d())) {
-                return point2d;
+            
+                return Optional.of(point2d);
             }
         }
-        throw new IllegalArgumentException();
+
+        if (!getDirection().toP2d().equals(Point2dImpl.ZERO)) {
+            throw new IllegalArgumentException();
+        }
+        return Optional.empty();
     }
 }
