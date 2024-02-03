@@ -88,8 +88,10 @@ public final class ViewImpl extends Application implements View {
         new HealthView(this).drawHeart(walkableArea);
     }
 
+     /** {@inheritDoc} */
+     @Override
     public void addPlayer(final UnmodifiablePlayer player) {
-        PlayerRender playerRender = new PlayerRender(this,player,this.walkableArea);
+        PlayerRender playerRender = new PlayerRender(this, player, this.walkableArea);
         viewComponents.add(playerRender);
         gameObjMap.put(player, playerRender.getSprite());
     }
@@ -108,8 +110,8 @@ public final class ViewImpl extends Application implements View {
     @Override
     public void update() {
         updateView();
-        for (ViewComponent viewComponent : viewComponents) {
-            if(viewComponent instanceof PlayerRender){
+        for (final ViewComponent viewComponent : viewComponents) {
+            if (viewComponent instanceof PlayerRender) {
                 if (isMoving) {
                     viewComponent.update();
                     this.isMoving = false;
