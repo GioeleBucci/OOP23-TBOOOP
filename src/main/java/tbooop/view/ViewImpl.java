@@ -40,6 +40,7 @@ public final class ViewImpl extends Application implements View {
 
     private final Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
     private final Set<ViewComponent> viewComponents = new HashSet<>();
+    private boolean isMoving;
 
     private final Group root;
     private final Controller controller;
@@ -72,7 +73,8 @@ public final class ViewImpl extends Application implements View {
         // Redirect keyboard events to the input manager
         scene.setOnKeyPressed(event -> {
             inputManager.handleInput(event.getCode());
-            update();
+            this.isMoving = true;
+            updateView();
         });
 
         setWalkableArea();
@@ -87,7 +89,7 @@ public final class ViewImpl extends Application implements View {
     }
 
     public void addPlayer(final UnmodifiablePlayer player) {
-       PlayerRender playerRender = new PlayerRender(this,player,this.walkableArea);
+        PlayerRender playerRender = new PlayerRender(this,player,this.walkableArea);
         viewComponents.add(playerRender);
         gameObjMap.put(player, playerRender.getSprite());
     }
@@ -107,7 +109,14 @@ public final class ViewImpl extends Application implements View {
     public void update() {
         updateView();
         for (ViewComponent viewComponent : viewComponents) {
-            viewComponent.update();
+            if(viewComponent instanceof PlayerRender){
+                if (isMoving) {
+                    viewComponent.update();
+                    this.isMoving = false;
+                }
+            } else {
+                viewComponent.update();
+            }
         }
     }
 

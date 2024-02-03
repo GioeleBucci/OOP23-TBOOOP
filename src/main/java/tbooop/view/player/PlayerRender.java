@@ -1,11 +1,9 @@
 package tbooop.view.player;
 
-import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
-import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Point2d;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.ViewComponent;
@@ -13,8 +11,6 @@ import tbooop.view.api.ViewElements;
 
 /** Renders a Player. */
 public class PlayerRender extends ViewComponent {
-    private static final double PLAYER_SCALE = 1.5;
-    private final Group root = new Group();
     private final Point2d startingPlayerPoint;
     private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
     private ImageView playerSprite = new ImageView();

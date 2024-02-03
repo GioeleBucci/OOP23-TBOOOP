@@ -33,7 +33,7 @@ public final class ControllerImpl implements Controller {
     private final View view;
     private boolean playerAdded;
 
-    private static final int FPS = 10; // frames per second
+    private static final int FPS = 30; // frames per second
     private static final long REFRESH_PERIOD = (long) (1.0 / FPS * 1000); // in ms
 
     /**
