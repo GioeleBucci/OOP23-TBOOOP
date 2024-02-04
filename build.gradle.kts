@@ -60,5 +60,5 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("tbooop.appl.App")
+    mainClass.set("tbooop.controller.ControllerImpl")
 }
