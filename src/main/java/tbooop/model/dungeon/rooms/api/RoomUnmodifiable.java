@@ -7,7 +7,7 @@ import tbooop.commons.Point2ds;
 /**
  * An unmodifiable room representation.
  */
-public interface RoomView {
+public interface RoomUnmodifiable {
     /**
      * The doors that this room has.
      * 

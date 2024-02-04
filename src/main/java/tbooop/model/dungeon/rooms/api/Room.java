@@ -7,7 +7,7 @@ import tbooop.commons.Point2ds;
  * 
  * @see {@link tbooop.model.dungeon.floor.BaseFloor Floor}
  */
-public interface Room extends RoomView {
+public interface Room extends RoomUnmodifiable {
 
     /**
      * Adds a door to this room.
