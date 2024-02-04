@@ -1,36 +1,25 @@
 package tbooop.model.dungeon.rooms.impl;
 
+import tbooop.commons.api.Point2d;
 import tbooop.model.dungeon.rooms.api.Door;
-import tbooop.model.dungeon.rooms.api.RoomView;
+import tbooop.model.dungeon.rooms.api.DoorAbstract;
+import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 
 import java.util.Objects;
 
 /**
  * A regular door has no locks and takes to a regular room.
  */
-public class RegularDoor implements Door {
-
-    private final RoomView room;
+public class RegularDoor extends DoorAbstract {
 
     /**
-     * Creates a regular door.
+     * Creates a new regular door.
      * 
+     * @param pos  the position of the door
      * @param room the room this door leads to
      */
-    public RegularDoor(final RoomView room) {
-        this.room = Objects.requireNonNull(room);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public RoomView getRoom() {
-        return room;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String toString() {
-        return "RegularDoor";
+    public RegularDoor(final Point2d pos, final RoomUnmodifiable room) {
+        super(pos, room);
     }
 
     /** {@inheritDoc} */
