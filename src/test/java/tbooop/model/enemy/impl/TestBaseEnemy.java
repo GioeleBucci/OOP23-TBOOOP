@@ -1,6 +1,9 @@
 package tbooop.model.enemy.impl;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +14,7 @@ import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.RoomBounds;
 import tbooop.model.enemy.api.Enemy;
+import tbooop.model.enemy.api.EnemyType;
 import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
@@ -29,7 +33,7 @@ class TestBaseEnemy {
     @BeforeEach
     void initEnemy() {
         this.enemy = new BaseEnemy(
-            BASE_POS, new HealthImpl(ENEMY_HP), 1.0, new ChasingAi(this.player));
+            BASE_POS, new HealthImpl(ENEMY_HP), 1.0, new ChasingAi(this.player), Set.of(EnemyType.MELEE));
     }
 
     @Test

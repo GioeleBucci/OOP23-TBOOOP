@@ -1,6 +1,7 @@
 package tbooop.model.enemy.impl;
 
 import java.util.Objects;
+import java.util.Set;
 
 import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2dImpl;
@@ -8,6 +9,7 @@ import tbooop.commons.Point2ds;
 import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
+import tbooop.model.enemy.api.EnemyType;
 import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.enemy.impl.ai.LinearAi;
 
@@ -36,7 +38,8 @@ public class EnemyFactoryImpl implements EnemyFactory {
     @Override
     public Enemy melee() {
         return new Melee(new BaseEnemy(new Point2dImpl(0, 0),
-            new HealthImpl(MELEE_HP), MELEE_SPEED, new ChasingAi(this.player)));
+            new HealthImpl(MELEE_HP), MELEE_SPEED, new ChasingAi(this.player),
+            Set.of(EnemyType.MELEE)));
     }
 
     /** {@inheritDoc} */
@@ -44,7 +47,8 @@ public class EnemyFactoryImpl implements EnemyFactory {
     public Enemy shooter(final Point2ds initialDirection) {
         return new Shooter(new BaseEnemy(new Point2dImpl(0, 0),
             new HealthImpl(SHOOTER_HP), SHOOTER_SPEED,
-            new LinearAi(Objects.requireNonNull(initialDirection))), this.player);
+            new LinearAi(Objects.requireNonNull(initialDirection)),
+            Set.of(EnemyType.SHOOTER)), this.player);
     }
 
 }

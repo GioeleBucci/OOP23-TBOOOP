@@ -101,4 +101,10 @@ public abstract class EnemyDecorator implements Enemy {
         this.concretEnemy.addProjectile(projectile);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public final Set<EnemyType> getEnemyTypes() {
+        return this.concretEnemy.getEnemyTypes();
+    }
+
 }

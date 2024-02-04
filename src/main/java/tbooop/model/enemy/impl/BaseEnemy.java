@@ -1,11 +1,13 @@
 package tbooop.model.enemy.impl;
 
 import java.util.Objects;
+import java.util.Set;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.enemy.api.AbstractEnemy;
+import tbooop.model.enemy.api.EnemyType;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.player.api.Player;
 
@@ -24,13 +26,15 @@ public class BaseEnemy extends AbstractEnemy {
      * @param health the enemy's health
      * @param velocity determines how fast the enemy moves
      * @param ai the enemy's movement ai
+     * @param enemyTypes the enemy's types
      */
     protected BaseEnemy(
         final Point2d position,
         final Health health,
         final double velocity,
-        final MovementAi ai) {
-        super(position, health, velocity);
+        final MovementAi ai,
+        final Set<EnemyType> enemyTypes) {
+        super(position, health, velocity, enemyTypes);
         this.ai = Objects.requireNonNull(ai);
     }
 
