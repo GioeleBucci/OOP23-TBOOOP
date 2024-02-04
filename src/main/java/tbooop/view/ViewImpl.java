@@ -90,9 +90,9 @@ public final class ViewImpl extends Application implements View {
      /** {@inheritDoc} */
      @Override
     public void addPlayer(final UnmodifiablePlayer player) {
-        PlayerRender playerRender = new PlayerRender(this, player, this.walkableArea);
+        final PlayerRender playerRender = new PlayerRender(this, player);
         viewComponents.add(playerRender);
-        gameObjMap.put(player, playerRender.getSprite());
+        addGameObjectToView(playerRender.getSprite(), player);
     }
 
     /** {@inheritDoc} */
@@ -202,14 +202,18 @@ public final class ViewImpl extends Application implements View {
                 worldPos.getY() * walkableArea.getHeight() / RoomBounds.HEIGHT + yWallThickness);
     }
 
-    private void addGameObjectToView(final String pathToImg, final GameObjectUnmodifiable gobj) {
-        final Image img = new Image(pathToImg);
-        final ImageView imgView = new ImageView(img);
+    private void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
+        //final Image img = new Image(pathToImg);
+        //final ImageView imgView = new ImageView(img);
         gameObjMap.put(gobj, imgView);
         imgView.fitWidthProperty()
-                .bind(walkableArea.widthProperty().multiply(img.getWidth() / walkableArea.widthProperty().get()));
+                .bind(walkableArea.widthProperty()
+                .multiply(imgView.getImage().getWidth() / walkableArea.widthProperty()
+                .get()));
         imgView.fitHeightProperty()
-                .bind(walkableArea.heightProperty().multiply(img.getHeight() / walkableArea.heightProperty().get()));
+                .bind(walkableArea.heightProperty()
+                .multiply(imgView.getImage().getHeight() / walkableArea.heightProperty()
+                .get()));
         root.getChildren().add(imgView);
     }
 
