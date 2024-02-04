@@ -2,9 +2,7 @@ package tbooop.model.enemy.api;
 
 import tbooop.commons.api.Point2d;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameTag;
@@ -15,7 +13,7 @@ import tbooop.model.core.api.movable.AbstractEntity;
  */
 public abstract class AbstractEnemy extends AbstractEntity implements Enemy {
 
-    private final Set<EnemyType> enemyTypes;
+    private final EnemyType enemyType;
 
     /**
      * creates a new istance of an AbstractEnemy.
@@ -23,22 +21,22 @@ public abstract class AbstractEnemy extends AbstractEntity implements Enemy {
      * @param position on the 2D map
      * @param health the enemy's health
      * @param velocity determines how fast the enemy moves
-     * @param enemyTypes the enemy's types
+     * @param enemyType the enemy's types
      * @throws NullPointerException if enemyTypes is null
      */
     protected AbstractEnemy(
         final Point2d position,
         final Health health,
         final double velocity,
-        final Set<EnemyType> enemyTypes) {
+        final EnemyType enemyType) {
         super(position, health, velocity, GameTag.ENEMY);
-        this.enemyTypes = new HashSet<>(Objects.requireNonNull(enemyTypes));
+        this.enemyType = Objects.requireNonNull(enemyType);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Set<EnemyType> getEnemyTypes() {
-        return new HashSet<>(this.enemyTypes);
+    public EnemyType getEnemyType() {
+        return this.enemyType;
     }
 
 }

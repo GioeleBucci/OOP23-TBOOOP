@@ -1,7 +1,6 @@
 package tbooop.model.enemy.impl;
 
 import java.util.Objects;
-import java.util.Set;
 
 import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2dImpl;
@@ -39,7 +38,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
     public Enemy melee() {
         return new Melee(new BaseEnemy(new Point2dImpl(0, 0),
             new HealthImpl(MELEE_HP), MELEE_SPEED, new ChasingAi(this.player),
-            Set.of(EnemyType.MELEE)));
+            EnemyType.MELEE));
     }
 
     /** {@inheritDoc} */
@@ -48,7 +47,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
         return new Shooter(new BaseEnemy(new Point2dImpl(0, 0),
             new HealthImpl(SHOOTER_HP), SHOOTER_SPEED,
             new LinearAi(Objects.requireNonNull(initialDirection)),
-            Set.of(EnemyType.SHOOTER)), this.player);
+            EnemyType.SHOOTER), this.player);
     }
 
 }

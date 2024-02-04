@@ -103,8 +103,8 @@ public abstract class EnemyDecorator implements Enemy {
 
     /** {@inheritDoc} */
     @Override
-    public final Set<EnemyType> getEnemyTypes() {
-        return this.concretEnemy.getEnemyTypes();
+    public final EnemyType getEnemyType() {
+        return this.concretEnemy.getEnemyType();
     }
 
 }

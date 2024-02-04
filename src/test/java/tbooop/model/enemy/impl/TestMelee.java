@@ -2,7 +2,6 @@ package tbooop.model.enemy.impl;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -38,7 +37,7 @@ class TestMelee {
             BASE_POS,
             new HealthImpl(ENEMY_HP),
             1.0,
-            new ChasingAi(this.player), Set.of(EnemyType.MELEE)));
+            new ChasingAi(this.player), EnemyType.MELEE));
     }
 
     @Test
