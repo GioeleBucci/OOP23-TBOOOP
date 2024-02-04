@@ -2,6 +2,7 @@ package tbooop.model.pickupables.items.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
+import tbooop.model.core.api.unmovable.UnmovableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
 import tbooop.model.pickupables.items.api.PickupablePrices;
 import tbooop.model.pickupables.items.api.PickupableStatus;
@@ -74,5 +75,12 @@ public class FireMind extends ItemAbs {
     @Override
     public int getPrice() {
         return this.itemCost;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UnmovableName getObjectName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getObjectName'");
     }
 }

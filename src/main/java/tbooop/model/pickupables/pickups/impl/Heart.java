@@ -2,6 +2,7 @@ package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
+import tbooop.model.core.api.unmovable.UnmovableName;
 import tbooop.model.pickupables.pickups.api.PickupAbs;
 import tbooop.model.player.api.Player;
 
@@ -12,6 +13,7 @@ import tbooop.model.player.api.Player;
  */
 public class Heart extends PickupAbs {
 
+    private final UnmovableName pickupTag = UnmovableName.HEART;
     /**
      * Create a new istance of a Heart.
      * 
@@ -59,5 +61,11 @@ public class Heart extends PickupAbs {
     public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UnmovableName getObjectName() {
+        return this.pickupTag;
     }
 }
