@@ -4,7 +4,7 @@ import java.util.List;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.items.api.Items;
+import tbooop.model.pickupables.items.api.Item;
 
 /**
  * Class implementing item's room logic
@@ -19,7 +19,7 @@ public class ItemRoomLogic {
     private static final double BELT_PROB = 0.2;
     private static final double IRONBAR_PROB = 0.3;
     private static final double FIREMIND_PROB = 0.4;
-    private final List<Items> itemsList = List.of(new GoldenHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
+    private final List<Item> itemsList = List.of(new GoldenHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
                                                 new Belt(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
                                                 new IronBar(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
                                                 new FireMind(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
@@ -30,7 +30,7 @@ public class ItemRoomLogic {
      * 
      * @param randomNumber
      * @return an Integer from 0 to
-     * the max number of Items.
+     * the max number of Item.
      */
     private int getChanceToSpawn(final double randomNumber) {
         if (randomNumber <= GOLDENHEART_PROB) {
@@ -51,7 +51,7 @@ public class ItemRoomLogic {
      * 
      * @return a random Item.
      */
-    public Items getRandomItem() {
+    public Item getRandomItem() {
         final double randomNumber = Math.random();
         final int itemIndex = getChanceToSpawn(randomNumber);
         return itemsList.get(itemIndex);

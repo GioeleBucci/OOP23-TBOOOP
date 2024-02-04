@@ -5,7 +5,7 @@ package tbooop.model.pickupables.items.api;
  * or not.
  */
 public enum PickupableStatus {
-    /**Items spawned in the
+    /**Item spawned in the
      * item shop tag.
      */
     SPECIAL,
