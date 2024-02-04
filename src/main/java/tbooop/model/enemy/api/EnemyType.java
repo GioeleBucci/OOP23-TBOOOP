@@ -8,6 +8,6 @@ public enum EnemyType {
     MELEE,
     /** an enemy that shoots projectiles. */
     SHOOTER,
-    /** an enemy that bounces on walls */
+    /** an enemy that bounces on walls. */
     BOUNCER;
 }
