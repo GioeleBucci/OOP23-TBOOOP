@@ -14,6 +14,8 @@ public abstract class AbstractDamageable extends AbstractMovable implements Dama
 
     private final Health health;
 
+    private static final double COLLIDER_RADIUS = 15;
+
     /**
      * Create a new istance of a DamageableEntity.
      * 
@@ -26,7 +28,7 @@ public abstract class AbstractDamageable extends AbstractMovable implements Dama
     protected AbstractDamageable(
     final Point2d position, final Health health, final double velocity,
     final GameTag tag) {
-        super(position, tag, velocity, new Vector2dImpl(0.0, 0.0), 1);
+        super(position, tag, velocity, new Vector2dImpl(0.0, 0.0), COLLIDER_RADIUS);
         this.health = Objects.requireNonNull(health);
     }
 

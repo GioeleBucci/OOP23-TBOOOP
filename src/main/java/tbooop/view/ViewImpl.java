@@ -7,11 +7,13 @@ import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
+import javafx.beans.binding.Bindings;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
@@ -27,7 +29,6 @@ import tbooop.view.player.HealthView;
 /**
  * The main view.
  */
-
 @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable view elements"
         + "is required to distribute the work load between the various view components.")
 public final class ViewImpl extends Application implements View {
@@ -92,13 +93,28 @@ public final class ViewImpl extends Application implements View {
          * dipenda dal tipo di GameObject!!
          */
         addGameObjectToView("down2.png", gameObject);
+        attachDebugger(gameObject);
+    }
+
+    private void attachDebugger(GameObjectUnmodifiable gameObject) {
+        final Circle circle = new Circle();
+        circle.setRadius(gameObject.getCollider().getRadius() * scene.getWidth() / BASE_ROOM_W);
+        circle.setStroke(Color.BLUE); 
+        circle.setFill(Color.TRANSPARENT); 
+        circle.setStrokeWidth(2); 
+        final ImageView img = gameObjMap.get(gameObject);
+        circle.centerXProperty().bind(img.xProperty().add(img.fitWidthProperty().divide(2)));
+        circle.centerYProperty().bind(img.yProperty().add(img.fitHeightProperty().divide(2)));
+        circle.radiusProperty().bind(Bindings.multiply(gameObject.getCollider().getRadius(),
+            Bindings.createDoubleBinding(() -> scene.getWidth() / BASE_ROOM_W, scene.widthProperty())));
+        root.getChildren().add(circle);
     }
 
     /** {@inheritDoc} */
     @Override
     public void update() {
         updateView();
-        for (final var component: viewComponents) {
+        for (final var component : viewComponents) {
             component.update();
         }
     }
@@ -159,6 +175,10 @@ public final class ViewImpl extends Application implements View {
             final ImageView imgView = entry.getValue();
             imgView.setX(newPos.getX());
             imgView.setY(newPos.getY());
+            if (entry.getKey().isDestroyed()) {
+                entry.getValue().setVisible(false); // TODO this does not actually remove the projectile
+                // gameObjMap.remove(entry.getKey());
+            }
         }
         walkableArea.setTranslateX(scene.getWidth() / 2 - walkableArea.getWidth() / 2);
         walkableArea.setTranslateY(scene.getHeight() / 2 - walkableArea.getHeight() / 2);
@@ -187,6 +207,7 @@ public final class ViewImpl extends Application implements View {
     private void addGameObjectToView(final String pathToImg, final GameObjectUnmodifiable gobj) {
         final Image img = new Image(pathToImg);
         final ImageView imgView = new ImageView(img);
+
         gameObjMap.put(gobj, imgView);
         imgView.fitWidthProperty()
                 .bind(walkableArea.widthProperty().multiply(img.getWidth() / walkableArea.widthProperty().get()));

@@ -10,7 +10,7 @@ import tbooop.model.core.api.movable.AbstractMovable;
  */
 public abstract class AbstractProjectile extends AbstractMovable implements Projectile {
 
-    private static final double PROJECTILE_RADIUS = 0.1;
+    private static final double PROJECTILE_RADIUS = 5;
 
     /**
      * Creates a new istance of a projectile.
