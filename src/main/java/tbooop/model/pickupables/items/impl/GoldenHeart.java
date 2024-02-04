@@ -2,7 +2,8 @@ package tbooop.model.pickupables.items.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.items.api.ItemsAbs;
+import tbooop.model.core.api.unmovable.UnmovableName;
+import tbooop.model.pickupables.items.api.ItemAbs;
 import tbooop.model.pickupables.items.api.PickupablePrices;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
@@ -12,7 +13,7 @@ import tbooop.model.player.api.Player;
  * game. If picked up by the player, it
  * will increase its health to max level.
  */
-public class GoldenHeart extends ItemsAbs {
+public class GoldenHeart extends ItemAbs {
 
     private final int itemCost = PickupablePrices.GOLDENHEART_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
@@ -75,5 +76,12 @@ public class GoldenHeart extends ItemsAbs {
     @Override
     public int getPrice() {
         return this.itemCost;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UnmovableName getObjectName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getObjectName'");
     }
 }
