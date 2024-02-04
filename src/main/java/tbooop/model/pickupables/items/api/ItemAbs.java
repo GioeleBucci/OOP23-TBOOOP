@@ -1,19 +1,19 @@
-package tbooop.model.pickupables.pickups.api;
+package tbooop.model.pickupables.items.api;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
 
 /**
- * Abstract class for pickups
+ * Abstract class for pickupable items
  * <p>
- * Implements methods from Pickups
- * interface (equals for every Pickup)
+ * Implements methods from Item
+ * interface (equals for every item)
  * and declare abstract methods to
  * be implemented by single different
  * classes.
  */
-public abstract class PickupsAbs extends UnmovableAbs implements Pickups {
+public abstract class ItemAbs extends UnmovableAbs implements Item {
 
     /**
      * Create a new istance of a Pickup.
@@ -25,7 +25,7 @@ public abstract class PickupsAbs extends UnmovableAbs implements Pickups {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected PickupsAbs(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected ItemAbs(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 }

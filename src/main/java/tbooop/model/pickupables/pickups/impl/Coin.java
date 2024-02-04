@@ -2,7 +2,8 @@ package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.pickups.api.PickupsAbs;
+import tbooop.model.core.api.unmovable.UnmovableName;
+import tbooop.model.pickupables.pickups.api.PickupAbs;
 import tbooop.model.player.api.Player;
 
 /**
@@ -11,9 +12,10 @@ import tbooop.model.player.api.Player;
  * Coins will be collected by the player
  * and will be used in the items shop.
  */
-public class Coin extends PickupsAbs {
+public class Coin extends PickupAbs {
 
     private static final int COIN_VALUE = 1;
+    private final UnmovableName pickupTag = UnmovableName.COIN;
     /**
      * Create a new istance of a Coin.
      * 
@@ -54,5 +56,11 @@ public class Coin extends PickupsAbs {
     public void updateState(final long deltaTime) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateState'");
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public UnmovableName getObjectName() {
+        return this.pickupTag;
     }
 }
