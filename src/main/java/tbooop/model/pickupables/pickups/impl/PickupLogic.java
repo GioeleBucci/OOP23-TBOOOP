@@ -6,7 +6,7 @@ import java.util.Arrays;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2dImpl;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.pickups.api.Pickups;
+import tbooop.model.pickupables.pickups.api.Pickup;
 
 /**
  * Class implementing logic for pickups
@@ -15,11 +15,11 @@ import tbooop.model.pickupables.pickups.api.Pickups;
  * room is visited and the player
  * defeats every enemy.
  */
-public class PickupsLogic {
+public class PickupLogic {
 
     private final Point2d location = new Point2dImpl(2.0, 2.0);
     private static final int PICKUPS_NUMBER = 3;
-    private final List<Pickups> list = Arrays.asList(new Coin(this.location, 2.0, GameTag.PICKUP), 
+    private final List<Pickup> list = Arrays.asList(new Coin(this.location, 2.0, GameTag.PICKUP), 
                                                 new Heart(this.location, 2.0, GameTag.PICKUP),
                                                 new Key(this.location, 2.0, GameTag.PICKUP),
                                                 new Bill(this.location, 2.0, GameTag.PICKUP));
@@ -30,7 +30,7 @@ public class PickupsLogic {
      * 
      * @return a random Pickupable
      */
-    public Pickups getRandomPickup() {
+    public Pickup getRandomPickup() {
         return list.get(random.nextInt(PICKUPS_NUMBER));
     }
 }
