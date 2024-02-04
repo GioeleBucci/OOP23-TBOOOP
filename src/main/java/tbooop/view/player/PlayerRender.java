@@ -17,9 +17,11 @@ public class PlayerRender extends ViewComponent {
     private UnmodifiablePlayer player;
     private final Rectangle walkableArea;
     /** 
-     * @param view the root this attaches to
+     * @param view the root this attaches to.
+     * @param player one Unmodifiable Player to set the animation sprite.
+     * @param walkableArea the game field.
      */
-    public PlayerRender(final ViewElements view, UnmodifiablePlayer player, final Rectangle walkableArea) {
+    public PlayerRender(final ViewElements view, final UnmodifiablePlayer player, final Rectangle walkableArea) {
         super(view);
         startingPlayerPoint = new Point2dImpl(
             view.getRoot().getScene().getWidth() / 2, 
@@ -32,18 +34,18 @@ public class PlayerRender extends ViewComponent {
 
     private void init() {
         this.playerSprite = new ImageView("Player/down/down1.png");
-        getView().getRoot().getChildren().add(playerSprite);
+        addToRoot(playerSprite);
 
-        playerSprite.fitWidthProperty()
+        /*playerSprite.fitWidthProperty()
             .bind(walkableArea
             .widthProperty()
             .multiply(playerSprite.getImage().getWidth() / walkableArea.widthProperty().get()));
-        
+
         playerSprite.fitHeightProperty()
             .bind(walkableArea
             .heightProperty()
             .multiply(playerSprite.getImage().getHeight() / walkableArea.heightProperty().get()));
-        
+        */
         playerSprite.setX(this.startingPlayerPoint.getX());
         playerSprite.setY(this.startingPlayerPoint.getY());
     }
@@ -79,6 +81,10 @@ public class PlayerRender extends ViewComponent {
         }
     }
 
+    /**
+     * for get the PlayerSprite.
+     * @return playerSprite
+     */
     public ImageView getSprite() {
         return this.playerSprite;
     }
