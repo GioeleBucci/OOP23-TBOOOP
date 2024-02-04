@@ -34,8 +34,8 @@ public class LinearAi implements MovementAi {
     public Point2d newPosition(final Point2d initialPosition,
     final long deltaTime, final double velocity) {
         switch (this.direction) {
-            case UP, DOWN -> this.checkPosition(initialPosition, UPPER_BOUND, LOWER_BOUND);
-            case LEFT, RIGHT -> this.checkPosition(initialPosition, LEFT_BOUND, RIGHT_BOUND);
+            case UP, DOWN -> this.checkPosition(initialPosition.getY(), UPPER_BOUND, LOWER_BOUND);
+            case LEFT, RIGHT -> this.checkPosition(initialPosition.getX(), LEFT_BOUND, RIGHT_BOUND);
             default -> { }
         }
         return this.direction.toP2d()
@@ -53,9 +53,9 @@ public class LinearAi implements MovementAi {
         };
     }
 
-    private void checkPosition(final Point2d pos,
+    private void checkPosition(final double coordValue,
     final double firstBound, final double secondBound) {
-        if (pos.getY() < firstBound || pos.getY() > secondBound) {
+        if (coordValue < firstBound || coordValue > secondBound) {
             this.direction = this.switchDirection();
         }
     }
