@@ -19,7 +19,7 @@ import tbooop.model.enemy.impl.ai.LinearAi;
 public class EnemyFactoryImpl implements EnemyFactory {
 
     private static final int MELEE_HP = 3;
-    private static final double MELEE_SPEED = 0.1;
+    private static final double MELEE_SPEED = 0.01;
     private static final int SHOOTER_HP = 3;
     private static final double SHOOTER_SPEED = 0.1;
     private final Damageable player;
