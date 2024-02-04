@@ -10,7 +10,7 @@ import tbooop.model.player.api.Player;
  */
 public class Melee extends EnemyDecorator {
 
-    private static final int DAMAGE_AMOUNT = 1;
+    private static final int DAMAGE_AMOUNT = 0;
     private static final long TIME_BETWEEN_HITS = 1000;
     private long timeSinceLastHit;
 
