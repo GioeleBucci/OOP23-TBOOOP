@@ -12,10 +12,10 @@ import tbooop.model.enemy.api.ai.MovementAi;
  */
 public class LinearAi implements MovementAi {
 
-    private static final double UPPER_BOUND = RoomBounds.HEIGHT * 0.2;
-    private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.8;
-    private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.2;
-    private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.8;
+    private static final double UPPER_BOUND = RoomBounds.HEIGHT * 0.1;
+    private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.9;
+    private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.1;
+    private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.9;
     private Point2ds direction;
 
     /**
