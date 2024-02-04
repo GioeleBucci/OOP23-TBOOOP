@@ -7,5 +7,7 @@ public enum EnemyType {
     /** an enemy that deals damage on physical contact. */
     MELEE,
     /** an enemy that shoots projectiles. */
-    SHOOTER;
+    SHOOTER,
+    /** an enemy that bounces on walls */
+    BOUNCER;
 }
