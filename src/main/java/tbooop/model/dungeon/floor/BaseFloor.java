@@ -84,10 +84,11 @@ public abstract class BaseFloor implements Floor {
                 final Point2d newPoint = entry.getKey().add(offset.toP2d());
                 if (roomsMap.containsKey(newPoint)) {
                     final Room neighbour = roomsMap.get(newPoint);
+                    Point2d doorPos = DoorPositions.getDoorPosition(offset);
                     // check if neighbour room needs a key to enter
                     final Door door = neighbour.isSpecial() || entry.getValue().isSpecial()
-                            ? new SpecialDoor(neighbour)
-                            : new RegularDoor(neighbour);
+                            ? new SpecialDoor(doorPos, neighbour)
+                            : new RegularDoor(doorPos, neighbour);
                     entry.getValue().addDoor(offset, door);
                 }
             }
