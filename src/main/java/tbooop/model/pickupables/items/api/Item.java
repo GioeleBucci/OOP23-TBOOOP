@@ -9,7 +9,7 @@ import tbooop.model.core.api.unmovable.Unmovable;
  * collectible items must have in the game.
  */
 
-public interface Items extends Unmovable {
+public interface Item extends Unmovable {
 
     /**
      * Sets the item as "special"

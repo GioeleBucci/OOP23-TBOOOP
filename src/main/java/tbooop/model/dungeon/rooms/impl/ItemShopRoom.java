@@ -2,7 +2,7 @@ package tbooop.model.dungeon.rooms.impl;
 
 import java.util.Map;
 
-import tbooop.model.pickupables.items.api.Items;
+import tbooop.model.pickupables.items.api.Item;
 import tbooop.model.pickupables.items.impl.ItemShopLogic;
 
 /**
@@ -20,9 +20,9 @@ public class ItemShopRoom extends SpecialRoom {
     /**
      * Get the items map, from Item to its price.
      *
-     * @return a map from Items to Integer
+     * @return a map from Item to Integer
      */
-    public Map<Items, Integer> getItemsMap() {
-        return shopLogic.getItemsPool();
+    public Map<Item, Integer> getItemMap() {
+        return shopLogic.getItemPool();
     }
 }

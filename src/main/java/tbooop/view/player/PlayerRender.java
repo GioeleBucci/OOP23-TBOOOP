@@ -1,48 +1,42 @@
 package tbooop.view.player;
 
-import javafx.scene.Group;
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.image.ImageView;
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
-import tbooop.commons.api.Point2d;
+import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.ViewElements;
 
 /** Renders a Player. */
+@SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable view elements"
+        + "is required to distribute the work load between the various view components.")
 public class PlayerRender extends ViewComponent {
-    private static final double PLAYER_SCALE = 1.5;
-    private final Group root = new Group();
-    private final Point2d startingPlayerPoint;
+
     private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
     private ImageView playerSprite = new ImageView();
+    private final UnmodifiablePlayer player;
 
     /** 
-     * @param view the root this attaches to
+     * @param view the root this attaches to.
+     * @param player one Unmodifiable Player to set the animation sprite.
      */
-    public PlayerRender(final ViewElements view) {
+    public PlayerRender(final ViewElements view, final UnmodifiablePlayer player) {
         super(view);
-        startingPlayerPoint = new Point2dImpl(
-            view.getRoot().getScene().getWidth() / 2, 
-            view.getRoot().getScene().getHeight() / 2);
-
+        this.player = player;
         init();
     }
 
     private void init() {
         this.playerSprite = new ImageView("Player/down/down1.png");
-        root.getChildren().add(playerSprite);
-        root.getScene().getWindow().getWidth();
-        playerSprite.setScaleX(PLAYER_SCALE);
-        playerSprite.setScaleY(PLAYER_SCALE);
-        playerSprite.setX(this.startingPlayerPoint.getX());
-        playerSprite.setY(this.startingPlayerPoint.getY());
+        addToRoot(playerSprite);
     }
 
     /**
-     * Move the sprite in one of four direction.
-     * @param direction the direction (UP,DOWN,LEFT,RIGHT).
+     * Moves the player in the specified direction.
+     * 
+     * @param direction the direction in which the player should move
      */
-    public void move(final Point2ds direction) {
+    private void move(final Point2ds direction) {
         switch (direction) {
             case DOWN:
                 this.playerRenderSprite.goDown(playerSprite);
@@ -64,6 +58,16 @@ public class PlayerRender extends ViewComponent {
     /** {@inheritDoc} */
     @Override
     public void update() {
+        if (player.getPoint2ds().isPresent()) {
+            move(player.getPoint2ds().get());
+        }
+    }
 
+    /**
+     * for get the PlayerSprite.
+     * @return playerSprite
+     */
+    public ImageView getSprite() {
+        return this.playerSprite;
     }
 }

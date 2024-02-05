@@ -39,7 +39,7 @@ public final class ControllerImpl implements Controller {
     private final World world;
     private boolean playerAdded;
 
-    private static final int FPS = 20; // frames per second
+    private static final int FPS = 30; // frames per second
     private static final long REFRESH_PERIOD = (long) (1.0 / FPS * 1000); // in ms
 
     /**
@@ -81,7 +81,7 @@ public final class ControllerImpl implements Controller {
     private void updateView() {
         Platform.runLater(() -> {
             if (!playerAdded) {
-                this.view.addGameObject(world.getPlayer());
+                this.view.addPlayer(world.getPlayer());
                 //// TEST
                 final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).shooter(Point2ds.UP);
                 enemy.setPosition(new Point2dImpl(200, 100));

@@ -9,7 +9,7 @@ import tbooop.commons.api.Vector2d;
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public interface Player extends Damageable {
+public interface Player extends Damageable, UnmodifiablePlayer {
 
     /**
      * Set the current health equals to the max health.
@@ -68,4 +68,16 @@ public interface Player extends Damageable {
      * Increases the projectile's speed by 10.
      */
     void increaseProjectileVelocity();
+
+    /**
+     * Checks if the player has a key.
+     * 
+     * @return true if the player has a key, false otherwise.
+     */
+    boolean hasKey();
+
+    /**
+     * Uses a key.
+     */
+    void useKey();
 }
