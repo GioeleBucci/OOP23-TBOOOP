@@ -3,6 +3,7 @@ package tbooop.controller;
 import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import javafx.application.Platform;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -10,13 +11,18 @@ import java.util.Objects;
 import tbooop.commons.HealthImpl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Projectile;
+import tbooop.controller.api.ControllerComponent;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
+import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
+import tbooop.model.dungeon.rooms.api.DoorLockable;
+import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
+import tbooop.view.api.View;
 
 /**
  * The World class represents the game world and contains information about the
@@ -27,14 +33,84 @@ import tbooop.model.player.impl.PlayerImpl;
         "EI_EXPOSE_REP" // may expose internal representation by returning reference to mutable object
 }, justification = "This class is a container of game objects, that the controller needs check and modify"
         + "and for that reason exposing the internal representation is necessary.")
-public class World {
-    private final Set<GameObject> gameObjects = new HashSet<>();
-    private final Set<Projectile> projectiles = new HashSet<>();
+public final class World implements ControllerComponent {
+    private volatile Set<GameObject> gameObjects = new HashSet<>();
+    private volatile Set<Projectile> projectiles = new HashSet<>();
 
+    private final View view;
     private final Player player = new PlayerImpl(new Point2dImpl(RoomBounds.WIDTH / 2,
-            RoomBounds.HEIGHT / 2), new HealthImpl(1), .1);
+            RoomBounds.HEIGHT / 2), new HealthImpl(100), .1);
     private Floor floor = new LevelFloor(1);
-    private Point2d currentRoom = Point2dImpl.ZERO;
+    // the starting room is the one at position (0,0)
+    private Room currentRoom = floor.getStaringRoom();
+
+    /**
+     * Constructs a new World with the specified view.
+     *
+     * @param view the view that this world will update
+     */
+    public World(final View view) {
+        this.view = view;
+        this.player.pickupKeys();
+    }
+
+    /** Handles player/door collisions */
+    public void onDoorCollision(final DoorUnmodifiable door) {
+        if (!door.isOpen()) {
+            if (!player.hasKey()) {
+                return;
+            }
+            player.useKey();
+            ((DoorLockable) door).unlock();
+        }
+
+        synchronized (this) {
+            // TODO player position should be set according to the door he entered in
+            player.setPosition(new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
+            for (final GameObject gameObject : gameObjects) {
+                Platform.runLater(() -> {
+                    view.removeGameObject(gameObject);
+                });
+            }
+            gameObjects.clear();
+            for (final GameObject projectile : projectiles) {
+                Platform.runLater(() -> {
+                    view.removeGameObject(projectile);
+                });
+            }
+            projectiles.clear();
+            // change room
+            changeRoom((Room) door.getRoom());
+        }
+    }
+
+    private void changeRoom(final Room newRoom) {
+        for (final GameObject gameObject : newRoom.getDoorMap().values()) {
+            addGameObject(gameObject);
+        }
+        currentRoom = newRoom;
+        currentRoom.setExplored();
+        view.changeRoom(currentRoom);
+    }
+
+    @Override
+    public void init() {
+        gameObjects.addAll(currentRoom.getDoorMap().values());
+        view.changeRoom(currentRoom);
+    }
+
+    @Override
+    public void update() {
+        gameObjects.removeIf(GameObject::isDestroyed);
+        projectiles.removeIf(Projectile::isDestroyed);
+    }
+
+    private void addGameObject(final GameObject gameObject) {
+        gameObjects.add(gameObject);
+        Platform.runLater(() -> {
+            view.addGameObject(gameObject);
+        });
+    }
 
     /**
      * Returns the list of game objects in the world.
@@ -87,7 +163,8 @@ public class World {
      * @return the current room
      */
     public Point2d getCurrentRoom() {
-        return currentRoom;
+        // return currentRoom;
+        return null;
     }
 
     /**
@@ -96,7 +173,6 @@ public class World {
      * @param currentRoom the new current room to set
      */
     protected void setCurrentRoom(final Point2d currentRoom) {
-        this.currentRoom = currentRoom;
+        // this.currentRoom = currentRoom;
     }
-
 }
