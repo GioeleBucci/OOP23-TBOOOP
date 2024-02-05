@@ -26,7 +26,8 @@ public class PlayerRender extends ViewComponent {
         init();
     }
 
-    private void init() {
+    @Override
+    public void init() {
         this.playerSprite = new ImageView("Player/down/down1.png");
         addToRoot(playerSprite);
     }

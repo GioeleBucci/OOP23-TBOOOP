@@ -58,17 +58,19 @@ public final class ControllerImpl implements Controller {
      * The main game loop that processes input and updates the game state.
      */
     @Override
-    public synchronized void mainLoop() {
+    public void mainLoop() {
         long prevStartTime = System.currentTimeMillis();
         world.init();
         while (true) {
-            final long startTime = System.currentTimeMillis();
-            final long elapsed = startTime - prevStartTime;
-            processInput();
-            updateGame(elapsed);
-            updateView();
-            waitForNextFrame(startTime);
-            prevStartTime = startTime;
+            synchronized (this) {
+                final long startTime = System.currentTimeMillis();
+                final long elapsed = startTime - prevStartTime;
+                processInput();
+                updateGame(elapsed);
+                updateView();
+                waitForNextFrame(startTime);
+                prevStartTime = startTime;
+            }
         }
         // gameOver();
     }
@@ -146,7 +148,8 @@ public final class ControllerImpl implements Controller {
                 // Projectile-Player collision
                 if (projectile.getCollider().isColliding(world.getPlayer().getCollider())) {
                     logger.info("Player health:" + world.getPlayer().getHealth());
-                    projectile.onEntityCollision((Entity) world.getPlayer());
+                    projectile.onPlayerCollision(world.getPlayer());
+                    // projectile.onEntityCollision((Entity) world.getPlayer());
                 }
             }
         }

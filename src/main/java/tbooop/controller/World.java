@@ -53,9 +53,10 @@ public final class World implements ControllerComponent {
     public World(final View view) {
         this.view = view;
         this.player.pickupKeys();
+        System.out.println(floor);
     }
 
-    /** Handles player/door collisions */
+    /** Handles player/door collisions. */
     public void onDoorCollision(final DoorUnmodifiable door) {
         if (!door.isOpen()) {
             if (!player.hasKey()) {
@@ -64,7 +65,6 @@ public final class World implements ControllerComponent {
             player.useKey();
             ((DoorLockable) door).unlock();
         }
-
         synchronized (this) {
             player.setPosition(newPlayerPosition(door));
             for (final GameObject gameObject : gameObjects) {
@@ -84,7 +84,7 @@ public final class World implements ControllerComponent {
         }
     }
 
-    private Point2d newPlayerPosition(DoorUnmodifiable door) {
+    private Point2d newPlayerPosition(final DoorUnmodifiable door) {
         final double offset = door.getCollider().getRadius() + player.getCollider().getRadius() + 10;
         if (door.getPosition().equals(DoorPositions.TOP.getPosition())) {
             return new Point2dImpl(DoorPositions.BOTTOM.getPosition().add(new Point2dImpl(0, -offset)));

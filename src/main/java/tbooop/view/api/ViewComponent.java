@@ -45,4 +45,9 @@ public abstract class ViewComponent {
      */
     public abstract void update();
 
+    /**
+     * Initialize this ViewComponent.
+     */
+    public abstract void init();
+
 }

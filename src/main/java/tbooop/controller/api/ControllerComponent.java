@@ -1,14 +1,17 @@
 package tbooop.controller.api;
 
+/**
+ * A component of the main controller.
+ */
 public interface ControllerComponent {
 
     /**
      * Initializes the component.
      */
-    public void init();
+    void init();
 
     /**
      * Updates the component (this method is called each game frame).
      */
-    public void update();
+    void update();
 }

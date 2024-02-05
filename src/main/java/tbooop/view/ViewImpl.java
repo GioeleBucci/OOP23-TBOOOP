@@ -52,9 +52,9 @@ public final class ViewImpl extends Application implements View {
     private final Group root;
     private final Controller controller;
     private final InputManager inputManager;
-    private Scene scene;
-    private Rectangle walkableArea;
-    private Stage stage;
+    private volatile Scene scene;
+    private volatile Rectangle walkableArea;
+    private volatile Stage stage;
     private double stageAspectRatio;
 
     /**
@@ -249,7 +249,6 @@ public final class ViewImpl extends Application implements View {
      */
     protected synchronized void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
         gameObjMap.put(gobj, imgView);
-        imgView.setCache(false);
         imgView.fitWidthProperty()
                 .bind(walkableArea.widthProperty()
                         .multiply(imgView.getImage().getWidth() / walkableArea.widthProperty().get()));

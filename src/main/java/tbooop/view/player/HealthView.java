@@ -37,4 +37,10 @@ public class HealthView extends ViewComponent {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
+
+    @Override
+    public void init() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'init'");
+    }
 }
