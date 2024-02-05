@@ -13,26 +13,49 @@ public abstract class DoorAbstract extends UnmovableAbs implements Door {
 
     private final RoomUnmodifiable room;
 
+    private boolean isOpen = true;
+
     /**
      * Constructs a DoorAbstract object with the specified position and room.
+     * 
      * @param position the position of the door
-     * @param room the room that the door takes to
+     * @param room     the room that the door takes to
      */
-    protected DoorAbstract(Point2d position, RoomUnmodifiable room) {
+    protected DoorAbstract(final Point2d position, final RoomUnmodifiable room) {
         super(position, COLLIDER_RADIUS, GameTag.DOOR);
         this.room = room;
     }
 
-    /**
-     * Gets the room that the door belongs to.
-     * @return the room that the door belongs to
-     */
+    /** {@inheritDoc} */
+    @Override
     public RoomUnmodifiable getRoom() {
         return this.room;
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void updateState(long deltaTime) {
+    public void close() {
+        this.isOpen = false;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isOpen() {
+        return this.isOpen;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void updateState(final long deltaTime) {
+    }
+
+    /**
+     * Sets the door open or closed.
+     * 
+     * @param isOpen the new state of the door
+     */
+    protected void setOpen(final boolean isOpen) {
+        this.isOpen = isOpen;
     }
 
 }

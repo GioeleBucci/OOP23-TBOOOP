@@ -1,11 +1,9 @@
 package tbooop.model.dungeon.rooms.impl;
 
 import tbooop.commons.api.Point2d;
-import tbooop.model.dungeon.rooms.api.Door;
+import tbooop.model.core.api.unmovable.UnmovableName;
 import tbooop.model.dungeon.rooms.api.DoorAbstract;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
-
-import java.util.Objects;
 
 /**
  * A regular door has no locks and takes to a regular room.
@@ -26,6 +24,18 @@ public class RegularDoor extends DoorAbstract {
     @Override
     public boolean isSpecial() {
         return false;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void open() {
+        this.setOpen(true);
+    }
+
+    @Override
+    public UnmovableName getObjectName() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getObjectName'");
     }
 
 }
