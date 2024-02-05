@@ -7,6 +7,7 @@ import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.items.api.Item;
+import tbooop.commons.RoomBounds;
 
 /**
  * Class implementing item's handling logic
@@ -14,12 +15,13 @@ import tbooop.model.pickupables.items.api.Item;
  */
 public class ItemShopLogic {
 
-    private final Point2d location = new Point2dImpl(1.0, 1.0);
     private static final double ITEM_COLLIDER_RADIUS = 1.0;
-    private final Item goldenHeart = new GoldenHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item belt = new Belt(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item fireMind = new FireMind(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item ironBar = new IronBar(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private static final int BASE_WIDTH_DIVISION = 2;
+    private static final int BASE_HEIGHT_DIVISION = 3;
+    private final Item goldenHeart = new GoldenHeart(getItemPosition(1), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item belt = new Belt(getItemPosition(2), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item fireMind = new FireMind(getItemPosition(3), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item ironBar = new IronBar(getItemPosition(4), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
 
     /**
      * Returns a map from an item to its
@@ -41,5 +43,25 @@ public class ItemShopLogic {
         itemsMap.put(ironBar, ironBar.getPrice());
 
         return itemsMap;
+    }
+
+    /**
+     * Calculate and return a Point2d
+     * for item's location.
+     * 
+     * @param itemNumber
+     * @return a Point2d
+     */
+    private Point2d getItemPosition(final Integer itemNumber) {
+        final double widthDivision = RoomBounds.WIDTH / 8;
+        final double heightDivision = RoomBounds.HEIGHT / 3;
+        switch (itemNumber) {
+            case 1: return new Point2dImpl(BASE_WIDTH_DIVISION * widthDivision, heightDivision);
+            case 2: return new Point2dImpl((BASE_WIDTH_DIVISION + 2) * widthDivision, heightDivision);
+            case 3: return new Point2dImpl((BASE_WIDTH_DIVISION + 4) * widthDivision, heightDivision);
+            case 4: return new Point2dImpl(BASE_HEIGHT_DIVISION * widthDivision, BASE_WIDTH_DIVISION * heightDivision);
+            //case 5: return new Point2dImpl((BASE_HEIGHT_DIVISION + 2) * widthDivision, BASE_WIDTH_DIVISION * heightDivision);
+            default: return new Point2dImpl(widthDivision, heightDivision);
+        }
     }
 }
