@@ -3,7 +3,7 @@ package tbooop.model.dungeon.rooms;
 import org.junit.jupiter.api.Test;
 
 import tbooop.commons.Point2ds;
-import tbooop.model.dungeon.floor.DoorPositions;
+import tbooop.model.dungeon.rooms.api.DoorPositions;
 import tbooop.model.dungeon.rooms.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.impl.RegularRoom;
 

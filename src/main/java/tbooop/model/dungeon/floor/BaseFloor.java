@@ -12,7 +12,8 @@ import tbooop.model.dungeon.rooms.impl.SpecialDoor;
 import tbooop.model.dungeon.rooms.impl.SpecialRoom;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.dungeon.floor.api.Floor;
-import tbooop.model.dungeon.rooms.api.Door;
+import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
+import tbooop.model.dungeon.rooms.api.DoorPositions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -67,15 +68,10 @@ public abstract class BaseFloor implements Floor {
         placeDoors();
     }
 
-    /**
-     * Returns the rooms map.
-     * 
-     * @return a Map where the key is a room's position and the value the associated
-     *         room object
-     */
+    /** {@inheritDoc} */
     @Override
-    public Map<Point2d, Room> getRoomsMap() {
-        return Collections.unmodifiableMap(this.roomsMap);
+    public Room getStaringRoom() {
+        return roomsMap.get(Point2dImpl.ZERO);
     }
 
     private void placeDoors() {
@@ -84,9 +80,9 @@ public abstract class BaseFloor implements Floor {
                 final Point2d newPoint = entry.getKey().add(offset.toP2d());
                 if (roomsMap.containsKey(newPoint)) {
                     final Room neighbour = roomsMap.get(newPoint);
-                    Point2d doorPos = DoorPositions.getDoorPosition(offset);
+                    final Point2d doorPos = DoorPositions.getDoorPosition(offset);
                     // check if neighbour room needs a key to enter
-                    final Door door = neighbour.isSpecial() || entry.getValue().isSpecial()
+                    final DoorUnmodifiable door = neighbour.isSpecial() || entry.getValue().isSpecial()
                             ? new SpecialDoor(doorPos, neighbour)
                             : new RegularDoor(doorPos, neighbour);
                     entry.getValue().addDoor(offset, door);

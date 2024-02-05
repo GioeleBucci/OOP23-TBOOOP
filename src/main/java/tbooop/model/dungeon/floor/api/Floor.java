@@ -1,20 +1,16 @@
 package tbooop.model.dungeon.floor.api;
 
-import java.util.Map;
-
-import tbooop.commons.api.Point2d;
 import tbooop.model.dungeon.rooms.api.Room;
 
 /** Interface for floor. */
 public interface Floor {
 
     /**
-     * Returns the rooms map.
+     * Returns the starting room of this floor.
      * 
-     * @return a Map where the key is a room's position and the value the associated
-     *         room object
+     * @return the starting room
      */
-    Map<Point2d, Room> getRoomsMap();
+    Room getStaringRoom();
 
     /**
      * Returns the level of this floor.
