@@ -22,6 +22,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObjectUnmodifiable;
+import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.view.api.View;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.player.HealthView;
@@ -38,6 +39,7 @@ public final class ViewImpl extends Application implements View {
     public static final double BASE_ROOM_H = 311;
 
     private final Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
+    private final RoomRenderer roomRenderer;
     private final Set<ViewComponent> viewComponents = new HashSet<>();
 
     private final Group root;
@@ -55,6 +57,7 @@ public final class ViewImpl extends Application implements View {
         this.root = new Group();
         this.controller = new ControllerImpl(this);
         this.inputManager = new InputManager(controller, this);
+        this.roomRenderer = new RoomRenderer(this);
     }
 
     @Override
@@ -221,5 +224,10 @@ public final class ViewImpl extends Application implements View {
         backgroundImage.fitWidthProperty().bind(scene.widthProperty());
         backgroundImage.fitHeightProperty().bind(scene.heightProperty());
         root.getChildren().add(backgroundImage);
+    }
+
+    @Override
+    public void changeRoom(RoomUnmodifiable newRoom) {
+        roomRenderer.changeRoom(newRoom);
     }
 }

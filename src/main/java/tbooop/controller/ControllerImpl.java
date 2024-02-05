@@ -1,16 +1,22 @@
 package tbooop.controller;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+import tbooop.commons.Point2dImpl;
+import tbooop.commons.Point2ds;
 import tbooop.commons.api.Projectile;
 import tbooop.controller.api.Controller;
 import tbooop.controller.api.Event;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.core.api.GameObject;
+import tbooop.model.core.api.movable.Entity;
+import tbooop.model.dungeon.rooms.api.Door;
+import tbooop.model.enemy.impl.EnemyFactoryImpl;
 import tbooop.view.ViewImpl;
 import tbooop.view.api.View;
 
@@ -25,15 +31,15 @@ import javafx.application.Platform;
  */
 public final class ControllerImpl implements Controller {
 
-    private final World world = new World();
     private final List<Event> eventQueue = new ArrayList<>();
     private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
-    private static final int COMMAND_QUEUE_SIZE = 20;
+    private static final int COMMAND_QUEUE_SIZE = 40;
     private final BlockingQueue<PlayerCommand> cmdQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
     private final View view;
+    private final World world;
     private boolean playerAdded;
 
-    private static final int FPS = 10; // frames per second
+    private static final int FPS = 20; // frames per second
     private static final long REFRESH_PERIOD = (long) (1.0 / FPS * 1000); // in ms
 
     /**
@@ -44,6 +50,7 @@ public final class ControllerImpl implements Controller {
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "View is needed according to MVC.")
     public ControllerImpl(final View view) {
         this.view = Objects.requireNonNull(view);
+        this.world = new World(view);
     }
 
     /**
@@ -52,6 +59,7 @@ public final class ControllerImpl implements Controller {
     @Override
     public void mainLoop() {
         long prevStartTime = System.currentTimeMillis();
+        world.init();
         while (true) {
             final long startTime = System.currentTimeMillis();
             final long elapsed = startTime - prevStartTime;
@@ -75,10 +83,10 @@ public final class ControllerImpl implements Controller {
             if (!playerAdded) {
                 this.view.addGameObject(world.getPlayer());
                 //// TEST
-                // final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).melee();
-                // enemy.setPosition(new Point2dImpl(200, 100));
-                // world.getGameObjects().add(enemy);
-                // this.view.addGameObject(enemy);
+                final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).shooter(Point2ds.UP);
+                enemy.setPosition(new Point2dImpl(200, 100));
+                world.getGameObjects().add(enemy);
+                this.view.addGameObject(enemy);
                 //// END TEST
                 playerAdded = true;
             }
@@ -86,24 +94,58 @@ public final class ControllerImpl implements Controller {
         });
     }
 
+    void collectProjectiles(Entity entity) {
+        var projectiles = entity.getShotProjectiles();
+        // FIXME this sucks and its only for testing
+        for (Projectile projectile : projectiles) {
+            world.getProjectiles().add(projectile);
+            Platform.runLater(() -> {
+                view.addGameObject(projectile);
+            });
+        }
+    }
+
     private void updateGame(final long dt) {
         world.getPlayer().updateState(dt);
-        // update all projectiles
-        for (final Projectile projectile : world.getProjectiles()) {
-            // update all gameObjects
-            projectile.updateState(dt);
-        }
-        for (final GameObject gameObj : world.getGameObjects()) {
+        collectProjectiles((Entity) world.getPlayer());
+
+        Iterator<GameObject> gameObjIterator = world.getGameObjects().iterator();
+        while (gameObjIterator.hasNext()) {
+            GameObject gameObj = gameObjIterator.next();
+            gameObj.updateState(dt);
+            world.update();
+
+            if (gameObj instanceof Entity) {
+                collectProjectiles((Entity) gameObj);
+            }
+
             // GameObject-Player collision
             if (gameObj.getCollider().isColliding(world.getPlayer().getCollider())) {
+                if (gameObj instanceof Door) {
+                    System.out.println("Door collision");
+                    world.onDoorCollision((Door)gameObj);
+                }
                 gameObj.onPlayerCollision(world.getPlayer());
             }
-            // Projectile-Entity collision
-            // if (gameObj instanceof Entity &&
-            // gameObj.getCollider().isColliding(projectile.getCollider())) {
-            // projectile.onEntityCollision((Entity) gameObj);
-            // }
-            gameObj.updateState(dt);
+
+            // update all projectiles
+            Iterator<Projectile> projectileIterator = world.getProjectiles().iterator();
+            while (projectileIterator.hasNext()) {
+                Projectile projectile = projectileIterator.next();
+                projectile.updateState(dt);
+                world.update();
+
+                // Projectile-Entity collision
+                if (gameObj instanceof Entity && gameObj.getCollider().isColliding(projectile.getCollider())) {
+                    projectile.onEntityCollision((Entity) gameObj);
+                }
+
+                // Projectile-Player collision
+                if (projectile.getCollider().isColliding(world.getPlayer().getCollider())) {
+                    logger.info("Player health:" + world.getPlayer().getHealth());
+                    projectile.onEntityCollision((Entity) world.getPlayer());
+                }
+            }
         }
     }
 
