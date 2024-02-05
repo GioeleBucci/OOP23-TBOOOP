@@ -82,7 +82,7 @@ public final class ViewImpl extends Application implements View {
             if (event.getCode() == Keybinds.UP.getKeyCode() 
                 || event.getCode() == Keybinds.DOWN.getKeyCode() 
                 || event.getCode() == Keybinds.LEFT.getKeyCode() 
-                || event.getCode() == Keybinds.RIGHT.getKeyCode()){
+                || event.getCode() == Keybinds.RIGHT.getKeyCode()) {
                 this.isMoving = true;
             }
 

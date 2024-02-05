@@ -1,5 +1,6 @@
 package tbooop.view.player;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.image.ImageView;
 import tbooop.commons.Point2ds;
 import tbooop.model.player.api.UnmodifiablePlayer;
@@ -7,6 +8,8 @@ import tbooop.view.api.ViewComponent;
 import tbooop.view.api.ViewElements;
 
 /** Renders a Player. */
+@SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable view elements"
+        + "is required to distribute the work load between the various view components.")
 public class PlayerRender extends ViewComponent {
 
     private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
