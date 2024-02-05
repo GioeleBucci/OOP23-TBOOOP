@@ -1,6 +1,8 @@
 package tbooop.view.api;
 
+import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
+import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.model.player.api.UnmodifiablePlayer;
 
 /**
@@ -29,4 +31,19 @@ public interface View extends ViewElements {
      * @param player the player to add
      */
     void addPlayer(UnmodifiablePlayer player);
+
+    /**
+     * Changes the room the player is in.
+     * 
+     * @param newRoom the new room
+     */
+    void changeRoom(RoomUnmodifiable newRoom);
+
+    /**
+     * Removes a GameObject from the view.
+     * 
+     * @param gameObject the GameObject to remove
+     */
+    void removeGameObject(GameObject gameObject);
+
 }

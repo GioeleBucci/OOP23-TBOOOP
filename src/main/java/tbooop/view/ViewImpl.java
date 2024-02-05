@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
@@ -22,6 +21,7 @@ import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Point2d;
 import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
+import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
@@ -42,9 +42,9 @@ public final class ViewImpl extends Application implements View {
     /** The base height of the room. */
     public static final double BASE_ROOM_H = 311;
 
-    private final Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
-    private final RoomRenderer roomRenderer;
+    private volatile Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
     private final Set<ViewComponent> viewComponents = new HashSet<>();
+    private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
 
     private boolean isMoving;
@@ -83,10 +83,10 @@ public final class ViewImpl extends Application implements View {
         scene.setOnKeyPressed(event -> {
             inputManager.handleInput(event.getCode());
 
-            if (event.getCode() == Keybinds.UP.getKeyCode() 
-                || event.getCode() == Keybinds.DOWN.getKeyCode() 
-                || event.getCode() == Keybinds.LEFT.getKeyCode() 
-                || event.getCode() == Keybinds.RIGHT.getKeyCode()) {
+            if (event.getCode() == Keybinds.UP.getKeyCode()
+                    || event.getCode() == Keybinds.DOWN.getKeyCode()
+                    || event.getCode() == Keybinds.LEFT.getKeyCode()
+                    || event.getCode() == Keybinds.RIGHT.getKeyCode()) {
                 this.isMoving = true;
             }
 
@@ -100,11 +100,13 @@ public final class ViewImpl extends Application implements View {
         });
         thread.start();
         stageAspectRatio = stage.getWidth() / stage.getHeight();
+
         new HealthView(this).drawHeart(walkableArea);
+        roomRenderer.init();
     }
 
-     /** {@inheritDoc} */
-     @Override
+    /** {@inheritDoc} */
+    @Override
     public void addPlayer(final UnmodifiablePlayer player) {
         final PlayerRender playerRender = new PlayerRender(this, player);
         viewComponents.add(playerRender);
@@ -119,20 +121,19 @@ public final class ViewImpl extends Application implements View {
          * dipenda dal tipo di GameObject!!
          */
         addGameObjectToView(new ImageView(new Image("down2.png")), gameObject);
-        attachDebugger(gameObject);
     }
 
-    private void attachDebugger(GameObjectUnmodifiable gameObject) {
+    private synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) {
         final Circle circle = new Circle();
         circle.setRadius(gameObject.getCollider().getRadius() * scene.getWidth() / BASE_ROOM_W);
-        circle.setStroke(Color.BLUE); 
-        circle.setFill(Color.TRANSPARENT); 
-        circle.setStrokeWidth(2); 
+        circle.setStroke(Color.BLUE);
+        circle.setFill(Color.TRANSPARENT);
+        circle.setStrokeWidth(2);
         final ImageView img = gameObjMap.get(gameObject);
         circle.centerXProperty().bind(img.xProperty().add(img.fitWidthProperty().divide(2)));
         circle.centerYProperty().bind(img.yProperty().add(img.fitHeightProperty().divide(2)));
         circle.radiusProperty().bind(Bindings.multiply(gameObject.getCollider().getRadius(),
-            Bindings.createDoubleBinding(() -> scene.getWidth() / BASE_ROOM_W, scene.widthProperty())));
+                Bindings.createDoubleBinding(() -> scene.getWidth() / BASE_ROOM_W, scene.widthProperty())));
         root.getChildren().add(circle);
     }
 
@@ -199,7 +200,7 @@ public final class ViewImpl extends Application implements View {
     /**
      * Updates the position of all the sprites.
      */
-    private void updateView() {
+    private synchronized void updateView() {
         enemyAnimator.update();
         for (final var entry : gameObjMap.entrySet()) {
             Point2d newPos = worldToScreenPos(entry.getKey().getPosition());
@@ -212,6 +213,7 @@ public final class ViewImpl extends Application implements View {
             imgView.setY(newPos.getY());
             if (entry.getKey().isDestroyed()) {
                 entry.getValue().setVisible(false); // TODO this does not actually remove the projectile
+                root.getChildren().remove(entry.getValue());
                 // gameObjMap.remove(entry.getKey());
             }
         }
@@ -226,7 +228,7 @@ public final class ViewImpl extends Application implements View {
      * @param worldPos the world position of a GameObject
      * @return the screen position
      */
-    private Point2d worldToScreenPos(final Point2d worldPos) {
+    private synchronized Point2d worldToScreenPos(final Point2d worldPos) {
         /*
          * To perform the conversion (for one axis) the following proportion can be
          * used:
@@ -239,17 +241,23 @@ public final class ViewImpl extends Application implements View {
                 worldPos.getY() * walkableArea.getHeight() / RoomBounds.HEIGHT + yWallThickness);
     }
 
-    private void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
-        // final Image img = new Image(pathToImg);
-        // final ImageView imgView = new ImageView(img);
+    /**
+     * Adds a GameObject to the view.
+     * 
+     * @param imgView the ImageView of the GameObject
+     * @param gobj    the GameObject to add
+     */
+    protected synchronized void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
         gameObjMap.put(gobj, imgView);
+        imgView.setCache(false);
         imgView.fitWidthProperty()
-            .bind(walkableArea.widthProperty()
-                .multiply(imgView.getImage().getWidth() / walkableArea.widthProperty().get()));
+                .bind(walkableArea.widthProperty()
+                        .multiply(imgView.getImage().getWidth() / walkableArea.widthProperty().get()));
         imgView.fitHeightProperty()
-            .bind(walkableArea.heightProperty()
-                .multiply(imgView.getImage().getHeight() / walkableArea.heightProperty().get()));
+                .bind(walkableArea.heightProperty()
+                        .multiply(imgView.getImage().getHeight() / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
+        // attachDebugger(gobj);
     }
 
     private void setBackgroundImage(final String imageUrl) {
@@ -259,8 +267,15 @@ public final class ViewImpl extends Application implements View {
         root.getChildren().add(backgroundImage);
     }
 
+    /** {@inheritDoc} */
     @Override
-    public void changeRoom(RoomUnmodifiable newRoom) {
+    public void removeGameObject(final GameObject gameObject) {
+        root.getChildren().remove(gameObjMap.get(gameObject));
+        gameObjMap.remove(gameObject);
+    }
+
+    @Override
+    public void changeRoom(final RoomUnmodifiable newRoom) {
         roomRenderer.changeRoom(newRoom);
     }
 }
