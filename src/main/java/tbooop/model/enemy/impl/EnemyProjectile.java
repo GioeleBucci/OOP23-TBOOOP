@@ -32,6 +32,7 @@ public class EnemyProjectile extends AbstractProjectile {
     @Override
     public void onPlayerCollision(final Player player) {
         player.takeDamage(PROJECTILE_DAMAGE);
+        super.destroy();
     }
 
     /** {@inheritDoc} */
