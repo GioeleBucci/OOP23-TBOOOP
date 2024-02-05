@@ -12,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
@@ -78,7 +79,14 @@ public final class ViewImpl extends Application implements View {
         // Redirect keyboard events to the input manager
         scene.setOnKeyPressed(event -> {
             inputManager.handleInput(event.getCode());
-            this.isMoving = true;
+
+            if (event.getCode() == Keybinds.UP.getKeyCode() 
+                || event.getCode() == Keybinds.DOWN.getKeyCode() 
+                || event.getCode() == Keybinds.LEFT.getKeyCode() 
+                || event.getCode() == Keybinds.RIGHT.getKeyCode()){
+                this.isMoving = true;
+            }
+
             updateView();
         });
 
