@@ -19,6 +19,7 @@ import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.DoorLockable;
+import tbooop.model.dungeon.rooms.api.DoorPositions;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
@@ -65,8 +66,7 @@ public final class World implements ControllerComponent {
         }
 
         synchronized (this) {
-            // TODO player position should be set according to the door he entered in
-            player.setPosition(new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
+            player.setPosition(newPlayerPosition(door));
             for (final GameObject gameObject : gameObjects) {
                 Platform.runLater(() -> {
                     view.removeGameObject(gameObject);
@@ -82,6 +82,23 @@ public final class World implements ControllerComponent {
             // change room
             changeRoom((Room) door.getRoom());
         }
+    }
+
+    private Point2d newPlayerPosition(DoorUnmodifiable door) {
+        final double offset = door.getCollider().getRadius() + player.getCollider().getRadius() + 10;
+        if (door.getPosition().equals(DoorPositions.TOP.getPosition())) {
+            return new Point2dImpl(DoorPositions.BOTTOM.getPosition().add(new Point2dImpl(0, -offset)));
+        }
+        if (door.getPosition().equals(DoorPositions.BOTTOM.getPosition())) {
+            return new Point2dImpl(DoorPositions.TOP.getPosition().add(new Point2dImpl(0, offset)));
+        }
+        if (door.getPosition().equals(DoorPositions.LEFT.getPosition())) {
+            return new Point2dImpl(DoorPositions.RIGHT.getPosition().add(new Point2dImpl(-offset, 0)));
+        }
+        if (door.getPosition().equals(DoorPositions.RIGHT.getPosition())) {
+            return new Point2dImpl(DoorPositions.LEFT.getPosition().add(new Point2dImpl(offset, 0)));
+        }
+        throw new IllegalArgumentException("Invalid door position " + door.getPosition());
     }
 
     private void changeRoom(final Room newRoom) {
