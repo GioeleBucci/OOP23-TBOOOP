@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.floor;
+package tbooop.model.dungeon.rooms.api;
 
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
@@ -11,9 +11,10 @@ import tbooop.commons.api.Point2d;
 public enum DoorPositions {
 
     /** Top door's position. */
-    TOP(new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT)),
+    TOP(new Point2dImpl(RoomBounds.WIDTH / 2, 0)),
     /** Bottom door's position. */
-    BOTTOM(new Point2dImpl(RoomBounds.WIDTH / 2, 0)),
+    BOTTOM(new Point2dImpl(RoomBounds.WIDTH / 2,
+            RoomBounds.HEIGHT)),
     /** Left door's position. */
     LEFT(new Point2dImpl(0, RoomBounds.HEIGHT / 2)),
     /** Right door's position. */
@@ -25,6 +26,11 @@ public enum DoorPositions {
         this.position = position;
     }
 
+    /**
+     * Returns the position of the door.
+     * 
+     * @return the position of the door
+     */
     public Point2d getPosition() {
         return position;
     }
@@ -35,7 +41,7 @@ public enum DoorPositions {
      * @param direction where the door will be placed
      * @return the position of the door
      */
-    public static Point2d getDoorPosition(Point2ds direction) {
+    public static Point2d getDoorPosition(final Point2ds direction) {
         return switch (direction) {
             case UP -> TOP.getPosition();
             case DOWN -> BOTTOM.getPosition();

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import tbooop.commons.Point2ds;
-import tbooop.model.dungeon.rooms.api.Door;
+import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.Room;
 
 /**
@@ -17,18 +17,18 @@ import tbooop.model.dungeon.rooms.api.Room;
  */
 public abstract class BaseRoom implements Room {
 
-    private final Map<Point2ds, Door> doorMap = new HashMap<>();
+    private final Map<Point2ds, DoorUnmodifiable> doorMap = new HashMap<>();
     private boolean isExplored;
 
     /** {@inheritDoc} */
     @Override
-    public void addDoor(final Point2ds direction, final Door door) {
+    public void addDoor(final Point2ds direction, final DoorUnmodifiable door) {
         doorMap.put(direction, door);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Map<Point2ds, Door> getDoorMap() {
+    public Map<Point2ds, DoorUnmodifiable> getDoorMap() {
         return Collections.unmodifiableMap(doorMap);
     }
 

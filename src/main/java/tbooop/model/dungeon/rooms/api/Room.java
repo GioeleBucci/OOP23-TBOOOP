@@ -16,7 +16,7 @@ public interface Room extends RoomUnmodifiable {
      * @param door      the door to add
      * @see Point2ds
      */
-    void addDoor(Point2ds direction, Door door);
+    void addDoor(Point2ds direction, DoorUnmodifiable door);
 
     /** Flags the room as explored. Cannot be undone. */
     void setExplored();

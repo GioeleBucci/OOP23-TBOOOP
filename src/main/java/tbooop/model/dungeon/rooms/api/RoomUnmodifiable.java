@@ -14,7 +14,7 @@ public interface RoomUnmodifiable {
      * @return a map with an entry for each direction in which a door is present.
      * @see Point2ds
      */
-    Map<Point2ds, Door> getDoorMap();
+    Map<Point2ds, DoorUnmodifiable> getDoorMap();
 
     /**
      * Whether this room has been visited at least once or not.
