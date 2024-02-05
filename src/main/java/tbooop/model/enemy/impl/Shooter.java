@@ -51,8 +51,9 @@ public class Shooter extends EnemyDecorator {
      * @return the direction towards the player
      */
     private Vector2d playerDirection() {
-        return new Vector2dImpl(this.player.getPosition()
-        .subtract(super.getPosition()).toV2d())
-        .normalize();
+        return this.getPosition().equals(player.getPosition()) ? new Vector2dImpl(0, 0)
+            : new Vector2dImpl(this.player.getPosition()
+                .subtract(super.getPosition()).toV2d())
+                .normalize();
     }
 }
