@@ -28,9 +28,11 @@ public class PlayerRender extends ViewComponent {
         addToRoot(playerSprite);
     }
 
+    
     /**
-     * Move the sprite in one of four direction.
-     * @param direction the direction (UP,DOWN,LEFT,RIGHT).
+     * Moves the player in the specified direction.
+     * 
+     * @param direction the direction in which the player should move
      */
     private void move(final Point2ds direction) {
         switch (direction) {

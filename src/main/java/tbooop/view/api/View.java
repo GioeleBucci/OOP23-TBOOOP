@@ -24,8 +24,9 @@ public interface View extends ViewElements {
     void update();
 
     /**
-     * it's used to add player in the view.
-     * @param player the player to add in the game.
+     * Adds a player to the view.
+     * 
+     * @param player the player to add
      */
     void addPlayer(UnmodifiablePlayer player);
 }
