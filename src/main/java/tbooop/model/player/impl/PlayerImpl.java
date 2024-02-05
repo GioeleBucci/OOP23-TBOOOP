@@ -150,4 +150,12 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public boolean hasKey() {
         return this.keys > 0;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void useKey() {
+        if (hasKey()) {
+            this.keys = this.keys - 1;
+        }
+    }
 }

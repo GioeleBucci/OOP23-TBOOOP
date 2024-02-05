@@ -75,4 +75,9 @@ public interface Player extends Damageable, UnmodifiablePlayer {
      * @return true if the player has a key, false otherwise.
      */
     boolean hasKey();
+
+    /**
+     * Uses a key.
+     */
+    void useKey();
 }
