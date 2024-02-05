@@ -144,4 +144,10 @@ public class PlayerImpl extends AbstractEntity implements Player {
         }
         return Optional.empty();
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean hasKey() {
+        return this.keys > 0;
+    }
 }

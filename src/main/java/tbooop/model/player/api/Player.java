@@ -68,4 +68,11 @@ public interface Player extends Damageable, UnmodifiablePlayer {
      * Increases the projectile's speed by 10.
      */
     void increaseProjectileVelocity();
+
+    /**
+     * Checks if the player has a key.
+     * 
+     * @return true if the player has a key, false otherwise.
+     */
+    boolean hasKey();
 }
