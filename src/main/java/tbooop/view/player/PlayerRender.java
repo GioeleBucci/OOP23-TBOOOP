@@ -28,7 +28,6 @@ public class PlayerRender extends ViewComponent {
         addToRoot(playerSprite);
     }
 
-    
     /**
      * Moves the player in the specified direction.
      * 
