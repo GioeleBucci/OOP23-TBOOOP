@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
 import javafx.scene.Group;
@@ -23,6 +24,7 @@ import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.View;
 import tbooop.view.api.ViewComponent;
+import tbooop.view.enemy.EnemyAnimator;
 import tbooop.view.player.HealthView;
 import tbooop.view.player.PlayerRender;
 
@@ -40,6 +42,8 @@ public final class ViewImpl extends Application implements View {
 
     private final Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
     private final Set<ViewComponent> viewComponents = new HashSet<>();
+    private final EnemyAnimator enemyAnimator;
+
     private boolean isMoving;
 
     private final Group root;
@@ -57,6 +61,7 @@ public final class ViewImpl extends Application implements View {
         this.root = new Group();
         this.controller = new ControllerImpl(this);
         this.inputManager = new InputManager(controller, this);
+        this.enemyAnimator = new EnemyAnimator(gameObjMap);
     }
 
     @Override
@@ -102,12 +107,13 @@ public final class ViewImpl extends Application implements View {
          * TODO usare una classe con la logica per far si che la scelta della sprite
          * dipenda dal tipo di GameObject!!
          */
-        //addGameObjectToView("down2.png", gameObject);
+        addGameObjectToView(new ImageView(new Image("down2.png")), gameObject);
     }
 
     /** {@inheritDoc} */
     @Override
     public void update() {
+
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
             if (viewComponent instanceof PlayerRender) {
@@ -168,6 +174,7 @@ public final class ViewImpl extends Application implements View {
      * Updates the position of all the sprites.
      */
     private void updateView() {
+        enemyAnimator.update();
         for (final var entry : gameObjMap.entrySet()) {
             Point2d newPos = worldToScreenPos(entry.getKey().getPosition());
             // subtract half the image size to center the image
@@ -203,17 +210,15 @@ public final class ViewImpl extends Application implements View {
     }
 
     private void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
-        //final Image img = new Image(pathToImg);
-        //final ImageView imgView = new ImageView(img);
+        // final Image img = new Image(pathToImg);
+        // final ImageView imgView = new ImageView(img);
         gameObjMap.put(gobj, imgView);
         imgView.fitWidthProperty()
-                .bind(walkableArea.widthProperty()
-                .multiply(imgView.getImage().getWidth() / walkableArea.widthProperty()
-                .get()));
+            .bind(walkableArea.widthProperty()
+                .multiply(imgView.getImage().getWidth() / walkableArea.widthProperty().get()));
         imgView.fitHeightProperty()
-                .bind(walkableArea.heightProperty()
-                .multiply(imgView.getImage().getHeight() / walkableArea.heightProperty()
-                .get()));
+            .bind(walkableArea.heightProperty()
+                .multiply(imgView.getImage().getHeight() / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
     }
 

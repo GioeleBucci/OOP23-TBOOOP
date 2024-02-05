@@ -8,4 +8,11 @@ import tbooop.model.core.api.movable.Entity;
  * Vice versa, An Enemy can also be attacked and killed by the player.
  */
 public interface Enemy extends Entity {
+
+    /**
+     * Getter for the types of the enemy object.
+     * @return the set of the enemy's types
+     */
+    EnemyType getEnemyType();
+
 }

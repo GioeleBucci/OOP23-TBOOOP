@@ -75,8 +75,8 @@ public final class ControllerImpl implements Controller {
             if (!playerAdded) {
                 this.view.addPlayer(world.getPlayer());
                 //// TEST
-                // final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).melee();
-                // enemy.setPosition(new Point2dImpl(200, 100));
+                // final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).shooter(Point2ds.DOWN);
+                // enemy.setPosition(new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2));
                 // world.getGameObjects().add(enemy);
                 // this.view.addGameObject(enemy);
                 //// END TEST
