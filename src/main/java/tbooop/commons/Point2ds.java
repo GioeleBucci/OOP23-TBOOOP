@@ -11,7 +11,7 @@ public enum Point2ds {
     UP(new Point2dImpl(0, -1)),
     /** expands to {@code new Point2d(0, 1)}. */
     DOWN(new Point2dImpl(0, 1)),
-    /** expands to {@code new Point2d(1, 0)}. */
+    /** expands to {@code new Point2d(-1, 0)}. */
     LEFT(new Point2dImpl(-1, 0)),
     /** expands to {@code new Point2d(1, 0)}. */
     RIGHT(new Point2dImpl(1, 0));
