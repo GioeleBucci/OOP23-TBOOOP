@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
  * This class's purpose is to tell when an enemy's frame should be
  * updated in order to get the proper animation.
  */
-public class EnemyFrameUpdater {
+public class EnemyFrameUpdaterImpl {
 
     private final List<Image> frames;
     private long latestUpdate;
@@ -23,7 +23,7 @@ public class EnemyFrameUpdater {
      * @param updateFrequency the update time frequency between frames
      * @throws NullPointerException if frames is null
      */
-    protected EnemyFrameUpdater(final List<Image> frames, final double updateFrequency) {
+    protected EnemyFrameUpdaterImpl(final List<Image> frames, final double updateFrequency) {
         this.frames = Objects.requireNonNull(frames);
         this.updateFrequency = updateFrequency;
         this.latestUpdate = System.currentTimeMillis();
