@@ -35,6 +35,7 @@ public class PlayerProjectileImpl extends AbstractProjectile implements PlayerPr
     public void onEntityCollision(final Entity entity) {
         if (entity instanceof Enemy) {
             entity.takeDamage(damage);
+            this.destroy();
         }
     }
 
