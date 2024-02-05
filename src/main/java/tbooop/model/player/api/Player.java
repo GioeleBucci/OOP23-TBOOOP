@@ -1,6 +1,6 @@
 package tbooop.model.player.api;
 
-import tbooop.model.core.api.movable.Damageable;
+import tbooop.model.core.api.movable.Entity;
 import tbooop.commons.Point2ds;
 import tbooop.commons.api.Vector2d;
 
@@ -9,7 +9,7 @@ import tbooop.commons.api.Vector2d;
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public interface Player extends Damageable, UnmodifiablePlayer {
+public interface Player extends Entity, UnmodifiablePlayer {
 
     /**
      * Set the current health equals to the max health.
