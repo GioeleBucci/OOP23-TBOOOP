@@ -59,8 +59,6 @@ public class Heart extends PickupAbs {
     /** {@inheritDoc} */
     @Override
     public void updateState(final long deltaTime) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
     }
 
     /** {@inheritDoc} */
