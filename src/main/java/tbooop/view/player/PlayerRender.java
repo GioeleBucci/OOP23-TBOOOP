@@ -13,23 +13,24 @@ import tbooop.view.api.ViewElements;
 public class PlayerRender extends ViewComponent {
 
     private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
-    private ImageView playerSprite = new ImageView();
+    private final ImageView playerSprite;
     private final UnmodifiablePlayer player;
 
-    /** 
-     * @param view the root this attaches to.
+    /**
+     * @param view   the root this attaches to.
      * @param player one Unmodifiable Player to set the animation sprite.
      */
     public PlayerRender(final ViewElements view, final UnmodifiablePlayer player) {
         super(view);
         this.player = player;
-        init();
-    }
 
-    @Override
-    public void init() {
         this.playerSprite = new ImageView("Player/down/down1.png");
         addToRoot(playerSprite);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void init() {
     }
 
     /**
@@ -66,6 +67,7 @@ public class PlayerRender extends ViewComponent {
 
     /**
      * for get the PlayerSprite.
+     * 
      * @return playerSprite
      */
     public ImageView getSprite() {

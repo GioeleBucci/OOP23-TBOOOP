@@ -171,7 +171,7 @@ public final class ControllerImpl implements Controller {
         this.cmdQueue.add(Objects.requireNonNull(cmd));
     }
 
-    private synchronized void waitForNextFrame(final long startTime) {
+    private void waitForNextFrame(final long startTime) {
         final long dt = System.currentTimeMillis() - startTime;
         if (dt < REFRESH_PERIOD) {
             try {

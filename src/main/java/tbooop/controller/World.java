@@ -53,17 +53,23 @@ public final class World implements ControllerComponent {
     public World(final View view) {
         this.view = view;
         this.player.pickupKeys();
-        System.out.println(floor);
+        // System.out.println(floor);
     }
 
-    /** Handles player/door collisions. */
+    /**
+     * Handles player/door collisions.
+     * 
+     * @param door the door that the player collided with
+     */
     public void onDoorCollision(final DoorUnmodifiable door) {
         if (!door.isOpen()) {
             if (!player.hasKey()) {
                 return;
             }
-            player.useKey();
-            ((DoorLockable) door).unlock();
+            if (door instanceof DoorLockable) {
+                player.useKey();
+                ((DoorLockable) door).unlock();
+            }
         }
         synchronized (this) {
             player.setPosition(newPlayerPosition(door));
@@ -170,7 +176,7 @@ public final class World implements ControllerComponent {
      *
      * @param newFloor the new floor to set
      */
-    protected void setFloor(final Floor newFloor) {
+    void setFloor(final Floor newFloor) {
         this.floor = Objects.requireNonNull(newFloor);
     }
 
@@ -189,7 +195,7 @@ public final class World implements ControllerComponent {
      *
      * @param currentRoom the new current room to set
      */
-    protected void setCurrentRoom(final Point2d currentRoom) {
+    void setCurrentRoom(final Point2d currentRoom) {
         // this.currentRoom = currentRoom;
     }
 }

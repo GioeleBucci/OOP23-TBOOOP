@@ -38,6 +38,7 @@ public class HealthView extends ViewComponent {
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
+    /** {@inheritDoc} */
     @Override
     public void init() {
         // TODO Auto-generated method stub
