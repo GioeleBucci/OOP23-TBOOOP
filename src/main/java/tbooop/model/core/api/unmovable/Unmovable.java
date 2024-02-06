@@ -9,11 +9,4 @@ import tbooop.model.core.api.GameObject;
  */
 
 public interface Unmovable extends GameObject {
-
-    /**Returns the name of this
-     * item/pickup.
-     * 
-     * @return an UnmovableName
-     */
-    UnmovableName getObjectName();
 }

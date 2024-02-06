@@ -1,8 +1,6 @@
 package tbooop.controller;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -11,8 +9,8 @@ import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.api.Projectile;
 import tbooop.controller.api.Controller;
-import tbooop.controller.api.Event;
 import tbooop.controller.api.PlayerCommand;
+import tbooop.controller.api.World;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
@@ -32,7 +30,6 @@ import javafx.application.Platform;
  */
 public final class ControllerImpl implements Controller {
 
-    private final List<Event> eventQueue = new ArrayList<>();
     private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
     private static final int COMMAND_QUEUE_SIZE = 40;
     private final BlockingQueue<PlayerCommand> cmdQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
@@ -51,7 +48,7 @@ public final class ControllerImpl implements Controller {
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "View is needed according to MVC.")
     public ControllerImpl(final View view) {
         this.view = Objects.requireNonNull(view);
-        this.world = new World(view);
+        this.world = new WorldImpl(view);
     }
 
     /**
@@ -159,19 +156,13 @@ public final class ControllerImpl implements Controller {
         }
     }
 
-    @Override
-    public void notifyEvent(final Event event) {
-        // logger.info("new event recieved.");
-        eventQueue.add(event);
-    }
-
     /** {@inheritDoc} */
     @Override
     public void notifyCommand(final PlayerCommand cmd) {
         this.cmdQueue.add(Objects.requireNonNull(cmd));
     }
 
-    private synchronized void waitForNextFrame(final long startTime) {
+    private void waitForNextFrame(final long startTime) {
         final long dt = System.currentTimeMillis() - startTime;
         if (dt < REFRESH_PERIOD) {
             try {

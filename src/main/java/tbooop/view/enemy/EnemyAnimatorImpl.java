@@ -9,20 +9,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.enemy.api.Enemy;
+import tbooop.view.api.enemy.EnemyAnimator;
 
 /**
- * An enemy animator stores the logic that allows the view
- * to display a graphical animation of enemies.
+ * Implementation of EnemyAnimator, this class directly access the view's gameObjmap to animate
+ * the enemies contained in it.
+ * @see EnemyAnimator
  */
 @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Due to design decisions"
         + "this class should be able to access to the view's map of gameObjects in order to"
         + "easily update the animation frames of only the enemies that may be present.")
-public class EnemyAnimator {
+public class EnemyAnimatorImpl implements EnemyAnimator {
 
     private static final int MELEE_UPDATE_FREQUENCY = 1000 / 12;
     private static final int SHOOTER_UPDATE_FREQUENCY = 1000 / 8;
     private static final int BOUNCER_UPDATE_FREQUENCY = 1000 / 4;
-
 
     private final EnemyFrameUpdater meleeUpdater = new EnemyFrameUpdater(List.of(
         new Image("enemy/melee/melee1.png"),
@@ -54,13 +55,12 @@ public class EnemyAnimator {
      * @param gameObjMap the map of gameObjects that may contain enemies
      * @throws NullPointerException if gameObjMap is null
      */
-    public EnemyAnimator(final Map<GameObjectUnmodifiable, ImageView> gameObjMap) {
+    public EnemyAnimatorImpl(final Map<GameObjectUnmodifiable, ImageView> gameObjMap) {
         this.gameObjMap = Objects.requireNonNull(gameObjMap);
     }
 
-    /**
-     * This method updates the animation frames of enemies stored in gameObjMap.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void update() {
         final long currentTime = System.currentTimeMillis();
         for (final var en : gameObjMap.entrySet()) {

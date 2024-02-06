@@ -78,12 +78,4 @@ public class RoomRenderer extends ViewComponent {
         }
     }
 
-    private void setDoorImage(final ImageView doorView, final DoorUnmodifiable door) {
-        if (door.isSpecial()) {
-            doorView.setImage(door.isOpen() ? SPECIAL_DOOR_OPEN : SPECIAL_DOOR_CLOSED);
-        } else {
-            doorView.setImage(door.isOpen() ? REGULAR_DOOR_OPEN : REGULAR_DOOR_CLOSED);
-        }
-    }
-
 }

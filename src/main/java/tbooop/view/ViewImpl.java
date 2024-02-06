@@ -27,7 +27,8 @@ import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.view.api.View;
 import tbooop.view.api.ViewComponent;
-import tbooop.view.enemy.EnemyAnimator;
+import tbooop.view.api.enemy.EnemyAnimator;
+import tbooop.view.enemy.EnemyAnimatorImpl;
 import tbooop.view.player.HealthView;
 import tbooop.view.player.PlayerRender;
 
@@ -65,7 +66,7 @@ public final class ViewImpl extends Application implements View {
         this.root = new Group();
         this.controller = new ControllerImpl(this);
         this.inputManager = new InputManager(controller, this);
-        this.enemyAnimator = new EnemyAnimator(gameObjMap);
+        this.enemyAnimator = new EnemyAnimatorImpl(gameObjMap);
         this.roomRenderer = new RoomRenderer(this);
     }
 
@@ -126,7 +127,7 @@ public final class ViewImpl extends Application implements View {
         addGameObjectToView(new ImageView(new Image("down2.png")), gameObject);
     }
 
-    private synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) {
+    synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) {
         final Circle circle = new Circle();
         circle.setRadius(gameObject.getCollider().getRadius() * scene.getWidth() / BASE_ROOM_W);
         circle.setStroke(Color.BLUE);
