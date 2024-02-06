@@ -52,6 +52,8 @@ public final class WorldImpl implements World {
     /** {@inheritDoc} */
     @Override
     public void init() {
+        player.pickupKeys();
+        player.pickupKeys();
         floorManager.init();
     }
 
