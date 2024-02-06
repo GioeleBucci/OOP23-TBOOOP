@@ -1,7 +1,6 @@
 package tbooop.model.dungeon.rooms.impl;
 
 import tbooop.commons.api.Point2d;
-import tbooop.model.core.api.unmovable.UnmovableName;
 import tbooop.model.dungeon.rooms.api.DoorAbstract;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 
@@ -30,12 +29,6 @@ public class RegularDoor extends DoorAbstract {
     @Override
     public void open() {
         this.setOpen(true);
-    }
-
-    @Override
-    public UnmovableName getObjectName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getObjectName'");
     }
 
 }
