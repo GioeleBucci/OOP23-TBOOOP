@@ -1,6 +1,6 @@
 package tbooop.model.pickupables.items.api;
 
-import tbooop.model.core.api.unmovable.Unmovable;
+import tbooop.model.pickupables.Pickupable;
 
 /**
  * Interface for pickupable game items.
@@ -9,7 +9,7 @@ import tbooop.model.core.api.unmovable.Unmovable;
  * collectible items must have in the game.
  */
 
-public interface Item extends Unmovable {
+public interface Item extends Pickupable {
 
     /**
      * Sets the item as "special"

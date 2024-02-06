@@ -1,9 +1,9 @@
 package tbooop.model.pickupables.pickups.api;
 
-import tbooop.model.core.api.unmovable.Unmovable;
+import tbooop.model.pickupables.Pickupable;
 
 /**
  * Interface for pickups in the game.
  */
-public interface Pickup extends Unmovable {
+public interface Pickup extends Pickupable {
 }

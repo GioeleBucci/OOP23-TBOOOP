@@ -2,7 +2,7 @@ package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.core.api.unmovable.UnmovableName;
+import tbooop.model.pickupables.UnmovableName;
 import tbooop.model.pickupables.pickups.api.PickupAbs;
 import tbooop.model.player.api.Player;
 
