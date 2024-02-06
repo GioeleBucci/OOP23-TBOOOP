@@ -6,14 +6,12 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Platform;
 
 import tbooop.commons.HealthImpl;
-import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Projectile;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameObject;
-import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
@@ -49,7 +47,6 @@ public final class WorldImpl implements World {
     public WorldImpl(final View view) {
         this.view = view;
         this.floorManager = new FloorManagerImpl(this, view);
-        // System.out.println(floor);
     }
 
     /** {@inheritDoc} */
@@ -87,42 +84,6 @@ public final class WorldImpl implements World {
     @Override
     public void onDoorCollision(final DoorUnmodifiable door) {
         floorManager.onDoorCollision(door);
-    }
-
-    // private void addGameObject(final GameObject gameObject) {
-    // gameObjects.add(gameObject);
-    // Platform.runLater(() -> {
-    // view.addGameObject(gameObject);
-    // });
-    // }
-
-    /**
-     * Returns the current floor.
-     *
-     * @return the current floor
-     */
-    public Floor getFloor() {
-        return null;
-        // return floor;
-    }
-
-    /**
-     * Returns the current room.
-     *
-     * @return the current room
-     */
-    public Point2d getCurrentRoom() {
-        // return currentRoom;
-        return null;
-    }
-
-    /**
-     * Sets the current room.
-     *
-     * @param currentRoom the new current room to set
-     */
-    void setCurrentRoom(final Point2d currentRoom) {
-        // this.currentRoom = currentRoom;
     }
 
     /** {@inheritDoc} */
