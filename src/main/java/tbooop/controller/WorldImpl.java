@@ -9,7 +9,6 @@ import tbooop.commons.HealthImpl;
 import tbooop.commons.api.Projectile;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
@@ -36,8 +35,8 @@ public final class WorldImpl implements World {
 
     private volatile Set<GameObject> gameObjects = new CopyOnWriteArraySet<>();
     private volatile Set<Projectile> projectiles = new CopyOnWriteArraySet<>();
-    private volatile Player player = new PlayerImpl(new Point2dImpl(RoomBounds.WIDTH / 2,
-            RoomBounds.HEIGHT / 2), new HealthImpl(PLAYER_INITIAL_HEALTH), PLAYER_INITIAL_SPEED);
+    private volatile Player player = new PlayerImpl(RoomBounds.CENTER, new HealthImpl(PLAYER_INITIAL_HEALTH),
+            PLAYER_INITIAL_SPEED);
 
     /**
      * Constructs a new World with the specified view.

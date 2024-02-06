@@ -52,7 +52,7 @@ public abstract class RoomAbstract implements Room {
     @Override
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable set is required"
             + "becouse otherwise the controller wouldn't be able to modify these game objects")
-    public Set<GameObject> getGameObjects() {
+    public final Set<GameObject> getGameObjects() {
         return gameObjects;
     }
 
