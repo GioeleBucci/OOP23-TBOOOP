@@ -12,7 +12,7 @@ import tbooop.view.api.ViewElements;
         + "is required to distribute the work load between the various view components.")
 public class PlayerRender extends ViewComponent {
 
-    private final PlayerRenderSprite playerRenderSprite = new PlayerRenderSprite();
+    private final PlayerAnimator playerRenderSprite = new PlayerAnimator();
     private ImageView playerSprite = new ImageView();
     private final UnmodifiablePlayer player;
 

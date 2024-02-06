@@ -8,21 +8,21 @@ import javafx.scene.image.ImageView;
 /**
  * It's the class for animate the Player.
  */
-public class PlayerRenderSprite {
+public class PlayerAnimator {
 
-    private int counterDown;
-    private int counterLeft;
-    private int counterRight;
-    private int counterUp;
     private final List<Image> downSprite;
     private final List<Image> upSprite;
     private final List<Image> leftSprite;
     private final List<Image> rightSprite;
+    private final PlayerFrameUpdate frameUpdateDown;
+    private final PlayerFrameUpdate frameUpdateUp;
+    private final PlayerFrameUpdate frameUpdateLeft;
+    private final PlayerFrameUpdate frameUpdateRight;
 
     /**
      * It's the class for animate the Player.
      */
-    public PlayerRenderSprite() {
+    public PlayerAnimator() {
         downSprite = List.of(
             new Image("player/down/down1.png"), 
             new Image("player/down/down2.png"), 
@@ -43,6 +43,11 @@ public class PlayerRenderSprite {
             new Image("player/right/right2.png"), 
             new Image("player/right/right3.png"), 
             new Image("player/right/right4.png"));
+
+        frameUpdateDown = new PlayerFrameUpdate(downSprite, 100);
+        frameUpdateUp = new PlayerFrameUpdate(upSprite, 100);
+        frameUpdateLeft = new PlayerFrameUpdate(leftSprite, 100);
+        frameUpdateRight = new PlayerFrameUpdate(rightSprite, 100);
     }
 
     /**
@@ -50,12 +55,8 @@ public class PlayerRenderSprite {
      * @param player 
      */
     public void goDown(final ImageView player) {
-        player.setImage(downSprite.get(counterDown));
-        if (counterDown < 3) {
-            this.counterDown = this.counterDown + 1;
-        } else {
-            this.counterDown = 0;
-        }
+        player.setImage(frameUpdateDown.getNextFrame(System.currentTimeMillis()));
+        frameUpdateDown.resetIfUpdated(System.currentTimeMillis());
     }
 
     /**
@@ -63,12 +64,8 @@ public class PlayerRenderSprite {
      * @param player 
      */
     public void goUp(final ImageView player) {
-        player.setImage(upSprite.get(counterUp));
-        if (counterUp < 3) {
-            this.counterUp = this.counterUp + 1;
-        } else {
-            this.counterUp = 0;
-        }
+        player.setImage(frameUpdateUp.getNextFrame(System.currentTimeMillis()));
+        frameUpdateUp.resetIfUpdated(System.currentTimeMillis());
     }
 
     /**
@@ -76,12 +73,8 @@ public class PlayerRenderSprite {
      * @param player 
      */
     public void goLeft(final ImageView player) {
-        player.setImage(leftSprite.get(counterLeft));
-        if (counterLeft < 3) {
-            this.counterLeft = counterLeft + 1;
-        } else {
-            this.counterLeft = 0;
-        }
+        player.setImage(frameUpdateLeft.getNextFrame(System.currentTimeMillis()));
+        frameUpdateLeft.resetIfUpdated(System.currentTimeMillis());
     }
 
     /**
@@ -89,11 +82,7 @@ public class PlayerRenderSprite {
      * @param player 
      */
     public void goRight(final ImageView player) {
-        player.setImage(rightSprite.get(counterRight));
-        if (counterRight < 3) {
-            this.counterRight = this.counterRight + 1;
-        } else {
-            this.counterRight = 0;
-        }
+        player.setImage(frameUpdateRight.getNextFrame(System.currentTimeMillis()));
+        frameUpdateRight.resetIfUpdated(System.currentTimeMillis());
     }
 }

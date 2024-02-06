@@ -40,7 +40,7 @@ public final class World implements ControllerComponent {
 
     private final View view;
     private final Player player = new PlayerImpl(new Point2dImpl(RoomBounds.WIDTH / 2,
-            RoomBounds.HEIGHT / 2), new HealthImpl(6), .1);
+            RoomBounds.HEIGHT / 2), new HealthImpl(20), .2);
     private Floor floor = new LevelFloor(1);
     // the starting room is the one at position (0,0)
     private Room currentRoom = floor.getStaringRoom();
