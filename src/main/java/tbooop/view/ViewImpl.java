@@ -46,6 +46,7 @@ public final class ViewImpl extends Application implements View {
     private final Set<ViewComponent> viewComponents = new HashSet<>();
     private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
+    private HealthView healthView;
 
     private boolean isMoving;
 
@@ -76,7 +77,7 @@ public final class ViewImpl extends Application implements View {
         stage.setScene(scene);
         stage.setTitle("TBOOOP!");
         stage.show();
-
+        
         setBackgroundImage("tileset/room.png");
 
         // Redirect keyboard events to the input manager
@@ -89,7 +90,6 @@ public final class ViewImpl extends Application implements View {
                     || event.getCode() == Keybinds.RIGHT.getKeyCode()) {
                 this.isMoving = true;
             }
-
             updateView();
         });
 
@@ -101,16 +101,19 @@ public final class ViewImpl extends Application implements View {
         thread.start();
         stageAspectRatio = stage.getWidth() / stage.getHeight();
 
-        new HealthView(this).drawHeart(walkableArea);
         roomRenderer.init();
     }
 
     /** {@inheritDoc} */
     @Override
-    public void addPlayer(final UnmodifiablePlayer player) {
+    public synchronized void addPlayer(final UnmodifiablePlayer player) {
         final PlayerRender playerRender = new PlayerRender(this, player);
+        
         viewComponents.add(playerRender);
         addGameObjectToView(playerRender.getSprite(), player);
+
+        this.healthView = new HealthView(this, player);
+        viewComponents.add(healthView);
     }
 
     /** {@inheritDoc} */
@@ -139,8 +142,7 @@ public final class ViewImpl extends Application implements View {
 
     /** {@inheritDoc} */
     @Override
-    public void update() {
-
+    public synchronized void update() {
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
             if (viewComponent instanceof PlayerRender) {

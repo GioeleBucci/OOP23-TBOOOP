@@ -20,7 +20,7 @@ import java.util.Optional;
 public class PlayerImpl extends AbstractEntity implements Player {
 
     private static final int PROJECTILE_VELOCITY_INCREMENT = 10;
-    private static final long TIME_BETWEEN_SHOTS = 500;
+    private static final long TIME_BETWEEN_SHOTS = 200;
     private int damage;
     private int keys;
     private int coin;
