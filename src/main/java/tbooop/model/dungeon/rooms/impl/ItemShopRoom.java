@@ -2,6 +2,7 @@ package tbooop.model.dungeon.rooms.impl;
 
 import java.util.Map;
 
+import tbooop.model.dungeon.rooms.api.SpecialRoom;
 import tbooop.model.pickupables.items.api.Item;
 import tbooop.model.pickupables.items.impl.ItemShopLogic;
 
