@@ -70,9 +70,8 @@ public class FloorManagerImpl implements FloorManager {
             }
         }
         synchronized (this) {
-            world.getPlayer().setPosition(newPlayerPosition(door));
-            world.clearAll();
             changeRoom((Room) door.getRoom());
+            world.getPlayer().setPosition(newPlayerPosition(door));
         }
     }
 
@@ -100,7 +99,8 @@ public class FloorManagerImpl implements FloorManager {
     }
 
     private synchronized void changeRoom(final Room newRoom) {
-        world.getGameObjects().addAll(newRoom.getDoorMap().values());
+        world.clearAll();
+        world.getGameObjects().addAll(newRoom.getGameObjects());
         currentRoom = newRoom;
         currentRoom.setExplored();
         view.changeRoom(currentRoom);
