@@ -79,4 +79,8 @@ public abstract class GameObjectAbs implements GameObject {
     public void onPlayerCollision(final Player player) {
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void updateState(final long deltaTime) {
+    }
 }

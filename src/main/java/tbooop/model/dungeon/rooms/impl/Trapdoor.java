@@ -17,10 +17,4 @@ public class Trapdoor extends UnmovableAbs {
     public Trapdoor() {
         super(RoomBounds.CENTER, COLLIDER_RADIUS, GameTag.TRAPDOOR);
     }
-
-    /** {@inheritDoc} */
-    @Override
-    public void updateState(final long deltaTime) {
-    }
-
 }

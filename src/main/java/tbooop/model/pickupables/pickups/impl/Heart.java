@@ -58,11 +58,6 @@ public class Heart extends PickupAbs {
 
     /** {@inheritDoc} */
     @Override
-    public void updateState(final long deltaTime) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
     }

@@ -60,11 +60,6 @@ public class IronBar extends ItemAbs {
 
     /** {@inheritDoc} */
     @Override
-    public void updateState(final long deltaTime) {
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void setInShop() {
         this.itemTag = PickupableStatus.SPECIAL;
     }

@@ -44,11 +44,6 @@ public abstract class DoorAbstract extends UnmovableAbs implements Door {
         return this.isOpen;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void updateState(final long deltaTime) {
-    }
-
     /**
      * Sets the door open or closed.
      * 
