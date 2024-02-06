@@ -26,6 +26,7 @@ val javaFXModules = listOf(
     "controls",
     "fxml",
     "swing",
+    "media",
     "graphics"
 )
 

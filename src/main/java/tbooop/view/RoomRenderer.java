@@ -23,6 +23,7 @@ public class RoomRenderer extends ViewComponent {
     private static final Image SPECIAL_DOOR_CLOSED = new Image("tileset/special_door_closed.png");
 
     private final Map<DoorUnmodifiable, ImageView> doorsSpriteMap = new HashMap<>();
+    private final MusicPlayer musicPlayer = new MusicPlayer();
 
     /**
      * Constructs a RoomRenderer object with the specified view.
@@ -49,6 +50,11 @@ public class RoomRenderer extends ViewComponent {
      * @param newRoom the new room to render
      */
     public void changeRoom(final RoomUnmodifiable newRoom) {
+        if (newRoom.isSpecial()) {
+            musicPlayer.playSpecialRoomMusic();
+        } else {
+            musicPlayer.playDefaultMusic();
+        }
         Platform.runLater(() -> {
             // clear doors
             getView().getRoot().getChildren().removeAll(doorsSpriteMap.values());

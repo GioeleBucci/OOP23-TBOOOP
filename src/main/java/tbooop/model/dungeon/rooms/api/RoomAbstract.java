@@ -1,12 +1,10 @@
-package tbooop.model.dungeon.rooms.impl;
+package tbooop.model.dungeon.rooms.api;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import tbooop.commons.Point2ds;
-import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
-import tbooop.model.dungeon.rooms.api.Room;
 
 /**
  * Base for all Rooms implementations
@@ -15,7 +13,7 @@ import tbooop.model.dungeon.rooms.api.Room;
  * 
  * @see {@link tbooop.model.dungeon.floor.BaseFloor Floor}
  */
-public abstract class BaseRoom implements Room {
+public abstract class RoomAbstract implements Room {
 
     private final Map<Point2ds, DoorUnmodifiable> doorMap = new HashMap<>();
     private boolean isExplored;
@@ -42,5 +40,11 @@ public abstract class BaseRoom implements Room {
     @Override
     public void setExplored() {
         this.isExplored = true;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName() + "[doorSet=" + getDoorMap() + ", isExplored=" + isExplored() + "]\n";
     }
 }

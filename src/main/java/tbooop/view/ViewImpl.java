@@ -49,11 +49,13 @@ public final class ViewImpl extends Application implements View {
     private final EnemyAnimator enemyAnimator;
     private HealthView healthView;
 
-    private boolean isMoving;
 
     private final Group root;
     private final Controller controller;
     private final InputManager inputManager;
+    private PlayerRender playerRender;
+    private boolean isMoving;
+
     private volatile Scene scene;
     private volatile Rectangle walkableArea;
     private volatile Stage stage;
@@ -107,9 +109,8 @@ public final class ViewImpl extends Application implements View {
 
     /** {@inheritDoc} */
     @Override
-    public synchronized void addPlayer(final UnmodifiablePlayer player) {
+    public void addPlayer(final UnmodifiablePlayer player) {
         final PlayerRender playerRender = new PlayerRender(this, player);
-        
         viewComponents.add(playerRender);
         addGameObjectToView(playerRender.getSprite(), player);
 
@@ -143,7 +144,8 @@ public final class ViewImpl extends Application implements View {
 
     /** {@inheritDoc} */
     @Override
-    public synchronized void update() {
+    public void update() {
+
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
             if (viewComponent instanceof PlayerRender) {

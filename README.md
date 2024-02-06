@@ -15,12 +15,12 @@
 
 - [x] Generazione del dungeon e delle relative stanze.
 - [ ] Visualizzazione del gioco con grafica minimale.
-- [ ] Playable character in grado di sparare nelle 4 direzioni cardinali
+- [x] Playable character in grado di sparare nelle 4 direzioni cardinali
 - [ ] Condizioni di endgame (morte).
-- [ ] Nemico “melee” in grado di fare danni a contatto
-- [ ] Gestione delle collisioni.
-- [ ] Oggetti, che modificano le statistiche del player.
-- [ ] Spawn casuale di pickup (cuori, chiavi): i cuori guariscono il player e le chiavi aprono le stanze dell’oggetto
+- [x] Nemico “melee” in grado di fare danni a contatto
+- [x] Gestione delle collisioni.
+- [x] Oggetti, che modificano le statistiche del player.
+- [x] Spawn casuale di pickup (cuori, chiavi): i cuori guariscono il player e le chiavi aprono le stanze dell’oggetto
     
     
     
