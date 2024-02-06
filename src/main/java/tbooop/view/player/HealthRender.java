@@ -35,7 +35,6 @@ public class HealthRender{
     private void bindHeart(final ImageView heartView, HBox root) {
         root.getChildren().add(heartView);
 
-            System.out.println("\n\nCUORE CREATOOOOOO\n\n");
             heartView.fitWidthProperty()
             .bind(root.getScene()
             .widthProperty()
