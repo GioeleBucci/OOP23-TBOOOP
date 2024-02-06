@@ -103,4 +103,12 @@ public final class WorldImpl implements World {
         });
         projectiles.clear();
     }
+
+    @Override
+    public synchronized void addGameObject(final GameObject gameObject) {
+        gameObjects.add(gameObject);
+        Platform.runLater(() -> {
+            view.addGameObject(gameObject);
+        });
+    }
 }

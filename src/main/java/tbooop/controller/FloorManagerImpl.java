@@ -9,6 +9,7 @@ import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
 import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
+import tbooop.model.dungeon.rooms.api.Door;
 import tbooop.model.dungeon.rooms.api.DoorLockable;
 import tbooop.model.dungeon.rooms.api.DoorPositions;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
@@ -100,7 +101,13 @@ public class FloorManagerImpl implements FloorManager {
 
     private synchronized void changeRoom(final Room newRoom) {
         world.clearAll();
-        world.getGameObjects().addAll(newRoom.getGameObjects());
+        newRoom.getGameObjects().forEach(gobj -> {
+            if (gobj instanceof Door) {
+                world.getGameObjects().add(gobj);
+            } else {
+                world.addGameObject(gobj);
+            }
+        });
         currentRoom = newRoom;
         currentRoom.setExplored();
         view.changeRoom(currentRoom);
