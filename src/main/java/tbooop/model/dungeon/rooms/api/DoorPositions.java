@@ -11,15 +11,16 @@ import tbooop.commons.api.Point2d;
 public enum DoorPositions {
 
     /** Top door's position. */
-    TOP(new Point2dImpl(RoomBounds.WIDTH / 2, 0)),
+    TOP(new Point2dImpl(RoomBounds.WIDTH / 2, -DoorPositions.OFFSET)),
     /** Bottom door's position. */
     BOTTOM(new Point2dImpl(RoomBounds.WIDTH / 2,
-            RoomBounds.HEIGHT)),
+            RoomBounds.HEIGHT + DoorPositions.OFFSET)),
     /** Left door's position. */
-    LEFT(new Point2dImpl(0, RoomBounds.HEIGHT / 2)),
+    LEFT(new Point2dImpl(-DoorPositions.OFFSET, RoomBounds.HEIGHT / 2)),
     /** Right door's position. */
-    RIGHT(new Point2dImpl(RoomBounds.WIDTH, RoomBounds.HEIGHT / 2));
+    RIGHT(new Point2dImpl(RoomBounds.WIDTH + DoorPositions.OFFSET, RoomBounds.HEIGHT / 2));
 
+    private static final double OFFSET = 20; // offset from the room's bounds
     private final Point2d position;
 
     DoorPositions(final Point2dImpl position) {
