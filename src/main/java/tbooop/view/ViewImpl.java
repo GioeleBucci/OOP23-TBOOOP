@@ -70,7 +70,7 @@ public final class ViewImpl extends Application implements View {
     }
 
     @Override
-    public void start(final Stage stage) {
+    public synchronized void start(final Stage stage) {
         this.stage = stage;
         stage.setResizable(false);
         scene = new Scene(root, BASE_ROOM_W, BASE_ROOM_H);

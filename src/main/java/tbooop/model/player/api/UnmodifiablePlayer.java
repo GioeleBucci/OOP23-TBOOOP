@@ -15,7 +15,15 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      */
     Optional<Point2ds> getPoint2ds();
 
+    /**
+     * Get the max health.
+     * @return int the max health
+     */
     int getMaxHealth();
 
+    /**
+     * Get the current health.
+     * @return int the current health
+     */
     int getHealth();
 }
