@@ -1,6 +1,7 @@
 package tbooop.model.enemy.api;
 
 import tbooop.commons.Point2ds;
+import tbooop.commons.api.Point2d;
 
 /**
  * An enemy factory is an object that handles the creation of enemies.
@@ -28,5 +29,16 @@ public interface EnemyFactory {
      * @throws NullPointerException if the parameter is null
      */
     Enemy shooter(Point2ds initialDirection);
+
+    /**
+     * Creates and returns an enemy that moves in a straight line and bounces on walls 
+     * like a ball, in death it "explodes" by shooting projectiles in all direction.
+     * It also deals damage on physical contact.
+     * 
+     * @param initialDirection the bouncer's initial direction
+     * @return an instance of a bouncer enemy.
+     * @throws NullPointerException if initialDirection is null
+     */
+    Enemy bouncer(Point2d initialDirection);
 
 }

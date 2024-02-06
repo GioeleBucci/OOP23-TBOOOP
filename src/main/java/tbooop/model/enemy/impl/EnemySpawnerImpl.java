@@ -8,6 +8,7 @@ import java.util.Random;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
+import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
@@ -23,10 +24,13 @@ public class EnemySpawnerImpl implements EnemySpawner {
     private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.9;
     private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.1;
     private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.9;
-    private static final int TOT_DIRECTIONS = 4;
+    private static final double MIN_VALUE = -10.0;
+    private static final double MAX_VALUE = 10.0;
+    private static final int CARDINAL_DIRECTIONS = 4;
     private static final int ENEMY_TYPES = 2;
     private static final int SPAWN_MELEE = 0;
     private static final int SPAWN_SHOOTER = 1;
+    private static final int SPAWN_BOWNCER = 2;
 
     private final Random rand = new Random();
     private final EnemyFactory factory;
@@ -46,21 +50,24 @@ public class EnemySpawnerImpl implements EnemySpawner {
         if (amount < 0) {
             throw new IllegalArgumentException();
         }
-        final List<Enemy> ouList = new ArrayList<>();
+        final List<Enemy> enemies = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
             switch (rand.nextInt(0, ENEMY_TYPES)) {
-                case SPAWN_MELEE -> {
-                    ouList.add(factory.melee());
-                    ouList.get(ouList.size() - 1).setPosition(this.randomPosition());
-                }
-                case SPAWN_SHOOTER -> {
-                    ouList.add(factory.shooter(this.randomDirection()));
-                    ouList.get(ouList.size() - 1).setPosition(this.randomPosition());
-                }
+                case SPAWN_MELEE -> enemies.add(factory.melee());
+                case SPAWN_SHOOTER -> enemies.add(factory.shooter(this.randomCardinalDirection()));
+                case SPAWN_BOWNCER -> enemies.add(factory.bouncer(this.randomDirection()));
                 default -> { }
             }
         }
-        return ouList;
+        enemies.forEach(e -> e.setPosition(this.randomPosition()));
+        return enemies;
+    }
+
+    private Point2d randomDirection() {
+        return new Vector2dImpl(
+            rand.nextDouble(MIN_VALUE, MAX_VALUE),
+            rand.nextDouble(MIN_VALUE, MAX_VALUE))
+            .normalize().toP2d();
     }
 
     private Point2d randomPosition() {
@@ -69,8 +76,8 @@ public class EnemySpawnerImpl implements EnemySpawner {
             rand.nextDouble(UPPER_BOUND, LOWER_BOUND));
     }
 
-    private Point2ds randomDirection() {
-        final int pick = rand.nextInt(0, TOT_DIRECTIONS + 1);
+    private Point2ds randomCardinalDirection() {
+        final int pick = rand.nextInt(0, CARDINAL_DIRECTIONS + 1);
         return pick == 0 ? Point2ds.UP
             : pick == 1 ? Point2ds.DOWN
             : pick == 2 ? Point2ds.LEFT
