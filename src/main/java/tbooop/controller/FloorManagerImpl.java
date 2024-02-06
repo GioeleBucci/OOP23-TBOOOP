@@ -1,5 +1,7 @@
 package tbooop.controller;
 
+import java.util.logging.Logger;
+
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
@@ -24,6 +26,7 @@ public class FloorManagerImpl implements FloorManager {
     private int currentFloorLevel = 1;
     private Floor floor = new LevelFloor(currentFloorLevel);
     private Room currentRoom = floor.getStaringRoom();
+    private final Logger logger = Logger.getLogger(FloorManagerImpl.class.getName());
 
     /**
      * Constructs a new FloorManager with the specified world and view.
@@ -38,6 +41,7 @@ public class FloorManagerImpl implements FloorManager {
     public FloorManagerImpl(final World world, final View view) {
         this.world = world;
         this.view = view;
+        logger.info(floor.toString());
     }
 
     /** {@inheritDoc} */

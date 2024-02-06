@@ -33,9 +33,9 @@ public abstract class BaseFloor implements Floor {
     public static final int MAX_DIST_FROM_START = 3;
     private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();
     // dead ends are used for placing special rooms, such as item rooms, shops and
-    // boss rooms
+    // trapdoor rooms
     private List<Point2d> deadEnds;
-    private final Point2d bossRoomPos;
+    private final Point2d trapdoorRoomPos;
     private final Point2d itemRoomPos;
     private static final int SPECIAL_ROOMS_AMOUNT = 2;
     private static final int MINIMUM_ROOMS_AMOUNT = SPECIAL_ROOMS_AMOUNT + 1;
@@ -62,7 +62,7 @@ public abstract class BaseFloor implements Floor {
             generate();
             deadEnds = getDeadEnds();
         } while (generatedRooms != rooms || deadEnds.size() < SPECIAL_ROOMS_AMOUNT);
-        bossRoomPos = pickBossRoom();
+        trapdoorRoomPos = pickTrapdoorRoom();
         itemRoomPos = pickSpecialRoom();
         roomsMap.put(itemRoomPos, new SpecialRoom());
         placeDoors();
@@ -97,14 +97,13 @@ public abstract class BaseFloor implements Floor {
         return picked;
     }
 
-    // The boss room is the furthest dead end from the starting room.
-    private Point2d pickBossRoom() {
+    // The room that takes to the next level is the furthest dead end from the starting room.
+    private Point2d pickTrapdoorRoom() {
         final Iterator<Point2d> iterator = roomsMap.keySet().iterator();
         Point2d lastElement = null;
         while (iterator.hasNext()) {
             lastElement = iterator.next();
         }
-        // remove bossRoom from potential special rooms list
         deadEnds.remove(lastElement);
         return lastElement;
     }
@@ -171,7 +170,7 @@ public abstract class BaseFloor implements Floor {
     /**
      * A graphical representation of the Floor.
      * <p>
-     * <i>S=Start Room ?=Item Room !=Boss Room</i>
+     * <i>S=Start Room ?=Item Room !=Trapdoor Room</i>
      * 
      * @return A representation of the floor's layout
      */
@@ -184,7 +183,7 @@ public abstract class BaseFloor implements Floor {
         final Map<Point2d, List<String>> symbols = new HashMap<>();
         symbols.put(Point2dImpl.ZERO, List.of("S", "Starting Room"));
         symbols.put(itemRoomPos, List.of("?", "Item Room"));
-        symbols.put(bossRoomPos, List.of("!", "Boss Room"));
+        symbols.put(trapdoorRoomPos, List.of("!", "Trapdoor Room"));
 
         for (final Point2d room : roomsMap.keySet()) {
             final int x = (int) room.getX() + MAX_DIST_FROM_START;
