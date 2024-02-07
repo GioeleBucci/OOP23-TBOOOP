@@ -19,7 +19,7 @@ import java.util.Optional;
 */
 public class PlayerImpl extends AbstractEntity implements Player {
 
-    private static final int PLAYER_COLLIDER_RADIUS = 1;
+    private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final int PROJECTILE_VELOCITY_INCREMENT = 10;
     private static final long TIME_BETWEEN_SHOTS = 200;
     private int damage;
