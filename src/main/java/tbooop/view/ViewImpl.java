@@ -80,7 +80,7 @@ public final class ViewImpl extends Application implements View {
         stage.setScene(scene);
         stage.setTitle("TBOOOP!");
         stage.show();
-        
+
         setBackgroundImage("tileset/room.png");
 
         // Redirect keyboard events to the input manager

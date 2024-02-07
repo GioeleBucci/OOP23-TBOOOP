@@ -9,8 +9,10 @@ import tbooop.view.api.ViewElements;
 import java.util.List;
 import java.util.ArrayList;
 
+
 /**
- * Heart component.
+ * Represents a view for displaying the health of a player.
+ * This class is responsible for rendering the health bar and updating it based on the player's health.
  */
 public class HealthView extends ViewComponent {
 
@@ -20,9 +22,14 @@ public class HealthView extends ViewComponent {
     private final UnmodifiablePlayer player;
     private int currentHealth;
     private int maxHealth;
+
+
     /**
-     * To instantiate Health View.
-     * @param view
+     * Represents a view for displaying the health of a player.
+     * This class is responsible for rendering the health bar and updating it based on the player's health.
+     *
+     * @param view The ViewElements object used for rendering the view.
+     * @param player The UnmodifiablePlayer object representing the player.
      */
     public HealthView(final ViewElements view, final UnmodifiablePlayer player) {
         super(view);
@@ -30,7 +37,7 @@ public class HealthView extends ViewComponent {
         view.getRoot().getChildren().add(root);
         healthPoint = new HealthRender(this.player.getMaxHealth(), this.root, this.heartList);
         this.currentHealth = this.player.getHealth();
-        this.maxHealth = this.player.getMaxHealth();  
+        this.maxHealth = this.player.getMaxHealth();
     }
 
     /** {@inheritDoc} */
@@ -45,7 +52,7 @@ public class HealthView extends ViewComponent {
             this.currentHealth = this.player.getHealth();
         }
 
-        if(this.maxHealth != player.getMaxHealth()) {
+        if (this.maxHealth != player.getMaxHealth()) {
             addMaxHealth();
         }
     }
