@@ -142,7 +142,7 @@ public class FloorManagerImpl implements FloorManager {
             }
         });
         currentRoom = newRoom;
-        if (currentRoom instanceof RoomClosable) {
+        if (currentRoom instanceof RoomClosable && roomHasEnemies()) {
             ((RoomClosable) currentRoom).closeDoors();
             isRoomLocked = true;
         }
