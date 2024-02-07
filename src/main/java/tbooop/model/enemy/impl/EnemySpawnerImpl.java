@@ -72,7 +72,7 @@ public class EnemySpawnerImpl implements EnemySpawner {
 
     private Point2d randomPosition() {
         return new Point2dImpl(
-            rand.nextDouble(RIGHT_BOUND, LEFT_BOUND),
+            rand.nextDouble(LEFT_BOUND, RIGHT_BOUND),
             rand.nextDouble(UPPER_BOUND, LOWER_BOUND));
     }
 
