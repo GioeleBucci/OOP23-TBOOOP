@@ -18,7 +18,7 @@ public class HealthRender{
     }
 
     private void init(final int healtPoint, HBox root, List<ImageView> heartList) {
-        for (int i = 0; i < healtPoint; i++) {
+        for (int i = 0; i <= healtPoint; i++) {
             final ImageView heartView = new ImageView("full_hearth.png");
             bindHeart(heartView, root);
             heartList.add(heartView);

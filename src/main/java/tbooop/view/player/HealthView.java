@@ -37,7 +37,7 @@ public class HealthView extends ViewComponent {
     public synchronized void update() {
         if (this.currentHealth != this.player.getHealth()) {
             if (this.currentHealth > this.player.getHealth()) {
-                toggledHealth(player.getHealth());
+                toggledHealth(this.currentHealth);
             } else {
                 addHealth(player.getHealth());
             }
