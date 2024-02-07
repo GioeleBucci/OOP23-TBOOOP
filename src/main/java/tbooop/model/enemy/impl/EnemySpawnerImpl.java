@@ -27,10 +27,11 @@ public class EnemySpawnerImpl implements EnemySpawner {
     private static final double MIN_VALUE = -10.0;
     private static final double MAX_VALUE = 10.0;
     private static final int CARDINAL_DIRECTIONS = 4;
-    private static final int ENEMY_TYPES = 3;
+    private static final int ENEMY_TYPES = 4;
     private static final int SPAWN_MELEE = 0;
     private static final int SPAWN_SHOOTER = 1;
     private static final int SPAWN_BOWNCER = 2;
+    private static final int SPAWN_CRAZY = 3;
 
     private final Random rand = new Random();
     private final EnemyFactory factory;
@@ -56,6 +57,7 @@ public class EnemySpawnerImpl implements EnemySpawner {
                 case SPAWN_MELEE -> enemies.add(factory.melee());
                 case SPAWN_SHOOTER -> enemies.add(factory.shooter(this.randomCardinalDirection()));
                 case SPAWN_BOWNCER -> enemies.add(factory.bouncer(this.randomDirection()));
+                case SPAWN_CRAZY -> enemies.add(factory.crazy());
                 default -> { }
             }
         }
