@@ -40,6 +40,11 @@ public interface View extends ViewElements {
     void changeRoom(RoomUnmodifiable newRoom);
 
     /**
+     * Changes the floor the player is in.
+     */
+    void changeFloor();
+
+    /**
      * Removes a GameObject from the view.
      * 
      * @param gameObject the GameObject to remove

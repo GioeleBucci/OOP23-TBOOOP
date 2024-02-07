@@ -75,6 +75,7 @@ public final class ViewImpl extends Application implements View {
         this.stage = stage;
         stage.setResizable(false);
         scene = new Scene(root, BASE_ROOM_W, BASE_ROOM_H);
+        scene.setFill(Color.BLACK);
         stage.setScene(scene);
         stage.setTitle("TBOOOP!");
         stage.show();
@@ -252,9 +253,10 @@ public final class ViewImpl extends Application implements View {
     protected synchronized void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
         gameObjMap.put(gobj, imgView);
         imgView.fitWidthProperty().bind(walkableArea.widthProperty().multiply(
-            imgView.getImage().getWidth() * (scene.getWidth() / BASE_ROOM_W) / walkableArea.widthProperty().get()));
+                imgView.getImage().getWidth() * (scene.getWidth() / BASE_ROOM_W) / walkableArea.widthProperty().get()));
         imgView.fitHeightProperty().bind(walkableArea.heightProperty().multiply(
-            imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H) / walkableArea.heightProperty().get()));
+                imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H)
+                        / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
         // attachDebugger(gobj);
     }
@@ -273,8 +275,15 @@ public final class ViewImpl extends Application implements View {
         gameObjMap.remove(gameObject);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void changeRoom(final RoomUnmodifiable newRoom) {
         roomRenderer.changeRoom(newRoom);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void changeFloor() {
+        roomRenderer.changeFloor();
     }
 }
