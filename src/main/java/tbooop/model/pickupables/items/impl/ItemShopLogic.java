@@ -22,6 +22,7 @@ public class ItemShopLogic {
     private final Item belt = new Zap(getItemPosition(2), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
     private final Item fireMind = new SpicySauce(getItemPosition(3), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
     private final Item ironBar = new LockedRing(getItemPosition(4), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item goldenApple = new GoldenApple(getItemPosition(5), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
 
     /**
      * Returns a map from an item to its
@@ -41,6 +42,8 @@ public class ItemShopLogic {
         itemsMap.put(fireMind, fireMind.getPrice());
         ironBar.setInShop();
         itemsMap.put(ironBar, ironBar.getPrice());
+        goldenApple.setInShop();
+        itemsMap.put(goldenApple, goldenApple.getPrice());
 
         return itemsMap;
     }
