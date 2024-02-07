@@ -10,10 +10,27 @@ import javafx.scene.image.ImageView;
  */
 public class PlayerAnimator {
 
-    private final List<Image> downSprite;
-    private final List<Image> upSprite;
-    private final List<Image> leftSprite;
-    private final List<Image> rightSprite;
+    private final List<Image> downSprite =  List.of(
+        new Image("player/down/down1.png"), 
+        new Image("player/down/down2.png"), 
+        new Image("player/down/down3.png"), 
+        new Image("player/down/down4.png"));
+    private final List<Image> upSprite = List.of(
+            new Image("player/up/up1.png"), 
+            new Image("player/up/up2.png"), 
+            new Image("player/up/up3.png"), 
+            new Image("player/up/up4.png"));
+    private final List<Image> leftSprite = List.of(
+            new Image("player/left/left1.png"), 
+            new Image("player/left/left2.png"), 
+            new Image("player/left/left3.png"), 
+            new Image("player/left/left4.png"));
+    private final List<Image> rightSprite = List.of(
+            new Image("player/right/right1.png"), 
+            new Image("player/right/right2.png"), 
+            new Image("player/right/right3.png"), 
+            new Image("player/right/right4.png"));
+
     private final PlayerFrameUpdate frameUpdateDown;
     private final PlayerFrameUpdate frameUpdateUp;
     private final PlayerFrameUpdate frameUpdateLeft;
@@ -23,27 +40,6 @@ public class PlayerAnimator {
      * It's the class for animate the Player.
      */
     public PlayerAnimator() {
-        downSprite = List.of(
-            new Image("player/down/down1.png"), 
-            new Image("player/down/down2.png"), 
-            new Image("player/down/down3.png"), 
-            new Image("player/down/down4.png"));
-        upSprite = List.of(
-            new Image("player/up/up1.png"), 
-            new Image("player/up/up2.png"), 
-            new Image("player/up/up3.png"), 
-            new Image("player/up/up4.png"));
-        leftSprite = List.of(
-            new Image("player/left/left1.png"), 
-            new Image("player/left/left2.png"), 
-            new Image("player/left/left3.png"), 
-            new Image("player/left/left4.png"));
-        rightSprite = List.of(
-            new Image("player/right/right1.png"), 
-            new Image("player/right/right2.png"), 
-            new Image("player/right/right3.png"), 
-            new Image("player/right/right4.png"));
-
         frameUpdateDown = new PlayerFrameUpdate(downSprite, 100);
         frameUpdateUp = new PlayerFrameUpdate(upSprite, 100);
         frameUpdateLeft = new PlayerFrameUpdate(leftSprite, 100);

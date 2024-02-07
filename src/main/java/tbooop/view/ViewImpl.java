@@ -50,7 +50,6 @@ public final class ViewImpl extends Application implements View {
     private final Set<ViewComponent> viewComponents = new HashSet<>();
     private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
-    private HealthView healthView;
 
 
     private final Group root;
@@ -117,7 +116,7 @@ public final class ViewImpl extends Application implements View {
         viewComponents.add(playerRender);
         addGameObjectToView(playerRender.getSprite(), player);
 
-        this.healthView = new HealthView(this, player);
+        final HealthView healthView = new HealthView(this, player);
         viewComponents.add(healthView);
     }
 
@@ -193,7 +192,7 @@ public final class ViewImpl extends Application implements View {
 
     /** {@inheritDoc} */
     @Override
-    public double getStageAspectRatio() {
+    public synchronized double getStageAspectRatio() {
         return this.stageAspectRatio;
     }
 
