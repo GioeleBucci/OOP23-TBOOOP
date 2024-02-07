@@ -9,5 +9,7 @@ public enum EnemyType {
     /** an enemy that shoots projectiles. */
     SHOOTER,
     /** an enemy that bounces on walls. */
-    BOUNCER;
+    BOUNCER,
+    /** an enemy that uses all the attack systems available. */
+    CRAZY;
 }
