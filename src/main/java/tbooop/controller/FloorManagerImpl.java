@@ -8,7 +8,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.dungeon.floor.LevelFloor;
+import tbooop.model.dungeon.floor.TestFloor;
 import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.model.dungeon.rooms.api.Door;
 import tbooop.model.dungeon.rooms.api.DoorLockable;
@@ -27,7 +27,6 @@ public class FloorManagerImpl implements FloorManager {
 
     private final World world;
     private final View view;
-    private int currentFloorLevel = 1;
     private Floor floor;
     private Room currentRoom;
     private final EnemyFactoryImpl enemyFactory;
@@ -53,7 +52,7 @@ public class FloorManagerImpl implements FloorManager {
         this.world = world;
         this.view = view;
         this.enemyFactory = new EnemyFactoryImpl(world.getPlayer());
-        this.floor = new LevelFloor(currentFloorLevel, enemyFactory);
+        this.floor = new TestFloor(enemyFactory);
         this.currentRoom = floor.getStaringRoom();
         logger.info(floor.toString());
     }
@@ -97,7 +96,7 @@ public class FloorManagerImpl implements FloorManager {
     /** {@inheritDoc} */
     @Override
     public void changeFloor() {
-        this.floor = new LevelFloor(++currentFloorLevel, enemyFactory);
+        this.floor = new TestFloor(enemyFactory);
         logger.info("New floor: " + floor.toString());
         view.changeFloor();
         changeRoom(floor.getStaringRoom());
