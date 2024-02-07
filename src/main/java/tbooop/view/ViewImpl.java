@@ -292,7 +292,7 @@ public final class ViewImpl extends Application implements View {
 
     /** {@inheritDoc} */
     @Override
-    public void changeRoom(final RoomUnmodifiable newRoom) {
+    public void refreshRoom(final RoomUnmodifiable newRoom) {
         roomRenderer.changeRoom(newRoom);
     }
 
