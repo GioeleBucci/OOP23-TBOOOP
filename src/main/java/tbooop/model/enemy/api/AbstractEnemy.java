@@ -22,14 +22,16 @@ public abstract class AbstractEnemy extends AbstractEntity implements Enemy {
      * @param health the enemy's health
      * @param velocity determines how fast the enemy moves
      * @param enemyType the enemy's types
+     * @param colliderRadius the enemy's collider radius
      * @throws NullPointerException if enemyTypes is null
      */
     protected AbstractEnemy(
         final Point2d position,
         final Health health,
         final double velocity,
-        final EnemyType enemyType) {
-        super(position, health, velocity, GameTag.ENEMY);
+        final EnemyType enemyType,
+        final double colliderRadius) {
+        super(position, health, velocity, GameTag.ENEMY, colliderRadius);
         this.enemyType = Objects.requireNonNull(enemyType);
     }
 
