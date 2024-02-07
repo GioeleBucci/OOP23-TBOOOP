@@ -80,4 +80,11 @@ public abstract class RoomAbstract implements Room {
     public String toString() {
         return this.getClass().getSimpleName() + "[doorSet=" + getDoorMap() + ", isExplored=" + isExplored() + "]\n";
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean isFirstRoom() {
+        return false;
+    }
+
 }
