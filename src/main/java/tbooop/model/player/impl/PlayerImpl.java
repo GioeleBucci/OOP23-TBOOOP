@@ -19,6 +19,7 @@ import java.util.Optional;
 */
 public class PlayerImpl extends AbstractEntity implements Player {
 
+    private static final int PLAYER_COLLIDER_RADIUS = 1;
     private static final int PROJECTILE_VELOCITY_INCREMENT = 10;
     private static final long TIME_BETWEEN_SHOTS = 200;
     private int damage;
@@ -33,14 +34,14 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     /**
      * Create a new istance of a Entity.
-     * 
+     *
      * @param position      starting position
      * @param health        the entity's health
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position, final Health health, final double velocity) {
-        super(position, health, velocity, GameTag.PLAYER);
+        super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
         this.damage = 1;
         this.coin = 10;
         this.projectileVelocity = velocity * 2;
@@ -52,7 +53,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
         this.deltaTime = deltaTime;
         removeProjectiles();
         this.timeSinceLastShoot += this.deltaTime;
-        
+
         if (this.canShoot) {
             this.canShoot = false;
             if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
