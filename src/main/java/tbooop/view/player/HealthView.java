@@ -19,17 +19,18 @@ public class HealthView extends ViewComponent {
     private final HealthRender healthPoint;
     private final UnmodifiablePlayer player;
     private int currentHealth;
-
+    private int maxHealth;
     /**
      * To instantiate Health View.
      * @param view
      */
-    public HealthView(final ViewElements view, UnmodifiablePlayer player) {
+    public HealthView(final ViewElements view, final UnmodifiablePlayer player) {
         super(view);
         this.player = player; 
         view.getRoot().getChildren().add(root);
         healthPoint = new HealthRender(this.player.getMaxHealth(), this.root, this.heartList);
-        this.currentHealth = this.player.getHealth();   
+        this.currentHealth = this.player.getHealth();
+        this.maxHealth = this.player.getMaxHealth();  
     }
 
     /** {@inheritDoc} */
@@ -42,6 +43,10 @@ public class HealthView extends ViewComponent {
                 addHealth(player.getHealth());
             }
             this.currentHealth = this.player.getHealth();
+        }
+
+        if(this.maxHealth != player.getMaxHealth()) {
+            addMaxHealth();
         }
     }
 
@@ -72,7 +77,7 @@ public class HealthView extends ViewComponent {
      * Add a new Heart.
      */
     public synchronized void addMaxHealth() {
-        final ImageView heartView = new ImageView("full_hearth.png");
+        final ImageView heartView = new ImageView("empty_hearth.png");
         healthPoint.addMaxHealth(heartView, this.root);
         heartList.add(heartView);
     }
