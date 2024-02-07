@@ -50,7 +50,6 @@ public class PlayerAnimator {
         frameUpdateRight = new PlayerFrameUpdate(rightSprite, 100);
     }
 
-    
     /**
      * Moves the player character down and updates the player's image frame.
      * 
