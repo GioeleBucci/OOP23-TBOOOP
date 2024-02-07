@@ -17,6 +17,7 @@ import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.dungeon.rooms.api.RoomClosable;
 import tbooop.model.enemy.impl.EnemyFactoryImpl;
+import tbooop.model.pickupables.pickups.impl.PickupLogic;
 import tbooop.view.api.View;
 
 /**
@@ -27,10 +28,11 @@ public class FloorManagerImpl implements FloorManager {
 
     private final World world;
     private final View view;
-    private int currentFloorLevel = 1;
     private Floor floor;
+    private int currentFloorLevel = 1;
     private Room currentRoom;
     private final EnemyFactoryImpl enemyFactory;
+    private final PickupLogic pickupSpawner = new PickupLogic();
     private final Logger logger = Logger.getLogger(FloorManagerImpl.class.getName());
 
     /**
@@ -70,9 +72,14 @@ public class FloorManagerImpl implements FloorManager {
     public synchronized void update() {
         if (isRoomLocked && currentRoom instanceof RoomClosable && !roomHasEnemies()) {
             ((RoomClosable) currentRoom).openDoors();
+            onRoomClear();
             view.refreshRoom(currentRoom); // refresh the view
             isRoomLocked = false;
         }
+    }
+
+    private void onRoomClear() {
+        world.addGameObject(pickupSpawner.getRandomPickup());
     }
 
     /** {@inheritDoc} */
@@ -135,7 +142,7 @@ public class FloorManagerImpl implements FloorManager {
             }
         });
         currentRoom = newRoom;
-        if (currentRoom instanceof RoomClosable) {
+        if (currentRoom instanceof RoomClosable && roomHasEnemies()) {
             ((RoomClosable) currentRoom).closeDoors();
             isRoomLocked = true;
         }

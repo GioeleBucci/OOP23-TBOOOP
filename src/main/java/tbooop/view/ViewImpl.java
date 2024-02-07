@@ -53,11 +53,11 @@ public final class ViewImpl extends Application implements View {
     private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
 
+
     private final Group root;
     private final Controller controller;
     private final InputManager inputManager;
     private final ItemRender itemRender = new ItemRender();
-    private PlayerRender playerRender;
     private boolean isMoving;
 
     private volatile Scene scene;
@@ -77,7 +77,7 @@ public final class ViewImpl extends Application implements View {
     }
 
     @Override
-    public void start(final Stage stage) {
+    public synchronized void start(final Stage stage) {
         this.stage = stage;
         stage.setResizable(false);
         scene = new Scene(root, BASE_ROOM_W * 2.0, BASE_ROOM_H * 2.0);
@@ -98,7 +98,6 @@ public final class ViewImpl extends Application implements View {
                     || event.getCode() == Keybinds.RIGHT.getKeyCode()) {
                 this.isMoving = true;
             }
-
             updateView();
         });
 
@@ -110,16 +109,18 @@ public final class ViewImpl extends Application implements View {
         thread.start();
         stageAspectRatio = stage.getWidth() / stage.getHeight();
 
-        new HealthView(this).drawHeart(walkableArea);
         roomRenderer.init();
     }
 
     /** {@inheritDoc} */
     @Override
     public void addPlayer(final UnmodifiablePlayer player) {
-        this.playerRender = new PlayerRender(this, player);
+        final PlayerRender playerRender = new PlayerRender(this, player);
         viewComponents.add(playerRender);
         addGameObjectToView(playerRender.getSprite(), player);
+
+        final HealthView healthView = new HealthView(this, player);
+        viewComponents.add(healthView);
     }
 
     /** {@inheritDoc} */
@@ -165,7 +166,7 @@ public final class ViewImpl extends Application implements View {
     /** {@inheritDoc} */
     @Override
     public void update() {
-        playerRender.getSprite().toFront();
+
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
             if (viewComponent instanceof PlayerRender) {
@@ -199,7 +200,7 @@ public final class ViewImpl extends Application implements View {
 
     /** {@inheritDoc} */
     @Override
-    public double getStageAspectRatio() {
+    public synchronized double getStageAspectRatio() {
         return this.stageAspectRatio;
     }
 
@@ -281,7 +282,7 @@ public final class ViewImpl extends Application implements View {
             imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H * MULTIPLIER_SCALE)
             / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
-        attachDebugger(gobj);
+        // attachDebugger(gobj);
     }
 
     private void setBackgroundImage(final String imageUrl) {

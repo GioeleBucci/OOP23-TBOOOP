@@ -14,4 +14,16 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      * @return Optional<Point2ds> one of four diection or Optional.empty()
      */
     Optional<Point2ds> getPoint2ds();
+
+    /**
+     * Get the max health.
+     * @return int the max health
+     */
+    int getMaxHealth();
+
+    /**
+     * Get the current health.
+     * @return int the current health
+     */
+    int getHealth();
 }

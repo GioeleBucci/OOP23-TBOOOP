@@ -1,4 +1,4 @@
-package tbooop.view.enemy;
+package tbooop.view.player;
 
 import java.util.List;
 import java.util.Objects;
@@ -6,10 +6,10 @@ import java.util.Objects;
 import javafx.scene.image.Image;
 
 /**
- * This class's purpose is to tell when an enemy's frame should be
+ * This class's purpose is to tell when player frame should be
  * updated in order to get the proper animation.
  */
-public class EnemyFrameUpdater {
+public class PlayerFrameUpdate {
 
     private final List<Image> frames;
     private long latestUpdate;
@@ -18,12 +18,12 @@ public class EnemyFrameUpdater {
     private final double updateFrequency;
 
     /**
-     * Creates an istance of an EnemyFrameUpdater.
-     * @param frames the enemy animation's frames
+     * Creates an istance of an PlayerFrameUpdater.
+     * @param frames the player animation's frames
      * @param updateFrequency the update time frequency between frames
      * @throws NullPointerException if frames is null
      */
-    protected EnemyFrameUpdater(final List<Image> frames, final double updateFrequency) {
+    protected PlayerFrameUpdate(final List<Image> frames, final double updateFrequency) {
         this.frames = Objects.requireNonNull(frames);
         this.updateFrequency = updateFrequency;
         this.latestUpdate = System.currentTimeMillis();
@@ -36,7 +36,7 @@ public class EnemyFrameUpdater {
      * @return the next frame
      */
     protected Image getNextFrame(final long currentTime) {
-        if (currentTime - this.latestUpdate > this.updateFrequency && !updated) {
+        if (currentTime - this.latestUpdate > this.updateFrequency) {
             frameCount++;
             this.updated = true;
         }

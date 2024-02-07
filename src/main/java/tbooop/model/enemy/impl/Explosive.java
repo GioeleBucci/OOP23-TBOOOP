@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class Explosive extends EnemyDecorator {
 
-    private static final double PROJECTILE_VELOCITY = 0.1;
+    private static final double PROJECTILE_VELOCITY = 0.02;
     private boolean exploded;
 
     /**
@@ -37,8 +37,10 @@ public class Explosive extends EnemyDecorator {
         this.exploded = true;
         for (int y = -1; y <= 1; y++) {
             for (int x = -1; x <= 1; x++) {
-                super.addProjectile(new EnemyProjectile(
+                if (x != 0 || y != 0) {
+                    super.addProjectile(new EnemyProjectile(
                     new Vector2dImpl(x, y), super.getPosition(), PROJECTILE_VELOCITY));
+                }
             }
         }
     }

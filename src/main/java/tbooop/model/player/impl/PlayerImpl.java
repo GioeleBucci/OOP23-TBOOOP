@@ -19,9 +19,9 @@ import java.util.Optional;
 */
 public class PlayerImpl extends AbstractEntity implements Player {
 
+    private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final int PROJECTILE_VELOCITY_INCREMENT = 10;
-    private static final long TIME_BETWEEN_SHOTS = 500;
-    private static final long COLLIDER_RADIUS = 15;
+    private static final long TIME_BETWEEN_SHOTS = 200;
     private int damage;
     private int keys;
     private int coin;
@@ -29,16 +29,19 @@ public class PlayerImpl extends AbstractEntity implements Player {
     private long deltaTime;
     private long timeSinceLastShoot;
 
+    private boolean canShoot;
+    private Vector2d projDir;
+
     /**
      * Create a new istance of a Entity.
-     * 
+     *
      * @param position      starting position
      * @param health        the entity's health
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position, final Health health, final double velocity) {
-        super(position, health, velocity, GameTag.PLAYER, COLLIDER_RADIUS);
+        super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
         this.damage = 1;
         this.coin = 10;
         this.projectileVelocity = velocity * 2;
@@ -48,6 +51,22 @@ public class PlayerImpl extends AbstractEntity implements Player {
     @Override
     public void updateState(final long deltaTime) {
         this.deltaTime = deltaTime;
+        removeProjectiles();
+        this.timeSinceLastShoot += this.deltaTime;
+
+        if (this.canShoot) {
+            this.canShoot = false;
+            if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
+                shootProjectile();
+            }
+        }
+    }
+
+    private void shootProjectile() {
+        this.timeSinceLastShoot = 0;
+        final PlayerProjectile shooted = new PlayerProjectileImpl(this.projDir, getPosition(), this.projectileVelocity);
+        shooted.setDamage(damage);
+        addProjectile(shooted);
     }
 
     /** {@inheritDoc} */
@@ -109,14 +128,8 @@ public class PlayerImpl extends AbstractEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void shoot(final Vector2d direction) {
-        removeProjectiles();
-        this.timeSinceLastShoot += this.deltaTime;
-        if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
-            this.timeSinceLastShoot = 0;
-            final PlayerProjectile shooted = new PlayerProjectileImpl(direction, getPosition(), this.projectileVelocity);
-            shooted.setDamage(damage);
-            addProjectile(shooted);
-        }
+        this.canShoot = true;
+        this.projDir = direction;
     }
 
     /** {@inheritDoc} */

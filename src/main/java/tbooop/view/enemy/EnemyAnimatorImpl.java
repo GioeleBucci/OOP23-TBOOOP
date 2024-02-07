@@ -21,9 +21,11 @@ import tbooop.view.api.enemy.EnemyAnimator;
         + "easily update the animation frames of only the enemies that may be present.")
 public class EnemyAnimatorImpl implements EnemyAnimator {
 
-    private static final int MELEE_UPDATE_FREQUENCY = 1000 / 12;
+    private static final int MELEE_UPDATE_FREQUENCY = 1000 / 14;
     private static final int SHOOTER_UPDATE_FREQUENCY = 1000 / 8;
     private static final int BOUNCER_UPDATE_FREQUENCY = 1000 / 4;
+    private static final int CRAZY_UPDATE_FREQUENCY = 1000 / 5;
+    private final Map<GameObjectUnmodifiable, ImageView> gameObjMap;
 
     private final EnemyFrameUpdater meleeUpdater = new EnemyFrameUpdater(List.of(
         new Image("enemy/melee/melee1.png"),
@@ -37,18 +39,24 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
         new Image("enemy/melee/melee9.png"),
         new Image("enemy/melee/melee10.png"),
         new Image("enemy/melee/melee11.png")), MELEE_UPDATE_FREQUENCY);
+
     private final EnemyFrameUpdater shooterUpdater = new EnemyFrameUpdater(List.of(
         new Image("enemy/shooter/shooter1.png"),
         new Image("enemy/shooter/shooter2.png"),
         new Image("enemy/shooter/shooter3.png"),
         new Image("enemy/shooter/shooter4.png"),
         new Image("enemy/shooter/shooter5.png")), SHOOTER_UPDATE_FREQUENCY);
+
     private final EnemyFrameUpdater bouncerUpdater = new EnemyFrameUpdater(List.of(
         new Image("enemy/bouncer/bouncer1.png"),
         new Image("enemy/bouncer/bouncer2.png"),
         new Image("enemy/bouncer/bouncer3.png")), BOUNCER_UPDATE_FREQUENCY);
 
-    private final Map<GameObjectUnmodifiable, ImageView> gameObjMap;
+    private final EnemyFrameUpdater crazyUpdater = new EnemyFrameUpdater(List.of(
+        new Image("enemy/crazy/crazy1.png"),
+        new Image("enemy/crazy/crazy2.png"),
+        new Image("enemy/crazy/crazy3.png"),
+        new Image("enemy/crazy/crazy4.png")), CRAZY_UPDATE_FREQUENCY);
 
     /**
      * creates an instance of an EnemyAnimator.
@@ -75,6 +83,9 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
                     case BOUNCER -> {
                         en.getValue().setImage(bouncerUpdater.getNextFrame(currentTime));
                     }
+                    case CRAZY -> {
+                        en.getValue().setImage(crazyUpdater.getNextFrame(currentTime));
+                    }
                     default -> { }
                 }
             }
@@ -82,6 +93,7 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
         meleeUpdater.resetIfUpdated(currentTime);
         shooterUpdater.resetIfUpdated(currentTime);
         bouncerUpdater.resetIfUpdated(currentTime);
+        crazyUpdater.resetIfUpdated(currentTime);
     }
 
 }

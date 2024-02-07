@@ -1,87 +1,61 @@
 package tbooop.view.player;
 
-import java.util.List;
-import java.util.ArrayList;
-import javafx.scene.Group;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.layout.HBox;
+import java.util.List;
 
-/** Renders a Hearth. */
+/**
+ * Represents a view for displaying the health of a player.
+ * This class is responsible for rendering the health bar and updating it based on the player's health.
+ */
 public class HealthRender {
 
-    private static final double HEART_SIZE = 2.2;
-    private int scale;
-    private static final int SCALE_PERCENTAGE = 15;
-    private final Group root = new Group();
-    private final List<ImageView> heartList = new ArrayList<>();
+    private static final double HEART_SIZE = 1.5;
 
-    /** 
-     * @param initialHealth the initial Player health.
-     * @param walkableArea it's the game field.
+    /**
+     * Represents a view for displaying the health of a player.
+     * This class is responsible for rendering the health bar and updating it based on the player's health.
+     *
+     * @param initialHealth The initial health of the player.
+     * @param root The HBox object representing the root of the health bar.
+     * @param heartList The List of ImageView objects representing the hearts of the health bar.
      */
-    public HealthRender(final int initialHealth, final Rectangle walkableArea) {
-        init(initialHealth, walkableArea);
+    public HealthRender(final int initialHealth, final HBox root, final List<ImageView> heartList) {
+        init(initialHealth, root, heartList);
     }
 
-    private void init(final int healtPoint, final Rectangle walkableArea) {
-        for (int i = 0; i < healtPoint; i++) {
+    private void init(final int healtPoint, final HBox root, final List<ImageView> heartList) {
+        for (int i = 0; i <= healtPoint; i++) {
             final ImageView heartView = new ImageView("full_hearth.png");
-            root.getChildren().add(heartView);
-
-            heartView.fitWidthProperty()
-            .bind(walkableArea
-            .widthProperty()
-            .multiply(heartView.getImage().getWidth() / walkableArea.widthProperty().get()));
-
-            heartView.fitHeightProperty()
-            .bind(walkableArea
-            .heightProperty()
-            .multiply(heartView.getImage().getHeight() / walkableArea.heightProperty().get()));
-
-            this.scale = this.scale + 1;
-            //heartView.xProperty().bind(heartView.getScene().xProperty());
-            heartView.setLayoutX(this.scale * SCALE_PERCENTAGE);
-
+            bindHeart(heartView, root);
             heartList.add(heartView);
         }
     }
 
     /**
-     * Change the empty heart with the full one.
-     * @param currentHealth the heart to change
+     * Adds the maximum health to the player's view.
+     * 
+     * @param heartView The ImageView representing the heart.
+     * @param root The HBox container for the heartView.
      */
-    public void toggledHealth(final int currentHealth) {
-        this.heartList.get(currentHealth).setImage(new Image("empty_hearth.png"));
+    public void addMaxHealth(final ImageView heartView, final HBox root) {
+        bindHeart(heartView, root);
     }
 
-    /**
-     * Change the full heart with the empty one.
-     * @param currentHealth the heart to change
-     */
-    public void addHealth(final int currentHealth) {
-        this.heartList.get(currentHealth - 1).setImage(new Image("full_hearth.png")); 
-    }
-
-    /**
-     * Add a new Heart.
-     */
-    public void addMaxHealth() {
-        final ImageView heartView = new ImageView("full_hearth.png");
+    private void bindHeart(final ImageView heartView, final HBox root) {
         root.getChildren().add(heartView);
-        heartView.setScaleX(HEART_SIZE);
-        heartView.setScaleY(HEART_SIZE);
-        this.scale = this.scale + 1;
-        heartView.setLayoutX(scale * SCALE_PERCENTAGE);
-        heartList.add(heartView);
-    }
 
-    /**
-     * return an ImageView.
-     * @param index
-     * @return ImageView
-     */
-    public ImageView toNode(final int index) {
-        return heartList.get(index);
+            heartView.fitWidthProperty()
+            .bind(root.getScene()
+            .widthProperty()
+            .multiply(heartView.getImage().getWidth() / root.getScene().widthProperty().get()));
+
+            heartView.fitHeightProperty()
+            .bind(root.getScene()
+            .heightProperty()
+            .multiply(heartView.getImage().getHeight() / root.getScene().heightProperty().get()));
+
+            heartView.setScaleX(HEART_SIZE);
+            heartView.setScaleY(HEART_SIZE);
     }
 }
