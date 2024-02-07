@@ -21,7 +21,10 @@ public class ItemRender {
             case SPICY_SAUCE: return new Image("pickupables/items/spicySauce.png");
             case ZAP: return new Image("pickupables/items/zap.png");
             case GOLDEN_APPLE: return new Image("pickupables/items/forbiddenFruit.png");
-            case BILL: return new Image("pickupables/items/foreignBill.png");
+            case BILL: return new Image("pickupables/pickups/foreignBill.png");
+            case COIN: return new Image("pickupables/pickups/coin.png");
+            case KEY: return new Image("pickupables/pickups/key.png");
+            case HEART: return new Image("pickupables/pickups/pickup_heart.png");
             default: return new Image("down2.png");
         }
     }
