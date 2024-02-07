@@ -30,4 +30,12 @@ public interface RoomUnmodifiable {
      */
     boolean isSpecial();
 
+    /**
+     * Whether this room is the first room or not.
+     * Special criteria may apply to the first room.
+     * 
+     * @return whether the room is the first room of the floor
+     */
+    boolean isFirstRoom();
+
 }

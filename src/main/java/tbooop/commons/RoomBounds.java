@@ -19,6 +19,14 @@ public final class RoomBounds {
     public static final double WIDTH = 364;
 
     /**
+     * The center of the room.
+     * Expands to: 
+     * <br></br>
+     * {@code new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2)}
+     */
+    public static final Point2d CENTER = new Point2dImpl(WIDTH / 2, HEIGHT / 2);
+
+    /**
      * Whether the position passed is out of room bounds.
      * 
      * @param position the position to check

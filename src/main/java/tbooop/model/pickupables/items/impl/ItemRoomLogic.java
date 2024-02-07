@@ -2,6 +2,7 @@ package tbooop.model.pickupables.items.impl;
 
 import java.util.List;
 import tbooop.commons.Point2dImpl;
+import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.items.api.Item;
@@ -13,7 +14,7 @@ import tbooop.model.pickupables.items.api.Item;
  * to spawn there.
  */
 public class ItemRoomLogic {
-    private final Point2d location = new Point2dImpl(1.0, 1.0);
+    private final Point2d location = new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2);
     private static final double ITEM_COLLIDER_RADIUS = 1.0;
     private static final double GOLDENHEART_PROB = 0.1;
     private static final double BELT_PROB = 0.2;

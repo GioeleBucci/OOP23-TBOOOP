@@ -53,13 +53,6 @@ public class Coin extends PickupAbs {
 
     /** {@inheritDoc} */
     @Override
-    public void updateState(final long deltaTime) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
     }

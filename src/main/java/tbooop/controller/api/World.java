@@ -33,6 +33,13 @@ public interface World extends ControllerComponent {
      */
     Player getPlayer();
 
+    /**
+     * Adds a game object to the world (and the view).
+     * 
+     * @param gameObject the game object to add
+     */
+    void addGameObject(GameObject gameObject);
+
     /** Removes all game objects and projectiles from the world. */
     void clearAll();
 

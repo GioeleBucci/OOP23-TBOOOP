@@ -13,5 +13,7 @@ public enum GameTag {
     /** Projectile tag. */
     PROJECTILE,
     /** Door tag. */
-    DOOR;
+    DOOR,
+    /** Trapdoor tag. */
+    TRAPDOOR;
 }

@@ -9,10 +9,12 @@ import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
 import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
+import tbooop.model.dungeon.rooms.api.Door;
 import tbooop.model.dungeon.rooms.api.DoorLockable;
 import tbooop.model.dungeon.rooms.api.DoorPositions;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.enemy.impl.EnemyFactoryImpl;
 import tbooop.view.api.View;
 
 /**
@@ -24,8 +26,9 @@ public class FloorManagerImpl implements FloorManager {
     private final World world;
     private final View view;
     private int currentFloorLevel = 1;
-    private Floor floor = new LevelFloor(currentFloorLevel);
-    private Room currentRoom = floor.getStaringRoom();
+    private Floor floor;
+    private Room currentRoom;
+    private final EnemyFactoryImpl enemyFactory;
     private final Logger logger = Logger.getLogger(FloorManagerImpl.class.getName());
 
     /**
@@ -41,6 +44,9 @@ public class FloorManagerImpl implements FloorManager {
     public FloorManagerImpl(final World world, final View view) {
         this.world = world;
         this.view = view;
+        this.enemyFactory = new EnemyFactoryImpl(world.getPlayer());
+        this.floor = new LevelFloor(currentFloorLevel, enemyFactory);
+        this.currentRoom = floor.getStaringRoom();
         logger.info(floor.toString());
     }
 
@@ -70,16 +76,15 @@ public class FloorManagerImpl implements FloorManager {
             }
         }
         synchronized (this) {
-            world.getPlayer().setPosition(newPlayerPosition(door));
-            world.clearAll();
             changeRoom((Room) door.getRoom());
+            world.getPlayer().setPosition(newPlayerPosition(door));
         }
     }
 
     /** {@inheritDoc} */
     @Override
     public void changeFloor() {
-        this.floor = new LevelFloor(++currentFloorLevel);
+        this.floor = new LevelFloor(++currentFloorLevel, enemyFactory);
     }
 
     private Point2d newPlayerPosition(final DoorUnmodifiable door) {
@@ -100,7 +105,14 @@ public class FloorManagerImpl implements FloorManager {
     }
 
     private synchronized void changeRoom(final Room newRoom) {
-        world.getGameObjects().addAll(newRoom.getDoorMap().values());
+        world.clearAll();
+        newRoom.getGameObjects().forEach(gobj -> {
+            if (gobj instanceof Door) {
+                world.getGameObjects().add(gobj);
+            } else {
+                world.addGameObject(gobj);
+            }
+        });
         currentRoom = newRoom;
         currentRoom.setExplored();
         view.changeRoom(currentRoom);

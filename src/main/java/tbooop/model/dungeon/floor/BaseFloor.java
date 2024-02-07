@@ -11,7 +11,9 @@ import tbooop.model.dungeon.rooms.impl.ItemRoom;
 import tbooop.model.dungeon.rooms.impl.ItemShopRoom;
 import tbooop.model.dungeon.rooms.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.impl.SpecialDoor;
+import tbooop.model.dungeon.rooms.impl.StartingRoom;
 import tbooop.model.dungeon.rooms.impl.TrapdoorRoom;
+import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
@@ -34,12 +36,14 @@ public abstract class BaseFloor implements Floor {
     /** maximum distance in each axis a room can be from the starting room (0;0). */
     public static final int MAX_DIST_FROM_START = 3;
     private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();
+    /** This factory instance will be used to create enemies inside enemy rooms. */
+    private final EnemyFactory enemyFactory;
     // dead ends are used for placing special rooms, such as item rooms, shops and
     // trapdoor rooms
-    private List<Point2d> deadEnds;
     private final Point2d itemRoomPos;
     private final Point2d shopRoomPos;
     private final Point2d trapdoorRoomPos;
+    private List<Point2d> deadEnds;
     private static final int SPECIAL_ROOMS_AMOUNT = 3;
     private static final int MINIMUM_ROOMS_AMOUNT = SPECIAL_ROOMS_AMOUNT + 1;
 
@@ -50,12 +54,14 @@ public abstract class BaseFloor implements Floor {
     /**
      * Creates a new floor with the desired amount of rooms (>=3).
      * 
-     * @param rooms the amount of rooms to generate
+     * @param rooms        the amount of rooms to generate
+     * @param enemyFactory the factory used for creating enemies inside enemy rooms
      * @throws NullPointerException     if null is passed
      * @throws IllegalArgumentException if a number < 3 is passed
      */
-    protected BaseFloor(final int rooms) {
+    protected BaseFloor(final int rooms, final EnemyFactory enemyFactory) {
         this.roomsAmount = Objects.requireNonNull(rooms);
+        this.enemyFactory = Objects.requireNonNull(enemyFactory);
         if (roomsAmount < MINIMUM_ROOMS_AMOUNT) {
             throw new IllegalArgumentException("You must pass a number greater than " + MINIMUM_ROOMS_AMOUNT);
         }
@@ -140,7 +146,7 @@ public abstract class BaseFloor implements Floor {
         generatedRooms = 0;
         final Queue<Point2d> queue = new LinkedList<>();
         final Point2d startingRoomPos = Point2dImpl.ZERO;
-        roomsMap.put(startingRoomPos, new EnemyRoom()); // TODO placeholder: change for true starting room
+        roomsMap.put(startingRoomPos, new StartingRoom());
         queue.add(startingRoomPos);
         generatedRooms++;
         while (!queue.isEmpty()) {
@@ -155,7 +161,7 @@ public abstract class BaseFloor implements Floor {
                 if (!roomsMap.containsKey(newSpot) && generatedRooms < roomsAmount && neighboursAmount(newSpot) < 2
                         && Math.random() > 0.5 && Math.abs(newSpot.getX()) <= MAX_DIST_FROM_START
                         && Math.abs(newSpot.getY()) <= MAX_DIST_FROM_START) {
-                    roomsMap.put(newSpot, new EnemyRoom());
+                    roomsMap.put(newSpot, new EnemyRoom(enemyFactory));
                     queue.add(newSpot);
                     generatedRooms++;
                 }

@@ -8,4 +8,11 @@ import tbooop.model.dungeon.rooms.api.RegularRoom;
  */
 public class TrapdoorRoom extends RegularRoom {
 
+    /**
+     * Creates a new TrapdoorRoom, an empty room with a trapdoor in the middle.
+     */
+    public TrapdoorRoom() {
+        getGameObjects().add(new Trapdoor());
+    }
+
 }
