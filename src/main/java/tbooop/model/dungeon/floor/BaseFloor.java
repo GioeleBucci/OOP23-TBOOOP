@@ -11,6 +11,7 @@ import tbooop.model.dungeon.rooms.impl.ItemRoom;
 import tbooop.model.dungeon.rooms.impl.ItemShopRoom;
 import tbooop.model.dungeon.rooms.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.impl.SpecialDoor;
+import tbooop.model.dungeon.rooms.impl.StartingRoom;
 import tbooop.model.dungeon.rooms.impl.TrapdoorRoom;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.dungeon.rooms.api.Room;
@@ -145,7 +146,7 @@ public abstract class BaseFloor implements Floor {
         generatedRooms = 0;
         final Queue<Point2d> queue = new LinkedList<>();
         final Point2d startingRoomPos = Point2dImpl.ZERO;
-        roomsMap.put(startingRoomPos, new EnemyRoom(enemyFactory)); // TODO placeholder: change for true starting room
+        roomsMap.put(startingRoomPos, new StartingRoom());
         queue.add(startingRoomPos);
         generatedRooms++;
         while (!queue.isEmpty()) {
