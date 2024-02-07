@@ -25,11 +25,12 @@ public abstract class AbstractEntity extends AbstractDamageable implements Entit
      * @param health the entity's health
      * @param velocity      it is the Entity velocity
      * @param tag specifies the type of entity
+     * @param colliderRadius the collider radius
      * @throws NullPointerException if any parameter is null
      */
     protected AbstractEntity(final Point2d position, final Health health,
-    final double velocity, final GameTag tag) {
-        super(position, health, velocity, tag);
+    final double velocity, final GameTag tag, final double colliderRadius) {
+        super(position, health, velocity, tag, colliderRadius);
     }
 
     /**
