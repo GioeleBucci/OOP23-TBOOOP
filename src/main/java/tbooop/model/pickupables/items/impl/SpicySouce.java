@@ -16,6 +16,7 @@ import tbooop.model.player.api.Player;
 public class SpicySouce extends ItemAbs {
     private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
+    private final UnmovableName pickupTag = UnmovableName.SPICY_SOUCE;
     /**
      * Create a new istance of Fire Mind item.
      * 
@@ -73,7 +74,6 @@ public class SpicySouce extends ItemAbs {
     /** {@inheritDoc} */
     @Override
     public UnmovableName getObjectName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getObjectName'");
+        return this.pickupTag;
     }
 }

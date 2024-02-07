@@ -17,6 +17,7 @@ public class Zap extends ItemAbs {
     private final int itemCost = PickupablePrices.BELT_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private static final double VELOCITY_TO_INCREASE = 0.3;
+    private final UnmovableName pickupTag = UnmovableName.ZAP;
     /**
      * Create a new istance of the Zap item.
      * 
@@ -74,7 +75,6 @@ public class Zap extends ItemAbs {
     /** {@inheritDoc} */
     @Override
     public UnmovableName getObjectName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getObjectName'");
+        return this.pickupTag;
     }
 }

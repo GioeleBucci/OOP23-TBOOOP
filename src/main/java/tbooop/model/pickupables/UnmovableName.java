@@ -11,5 +11,13 @@ public enum UnmovableName {
     /**Heart pickup name. */
     HEART,
     /**Key pickup name. */
-    KEY;
+    KEY,
+    /**GlassHeart item name. */
+    GLASS_HEART,
+    /**LockedRing item name. */
+    LOCKED_RING,
+    /**SPicySouce item name. */
+    SPICY_SOUCE,
+    /**Zap item name. */
+    ZAP;
 }

@@ -17,6 +17,7 @@ public class GlassHeart extends ItemAbs {
 
     private final int itemCost = PickupablePrices.GOLDENHEART_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
+    private final UnmovableName pickupTag = UnmovableName.GLASS_HEART;
     /**
      * Create a new istance of a GlassHeart.
      * 
@@ -74,7 +75,6 @@ public class GlassHeart extends ItemAbs {
     /** {@inheritDoc} */
     @Override
     public UnmovableName getObjectName() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getObjectName'");
+        return this.pickupTag;
     }
 }
