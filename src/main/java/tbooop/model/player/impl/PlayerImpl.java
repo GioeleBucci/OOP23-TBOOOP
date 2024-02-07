@@ -21,6 +21,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     private static final int PROJECTILE_VELOCITY_INCREMENT = 10;
     private static final long TIME_BETWEEN_SHOTS = 500;
+    private static final long COLLIDER_RADIUS = 15;
     private int damage;
     private int keys;
     private int coin;
@@ -37,7 +38,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position, final Health health, final double velocity) {
-        super(position, health, velocity, GameTag.PLAYER);
+        super(position, health, velocity, GameTag.PLAYER, COLLIDER_RADIUS);
         this.damage = 1;
         this.coin = 10;
         this.projectileVelocity = velocity * 2;
