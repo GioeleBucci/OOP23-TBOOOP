@@ -3,9 +3,11 @@ package tbooop.view;
 import java.util.HashMap;
 import java.util.Map;
 
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameTag;
@@ -117,6 +119,17 @@ public class RoomRenderer extends ViewComponent {
             default -> {
             }
         }
+    }
+
+    /**
+     * Plays a fading animation when changing floor.
+     */
+    protected void changeFloor() {
+        final FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2), view.getScene().getRoot());
+        fadeTransition.setFromValue(0);
+        fadeTransition.setToValue(1);
+        fadeTransition.setAutoReverse(true);
+        fadeTransition.play();
     }
 
 }

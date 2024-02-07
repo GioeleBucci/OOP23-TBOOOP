@@ -11,6 +11,7 @@ import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
 import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameObject;
+import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
@@ -89,6 +90,24 @@ public final class WorldImpl implements World {
 
     /** {@inheritDoc} */
     @Override
+    public void changeFloor() {
+        floorManager.changeFloor();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public synchronized void collectProjectiles(final Entity entity) {
+        final Set<Projectile> projectiles = entity.getShotProjectiles();
+        for (final Projectile projectile : projectiles) {
+            getProjectiles().add(projectile);
+            Platform.runLater(() -> {
+                view.addGameObject(projectile);
+            });
+        }
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public synchronized void clearAll() {
         gameObjects.forEach(gameObject -> {
             Platform.runLater(() -> {
@@ -104,6 +123,7 @@ public final class WorldImpl implements World {
         projectiles.clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     public synchronized void addGameObject(final GameObject gameObject) {
         gameObjects.add(gameObject);

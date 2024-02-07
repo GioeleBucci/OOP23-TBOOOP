@@ -85,6 +85,9 @@ public class FloorManagerImpl implements FloorManager {
     @Override
     public void changeFloor() {
         this.floor = new LevelFloor(++currentFloorLevel, enemyFactory);
+        logger.info("New floor: " + floor.toString());
+        view.changeFloor();
+        changeRoom(floor.getStaringRoom());
     }
 
     private Point2d newPlayerPosition(final DoorUnmodifiable door) {

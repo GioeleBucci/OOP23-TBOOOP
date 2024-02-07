@@ -23,6 +23,7 @@ import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
+import tbooop.model.player.api.PlayerProjectile;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.view.api.View;
@@ -38,6 +39,8 @@ import tbooop.view.player.PlayerRender;
 @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable view elements"
         + "is required to distribute the work load between the various view components.")
 public final class ViewImpl extends Application implements View {
+
+    private static final double MULTIPLIER_SCALE = 0.9;
     /** The base width of the room. */
     public static final double BASE_ROOM_W = 468;
     /** The base height of the room. */
@@ -76,7 +79,8 @@ public final class ViewImpl extends Application implements View {
     public synchronized void start(final Stage stage) {
         this.stage = stage;
         stage.setResizable(false);
-        scene = new Scene(root, BASE_ROOM_W, BASE_ROOM_H);
+        scene = new Scene(root, BASE_ROOM_W * 2.0, BASE_ROOM_H * 2.0);
+        scene.setFill(Color.BLACK);
         stage.setScene(scene);
         stage.setTitle("TBOOOP!");
         stage.show();
@@ -125,7 +129,18 @@ public final class ViewImpl extends Application implements View {
          * TODO usare una classe con la logica per far si che la scelta della sprite
          * dipenda dal tipo di GameObject!!
          */
-        addGameObjectToView(new ImageView(new Image("down2.png")), gameObject);
+        final ImageView imgView = new ImageView();
+        switch (gameObject.getTag()) {
+            case PROJECTILE -> {
+                if (gameObject instanceof PlayerProjectile) {
+                    imgView.setImage(new Image("projectile/playerproj.png"));
+                } else {
+                    imgView.setImage(new Image("projectile/enemyproj.png"));
+                }
+            }
+            default -> imgView.setImage(new Image("down2.png"));
+        }
+        addGameObjectToView(imgView, gameObject);
     }
 
     synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) {
@@ -255,11 +270,13 @@ public final class ViewImpl extends Application implements View {
     protected synchronized void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
         gameObjMap.put(gobj, imgView);
         imgView.fitWidthProperty().bind(walkableArea.widthProperty().multiply(
-            imgView.getImage().getWidth() * (scene.getWidth() / BASE_ROOM_W) / walkableArea.widthProperty().get()));
+            imgView.getImage().getWidth() * (scene.getWidth() / BASE_ROOM_W * MULTIPLIER_SCALE)
+            / walkableArea.widthProperty().get()));
         imgView.fitHeightProperty().bind(walkableArea.heightProperty().multiply(
-            imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H) / walkableArea.heightProperty().get()));
+            imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H * MULTIPLIER_SCALE)
+            / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
-        // attachDebugger(gobj);
+        attachDebugger(gobj);
     }
 
     private void setBackgroundImage(final String imageUrl) {
@@ -276,8 +293,15 @@ public final class ViewImpl extends Application implements View {
         gameObjMap.remove(gameObject);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void changeRoom(final RoomUnmodifiable newRoom) {
         roomRenderer.changeRoom(newRoom);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void changeFloor() {
+        roomRenderer.changeFloor();
     }
 }
