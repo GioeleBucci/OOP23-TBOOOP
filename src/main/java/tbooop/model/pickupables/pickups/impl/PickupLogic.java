@@ -3,8 +3,7 @@ package tbooop.model.pickupables.pickups.impl;
 import java.util.List;
 import java.util.Random;
 import java.util.Arrays;
-import tbooop.commons.api.Point2d;
-import tbooop.commons.Point2dImpl;
+import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.pickups.api.Pickup;
 
@@ -17,12 +16,11 @@ import tbooop.model.pickupables.pickups.api.Pickup;
  */
 public class PickupLogic {
 
-    private final Point2d location = new Point2dImpl(2.0, 2.0);
     private static final int PICKUPS_NUMBER = 3;
-    private final List<Pickup> list = Arrays.asList(new Coin(this.location, 2.0, GameTag.PICKUP), 
-                                                new Heart(this.location, 2.0, GameTag.PICKUP),
-                                                new Key(this.location, 2.0, GameTag.PICKUP),
-                                                new Bill(this.location, 2.0, GameTag.PICKUP));
+    private final List<Pickup> list = Arrays.asList(new Coin(RoomBounds.CENTER, 2.0, GameTag.PICKUP), 
+                                                new Heart(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
+                                                new Key(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
+                                                new Bill(RoomBounds.CENTER, 2.0, GameTag.PICKUP));
     private final Random random = new Random();
 
     /**

@@ -62,6 +62,7 @@ public final class WorldImpl implements World {
     public void update() {
         gameObjects.removeIf(GameObject::isDestroyed);
         projectiles.removeIf(Projectile::isDestroyed);
+        floorManager.update();
     }
 
     /** {@inheritDoc} */

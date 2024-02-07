@@ -7,6 +7,7 @@ import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
+import tbooop.model.core.api.GameTag;
 import tbooop.model.dungeon.floor.LevelFloor;
 import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.model.dungeon.rooms.api.Door;
@@ -14,7 +15,9 @@ import tbooop.model.dungeon.rooms.api.DoorLockable;
 import tbooop.model.dungeon.rooms.api.DoorPositions;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.dungeon.rooms.api.RoomClosable;
 import tbooop.model.enemy.impl.EnemyFactoryImpl;
+import tbooop.model.pickupables.pickups.impl.PickupLogic;
 import tbooop.view.api.View;
 
 /**
@@ -25,11 +28,18 @@ public class FloorManagerImpl implements FloorManager {
 
     private final World world;
     private final View view;
-    private int currentFloorLevel = 1;
     private Floor floor;
+    private int currentFloorLevel = 1;
     private Room currentRoom;
     private final EnemyFactoryImpl enemyFactory;
+    private final PickupLogic pickupSpawner = new PickupLogic();
     private final Logger logger = Logger.getLogger(FloorManagerImpl.class.getName());
+
+    /**
+     * If the room is locked, the player cannot leave it.
+     * This flag that reduces the amount of checks for locked rooms.
+     */
+    private boolean isRoomLocked = true;
 
     /**
      * Constructs a new FloorManager with the specified world and view.
@@ -54,26 +64,36 @@ public class FloorManagerImpl implements FloorManager {
     @Override
     public synchronized void init() {
         world.getGameObjects().addAll(currentRoom.getDoorMap().values());
-        view.changeRoom(currentRoom);
+        view.refreshRoom(currentRoom);
+    }
+
+    /** If there are no more alive enemies in this room opens the doors. */
+    @Override
+    public synchronized void update() {
+        if (isRoomLocked && currentRoom instanceof RoomClosable && !roomHasEnemies()) {
+            ((RoomClosable) currentRoom).openDoors();
+            onRoomClear();
+            view.refreshRoom(currentRoom); // refresh the view
+            isRoomLocked = false;
+        }
+    }
+
+    private void onRoomClear() {
+        world.addGameObject(pickupSpawner.getRandomPickup());
     }
 
     /** {@inheritDoc} */
     @Override
-    public void update() {
-        // nothing to do here!
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void onDoorCollision(final DoorUnmodifiable door) {
+    public synchronized void onDoorCollision(final DoorUnmodifiable door) {
+        if (door instanceof DoorLockable
+                && ((DoorLockable) door).isLocked()
+                && !roomHasEnemies()
+                && world.getPlayer().hasKey()) {
+            world.getPlayer().useKey();
+            ((DoorLockable) door).unlock();
+        }
         if (!door.isOpen()) {
-            if (!world.getPlayer().hasKey()) {
-                return;
-            }
-            if (door instanceof DoorLockable) {
-                world.getPlayer().useKey();
-                ((DoorLockable) door).unlock();
-            }
+            return;
         }
         synchronized (this) {
             changeRoom((Room) door.getRoom());
@@ -88,6 +108,11 @@ public class FloorManagerImpl implements FloorManager {
         logger.info("New floor: " + floor.toString());
         view.changeFloor();
         changeRoom(floor.getStaringRoom());
+    }
+
+    private synchronized boolean roomHasEnemies() {
+        return currentRoom.getGameObjects().stream()
+                .anyMatch(g -> g.getTag().equals(GameTag.ENEMY) && !g.isDestroyed());
     }
 
     private Point2d newPlayerPosition(final DoorUnmodifiable door) {
@@ -117,8 +142,12 @@ public class FloorManagerImpl implements FloorManager {
             }
         });
         currentRoom = newRoom;
+        if (currentRoom instanceof RoomClosable && roomHasEnemies()) {
+            ((RoomClosable) currentRoom).closeDoors();
+            isRoomLocked = true;
+        }
         currentRoom.setExplored();
-        view.changeRoom(currentRoom);
+        view.refreshRoom(currentRoom);
     }
 
 }

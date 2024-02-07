@@ -16,6 +16,7 @@ public class LinearAi implements MovementAi {
     private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.9;
     private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.1;
     private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.9;
+    private final double radius;
     private Point2ds direction;
 
     /**
@@ -24,9 +25,16 @@ public class LinearAi implements MovementAi {
      * be left-right or up-down.
      * 
      * @param initialDirection the initial direction.
+     * @param radius the ai's collider radius
+     * @throws NullPointerException if initialDirection is null
+     * @throws IllegalArgumentException if radius is negative
      */
-    public LinearAi(final Point2ds initialDirection) {
+    public LinearAi(final Point2ds initialDirection, final double radius) {
+        if (radius < 0) {
+            throw new IllegalArgumentException("radius can't be negative");
+        }
         this.direction = Objects.requireNonNull(initialDirection);
+        this.radius = radius;
     }
 
     /** {@inheritDoc} */
@@ -34,8 +42,10 @@ public class LinearAi implements MovementAi {
     public Point2d newPosition(final Point2d initialPosition,
     final long deltaTime, final double velocity) {
         switch (this.direction) {
-            case UP, DOWN -> this.checkPosition(initialPosition.getY(), UPPER_BOUND, LOWER_BOUND);
-            case LEFT, RIGHT -> this.checkPosition(initialPosition.getX(), LEFT_BOUND, RIGHT_BOUND);
+            case UP, DOWN -> this.checkPosition(initialPosition.getY(),
+                UPPER_BOUND - radius, LOWER_BOUND + radius);
+            case LEFT, RIGHT -> this.checkPosition(initialPosition.getX(),
+                LEFT_BOUND - radius, RIGHT_BOUND + radius);
             default -> { }
         }
         return this.direction.toP2d()
