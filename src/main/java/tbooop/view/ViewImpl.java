@@ -23,8 +23,10 @@ import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
+import tbooop.model.player.api.PlayerProjectile;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
+import tbooop.model.enemy.impl.EnemyProjectile;
 import tbooop.view.api.View;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.enemy.EnemyAnimator;
@@ -122,7 +124,18 @@ public final class ViewImpl extends Application implements View {
          * TODO usare una classe con la logica per far si che la scelta della sprite
          * dipenda dal tipo di GameObject!!
          */
-        addGameObjectToView(new ImageView(new Image("down2.png")), gameObject);
+        ImageView imgView = new ImageView();
+        switch (gameObject.getTag()) {
+            case PROJECTILE -> {
+                if (gameObject instanceof PlayerProjectile) {
+                    imgView.setImage(new Image("projectile/playerproj.png"));
+                } else {
+                    imgView.setImage(new Image("projectile/enemyproj.png"));
+                }
+            }
+            default -> imgView.setImage(new Image("down2.png"));
+        }
+        addGameObjectToView(imgView, gameObject);
     }
 
     synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) {
