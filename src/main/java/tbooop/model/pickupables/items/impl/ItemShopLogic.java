@@ -18,11 +18,16 @@ public class ItemShopLogic {
     private static final double ITEM_COLLIDER_RADIUS = 1.0;
     private static final int BASE_WIDTH_DIVISION = 2;
     private static final int BASE_HEIGHT_DIVISION = 3;
-    private final Item goldenHeart = new GlassHeart(getItemPosition(1), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item belt = new Zap(getItemPosition(2), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item fireMind = new SpicySauce(getItemPosition(3), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item ironBar = new LockedRing(getItemPosition(4), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item goldenApple = new GoldenApple(getItemPosition(5), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private static final int GLASS_HEART_NUM = 1;
+    private static final int ZAP_NUM = 2;
+    private static final int SPICY_SOUCE_NUM = 3;
+    private static final int LOCKED_RING_NUM = 4;
+    private static final int GOLDEN_APPLE_NUM = 5;
+    private final Item glassHeart = new GlassHeart(getItemPosition(GLASS_HEART_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item zap = new Zap(getItemPosition(ZAP_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item spicySauce = new SpicySauce(getItemPosition(SPICY_SOUCE_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item lockedRing = new LockedRing(getItemPosition(LOCKED_RING_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item goldenApple = new GoldenApple(getItemPosition(GOLDEN_APPLE_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
 
     /**
      * Returns a map from an item to its
@@ -34,14 +39,14 @@ public class ItemShopLogic {
      */
     public Map<Item, Integer> getItemPool() {
         final Map<Item, Integer> itemsMap = new HashMap<>();
-        goldenHeart.setInShop();
-        itemsMap.put(goldenHeart, goldenHeart.getPrice());
-        belt.setInShop();
-        itemsMap.put(belt, belt.getPrice());
-        fireMind.setInShop();
-        itemsMap.put(fireMind, fireMind.getPrice());
-        ironBar.setInShop();
-        itemsMap.put(ironBar, ironBar.getPrice());
+        glassHeart.setInShop();
+        itemsMap.put(glassHeart, glassHeart.getPrice());
+        zap.setInShop();
+        itemsMap.put(zap, zap.getPrice());
+        spicySauce.setInShop();
+        itemsMap.put(spicySauce, spicySauce.getPrice());
+        lockedRing.setInShop();
+        itemsMap.put(lockedRing, lockedRing.getPrice());
         goldenApple.setInShop();
         itemsMap.put(goldenApple, goldenApple.getPrice());
 
@@ -59,11 +64,13 @@ public class ItemShopLogic {
         final double widthDivision = RoomBounds.WIDTH / 8;
         final double heightDivision = RoomBounds.HEIGHT / 3;
         switch (itemNumber) {
-            case 1: return new Point2dImpl(BASE_WIDTH_DIVISION * widthDivision, heightDivision);
-            case 2: return new Point2dImpl((BASE_WIDTH_DIVISION + 2) * widthDivision, heightDivision);
-            case 3: return new Point2dImpl((BASE_WIDTH_DIVISION + 4) * widthDivision, heightDivision);
-            case 4: return new Point2dImpl(BASE_HEIGHT_DIVISION * widthDivision, BASE_WIDTH_DIVISION * heightDivision);
-            case 5: return new Point2dImpl((BASE_HEIGHT_DIVISION + 2) * widthDivision, BASE_WIDTH_DIVISION * heightDivision);
+            case GLASS_HEART_NUM: return new Point2dImpl(BASE_WIDTH_DIVISION * widthDivision, heightDivision);
+            case ZAP_NUM: return new Point2dImpl((BASE_WIDTH_DIVISION + 2) * widthDivision, heightDivision);
+            case SPICY_SOUCE_NUM: return new Point2dImpl((BASE_WIDTH_DIVISION + 4) * widthDivision, heightDivision);
+            case LOCKED_RING_NUM: return new Point2dImpl(BASE_HEIGHT_DIVISION * widthDivision, 
+                                                        BASE_WIDTH_DIVISION * heightDivision);
+            case GOLDEN_APPLE_NUM: return new Point2dImpl((BASE_HEIGHT_DIVISION + 2) * widthDivision, 
+                                                        BASE_WIDTH_DIVISION * heightDivision);
             default: return new Point2dImpl(widthDivision, heightDivision);
         }
     }
