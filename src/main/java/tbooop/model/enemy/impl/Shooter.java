@@ -56,4 +56,5 @@ public class Shooter extends EnemyDecorator {
                 .subtract(super.getPosition()).toV2d())
                 .normalize();
     }
+
 }
