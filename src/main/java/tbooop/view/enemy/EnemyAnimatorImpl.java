@@ -21,7 +21,7 @@ import tbooop.view.api.enemy.EnemyAnimator;
         + "easily update the animation frames of only the enemies that may be present.")
 public class EnemyAnimatorImpl implements EnemyAnimator {
 
-    private static final int MELEE_UPDATE_FREQUENCY = 1000 / 12;
+    private static final int MELEE_UPDATE_FREQUENCY = 1000 / 14;
     private static final int SHOOTER_UPDATE_FREQUENCY = 1000 / 8;
     private static final int BOUNCER_UPDATE_FREQUENCY = 1000 / 4;
 
