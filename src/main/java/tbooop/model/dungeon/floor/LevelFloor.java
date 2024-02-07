@@ -1,5 +1,7 @@
 package tbooop.model.dungeon.floor;
 
+import tbooop.model.enemy.api.EnemyFactory;
+
 /** A floor that gets more rooms the higher its level is. */
 public class LevelFloor extends BaseFloor {
 
@@ -11,11 +13,14 @@ public class LevelFloor extends BaseFloor {
      * Builds the floor according to the following formula:
      * {@code Math.random() * 2 + 5 + level * 2.6}.
      * 
-     * @param floorLevel floor number, used to determine the amount of rooms spawned
+     * @param floorLevel   floor number, used to determine the amount of rooms
+     *                     spawned
+     * @param enemyFactory the factory that will be used to create enemies inside
+     *                     enemy rooms
      * @see BaseFloor
      */
-    public LevelFloor(final int floorLevel) {
-        super((int) (Math.random() * 2 + MINIMUM_ROOMS_AMOUNT + floorLevel * MULTIPLIER));
+    public LevelFloor(final int floorLevel, final EnemyFactory enemyFactory) {
+        super((int) (Math.random() * 2 + MINIMUM_ROOMS_AMOUNT + floorLevel * MULTIPLIER), enemyFactory);
         this.floorLevel = floorLevel;
     }
 

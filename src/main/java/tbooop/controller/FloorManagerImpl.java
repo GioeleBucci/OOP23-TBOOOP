@@ -14,6 +14,7 @@ import tbooop.model.dungeon.rooms.api.DoorLockable;
 import tbooop.model.dungeon.rooms.api.DoorPositions;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.enemy.impl.EnemyFactoryImpl;
 import tbooop.view.api.View;
 
 /**
@@ -25,8 +26,9 @@ public class FloorManagerImpl implements FloorManager {
     private final World world;
     private final View view;
     private int currentFloorLevel = 1;
-    private Floor floor = new LevelFloor(currentFloorLevel);
-    private Room currentRoom = floor.getStaringRoom();
+    private Floor floor;
+    private Room currentRoom;
+    private final EnemyFactoryImpl enemyFactory;
     private final Logger logger = Logger.getLogger(FloorManagerImpl.class.getName());
 
     /**
@@ -42,6 +44,9 @@ public class FloorManagerImpl implements FloorManager {
     public FloorManagerImpl(final World world, final View view) {
         this.world = world;
         this.view = view;
+        this.enemyFactory = new EnemyFactoryImpl(world.getPlayer());
+        this.floor = new LevelFloor(currentFloorLevel, enemyFactory);
+        this.currentRoom = floor.getStaringRoom();
         logger.info(floor.toString());
     }
 
@@ -79,7 +84,7 @@ public class FloorManagerImpl implements FloorManager {
     /** {@inheritDoc} */
     @Override
     public void changeFloor() {
-        this.floor = new LevelFloor(++currentFloorLevel);
+        this.floor = new LevelFloor(++currentFloorLevel, enemyFactory);
     }
 
     private Point2d newPlayerPosition(final DoorUnmodifiable door) {

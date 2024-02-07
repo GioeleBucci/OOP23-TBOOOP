@@ -9,6 +9,7 @@ import java.util.Set;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import tbooop.commons.Point2ds;
 import tbooop.model.core.api.GameObject;
+import java.util.Collection;
 
 /**
  * Base for all Rooms implementations
@@ -63,6 +64,15 @@ public abstract class RoomAbstract implements Room {
      */
     protected void addGameObject(final GameObject gameObject) {
         this.gameObjects.add(gameObject);
+    }
+
+    /**
+     * Adds a collection of game objects to this room.
+     * 
+     * @param gameObjects the elements to add
+     */
+    protected void addMultipleGameObjects(final Collection<? extends GameObject> gameObjects) {
+        gameObjects.forEach(this::addGameObject);
     }
 
     /** {@inheritDoc} */
