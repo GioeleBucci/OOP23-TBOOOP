@@ -251,12 +251,10 @@ public final class ViewImpl extends Application implements View {
      */
     protected synchronized void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
         gameObjMap.put(gobj, imgView);
-        imgView.fitWidthProperty()
-                .bind(walkableArea.widthProperty()
-                        .multiply(imgView.getImage().getWidth() / walkableArea.widthProperty().get()));
-        imgView.fitHeightProperty()
-                .bind(walkableArea.heightProperty()
-                        .multiply(imgView.getImage().getHeight() / walkableArea.heightProperty().get()));
+        imgView.fitWidthProperty().bind(walkableArea.widthProperty().multiply(
+            imgView.getImage().getWidth() * (scene.getWidth() / BASE_ROOM_W) / walkableArea.widthProperty().get()));
+        imgView.fitHeightProperty().bind(walkableArea.heightProperty().multiply(
+            imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H) / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
         // attachDebugger(gobj);
     }
