@@ -1,7 +1,6 @@
 package tbooop.view.pickupables;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import tbooop.model.pickupables.Pickupable;
 /**
  * Renders items and pickups
@@ -15,16 +14,14 @@ public class ItemRender {
      * @param gameObject
      * @return ImageView
      */
-    public ImageView getPickupableSprite(final Pickupable gameObject) {
-        final ImageView imgView = new ImageView();
+    public Image getPickupableSprite(final Pickupable gameObject) {
         switch (gameObject.getObjectName()) {
-            case GLASS_HEART -> imgView.setImage(new Image("pickupables/items/glassHeart.png"));
-            case LOCKED_RING -> imgView.setImage(new Image("pickupables/items/lockedRings.png"));
-            case SPICY_SOUCE -> imgView.setImage(new Image("pickupables/items/spicySauce.png"));
-            case ZAP -> imgView.setImage(new Image("pickupables/items/zap.png"));
-            case BILL -> imgView.setImage(new Image("pickupables/items/foreignBill.png"));
-            default -> imgView.setImage(new Image("down2.png"));
+            case GLASS_HEART: return new Image("pickupables/items/glassHeart.png");
+            case LOCKED_RING: return new Image("pickupables/items/lockedRings.png");
+            case SPICY_SOUCE: return new Image("pickupables/items/spicySauce.png");
+            case ZAP: return new Image("pickupables/items/zap.png");
+            case BILL: return new Image("pickupables/items/foreignBill.png");
+            default: return new Image("down2.png");
         }
-        return imgView;
     }
 }
