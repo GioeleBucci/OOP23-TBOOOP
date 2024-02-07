@@ -63,7 +63,7 @@ public class ItemShopLogic {
             case 2: return new Point2dImpl((BASE_WIDTH_DIVISION + 2) * widthDivision, heightDivision);
             case 3: return new Point2dImpl((BASE_WIDTH_DIVISION + 4) * widthDivision, heightDivision);
             case 4: return new Point2dImpl(BASE_HEIGHT_DIVISION * widthDivision, BASE_WIDTH_DIVISION * heightDivision);
-            //case 5: return new Point2dImpl((BASE_HEIGHT_DIVISION + 2) * widthDivision, BASE_WIDTH_DIVISION * heightDivision);
+            case 5: return new Point2dImpl((BASE_HEIGHT_DIVISION + 2) * widthDivision, BASE_WIDTH_DIVISION * heightDivision);
             default: return new Point2dImpl(widthDivision, heightDivision);
         }
     }
