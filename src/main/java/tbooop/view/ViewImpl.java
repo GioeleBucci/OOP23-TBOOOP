@@ -273,7 +273,7 @@ public final class ViewImpl extends Application implements View {
             imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H * MULTIPLIER_SCALE)
             / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
-        attachDebugger(gobj);
+        // attachDebugger(gobj);
     }
 
     private void setBackgroundImage(final String imageUrl) {
@@ -292,7 +292,7 @@ public final class ViewImpl extends Application implements View {
 
     /** {@inheritDoc} */
     @Override
-    public void changeRoom(final RoomUnmodifiable newRoom) {
+    public void refreshRoom(final RoomUnmodifiable newRoom) {
         roomRenderer.changeRoom(newRoom);
     }
 

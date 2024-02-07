@@ -33,11 +33,11 @@ public interface View extends ViewElements {
     void addPlayer(UnmodifiablePlayer player);
 
     /**
-     * Changes the room the player is in.
+     * Refresh the room the player is in.
      * 
-     * @param newRoom the new room
+     * @param room the new room
      */
-    void changeRoom(RoomUnmodifiable newRoom);
+    void refreshRoom(RoomUnmodifiable room);
 
     /**
      * Changes the floor the player is in.
