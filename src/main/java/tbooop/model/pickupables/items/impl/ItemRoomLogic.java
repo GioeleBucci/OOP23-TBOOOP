@@ -20,10 +20,10 @@ public class ItemRoomLogic {
     private static final double BELT_PROB = 0.2;
     private static final double IRONBAR_PROB = 0.3;
     private static final double FIREMIND_PROB = 0.4;
-    private final List<Item> itemsList = List.of(new GoldenHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new Belt(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new IronBar(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new FireMind(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
+    private final List<Item> itemsList = List.of(new GlassHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
+                                                new Zap(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
+                                                new LockedRing(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
+                                                new SpicySouce(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
 
     /**
      * Compute the chances every item has

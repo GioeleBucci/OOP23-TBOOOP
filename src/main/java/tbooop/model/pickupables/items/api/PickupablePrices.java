@@ -5,11 +5,11 @@ package tbooop.model.pickupables.items.api;
  * in the game.
  */
 public enum PickupablePrices {
-    /**Price for GoldenHeart item.*/
+    /**Price for GlassHeart item.*/
     GOLDENHEART_PRICE(15),
-    /**Price for the Belt item. */
+    /**Price for the Zap item. */
     BELT_PRICE(10),
-    /**Price for FireMind item. */
+    /**Price for SpicySouce item. */
     FIREMIND_PRICE(20),
     /**Price for Iron Bar item. */
     IRONBAR_PRICE(15);

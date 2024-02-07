@@ -18,10 +18,10 @@ public class ItemShopLogic {
     private static final double ITEM_COLLIDER_RADIUS = 1.0;
     private static final int BASE_WIDTH_DIVISION = 2;
     private static final int BASE_HEIGHT_DIVISION = 3;
-    private final Item goldenHeart = new GoldenHeart(getItemPosition(1), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item belt = new Belt(getItemPosition(2), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item fireMind = new FireMind(getItemPosition(3), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item ironBar = new IronBar(getItemPosition(4), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item goldenHeart = new GlassHeart(getItemPosition(1), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item belt = new Zap(getItemPosition(2), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item fireMind = new SpicySouce(getItemPosition(3), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item ironBar = new LockedRing(getItemPosition(4), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
 
     /**
      * Returns a map from an item to its

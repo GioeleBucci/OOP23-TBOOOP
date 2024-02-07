@@ -12,7 +12,7 @@ import tbooop.model.player.api.Player;
  * game. If picked up by the player, it
  * will increase its damage.
  */
-public class IronBar extends ItemAbs {
+public class LockedRing extends ItemAbs {
     private final int itemCost = PickupablePrices.IRONBAR_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private static final int DAMAGE_TO_INCREASE = 1;
@@ -26,7 +26,7 @@ public class IronBar extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected IronBar(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected LockedRing(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

@@ -8,17 +8,16 @@ import tbooop.model.pickupables.items.api.PickupablePrices;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 /**
- * Class rapresenting "the Belt" item in the
+ * Class rapresenting Fire Mind item in the
  * game. If picked up by the player, it
- * will increase its velocity of a
- * determined amount.
+ * will increase its projectiles
+ * velocity.
  */
-public class Belt extends ItemAbs {
-    private final int itemCost = PickupablePrices.BELT_PRICE.getItemPrice();
+public class SpicySouce extends ItemAbs {
+    private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
-    private static final double VELOCITY_TO_INCREASE = 0.3;
     /**
-     * Create a new istance of the Belt item.
+     * Create a new istance of Fire Mind item.
      * 
      * @param position       spawn position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
@@ -27,7 +26,7 @@ public class Belt extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected Belt(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected SpicySouce(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
@@ -41,20 +40,20 @@ public class Belt extends ItemAbs {
     }
 
     /**
-     * When the Belt is picked up
-     * by the player, its velocity will
-     * be increased.
+     * When the Fire Mind item is picked up
+     * by the player, its projectiles
+     * velocity will increse.
      * 
      * @param player
     */
     private void onPickup(final Player player) {
         if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
             if (player.getCoin() >= this.itemCost) {
-                player.increaseVelocity(VELOCITY_TO_INCREASE);
+                player.increaseProjectileVelocity();
                 player.setCoin(-itemCost);
             }
         } else {
-            player.increaseVelocity(VELOCITY_TO_INCREASE);
+            player.increaseProjectileVelocity();
         }
         destroy();
     }
