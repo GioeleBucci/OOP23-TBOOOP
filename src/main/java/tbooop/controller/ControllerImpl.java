@@ -5,20 +5,17 @@ import java.util.Objects;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.Point2ds;
 import tbooop.commons.api.Projectile;
 import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.controller.api.World;
 import tbooop.model.core.api.GameObject;
+import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
-import tbooop.model.enemy.impl.EnemyFactoryImpl;
 import tbooop.view.ViewImpl;
 import tbooop.view.api.View;
 import java.util.Optional;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -82,36 +79,20 @@ public final class ControllerImpl implements Controller {
         Platform.runLater(() -> {
             if (!playerAdded) {
                 this.view.addPlayer(world.getPlayer());
-                //// TEST
-                final GameObject enemy = new EnemyFactoryImpl(world.getPlayer()).shooter(Point2ds.UP);
-                enemy.setPosition(new Point2dImpl(100, 100));
-                world.getGameObjects().add(enemy);
-                this.view.addGameObject(enemy);
-                //// END TEST
                 playerAdded = true;
             }
             this.view.update();
         });
     }
 
-    private synchronized void collectProjectiles(final Entity entity) {
-        final Set<Projectile> projectiles = entity.getShotProjectiles();
-        // FIXME this sucks and its only for testing
-        for (final Projectile projectile : projectiles) {
-            world.getProjectiles().add(projectile);
-            Platform.runLater(() -> {
-                view.addGameObject(projectile);
-            });
-        }
-    }
-
     private void updateGame(final long dt) {
         world.getPlayer().updateState(dt);
-        collectProjectiles((Entity) world.getPlayer());
+        world.collectProjectiles((Entity) world.getPlayer());
 
         final Iterator<GameObject> gameObjIterator = world.getGameObjects().iterator();
 
         Optional<DoorUnmodifiable> door = Optional.empty();
+        boolean changeFloor = false;
 
         while (gameObjIterator.hasNext()) {
             final GameObject gameObj = gameObjIterator.next();
@@ -119,13 +100,16 @@ public final class ControllerImpl implements Controller {
             world.update();
 
             if (gameObj instanceof Entity) {
-                collectProjectiles((Entity) gameObj);
+                world.collectProjectiles((Entity) gameObj);
             }
 
             // GameObject-Player collision
             if (gameObj.getCollider().isColliding(world.getPlayer().getCollider())) {
                 if (gameObj instanceof DoorUnmodifiable) {
                     door = Optional.of((DoorUnmodifiable) gameObj);
+                }
+                if (gameObj.getTag().equals(GameTag.TRAPDOOR)) {
+                    changeFloor = true;
                 }
                 gameObj.onPlayerCollision(world.getPlayer());
             }
@@ -150,9 +134,12 @@ public final class ControllerImpl implements Controller {
                 }
             }
         }
-        // at last check if the room needs to be changed
+        // at last check if the room or the floor needs to be changed
         if (door.isPresent()) {
             world.onDoorCollision(door.get());
+        }
+        if (changeFloor) {
+            world.changeFloor();
         }
     }
 
