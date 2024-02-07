@@ -56,7 +56,6 @@ public final class ViewImpl extends Application implements View {
     private final Group root;
     private final Controller controller;
     private final InputManager inputManager;
-    private PlayerRender playerRender;
     private boolean isMoving;
 
     private volatile Scene scene;

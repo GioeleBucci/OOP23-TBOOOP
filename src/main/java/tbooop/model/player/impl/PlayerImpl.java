@@ -28,6 +28,9 @@ public class PlayerImpl extends AbstractEntity implements Player {
     private long deltaTime;
     private long timeSinceLastShoot;
 
+    private boolean canShoot;
+    private Vector2d projDir;
+
     /**
      * Create a new istance of a Entity.
      * 
@@ -47,6 +50,22 @@ public class PlayerImpl extends AbstractEntity implements Player {
     @Override
     public void updateState(final long deltaTime) {
         this.deltaTime = deltaTime;
+        removeProjectiles();
+        this.timeSinceLastShoot += this.deltaTime;
+        
+        if (this.canShoot) {
+            this.canShoot = false;
+            if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
+                shootProjectile();
+            }
+        }
+    }
+
+    private void shootProjectile() {
+        this.timeSinceLastShoot = 0;
+        final PlayerProjectile shooted = new PlayerProjectileImpl(this.projDir, getPosition(), this.projectileVelocity);
+        shooted.setDamage(damage);
+        addProjectile(shooted);
     }
 
     /** {@inheritDoc} */
@@ -108,14 +127,8 @@ public class PlayerImpl extends AbstractEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void shoot(final Vector2d direction) {
-        removeProjectiles();
-        this.timeSinceLastShoot += this.deltaTime;
-        if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
-            this.timeSinceLastShoot = 0;
-            final PlayerProjectile shooted = new PlayerProjectileImpl(direction, getPosition(), this.projectileVelocity);
-            shooted.setDamage(damage);
-            addProjectile(shooted);
-        }
+        this.canShoot = true;
+        this.projDir = direction;
     }
 
     /** {@inheritDoc} */
