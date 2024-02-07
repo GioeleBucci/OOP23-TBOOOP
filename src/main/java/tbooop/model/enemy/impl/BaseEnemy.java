@@ -16,7 +16,6 @@ import tbooop.model.player.api.Player;
  */
 public class BaseEnemy extends AbstractEnemy {
 
-    private static final double COLLIDER_RADIUS = 15;
     private final MovementAi ai;
 
     /**
@@ -27,14 +26,16 @@ public class BaseEnemy extends AbstractEnemy {
      * @param velocity determines how fast the enemy moves
      * @param ai the enemy's movement ai
      * @param enemyType the enemy's type
+     * @param colliderRadius the enemy's collider radius
      */
     protected BaseEnemy(
         final Point2d position,
         final Health health,
         final double velocity,
         final MovementAi ai,
-        final EnemyType enemyType) {
-        super(position, health, velocity, enemyType, COLLIDER_RADIUS);
+        final EnemyType enemyType,
+        final double colliderRadius) {
+        super(position, health, velocity, enemyType, colliderRadius);
         this.ai = Objects.requireNonNull(ai);
     }
 
