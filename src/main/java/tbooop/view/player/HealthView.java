@@ -54,6 +54,7 @@ public class HealthView extends ViewComponent {
 
         if (this.maxHealth != player.getMaxHealth()) {
             addMaxHealth();
+            this.maxHealth = player.getMaxHealth();
         }
     }
 

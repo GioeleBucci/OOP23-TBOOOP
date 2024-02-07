@@ -50,9 +50,11 @@ public class PlayerAnimator {
         frameUpdateRight = new PlayerFrameUpdate(rightSprite, 100);
     }
 
+    
     /**
-     * Move the player down.
-     * @param player 
+     * Moves the player character down and updates the player's image frame.
+     * 
+     * @param player The ImageView representing the player character.
      */
     public void goDown(final ImageView player) {
         player.setImage(frameUpdateDown.getNextFrame(System.currentTimeMillis()));
@@ -60,8 +62,9 @@ public class PlayerAnimator {
     }
 
     /**
-     * Move the player up.
-     * @param player 
+     * Moves the player character up and updates the player's image frame.
+     * 
+     * @param player The ImageView representing the player character.
      */
     public void goUp(final ImageView player) {
         player.setImage(frameUpdateUp.getNextFrame(System.currentTimeMillis()));
@@ -69,8 +72,9 @@ public class PlayerAnimator {
     }
 
     /**
-     * Move the player left.
-     * @param player 
+     * Moves the player character left and updates the player's image frame.
+     * 
+     * @param player The ImageView representing the player character.
      */
     public void goLeft(final ImageView player) {
         player.setImage(frameUpdateLeft.getNextFrame(System.currentTimeMillis()));
@@ -78,8 +82,9 @@ public class PlayerAnimator {
     }
 
     /**
-     * Move the player right.
-     * @param player 
+     * Moves the player character right and updates the player's image frame.
+     * 
+     * @param player The ImageView representing the player character.
      */
     public void goRight(final ImageView player) {
         player.setImage(frameUpdateRight.getNextFrame(System.currentTimeMillis()));
