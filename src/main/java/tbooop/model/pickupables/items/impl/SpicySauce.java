@@ -13,7 +13,7 @@ import tbooop.model.player.api.Player;
  * will increase its projectiles
  * velocity.
  */
-public class SpicySouce extends ItemAbs {
+public class SpicySauce extends ItemAbs {
     private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final UnmovableName pickupTag = UnmovableName.SPICY_SOUCE;
@@ -27,7 +27,7 @@ public class SpicySouce extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected SpicySouce(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected SpicySauce(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

@@ -9,7 +9,7 @@ public enum PickupablePrices {
     GOLDENHEART_PRICE(15),
     /**Price for the Zap item. */
     BELT_PRICE(10),
-    /**Price for SpicySouce item. */
+    /**Price for SpicySauce item. */
     FIREMIND_PRICE(20),
     /**Price for Iron Bar item. */
     IRONBAR_PRICE(15);

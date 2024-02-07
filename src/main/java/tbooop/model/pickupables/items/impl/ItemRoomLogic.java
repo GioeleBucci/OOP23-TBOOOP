@@ -23,7 +23,7 @@ public class ItemRoomLogic {
     private final List<Item> itemsList = List.of(new GlassHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
                                                 new Zap(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
                                                 new LockedRing(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new SpicySouce(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
+                                                new SpicySauce(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
 
     /**
      * Compute the chances every item has

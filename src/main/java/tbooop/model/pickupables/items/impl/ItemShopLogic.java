@@ -20,7 +20,7 @@ public class ItemShopLogic {
     private static final int BASE_HEIGHT_DIVISION = 3;
     private final Item goldenHeart = new GlassHeart(getItemPosition(1), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
     private final Item belt = new Zap(getItemPosition(2), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item fireMind = new SpicySouce(getItemPosition(3), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final Item fireMind = new SpicySauce(getItemPosition(3), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
     private final Item ironBar = new LockedRing(getItemPosition(4), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
 
     /**
