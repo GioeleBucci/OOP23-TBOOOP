@@ -18,12 +18,18 @@ public class ItemShopRoom extends SpecialRoom {
 
     private final ItemShopLogic shopLogic = new ItemShopLogic();
 
+    /**Instantiates items inside the shop room.*/
+    public ItemShopRoom() {
+        for (final var i : getItemMap().keySet()) {
+            addGameObject(i);
+        }
+    }
     /**
      * Get the items map, from Item to its price.
      *
      * @return a map from Item to Integer
      */
-    public Map<Item, Integer> getItemMap() {
+    private Map<Item, Integer> getItemMap() {
         return shopLogic.getItemPool();
     }
 }
