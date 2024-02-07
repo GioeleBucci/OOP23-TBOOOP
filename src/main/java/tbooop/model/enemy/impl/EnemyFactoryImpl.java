@@ -53,7 +53,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
     public Enemy shooter(final Point2ds initialDirection) {
         return new Shooter(new BaseEnemy(new Point2dImpl(0, 0),
             new HealthImpl(SHOOTER_HP), SHOOTER_SPEED,
-            new LinearAi(Objects.requireNonNull(initialDirection)),
+            new LinearAi(Objects.requireNonNull(initialDirection), SHOOTER_RADIUS),
             EnemyType.SHOOTER, SHOOTER_RADIUS), this.player);
     }
 

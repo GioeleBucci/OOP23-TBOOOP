@@ -36,7 +36,7 @@ public class EnemyFrameUpdater {
      * @return the next frame
      */
     protected Image getNextFrame(final long currentTime) {
-        if (currentTime - this.latestUpdate > this.updateFrequency) {
+        if (currentTime - this.latestUpdate > this.updateFrequency && !updated) {
             frameCount++;
             this.updated = true;
         }
