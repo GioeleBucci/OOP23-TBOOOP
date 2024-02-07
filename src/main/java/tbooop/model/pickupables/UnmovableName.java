@@ -17,7 +17,7 @@ public enum UnmovableName {
     /**LockedRing item name. */
     LOCKED_RING,
     /**SPicySouce item name. */
-    SPICY_SOUCE,
+    SPICY_SAUCE,
     /**Zap item name. */
     ZAP,
     /**GoldenApple item name. */

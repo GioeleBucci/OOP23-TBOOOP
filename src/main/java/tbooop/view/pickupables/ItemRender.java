@@ -18,7 +18,7 @@ public class ItemRender {
         switch (gameObject.getObjectName()) {
             case GLASS_HEART: return new Image("pickupables/items/glassHeart.png");
             case LOCKED_RING: return new Image("pickupables/items/lockedRings.png");
-            case SPICY_SOUCE: return new Image("pickupables/items/spicySauce.png");
+            case SPICY_SAUCE: return new Image("pickupables/items/spicySauce.png");
             case ZAP: return new Image("pickupables/items/zap.png");
             case GOLDEN_APPLE: return new Image("pickupables/items/forbiddenFruit.png");
             case BILL: return new Image("pickupables/items/foreignBill.png");

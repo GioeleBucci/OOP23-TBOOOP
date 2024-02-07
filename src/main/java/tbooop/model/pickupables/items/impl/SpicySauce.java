@@ -16,7 +16,7 @@ import tbooop.model.player.api.Player;
 public class SpicySauce extends ItemAbs {
     private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
-    private final UnmovableName pickupTag = UnmovableName.SPICY_SOUCE;
+    private final UnmovableName pickupTag = UnmovableName.SPICY_SAUCE;
     /**
      * Create a new istance of Fire Mind item.
      * 
