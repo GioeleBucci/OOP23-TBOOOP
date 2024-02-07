@@ -19,5 +19,7 @@ public enum UnmovableName {
     /**SPicySouce item name. */
     SPICY_SOUCE,
     /**Zap item name. */
-    ZAP;
+    ZAP,
+    /**GoldenApple item name. */
+    GOLDEN_APPLE;
 }
