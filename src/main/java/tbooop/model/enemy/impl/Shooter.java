@@ -17,7 +17,7 @@ import tbooop.model.enemy.api.EnemyDecorator;
 public class Shooter extends EnemyDecorator {
 
     private static final long TIME_BETWEEN_SHOTS = 2500;
-    private static final double PROJECTILE_VELOCITY = 0.035;
+    private static final double PROJECTILE_VELOCITY = 0.02;
     private final Damageable player;
     private long timeSinceLastShoot;
 

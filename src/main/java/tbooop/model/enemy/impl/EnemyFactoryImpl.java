@@ -21,13 +21,13 @@ import tbooop.model.enemy.impl.ai.LinearAi;
 public class EnemyFactoryImpl implements EnemyFactory {
 
     private static final int BOUNCER_HP = 3;
-    private static final double BOUNCER_SPEED = 0.01;
+    private static final double BOUNCER_SPEED = 0.03;
     private static final double BOUNCER_RADIUS = 15;
     private static final int MELEE_HP = 3;
-    private static final double MELEE_SPEED = 0.01;
+    private static final double MELEE_SPEED = 0.02;
     private static final double MELEE_RADIUS = 15;
     private static final int SHOOTER_HP = 3;
-    private static final double SHOOTER_SPEED = 0.01;
+    private static final double SHOOTER_SPEED = 0.025;
     private static final double SHOOTER_RADIUS = 15;
     private final Damageable player;
 
