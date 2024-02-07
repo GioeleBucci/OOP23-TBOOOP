@@ -27,7 +27,7 @@ public class EnemySpawnerImpl implements EnemySpawner {
     private static final double MIN_VALUE = -10.0;
     private static final double MAX_VALUE = 10.0;
     private static final int CARDINAL_DIRECTIONS = 4;
-    private static final int ENEMY_TYPES = 2;
+    private static final int ENEMY_TYPES = 3;
     private static final int SPAWN_MELEE = 0;
     private static final int SPAWN_SHOOTER = 1;
     private static final int SPAWN_BOWNCER = 2;
