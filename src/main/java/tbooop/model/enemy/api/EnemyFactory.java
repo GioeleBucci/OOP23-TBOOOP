@@ -41,4 +41,11 @@ public interface EnemyFactory {
      */
     Enemy bouncer(Point2d initialDirection);
 
+    /**
+     * Creates and returns an enemy that uses all the attack systems available.
+     * It moves by chasing the player.
+     * @return an instance of a crazy enemy
+     */
+    Enemy crazy();
+
 }
