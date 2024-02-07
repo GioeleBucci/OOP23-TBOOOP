@@ -22,7 +22,7 @@ public class TrapdoorImpl extends UnmovableAbs implements Trapdoor {
 
     /** {@inheritDoc} */
     @Override
-    public void onPlayerCollision(Player player) {
+    public void onPlayerCollision(final Player player) {
         super.destroy();
     }
 
