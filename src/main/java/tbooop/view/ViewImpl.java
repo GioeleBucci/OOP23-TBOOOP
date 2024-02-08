@@ -23,15 +23,13 @@ import tbooop.controller.ControllerImpl;
 import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
-import tbooop.model.player.api.PlayerProjectile;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
-import tbooop.model.pickupables.Pickupable;
+import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.api.View;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.enemy.EnemyAnimator;
 import tbooop.view.enemy.EnemyAnimatorImpl;
-import tbooop.view.pickupables.ItemRender;
 import tbooop.view.player.HealthView;
 import tbooop.view.player.PlayerRender;
 
@@ -52,12 +50,11 @@ public final class ViewImpl extends Application implements View {
     private final Set<ViewComponent> viewComponents = new HashSet<>();
     private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
-
+    private final BaseSpriteProvider spriteLoader = new BaseSpriteProviderImpl();
 
     private final Group root;
     private final Controller controller;
     private final InputManager inputManager;
-    private final ItemRender itemRender = new ItemRender();
     private boolean isMoving;
 
     private volatile Scene scene;
@@ -126,27 +123,7 @@ public final class ViewImpl extends Application implements View {
     /** {@inheritDoc} */
     @Override
     public void addGameObject(final GameObjectUnmodifiable gameObject) {
-        /*
-         * TODO usare una classe con la logica per far si che la scelta della sprite
-         * dipenda dal tipo di GameObject!!
-         */
-        final ImageView imgView = new ImageView();
-        switch (gameObject.getTag()) {
-            case PROJECTILE -> {
-                if (gameObject instanceof PlayerProjectile) {
-                    imgView.setImage(new Image("projectile/playerproj.png"));
-                } else {
-                    imgView.setImage(new Image("projectile/enemyproj.png"));
-                }
-            }
-            case PICKUP -> {
-                if (gameObject instanceof Pickupable) {
-                    imgView.setImage(itemRender.getPickupableSprite((Pickupable) gameObject));
-                }
-            }
-            default -> imgView.setImage(new Image("down2.png"));
-        }
-        addGameObjectToView(imgView, gameObject);
+        addGameObjectToView(this.spriteLoader.getGameObjectSprite(gameObject), gameObject);
     }
 
     synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) {
