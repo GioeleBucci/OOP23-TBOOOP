@@ -78,7 +78,7 @@ public class FloorManagerImpl implements FloorManager {
     }
 
     private void onRoomClear() {
-        Pickup pickup = pickupSpawner.getRandomPickup();
+        final Pickup pickup = pickupSpawner.getRandomPickup();
         world.addGameObject(pickup);
         currentRoom.getGameObjects().add(pickup); // save the pickup in the room so that it doesn't despawn
         view.refreshRoom(currentRoom);
