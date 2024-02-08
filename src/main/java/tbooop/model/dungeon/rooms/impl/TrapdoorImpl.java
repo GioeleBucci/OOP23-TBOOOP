@@ -11,7 +11,7 @@ import tbooop.model.player.api.Player;
  */
 public class TrapdoorImpl extends UnmovableAbs implements Trapdoor {
 
-    private static final int COLLIDER_RADIUS = 20;
+    private static final int COLLIDER_RADIUS = 10;
 
     /**
      * Creates a new Trapdoor.
