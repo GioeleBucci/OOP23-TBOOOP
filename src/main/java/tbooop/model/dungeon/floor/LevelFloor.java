@@ -20,7 +20,9 @@ public class LevelFloor extends BaseFloor {
      * @see BaseFloor
      */
     public LevelFloor(final int floorLevel, final EnemyFactory enemyFactory) {
-        super((int) (Math.random() * 2 + MINIMUM_ROOMS_AMOUNT + floorLevel * MULTIPLIER), enemyFactory);
+        super((int) (Math.random() * 2 + MINIMUM_ROOMS_AMOUNT + floorLevel * MULTIPLIER),
+                enemyFactory,
+                () -> (int) (floorLevel + 1 + Math.random() * 2));
         this.floorLevel = floorLevel;
     }
 

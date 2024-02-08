@@ -2,6 +2,7 @@ package tbooop.model.dungeon.floor;
 
 import java.util.Queue;
 import java.util.Random;
+import java.util.function.Supplier;
 
 import tbooop.commons.Point2ds;
 import tbooop.commons.api.Point2d;
@@ -38,6 +39,7 @@ public abstract class BaseFloor implements Floor {
     private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();
     /** This factory instance will be used to create enemies inside enemy rooms. */
     private final EnemyFactory enemyFactory;
+    private final Supplier<Integer> enemyAmountSupplier;
     // dead ends are used for placing special rooms, such as item rooms, shops and
     // trapdoor rooms
     private final Point2d itemRoomPos;
@@ -54,14 +56,18 @@ public abstract class BaseFloor implements Floor {
     /**
      * Creates a new floor with the desired amount of rooms (>=3).
      * 
-     * @param rooms        the amount of rooms to generate
-     * @param enemyFactory the factory used for creating enemies inside enemy rooms
+     * @param rooms               the amount of rooms to generate
+     * @param enemyFactory        the factory used for creating enemies inside enemy
+     *                            rooms
+     * @param enemyAmountSupplier the function used to get the amount of enemies to
+     *                            spawn
      * @throws NullPointerException     if null is passed
-     * @throws IllegalArgumentException if a number < 3 is passed
+     * @throws IllegalArgumentException if a number < 4 is passed
      */
-    protected BaseFloor(final int rooms, final EnemyFactory enemyFactory) {
+    protected BaseFloor(final int rooms, final EnemyFactory enemyFactory, final Supplier<Integer> enemyAmountSupplier) {
         this.roomsAmount = Objects.requireNonNull(rooms);
         this.enemyFactory = Objects.requireNonNull(enemyFactory);
+        this.enemyAmountSupplier = Objects.requireNonNull(enemyAmountSupplier);
         if (roomsAmount < MINIMUM_ROOMS_AMOUNT) {
             throw new IllegalArgumentException("You must pass a number greater than " + MINIMUM_ROOMS_AMOUNT);
         }
@@ -161,7 +167,7 @@ public abstract class BaseFloor implements Floor {
                 if (!roomsMap.containsKey(newSpot) && generatedRooms < roomsAmount && neighboursAmount(newSpot) < 2
                         && Math.random() > 0.5 && Math.abs(newSpot.getX()) <= MAX_DIST_FROM_START
                         && Math.abs(newSpot.getY()) <= MAX_DIST_FROM_START) {
-                    roomsMap.put(newSpot, new EnemyRoom(enemyFactory));
+                    roomsMap.put(newSpot, new EnemyRoom(enemyFactory, enemyAmountSupplier));
                     queue.add(newSpot);
                     generatedRooms++;
                 }
