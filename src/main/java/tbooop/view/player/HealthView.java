@@ -9,10 +9,10 @@ import tbooop.view.api.ViewElements;
 import java.util.List;
 import java.util.ArrayList;
 
-
 /**
  * Represents a view for displaying the health of a player.
- * This class is responsible for rendering the health bar and updating it based on the player's health.
+ * This class is responsible for rendering the health bar and updating it based
+ * on the player's health.
  */
 public class HealthView extends ViewComponent {
 
@@ -23,17 +23,17 @@ public class HealthView extends ViewComponent {
     private int currentHealth;
     private int maxHealth;
 
-
     /**
      * Represents a view for displaying the health of a player.
-     * This class is responsible for rendering the health bar and updating it based on the player's health.
+     * This class is responsible for rendering the health bar and updating it based
+     * on the player's health.
      *
-     * @param view The ViewElements object used for rendering the view.
+     * @param view   The ViewElements object used for rendering the view.
      * @param player The UnmodifiablePlayer object representing the player.
      */
     public HealthView(final ViewElements view, final UnmodifiablePlayer player) {
         super(view);
-        this.player = player; 
+        this.player = player;
         view.getRoot().getChildren().add(root);
         healthPoint = new HealthRender(this.player.getMaxHealth(), this.root, this.heartList);
         this.currentHealth = this.player.getHealth();
@@ -67,25 +67,27 @@ public class HealthView extends ViewComponent {
 
     /**
      * Change the empty heart with the full one.
+     * 
      * @param currentHealth the heart to change
      */
     public synchronized void toggledHealth(final int currentHealth) {
-        this.heartList.get(currentHealth).setImage(new Image("empty_hearth.png"));
+        this.heartList.get(currentHealth).setImage(new Image("test/empty_hearth.png"));
     }
 
     /**
      * Change the full heart with the empty one.
+     * 
      * @param currentHealth the heart to change
      */
     public synchronized void addHealth(final int currentHealth) {
-        this.heartList.get(currentHealth).setImage(new Image("full_hearth.png")); 
+        this.heartList.get(currentHealth).setImage(new Image("test/full_hearth.png"));
     }
 
     /**
      * Add a new Heart.
      */
     public synchronized void addMaxHealth() {
-        final ImageView heartView = new ImageView("empty_hearth.png");
+        final ImageView heartView = new ImageView("test/empty_hearth.png");
         healthPoint.addMaxHealth(heartView, this.root);
         heartList.add(heartView);
     }

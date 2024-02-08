@@ -25,7 +25,7 @@ public class ItemRender {
             case COIN: return new Image("pickupables/pickups/coin.png");
             case KEY: return new Image("pickupables/pickups/key.png");
             case HEART: return new Image("pickupables/pickups/pickup_heart.png");
-            default: return new Image("down2.png");
+            default: return new Image("pickupables/pickups/pickup_heart.png");
         }
     }
 }
