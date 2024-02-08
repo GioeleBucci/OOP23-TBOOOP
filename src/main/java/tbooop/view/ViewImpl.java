@@ -55,6 +55,7 @@ public final class ViewImpl extends Application implements View {
     private final Group root;
     private final Controller controller;
     private final InputManager inputManager;
+    private PlayerRender playerRender;
     private boolean isMoving;
 
     private volatile Scene scene;
@@ -112,7 +113,7 @@ public final class ViewImpl extends Application implements View {
     /** {@inheritDoc} */
     @Override
     public void addPlayer(final UnmodifiablePlayer player) {
-        final PlayerRender playerRender = new PlayerRender(this, player);
+        playerRender = new PlayerRender(this, player);
         viewComponents.add(playerRender);
         addGameObjectToView(playerRender.getSprite(), player);
 
@@ -143,7 +144,7 @@ public final class ViewImpl extends Application implements View {
     /** {@inheritDoc} */
     @Override
     public void update() {
-
+        playerRender.getSprite().toFront(); // prevent player from being covered by other sprites
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
             if (viewComponent instanceof PlayerRender) {
@@ -253,13 +254,13 @@ public final class ViewImpl extends Application implements View {
     protected synchronized void addGameObjectToView(final ImageView imgView, final GameObjectUnmodifiable gobj) {
         gameObjMap.put(gobj, imgView);
         imgView.fitWidthProperty().bind(walkableArea.widthProperty().multiply(
-            imgView.getImage().getWidth() * (scene.getWidth() / BASE_ROOM_W * MULTIPLIER_SCALE)
-            / walkableArea.widthProperty().get()));
+                imgView.getImage().getWidth() * (scene.getWidth() / BASE_ROOM_W * MULTIPLIER_SCALE)
+                        / walkableArea.widthProperty().get()));
         imgView.fitHeightProperty().bind(walkableArea.heightProperty().multiply(
-            imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H * MULTIPLIER_SCALE)
-            / walkableArea.heightProperty().get()));
+                imgView.getImage().getHeight() * (scene.getHeight() / BASE_ROOM_H * MULTIPLIER_SCALE)
+                        / walkableArea.heightProperty().get()));
         root.getChildren().add(imgView);
-        // attachDebugger(gobj);
+        attachDebugger(gobj);
     }
 
     private void setBackgroundImage(final String imageUrl) {
