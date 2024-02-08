@@ -24,7 +24,7 @@ public class PlayerRender extends ViewComponent {
         super(view);
         this.player = player;
 
-        this.playerSprite = new ImageView("Player/down/down1.png");
+        this.playerSprite = new ImageView("player/up/up1.png");
         addToRoot(playerSprite);
     }
 
