@@ -4,8 +4,10 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 /**
- * The MusicPlayer class represents a player for background music in a game or application.
- * It provides methods to play default music and special room music, as well as the ability to change the current track.
+ * The MusicPlayer class represents a player for background music in a game or
+ * application.
+ * It provides methods to play default music and special room music, as well as
+ * the ability to change the current track.
  */
 public class MusicPlayer {
 
@@ -38,7 +40,8 @@ public class MusicPlayer {
     /**
      * Changes the current music track to the specified track.
      * If the specified track is already playing, nothing happens.
-     * If a different track is playing, the current track is stopped and the new track is played.
+     * If a different track is playing, the current track is stopped and the new
+     * track is played.
      * 
      * @param newTrack the URL of the new music track
      */
@@ -59,6 +62,7 @@ public class MusicPlayer {
         mediaPlayer = new MediaPlayer(
                 new Media(getMediaFromURL(track)));
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setVolume(0.5);
         mediaPlayer.play();
     }
 
