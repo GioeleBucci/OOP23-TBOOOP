@@ -23,6 +23,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
     private static final int BOUNCER_HP = 3;
     private static final double BOUNCER_SPEED = 0.03;
     private static final double BOUNCER_RADIUS = 15;
+    private static final int BOUNCER_PROJ_AMOUNT = 8;
     private static final int MELEE_HP = 3;
     private static final double MELEE_SPEED = 0.023;
     private static final double MELEE_RADIUS = 15;
@@ -32,6 +33,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
     private static final int CRAZY_HP = 3;
     private static final double CRAZY_SPEED = 0.02;
     private static final double CRAZY_RADIUS = 15;
+    private static final int CRAZY_PROJ_AMOUNT = 5;
     private final Damageable player;
 
     /**
@@ -66,7 +68,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
         return new Explosive(new Melee(new BaseEnemy(new Point2dImpl(0, 0),
             new HealthImpl(BOUNCER_HP), BOUNCER_SPEED,
             new BouncingAi(Objects.requireNonNull(initialDirection), BOUNCER_RADIUS),
-            EnemyType.BOUNCER, BOUNCER_RADIUS)));
+            EnemyType.BOUNCER, BOUNCER_RADIUS)), BOUNCER_PROJ_AMOUNT);
     }
 
     /** {@inheritDoc} */
@@ -74,7 +76,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
     public Enemy crazy() {
         return new Explosive(new Melee(new Shooter(new BaseEnemy(
             new Point2dImpl(0, 0), new HealthImpl(CRAZY_HP), CRAZY_SPEED,
-            new ChasingAi(player), EnemyType.CRAZY, CRAZY_RADIUS), player)));
+            new ChasingAi(player), EnemyType.CRAZY, CRAZY_RADIUS), player)), CRAZY_PROJ_AMOUNT);
     }
 
 }
