@@ -17,6 +17,7 @@ import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.dungeon.rooms.api.RoomClosable;
 import tbooop.model.enemy.impl.EnemyFactoryImpl;
+import tbooop.model.pickupables.pickups.api.Pickup;
 import tbooop.model.pickupables.pickups.impl.PickupLogic;
 import tbooop.view.api.View;
 
@@ -73,13 +74,15 @@ public class FloorManagerImpl implements FloorManager {
         if (isRoomLocked && currentRoom instanceof RoomClosable && !roomHasEnemies()) {
             ((RoomClosable) currentRoom).openDoors();
             onRoomClear();
-            view.refreshRoom(currentRoom); // refresh the view
-            isRoomLocked = false;
         }
     }
 
     private void onRoomClear() {
-        world.addGameObject(pickupSpawner.getRandomPickup());
+        Pickup pickup = pickupSpawner.getRandomPickup();
+        world.addGameObject(pickup);
+        currentRoom.getGameObjects().add(pickup); // save the pickup in the room so that it doesn't despawn
+        view.refreshRoom(currentRoom);
+        isRoomLocked = false;
     }
 
     /** {@inheritDoc} */
