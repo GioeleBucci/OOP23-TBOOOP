@@ -2,6 +2,7 @@ package tbooop.model.dungeon.rooms.impl;
 
 import java.util.Map;
 
+import tbooop.model.dungeon.rooms.api.ShopRoom;
 import tbooop.model.dungeon.rooms.api.SpecialRoom;
 import tbooop.model.pickupables.items.api.Item;
 import tbooop.model.pickupables.items.impl.ItemShopLogic;
@@ -14,16 +15,17 @@ import tbooop.model.pickupables.items.impl.ItemShopLogic;
  * allowed to enter this room using a
  * special key.
  */
-public class ItemShopRoom extends SpecialRoom {
+public class ItemShopRoom extends SpecialRoom implements ShopRoom {
 
     private final ItemShopLogic shopLogic = new ItemShopLogic();
 
-    /**Instantiates items inside the shop room.*/
+    /** Instantiates items inside the shop room. */
     public ItemShopRoom() {
         for (final var i : getItemMap().keySet()) {
             addGameObject(i);
         }
     }
+
     /**
      * Get the items map, from Item to its price.
      *
