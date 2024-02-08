@@ -16,11 +16,7 @@ import tbooop.model.pickupables.pickups.api.Pickup;
  */
 public class PickupLogic {
 
-    private static final int PICKUPS_NUMBER = 3;
-    private final List<Pickup> list = Arrays.asList(new Coin(RoomBounds.CENTER, 2.0, GameTag.PICKUP), 
-                                                new Heart(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
-                                                new Key(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
-                                                new Bill(RoomBounds.CENTER, 2.0, GameTag.PICKUP));
+    private static final int PICKUPS_NUMBER = 4;
     private final Random random = new Random();
 
     /**
@@ -29,6 +25,10 @@ public class PickupLogic {
      * @return a random Pickupable
      */
     public Pickup getRandomPickup() {
+        final List<Pickup> list = Arrays.asList(new Coin(RoomBounds.CENTER, 2.0, GameTag.PICKUP), 
+                            new Heart(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
+                            new Key(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
+                            new Bill(RoomBounds.CENTER, 2.0, GameTag.PICKUP));
         return list.get(random.nextInt(PICKUPS_NUMBER));
     }
 }
