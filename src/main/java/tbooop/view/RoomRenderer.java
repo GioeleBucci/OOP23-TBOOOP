@@ -86,7 +86,7 @@ public class RoomRenderer extends ViewComponent {
                     imgView = new ImageView(
                             e.getValue().isOpen() ? REGULAR_DOOR_OPEN : REGULAR_DOOR_CLOSED);
                 }
-                ((ViewImpl) getView()).addGameObjectToView(imgView, e.getValue());
+                ((ViewUpdater) getView()).addGameObjectToView(imgView, e.getValue());
                 doorsSpriteMap.put(e.getValue(), imgView);
                 rotateDoor(imgView, e.getKey());
             });
@@ -96,7 +96,7 @@ public class RoomRenderer extends ViewComponent {
     private void addTooltip() {
         Platform.runLater(() -> {
             // add a dummy gameobject and associate it with the tooltip imageview
-            ((ViewImpl) view).addGameObjectToView(COMMANDS_TOOLTIP,
+            ((ViewUpdater) view).addGameObjectToView(COMMANDS_TOOLTIP,
                     new UnmovableAbs(RoomBounds.CENTER, 0, GameTag.DOOR) {
                     });
         });

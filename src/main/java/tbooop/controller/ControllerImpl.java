@@ -13,13 +13,11 @@ import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
-import tbooop.view.ViewImpl;
 import tbooop.view.api.View;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import javafx.application.Application;
 import javafx.application.Platform;
 
 /**
@@ -168,12 +166,4 @@ public final class ControllerImpl implements Controller {
         }
     }
 
-    /**
-     * Starts the game.
-     * 
-     * @param args
-     */
-    public static void main(final String[] args) {
-        Application.launch(ViewImpl.class, args);
-    }
 }

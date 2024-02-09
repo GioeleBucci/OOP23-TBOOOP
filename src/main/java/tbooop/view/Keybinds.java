@@ -84,6 +84,40 @@ public enum Keybinds {
     }
 
     /**
+     * Checks if the given keybind corresponds to a GUI action.
+     *
+     * @param keybind The keybind to check.
+     * @return True if the keybind corresponds to a GUI action, false otherwise.
+     */
+    public static boolean isGui(final Keybinds keybind) {
+        return keybind == Keybinds.FULLSCREEN
+                || keybind == Keybinds.ZOOM_IN
+                || keybind == Keybinds.ZOOM_OUT;
+    }
+
+    /**
+     * Checks if the given keybind represents a shoot action.
+     *
+     * @param keybind the keybind to check
+     * @return true if the keybind represents a shoot action, false otherwise
+     */
+    public static boolean isShoot(final Keybinds keybind) {
+        return keybind == Keybinds.SHOOT_UP || keybind == Keybinds.SHOOT_DOWN || keybind == Keybinds.SHOOT_LEFT
+                || keybind == Keybinds.SHOOT_RIGHT;
+    }
+
+    /**
+     * Checks if the given Keybinds is a move command.
+     *
+     * @param keybind The Keybinds to check.
+     * @return true if the Keybinds is a move command, false otherwise.
+     */
+    public static boolean isMove(final Keybinds keybind) {
+        return keybind == Keybinds.UP || keybind == Keybinds.DOWN || keybind == Keybinds.LEFT
+                || keybind == Keybinds.RIGHT;
+    }
+
+    /**
      * Returns an Optional containing the Keybinds enum associated with the
      * specified KeyCode,
      * or an empty Optional if no matching keybind is found.

@@ -1,6 +1,9 @@
 package tbooop.view;
 
+import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Screen;
@@ -21,6 +24,7 @@ public final class InputManager {
     private final Controller commandListener;
     private final ViewElements view;
     private static final double WINDOW_SCALE_PERCENTAGE = 0.1;
+    private final Set<KeyCode> keysPressed = new LinkedHashSet<>();
 
     /**
      * Constructs an InputManager object with the specified controller and stage.
@@ -34,12 +38,55 @@ public final class InputManager {
     }
 
     /**
-     * Handles user input based on the pressed key.
+     * Handles the key press event.
+     * If the key corresponds to a GUI keybind, it calls the handleInput method.
+     * Otherwise, it adds the key to the list of pressed keys.
      *
-     * @param keyCode the user input
+     * @param key The KeyCode of the pressed key.
      */
-    public void handleInput(final KeyCode keyCode) {
-        final Optional<Keybinds> keybind = Keybinds.getKeybind(keyCode);
+    public void keyPressed(final KeyCode key) {
+        final Optional<Keybinds> keybind = Keybinds.getKeybind(key);
+        if (keybind.isPresent() && Keybinds.isGui(keybind.get())) {
+            handleInput(keybind);
+        } else {
+            keysPressed.add(key);
+        }
+    }
+
+    /**
+     * Called when a key is released.
+     * Removes the released key from the list of pressed keys.
+     *
+     * @param key the key that was released
+     */
+    public void keyReleased(final KeyCode key) {
+        if (keysPressed.contains(key)) {
+            keysPressed.remove(key);
+        }
+    }
+
+    /**
+     * Updates the input state by handling the pressed keys.
+     * This method filters the pressed keys, extracts the valid keybinds,
+     * and then handles the input based on the type of keybind.
+     */
+    public void update() {
+        final Set<Keybinds> validKeys = keysPressed.stream()
+                .map(Keybinds::getKeybind)
+                .filter(Optional::isPresent)
+                .map(Optional::get).collect(Collectors.toSet());
+        handleInput(validKeys.stream().filter(Keybinds::isMove).findFirst());
+        handleInput(validKeys.stream().filter(Keybinds::isShoot).findFirst());
+    }
+
+    /**
+     * Handles the input based on the provided keybind.
+     * If the keybind is not present, the method returns without performing any action.
+     * Otherwise, it executes the corresponding command based on the keybind.
+     *
+     * @param keybind The optional keybind to handle.
+     */
+    public void handleInput(final Optional<Keybinds> keybind) {
         if (!keybind.isPresent()) {
             return;
         }

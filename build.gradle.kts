@@ -13,7 +13,7 @@ plugins {
      */
     
     // uncomment when the jar file will be needed
-    // id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     id("org.danilopianini.gradle-java-qa") version "1.25.0"
 }
 
@@ -61,5 +61,5 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("tbooop.controller.ControllerImpl")
+    mainClass.set("tbooop.controller.AppLauncher")
 }
