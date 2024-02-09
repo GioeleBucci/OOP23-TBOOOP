@@ -27,7 +27,8 @@ public final class ControllerImpl implements Controller {
 
     private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
     private static final int COMMAND_QUEUE_SIZE = 100;
-    private final BlockingQueue<PlayerCommand> cmdQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
+    private final BlockingQueue<PlayerCommand> moveQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
+    private final BlockingQueue<PlayerCommand> shootQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
     private final View view;
     private final World world;
     private boolean playerAdded;
@@ -68,8 +69,11 @@ public final class ControllerImpl implements Controller {
     }
 
     private synchronized void processInput() {
-        if (!cmdQueue.isEmpty()) {
-            cmdQueue.poll().execute(world.getPlayer());
+        if (!moveQueue.isEmpty()) {
+            moveQueue.poll().execute(world.getPlayer());
+        }
+        if (!shootQueue.isEmpty()) {
+            shootQueue.poll().execute(world.getPlayer());
         }
     }
 
@@ -144,7 +148,11 @@ public final class ControllerImpl implements Controller {
     /** {@inheritDoc} */
     @Override
     public void notifyCommand(final PlayerCommand cmd) {
-        this.cmdQueue.add(Objects.requireNonNull(cmd));
+        if (cmd instanceof MoveCommand) {
+            this.moveQueue.add(cmd);
+        } else {
+            this.shootQueue.add(cmd);
+        }
     }
 
     private void waitForNextFrame(final long startTime) {
