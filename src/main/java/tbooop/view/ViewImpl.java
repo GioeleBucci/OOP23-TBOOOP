@@ -87,12 +87,8 @@ public final class ViewImpl extends Application implements View {
         setBackgroundImage("tileset/room.png");
 
         // Redirect keyboard events to the input manager
-        scene.setOnKeyPressed(event -> {
-            inputManager.handleInput(event.getCode());
-
-            scene.setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
-            scene.setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
-        });
+        scene.setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
+        scene.setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
 
         setWalkableArea();
 
@@ -139,6 +135,7 @@ public final class ViewImpl extends Application implements View {
     /** {@inheritDoc} */
     @Override
     public void update() {
+        inputManager.update();
         playerRender.getSprite().toFront(); // prevent player from being covered by other sprites
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {

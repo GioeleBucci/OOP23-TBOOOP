@@ -60,14 +60,13 @@ public final class InputManager {
         handleInput(validKeys.stream().filter(Keybinds::isMove).findFirst());
         handleInput(validKeys.stream().filter(Keybinds::isShoot).findFirst());
     }
-    
+
     /**
      * Handles user input based on the pressed key.
      *
      * @param keyCode the user input
      */
-    public void handleInput(final KeyCode keyCode) {
-        final Optional<Keybinds> keybind = Keybinds.getKeybind(keyCode);
+    public void handleInput(final Optional<Keybinds> keybind) {
         if (!keybind.isPresent()) {
             return;
         }
