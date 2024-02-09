@@ -79,7 +79,6 @@ public final class InputManager {
         handleInput(validKeys.stream().filter(Keybinds::isShoot).findFirst());
     }
 
-    
     /**
      * Handles the input based on the provided keybind.
      * If the keybind is not present, the method returns without performing any action.
