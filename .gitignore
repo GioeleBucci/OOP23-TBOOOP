@@ -9,3 +9,6 @@ bin/
 .idea
 
 .settings
+
+# ignore Package files
+*.jar
