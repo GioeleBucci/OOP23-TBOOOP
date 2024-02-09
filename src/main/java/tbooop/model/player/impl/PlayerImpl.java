@@ -21,7 +21,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
-    private static final double PROJECTILE_BASE_VELOCITY = 0.01;
+    private static final double PROJECTILE_BASE_VELOCITY = 0.1;
     private static final long TIME_BETWEEN_SHOTS = 200;
     private int damage;
     private int keys;
