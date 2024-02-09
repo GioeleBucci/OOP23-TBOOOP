@@ -63,9 +63,6 @@ public class HealthImpl implements Health {
      * @throws IllegalArgumentException if value is a negative number.
      */
     protected void setCurrentHealth(final int value) {
-        if (value < 0) {
-            throw new IllegalArgumentException();
-        }
         this.currentHealth = value;
     }
 
