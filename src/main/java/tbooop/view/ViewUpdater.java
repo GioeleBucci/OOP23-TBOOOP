@@ -32,7 +32,6 @@ import tbooop.view.player.PlayerRender;
 public class ViewUpdater extends ViewImpl {
 
     private static final double MULTIPLIER_SCALE = 0.9;
-    /** The base width of the room. */
 
     private volatile Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
     private final Set<ViewComponent> viewComponents = new HashSet<>();
