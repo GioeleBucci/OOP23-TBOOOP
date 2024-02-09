@@ -1,6 +1,9 @@
 package tbooop.view;
 
+import java.util.LinkedHashSet;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Screen;
@@ -21,6 +24,7 @@ public final class InputManager {
     private final Controller commandListener;
     private final ViewElements view;
     private static final double WINDOW_SCALE_PERCENTAGE = 0.1;
+    private final Set<KeyCode> keysPressed = new LinkedHashSet<>();
 
     /**
      * Constructs an InputManager object with the specified controller and stage.
@@ -33,6 +37,30 @@ public final class InputManager {
         this.view = view;
     }
 
+    public void keyPressed(final KeyCode key) {
+        Optional<Keybinds> keybind = Keybinds.getKeybind(key);
+        if (keybind.isPresent() && Keybinds.isGui(keybind.get())) {
+            handleInput(keybind);
+        } else {
+            keysPressed.add(key);
+        }
+    }
+
+    public void keyReleased(final KeyCode key) {
+        if (keysPressed.contains(key)) {
+            keysPressed.remove(key);
+        }
+    }
+
+    public void update() {
+        Set<Keybinds> validKeys = keysPressed.stream()
+                .map(Keybinds::getKeybind)
+                .filter(Optional::isPresent)
+                .map(Optional::get).collect(Collectors.toSet());
+        handleInput(validKeys.stream().filter(Keybinds::isMove).findFirst());
+        handleInput(validKeys.stream().filter(Keybinds::isShoot).findFirst());
+    }
+    
     /**
      * Handles user input based on the pressed key.
      *

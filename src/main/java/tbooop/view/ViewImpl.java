@@ -90,13 +90,8 @@ public final class ViewImpl extends Application implements View {
         scene.setOnKeyPressed(event -> {
             inputManager.handleInput(event.getCode());
 
-            if (event.getCode() == Keybinds.UP.getKeyCode()
-                    || event.getCode() == Keybinds.DOWN.getKeyCode()
-                    || event.getCode() == Keybinds.LEFT.getKeyCode()
-                    || event.getCode() == Keybinds.RIGHT.getKeyCode()) {
-                this.isMoving = true;
-            }
-            updateView();
+            scene.setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
+            scene.setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
         });
 
         setWalkableArea();
