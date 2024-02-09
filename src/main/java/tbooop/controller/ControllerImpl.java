@@ -26,7 +26,7 @@ import javafx.application.Platform;
 public final class ControllerImpl implements Controller {
 
     private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
-    private static final int COMMAND_QUEUE_SIZE = 40;
+    private static final int COMMAND_QUEUE_SIZE = 100;
     private final BlockingQueue<PlayerCommand> cmdQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
     private final View view;
     private final World world;

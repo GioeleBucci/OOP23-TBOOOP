@@ -37,10 +37,10 @@ public class ViewUpdater extends ViewImpl {
     private final Set<ViewComponent> viewComponents = new HashSet<>();
     private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
+    private PlayerRender playerRender;
     private final BaseSpriteProvider spriteLoader = new BaseSpriteProviderImpl();
     private final Controller controller;
     private final InputManager inputManager;
-    private boolean isMoving;
 
     /** Creates an instance of a ViewUpdater.  */
     public ViewUpdater() {
@@ -70,9 +70,9 @@ public class ViewUpdater extends ViewImpl {
     /** {@inheritDoc} */
     @Override
     public void addPlayer(final UnmodifiablePlayer player) {
-        final PlayerRender playerRender = new PlayerRender(this, player);
-        viewComponents.add(playerRender);
-        addGameObjectToView(playerRender.getSprite(), player);
+        final ImageView playerSprite = new ImageView("player/down/down2.png");
+        this.playerRender = new PlayerRender(playerSprite, player);
+        addGameObjectToView(playerSprite, player);
         final HealthView healthView = new HealthView(this, player);
         viewComponents.add(healthView);
     }
@@ -83,16 +83,7 @@ public class ViewUpdater extends ViewImpl {
         inputManager.update();
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
-            if (viewComponent instanceof PlayerRender) {
-                // prevent player from being covered by other sprites
-                ((PlayerRender) viewComponent).getSprite().toFront();
-                if (isMoving) {
-                    viewComponent.update();
-                    this.isMoving = false;
-                }
-            } else {
-                viewComponent.update();
-            }
+            viewComponent.update();
         }
     }
 
@@ -156,6 +147,7 @@ public class ViewUpdater extends ViewImpl {
     /** Updates the position of all the sprites. */
     private synchronized void updateView() {
         enemyAnimator.update();
+        playerRender.update();
         for (final var entry : gameObjMap.entrySet()) {
             Point2d newPos = worldToScreenPos(entry.getKey().getPosition());
             // subtract half the image size to center the image
