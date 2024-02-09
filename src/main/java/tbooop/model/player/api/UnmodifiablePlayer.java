@@ -26,4 +26,17 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      * @return int the current health
      */
     int getHealth();
+
+    /**
+     * This method return the amount of coin in the player's possession.
+     * @return the amount of coin.
+     */
+    int getCoin();
+
+    /**
+     * Returns the key associated with this player.
+     *
+     * @return the key of the player
+     */
+    int getKey();
 }

@@ -41,12 +41,6 @@ public interface Player extends Entity, UnmodifiablePlayer {
     void setCoin(int amount);
 
     /**
-     * This method return the amount of coin in the player's possession.
-     * @return the amount of coin.
-     */
-    int getCoin();
-
-    /**
      * This method it's used for moving the player in the four direction.
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */

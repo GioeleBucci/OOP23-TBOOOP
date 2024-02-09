@@ -173,4 +173,10 @@ public class PlayerImpl extends AbstractEntity implements Player {
             this.keys = this.keys - 1;
         }
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public int getKey() {
+        return this.keys;
+    }
 }
