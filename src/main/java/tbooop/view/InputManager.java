@@ -45,7 +45,7 @@ public final class InputManager {
      * @param key The KeyCode of the pressed key.
      */
     public void keyPressed(final KeyCode key) {
-        Optional<Keybinds> keybind = Keybinds.getKeybind(key);
+        final Optional<Keybinds> keybind = Keybinds.getKeybind(key);
         if (keybind.isPresent() && Keybinds.isGui(keybind.get())) {
             handleInput(keybind);
         } else {
@@ -71,7 +71,7 @@ public final class InputManager {
      * and then handles the input based on the type of keybind.
      */
     public void update() {
-        Set<Keybinds> validKeys = keysPressed.stream()
+        final Set<Keybinds> validKeys = keysPressed.stream()
                 .map(Keybinds::getKeybind)
                 .filter(Optional::isPresent)
                 .map(Optional::get).collect(Collectors.toSet());

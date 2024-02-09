@@ -89,7 +89,7 @@ public enum Keybinds {
      * @param keybind The keybind to check.
      * @return True if the keybind corresponds to a GUI action, false otherwise.
      */
-    public static boolean isGui(Keybinds keybind) {
+    public static boolean isGui(final Keybinds keybind) {
         return keybind == Keybinds.FULLSCREEN
                 || keybind == Keybinds.ZOOM_IN
                 || keybind == Keybinds.ZOOM_OUT;
@@ -101,7 +101,7 @@ public enum Keybinds {
      * @param keybind the keybind to check
      * @return true if the keybind represents a shoot action, false otherwise
      */
-    public static boolean isShoot(Keybinds keybind) {
+    public static boolean isShoot(final Keybinds keybind) {
         return keybind == Keybinds.SHOOT_UP || keybind == Keybinds.SHOOT_DOWN || keybind == Keybinds.SHOOT_LEFT
                 || keybind == Keybinds.SHOOT_RIGHT;
     }
@@ -112,7 +112,7 @@ public enum Keybinds {
      * @param keybind The Keybinds to check.
      * @return true if the Keybinds is a move command, false otherwise.
      */
-    public static boolean isMove(Keybinds keybind) {
+    public static boolean isMove(final Keybinds keybind) {
         return keybind == Keybinds.UP || keybind == Keybinds.DOWN || keybind == Keybinds.LEFT
                 || keybind == Keybinds.RIGHT;
     }
