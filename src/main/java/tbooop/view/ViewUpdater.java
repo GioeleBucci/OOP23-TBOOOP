@@ -55,17 +55,12 @@ public class ViewUpdater extends ViewImpl {
     public synchronized void start(final Stage stage) {
         super.start(stage);
         // Redirect keyboard events to the input manager
-        super.getScene().setOnKeyPressed(event -> {
-            inputManager.handleInput(event.getCode());
-            if (event.getCode() == Keybinds.UP.getKeyCode()
-                    || event.getCode() == Keybinds.DOWN.getKeyCode()
-                    || event.getCode() == Keybinds.LEFT.getKeyCode()
-                    || event.getCode() == Keybinds.RIGHT.getKeyCode()) {
-                this.isMoving = true;
-            }
-            updateView();
-        });
+
+        super.getScene().setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
+        super.getScene().setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
+
         roomRenderer.init();
+
         final Thread thread = new Thread(() -> {
             controller.mainLoop();
         });
@@ -85,6 +80,7 @@ public class ViewUpdater extends ViewImpl {
     /** {@inheritDoc} */
     @Override
     public void update() {
+        inputManager.update();
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
             if (viewComponent instanceof PlayerRender) {
