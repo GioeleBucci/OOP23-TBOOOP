@@ -37,6 +37,13 @@ public final class InputManager {
         this.view = view;
     }
 
+    /**
+     * Handles the key press event.
+     * If the key corresponds to a GUI keybind, it calls the handleInput method.
+     * Otherwise, it adds the key to the list of pressed keys.
+     *
+     * @param key The KeyCode of the pressed key.
+     */
     public void keyPressed(final KeyCode key) {
         Optional<Keybinds> keybind = Keybinds.getKeybind(key);
         if (keybind.isPresent() && Keybinds.isGui(keybind.get())) {
@@ -46,12 +53,23 @@ public final class InputManager {
         }
     }
 
+    /**
+     * Called when a key is released.
+     * Removes the released key from the list of pressed keys.
+     *
+     * @param key the key that was released
+     */
     public void keyReleased(final KeyCode key) {
         if (keysPressed.contains(key)) {
             keysPressed.remove(key);
         }
     }
 
+    /**
+     * Updates the input state by handling the pressed keys.
+     * This method filters the pressed keys, extracts the valid keybinds,
+     * and then handles the input based on the type of keybind.
+     */
     public void update() {
         Set<Keybinds> validKeys = keysPressed.stream()
                 .map(Keybinds::getKeybind)
