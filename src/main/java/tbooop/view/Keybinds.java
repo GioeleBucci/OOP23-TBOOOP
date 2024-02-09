@@ -83,6 +83,23 @@ public enum Keybinds {
         return keyCode;
     }
 
+    public static boolean isGui(Keybinds keybind) {
+        return keybind == Keybinds.FULLSCREEN
+                || keybind == Keybinds.ZOOM_IN
+                || keybind == Keybinds.ZOOM_OUT;
+    }
+
+    public static boolean isShoot(Keybinds keybind) {
+        return keybind == Keybinds.SHOOT_UP || keybind == Keybinds.SHOOT_DOWN || keybind == Keybinds.SHOOT_LEFT
+                || keybind == Keybinds.SHOOT_RIGHT;
+    }
+
+    public static boolean isMove(Keybinds keybind) {
+        return keybind == Keybinds.UP || keybind == Keybinds.DOWN || keybind == Keybinds.LEFT
+                || keybind == Keybinds.RIGHT;
+    }
+
+    
     /**
      * Returns an Optional containing the Keybinds enum associated with the
      * specified KeyCode,
