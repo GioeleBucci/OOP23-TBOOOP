@@ -9,7 +9,7 @@ import tbooop.model.core.api.unmovable.UnmovableAbs;
  */
 public abstract class DoorAbstract extends UnmovableAbs implements Door {
 
-    private static final double COLLIDER_RADIUS = 20;
+    private static final double COLLIDER_RADIUS = 10;
 
     private final RoomUnmodifiable room;
 
