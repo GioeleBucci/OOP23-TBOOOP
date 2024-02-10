@@ -5,10 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.beans.binding.Bindings;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
@@ -43,7 +40,7 @@ public class ViewUpdater extends ViewImpl {
     private final Controller controller;
     private final InputManager inputManager;
 
-    /** Creates an instance of a ViewUpdater.  */
+    /** Creates an instance of a ViewUpdater. */
     public ViewUpdater() {
         this.controller = new ControllerImpl(this);
         this.enemyAnimator = new EnemyAnimatorImpl(gameObjMap);
@@ -129,21 +126,6 @@ public class ViewUpdater extends ViewImpl {
                 imgView.getImage().getHeight() * (super.getScene().getHeight() / BASE_ROOM_H * MULTIPLIER_SCALE)
                         / super.getWalkableArea().heightProperty().get()));
         super.getRoot().getChildren().add(imgView);
-        // attachDebugger(gobj);
-    }
-
-    private synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) { //NOPMD temporary method.
-        final Circle circle = new Circle();
-        circle.setRadius(gameObject.getCollider().getRadius() * super.getScene().getWidth() / BASE_ROOM_W);
-        circle.setStroke(Color.BLUE);
-        circle.setFill(Color.TRANSPARENT);
-        circle.setStrokeWidth(2);
-        final ImageView img = gameObjMap.get(gameObject);
-        circle.centerXProperty().bind(img.xProperty().add(img.fitWidthProperty().divide(2)));
-        circle.centerYProperty().bind(img.yProperty().add(img.fitHeightProperty().divide(2)));
-        circle.radiusProperty().bind(Bindings.multiply(gameObject.getCollider().getRadius(),
-                Bindings.createDoubleBinding(() -> super.getScene().getWidth() / BASE_ROOM_W, super.getScene().widthProperty())));
-        super.getRoot().getChildren().add(circle);
     }
 
     /** Updates the position of all the sprites. */
@@ -168,13 +150,15 @@ public class ViewUpdater extends ViewImpl {
             }
         }
         super.getWalkableArea().setTranslateX(super.getScene().getWidth() / 2 - super.getWalkableArea().getWidth() / 2);
-        super.getWalkableArea().setTranslateY(super.getScene().getHeight() / 2 - super.getWalkableArea().getHeight() / 2);
+        super.getWalkableArea()
+                .setTranslateY(super.getScene().getHeight() / 2 - super.getWalkableArea().getHeight() / 2);
     }
 
     /**
      * Converts a world position (position of a GameObject in the model)
      * to a screen position (position inside the window).
-     * To perform the conversion (for one axis) the following proportion can be used:
+     * To perform the conversion (for one axis) the following proportion can be
+     * used:
      * <p>
      * RoomBounds.WIDTH : scene.getWidth() = gameObject.getPosition().getX() : x
      *
