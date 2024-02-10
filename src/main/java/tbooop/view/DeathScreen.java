@@ -1,7 +1,5 @@
 package tbooop.view;
 
-import java.util.logging.Logger;
-
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -10,15 +8,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 /**
- * The death screen.
+ * DeathScreen contains the scene that shows a death screen, when it appears the gameis over.
+ * After a certain amount of seconds have passed any key pressed will close the application.
  */
 public class DeathScreen {
 
-    private static final int MIN_DURATION = 2000;
-    private final Logger logger = Logger.getLogger(DeathScreen.class.getName());
+    private static final long TIME_AMOUNT = 1000;
 
     /**
-     * Returns the death scene.
+     * Returns the death scene. This scene also sets a key listener that terminates the application,
+     * but only if a certain amount of time has passed since this method gets called.
      * 
      * @return the death scene
      */
@@ -26,21 +25,16 @@ public class DeathScreen {
         final Group root = new Group();
         final ImageView deathScreen = new ImageView(new Image("ui/end_screen.png"));
         final Scene scene = new Scene(root);
-
+        final long startTime = System.currentTimeMillis();
         deathScreen.fitWidthProperty().bind(scene.widthProperty());
         deathScreen.fitHeightProperty().bind(scene.heightProperty());
-
         root.getChildren().add(deathScreen);
-
         scene.setOnKeyPressed((KeyEvent event) -> {
-            try {
-                Thread.sleep(MIN_DURATION);
-            } catch (InterruptedException e) {
-                logger.fine("InterruptedException occurred while waiting for next frame.");
+            if (System.currentTimeMillis() - startTime >= TIME_AMOUNT) {
+                Platform.exit();
             }
-            Platform.exit();
         });
-
         return scene;
     }
+
 }

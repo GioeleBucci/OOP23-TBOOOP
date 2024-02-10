@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
@@ -177,9 +176,7 @@ public class ViewUpdater extends ViewImpl {
     /** {@inheritDoc} */
     @Override
     public void showDeathScreen() {
-        Platform.runLater(() -> {
-            super.getStage().setScene(new DeathScreen().getDeathScene());
-        });
+        super.getStage().setScene(new DeathScreen().getDeathScene());
     }
 
 }
