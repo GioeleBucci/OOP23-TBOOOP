@@ -41,6 +41,9 @@ public class LinearAi implements MovementAi {
     @Override
     public Point2d newPosition(final Point2d initialPosition,
     final long deltaTime, final double velocity) {
+        if (deltaTime < 0) {
+            throw new IllegalArgumentException("deltaTime can't be negative");
+        }
         switch (this.direction) {
             case UP, DOWN -> this.checkPosition(initialPosition.getY(),
                 UPPER_BOUND - radius, LOWER_BOUND + radius);

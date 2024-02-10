@@ -37,6 +37,9 @@ public class BouncingAi implements MovementAi {
     /** {@inheritDoc} */
     @Override
     public Point2d newPosition(final Point2d initialPosition, final long deltaTime, final double velocity) {
+        if (deltaTime < 0) {
+            throw new IllegalArgumentException("deltaTime can't be negative");
+        }
         Point2d tempPos = nextPos(Objects.requireNonNull(initialPosition), deltaTime, velocity);
         if (tempPos.getX() - this.radius <= 0) {
             tempPos = new Point2dImpl(this.radius, tempPos.getY());

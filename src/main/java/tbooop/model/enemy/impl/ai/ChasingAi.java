@@ -21,6 +21,7 @@ public class ChasingAi implements MovementAi {
      * Creates an istance of a ChasingAi.
      * 
      * @param player the player that will be chased
+     * @throws NullPointerException if player is null
      */
     public ChasingAi(final Movable player) {
         this.player = Objects.requireNonNull(player);
@@ -30,6 +31,9 @@ public class ChasingAi implements MovementAi {
     @Override
     public Point2d newPosition(final Point2d initialPosition,
     final long deltaTime, final double velocity) {
+        if (deltaTime < 0) {
+            throw new IllegalArgumentException("deltaTime can't be negative");
+        }
         if (Objects.requireNonNull(initialPosition).equals(player.getPosition())) {
             return initialPosition;
         }
