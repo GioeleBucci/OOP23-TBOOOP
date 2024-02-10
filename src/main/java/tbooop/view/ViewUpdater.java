@@ -23,6 +23,8 @@ import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.enemy.EnemyAnimator;
 import tbooop.view.enemy.EnemyAnimatorImpl;
+import tbooop.view.pickupables.pickups.PlayerCoinsView;
+import tbooop.view.pickupables.pickups.PlayerKeysView;
 import tbooop.view.player.HealthView;
 import tbooop.view.player.PlayerRender;
 
@@ -75,6 +77,10 @@ public class ViewUpdater extends ViewImpl {
         addGameObjectToView(playerRender.getSprite(), player);
         final HealthView healthView = new HealthView(this, player);
         viewComponents.add(healthView);
+        final PlayerKeysView keysView = new PlayerKeysView(this, player);
+        viewComponents.add(keysView);
+        final PlayerCoinsView coinsView = new PlayerCoinsView(this, player);
+        viewComponents.add(coinsView);
     }
 
     /** {@inheritDoc} */
