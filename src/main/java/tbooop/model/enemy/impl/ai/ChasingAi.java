@@ -3,17 +3,16 @@ package tbooop.model.enemy.impl.ai;
 import java.util.Objects;
 
 import tbooop.commons.api.Point2d;
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.Vector2dImpl;
 import tbooop.model.core.api.movable.Movable;
-import tbooop.model.enemy.api.ai.MovementAi;
+import tbooop.model.enemy.api.ai.AbstractAi;
 
 /**
  * A movement ai that chases the player.
  * It calculates the position an enemy should move to in a way that tends to
  * get closer to the player's current position.
  */
-public class ChasingAi implements MovementAi {
+public class ChasingAi extends AbstractAi {
 
     private final Movable player;
 
@@ -29,21 +28,14 @@ public class ChasingAi implements MovementAi {
 
     /** {@inheritDoc} */
     @Override
-    public Point2d newPosition(final Point2d initialPosition,
-    final long deltaTime, final double velocity) {
-        if (deltaTime < 0) {
-            throw new IllegalArgumentException("deltaTime can't be negative");
-        }
-        if (Objects.requireNonNull(initialPosition).equals(player.getPosition())) {
+    public Point2d newPosition(final Point2d initialPosition, final long deltaTime, final double velocity) {
+        super.checkParameters(initialPosition, deltaTime);
+        if (initialPosition.equals(player.getPosition())) {
             return initialPosition;
         }
-        final Point2d playerDir = new Vector2dImpl(this.player.getPosition()
-            .subtract(initialPosition).toV2d())
-            .normalize().toP2d();
-        return new Point2dImpl(playerDir)
-            .mul(deltaTime)
-            .mul(velocity)
-            .add(initialPosition);
+        super.setDirection(new Vector2dImpl(this.player.getPosition()
+            .subtract(initialPosition).toV2d()).normalize().toP2d());
+        return super.nextPos(initialPosition, deltaTime, velocity);
     }
 
 }

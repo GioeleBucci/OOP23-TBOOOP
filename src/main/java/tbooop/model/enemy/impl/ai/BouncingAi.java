@@ -5,15 +5,14 @@ import java.util.Objects;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Point2d;
-import tbooop.model.enemy.api.ai.MovementAi;
+import tbooop.model.enemy.api.ai.AbstractAi;
 
 /**
  * A BouncingAi is a movement ai that moves in a straight line. After
  * colliding with a map bound it bounces and changes direction.
  */
-public class BouncingAi implements MovementAi {
+public class BouncingAi extends AbstractAi {
 
-    private Point2d direction;
     private final double radius;
 
     /**
@@ -30,17 +29,15 @@ public class BouncingAi implements MovementAi {
         if (radius < 0) {
             throw new IllegalArgumentException("radius can't be negative");
         }
-        this.direction = Objects.requireNonNull(initialDirection);
+        super.setDirection(Objects.requireNonNull(initialDirection));
         this.radius = radius;
     }
 
     /** {@inheritDoc} */
     @Override
     public Point2d newPosition(final Point2d initialPosition, final long deltaTime, final double velocity) {
-        if (deltaTime < 0) {
-            throw new IllegalArgumentException("deltaTime can't be negative");
-        }
-        Point2d tempPos = nextPos(Objects.requireNonNull(initialPosition), deltaTime, velocity);
+        super.checkParameters(initialPosition, deltaTime);
+        Point2d tempPos = super.nextPos(initialPosition, deltaTime, velocity);
         if (tempPos.getX() - this.radius <= 0) {
             tempPos = new Point2dImpl(this.radius, tempPos.getY());
             this.invertDirectionOnX();
@@ -55,22 +52,15 @@ public class BouncingAi implements MovementAi {
             tempPos = new Point2dImpl(tempPos.getX(), RoomBounds.HEIGHT - this.radius);
             this.invertDirectionOnY();
         }
-        return nextPos(tempPos, deltaTime, velocity);
+        return super.nextPos(tempPos, deltaTime, velocity);
     }
 
     private void invertDirectionOnX() {
-        this.direction = new Point2dImpl(-(this.direction.getX()), this.direction.getY());
+        super.setDirection(new Point2dImpl(-(super.getDirection().getX()), super.getDirection().getY()));
     }
 
     private void invertDirectionOnY() {
-        this.direction = new Point2dImpl(this.direction.getX(), -(this.direction.getY()));
-    }
-
-    private Point2d nextPos(final Point2d initialPosition, final long deltaTime, final double velocity) {
-        return this.direction
-            .mul(velocity)
-            .mul(deltaTime)
-            .add(initialPosition);
+        super.setDirection(new Point2dImpl(super.getDirection().getX(), -(super.getDirection().getY())));
     }
 
 }
