@@ -36,7 +36,7 @@ public class DeathScreen {
             try {
                 Thread.sleep(MIN_DURATION);
             } catch (InterruptedException e) {
-                logger.fine("InterruptedException occurred while waiting.");
+                logger.fine("InterruptedException occurred while waiting for next frame.");
             }
             Platform.exit();
         });
