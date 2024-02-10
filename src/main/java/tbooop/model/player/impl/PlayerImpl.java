@@ -19,6 +19,7 @@ import java.util.Optional;
 */
 public class PlayerImpl extends AbstractEntity implements Player {
 
+    private static final int PLAYER_COINS = 40;
     private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
     private static final double PROJECTILE_BASE_VELOCITY = 0.1;
@@ -44,7 +45,7 @@ public class PlayerImpl extends AbstractEntity implements Player {
     public PlayerImpl(final Point2d position, final Health health, final double velocity) {
         super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
         this.damage = 1;
-        this.coin = 10; 
+        this.coin = PLAYER_COINS; 
         this.projectileVelocity = PROJECTILE_BASE_VELOCITY;
     }
 

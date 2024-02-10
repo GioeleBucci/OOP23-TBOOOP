@@ -29,7 +29,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
         + "and for that reason exposing the internal representation is necessary.")
 public final class WorldImpl implements World {
 
-    private static final int PLAYER_INITIAL_HEALTH = 10;
+    private static final int PLAYER_INITIAL_HEALTH = 5;
     private static final double PLAYER_INITIAL_SPEED = .2;
     private static final int INITIAL_KEYS = 2; // let the player start with some keys
     private final View view;
