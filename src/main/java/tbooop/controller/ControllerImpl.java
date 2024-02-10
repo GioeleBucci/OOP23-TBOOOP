@@ -53,7 +53,7 @@ public final class ControllerImpl implements Controller {
     public void mainLoop() {
         long prevStartTime = System.currentTimeMillis();
         world.init();
-        while (true) {
+        while (!isGameOver()) {
             synchronized (this) {
                 final long startTime = System.currentTimeMillis();
                 final long elapsed = startTime - prevStartTime;
@@ -64,7 +64,17 @@ public final class ControllerImpl implements Controller {
                 prevStartTime = startTime;
             }
         }
-        // gameOver();
+        gameOver();
+    }
+
+    private boolean isGameOver() {
+        return world.getPlayer().getHealth() < 0;
+    }
+
+    private void gameOver() {
+        Platform.runLater(() -> {
+            view.showDeathScreen();
+        });
     }
 
     private synchronized void processInput() {
