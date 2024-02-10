@@ -68,7 +68,7 @@ public final class ControllerImpl implements Controller {
     }
 
     private boolean isGameOver() {
-        return world.getPlayer().getHealth() < 0;
+        return world.getPlayer().getHealth() <= 0;
     }
 
     private void gameOver() {
