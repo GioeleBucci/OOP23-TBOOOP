@@ -70,7 +70,8 @@ public abstract class ViewImpl extends Application implements View {
     }
 
     /**
-     * .
+     * The walkable area is the area where the gameobjects can move.
+     * 
      * @return .
      */
     protected Rectangle getWalkableArea() {

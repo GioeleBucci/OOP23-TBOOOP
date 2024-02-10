@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javafx.application.Platform;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
@@ -171,6 +172,14 @@ public class ViewUpdater extends ViewImpl {
         return new Point2dImpl(
                 worldPos.getX() * super.getWalkableArea().getWidth() / RoomBounds.WIDTH + xWallThickness,
                 worldPos.getY() * super.getWalkableArea().getHeight() / RoomBounds.HEIGHT + yWallThickness);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void showDeathScreen() {
+        Platform.runLater(() -> {
+            super.getStage().setScene(new DeathScreen().getDeathScene());
+        });
     }
 
 }
