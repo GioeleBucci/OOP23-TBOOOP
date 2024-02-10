@@ -68,10 +68,8 @@ public class BaseEnemy extends AbstractEnemy {
      * @throws IllegalArgumentException if deltaTime is negative
      */
     protected void move(final long deltaTime) {
-        // DA DISCUTERE!
         if (deltaTime < 0) {
-            throw new IllegalArgumentException(
-                "deltaTime can't be negative.");
+            throw new IllegalArgumentException("deltaTime can't be negative.");
         }
         final Point2d newPos = this.ai.newPosition(
             super.getPosition(), deltaTime, super.getVelocity());
