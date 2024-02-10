@@ -56,16 +56,12 @@ public class FloorManagerImpl implements FloorManager {
         this.world = world;
         this.view = view;
         this.enemyFactory = new EnemyFactoryImpl(world.getPlayer());
-        this.floor = new LevelFloor(currentFloorLevel, enemyFactory);
-        this.currentRoom = floor.getStaringRoom();
-        logger.info(floor.toString());
     }
 
     /** {@inheritDoc} */
     @Override
     public synchronized void init() {
-        world.getGameObjects().addAll(currentRoom.getDoorMap().values());
-        view.refreshRoom(currentRoom);
+        changeFloor();
     }
 
     /** If there are no more alive enemies in this room opens the doors. */
@@ -107,10 +103,11 @@ public class FloorManagerImpl implements FloorManager {
     /** {@inheritDoc} */
     @Override
     public void changeFloor() {
-        this.floor = new LevelFloor(++currentFloorLevel, enemyFactory);
+        this.floor = new LevelFloor(currentFloorLevel++, enemyFactory);
         logger.info("New floor: " + floor.toString());
+        this.currentRoom = floor.getStaringRoom();
         view.changeFloor();
-        changeRoom(floor.getStaringRoom());
+        changeRoom(currentRoom);
     }
 
     private synchronized boolean roomHasEnemies() {
@@ -152,5 +149,4 @@ public class FloorManagerImpl implements FloorManager {
         currentRoom.setExplored();
         view.refreshRoom(currentRoom);
     }
-
 }
