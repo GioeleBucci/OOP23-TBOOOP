@@ -40,7 +40,7 @@ public class ViewUpdater extends ViewImpl {
     private final Controller controller;
     private final InputManager inputManager;
 
-    private ImageView playerSprite;
+    private final ImageView playerSprite = new ImageView("player/down/down2.png");
 
     /** Creates an instance of a ViewUpdater. */
     public ViewUpdater() {
@@ -67,7 +67,6 @@ public class ViewUpdater extends ViewImpl {
     /** {@inheritDoc} */
     @Override
     public synchronized void addPlayer(final UnmodifiablePlayer player) {
-        playerSprite = new ImageView("player/down/down2.png");
         final PlayerRender playerRender = new PlayerRender(playerSprite, player);
         animators.add(playerRender);
         addGameObjectToView(playerSprite, player);
@@ -81,7 +80,7 @@ public class ViewUpdater extends ViewImpl {
 
     /** {@inheritDoc} */
     @Override
-    public void update() {
+    public synchronized void update() {
         playerSprite.toFront();
         inputManager.update();
         updateView();

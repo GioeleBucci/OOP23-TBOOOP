@@ -13,6 +13,7 @@ public class MusicPlayer {
 
     private static final String DEFAULT_MUSIC = "music/floor.mp3";
     private static final String SPECIAL_ROOM_MUSIC = "music/special_room.mp3";
+    private static final double MUSIC_VOLUME = 0.1;
 
     private MediaPlayer mediaPlayer;
 
@@ -62,7 +63,7 @@ public class MusicPlayer {
         mediaPlayer = new MediaPlayer(
                 new Media(getMediaFromURL(track)));
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.setVolume(0.1);
+        mediaPlayer.setVolume(MUSIC_VOLUME);
         mediaPlayer.play();
     }
 
