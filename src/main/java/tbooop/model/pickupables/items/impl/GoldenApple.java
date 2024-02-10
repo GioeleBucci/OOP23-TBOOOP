@@ -5,6 +5,7 @@ import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.UnmovableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
 import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 
 /**
@@ -15,8 +16,9 @@ import tbooop.model.player.api.Player;
 public class GoldenApple extends ItemAbs {
 
     private final int itemCost = PickupablePrices.GOLDENAPPLE_PRICE.getItemPrice();
-    //private PickupableStatus itemTag = PickupableStatus.NORMAL;
+    private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final UnmovableName pickupTag = UnmovableName.GOLDEN_APPLE;
+    private static final int MAX_HEALTH_TO_INCREASE = 2;
     /**
      * Create a new istance of a GoldenApple.
      * 
@@ -35,22 +37,33 @@ public class GoldenApple extends ItemAbs {
     */
     @Override
     public void onPlayerCollision(final Player player) {
-        onPickup();
+        onPickup(player);
     }
 
     /**
      * When the GoldenApple is picked up
      * by the player, its max-health will
      * be increased by one.
+     * 
+     * @param player
     */
-    private void onPickup() {
-        destroy();
+    private void onPickup(final Player player) {
+        if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
+            if (player.getCoin() >= this.itemCost) {
+                player.increaseMaxHealth(MAX_HEALTH_TO_INCREASE);
+                player.setCoin(-itemCost);
+                destroy();
+            }
+        } else {
+            player.increaseMaxHealth(MAX_HEALTH_TO_INCREASE);
+            destroy();
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     public void setInShop() {
-        //this.itemTag = PickupableStatus.SPECIAL;
+        this.itemTag = PickupableStatus.SPECIAL;
     }
 
     /** {@inheritDoc} */
