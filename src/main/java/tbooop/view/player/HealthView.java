@@ -79,7 +79,7 @@ public class HealthView extends ViewComponent {
      * @param currentHealth the heart to change
      */
     public synchronized void toggledHealth(final int currentHealth) {
-        this.heartList.get(currentHealth).setImage(new Image("test/empty_hearth.png"));
+        this.heartList.get(currentHealth).setImage(new Image("ui/empty_hearth.png"));
     }
 
     /**
@@ -88,14 +88,14 @@ public class HealthView extends ViewComponent {
      * @param currentHealth the heart to change
      */
     public synchronized void addHealth(final int currentHealth) {
-        this.heartList.get(currentHealth).setImage(new Image("test/full_hearth.png"));
+        this.heartList.get(currentHealth).setImage(new Image("ui/full_hearth.png"));
     }
 
     /**
      * Add a new Heart.
      */
     public synchronized void addMaxHealth() {
-        final ImageView heartView = new ImageView("test/empty_hearth.png");
+        final ImageView heartView = new ImageView("ui/empty_hearth.png");
         healthPoint.addMaxHealth(heartView, this.root);
         heartList.add(heartView);
     }
