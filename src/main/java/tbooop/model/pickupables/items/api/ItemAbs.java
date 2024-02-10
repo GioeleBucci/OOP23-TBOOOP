@@ -16,7 +16,7 @@ import tbooop.model.core.api.unmovable.UnmovableAbs;
 public abstract class ItemAbs extends UnmovableAbs implements Item {
 
     /**
-     * Create a new istance of a Pickup.
+     * Create a new istance of an Item.
      * 
      * @param position       starting position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
