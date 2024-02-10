@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.enemy.api.Enemy;
+import tbooop.view.api.FrameUpdater;
 import tbooop.view.api.enemy.EnemyAnimator;
 
 /**
@@ -27,7 +28,7 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
     private static final int CRAZY_UPDATE_FREQUENCY = 1000 / 5;
     private final Map<GameObjectUnmodifiable, ImageView> gameObjMap;
 
-    private final EnemyFrameUpdater meleeUpdater = new EnemyFrameUpdater(List.of(
+    private final FrameUpdater meleeUpdater = new FrameUpdaterImpl(List.of(
         new Image("enemy/melee/melee1.png"),
         new Image("enemy/melee/melee2.png"),
         new Image("enemy/melee/melee3.png"),
@@ -40,19 +41,19 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
         new Image("enemy/melee/melee10.png"),
         new Image("enemy/melee/melee11.png")), MELEE_UPDATE_FREQUENCY);
 
-    private final EnemyFrameUpdater shooterUpdater = new EnemyFrameUpdater(List.of(
+    private final FrameUpdater shooterUpdater = new FrameUpdaterImpl(List.of(
         new Image("enemy/shooter/shooter1.png"),
         new Image("enemy/shooter/shooter2.png"),
         new Image("enemy/shooter/shooter3.png"),
         new Image("enemy/shooter/shooter4.png"),
         new Image("enemy/shooter/shooter5.png")), SHOOTER_UPDATE_FREQUENCY);
 
-    private final EnemyFrameUpdater bouncerUpdater = new EnemyFrameUpdater(List.of(
+    private final FrameUpdater bouncerUpdater = new FrameUpdaterImpl(List.of(
         new Image("enemy/bouncer/bouncer1.png"),
         new Image("enemy/bouncer/bouncer2.png"),
         new Image("enemy/bouncer/bouncer3.png")), BOUNCER_UPDATE_FREQUENCY);
 
-    private final EnemyFrameUpdater crazyUpdater = new EnemyFrameUpdater(List.of(
+    private final FrameUpdater crazyUpdater = new FrameUpdaterImpl(List.of(
         new Image("enemy/crazy/crazy1.png"),
         new Image("enemy/crazy/crazy2.png"),
         new Image("enemy/crazy/crazy3.png"),
