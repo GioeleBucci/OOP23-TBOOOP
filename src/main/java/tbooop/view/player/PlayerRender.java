@@ -6,11 +6,12 @@ import javafx.scene.image.ImageView;
 import tbooop.commons.Point2ds;
 import tbooop.commons.api.Point2d;
 import tbooop.model.player.api.UnmodifiablePlayer;
+import tbooop.view.api.Animator;
 
 /** Renders a Player. */
 @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable view elements"
         + "is required to distribute the work load between the various view components.")
-public class PlayerRender {
+public class PlayerRender implements Animator {
 
     private final PlayerAnimator playerRenderSprite = new PlayerAnimator();
     private final ImageView playerSprite;
@@ -19,8 +20,9 @@ public class PlayerRender {
     private Image playerDefault = new Image("player/down/down2.png");
 
     /**
-     * @param view   the root this attaches to.
-     * @param player one Unmodifiable Player to set the animation sprite.
+     * Constructs a new PlayerRender.
+     * @param imgView the ImageView representing the player
+     * @param player the UnmodifiablePlayer object representing the player
      */
     public PlayerRender(final ImageView imgView, final UnmodifiablePlayer player) {
         this.player = player;
@@ -58,8 +60,9 @@ public class PlayerRender {
     /**
      * Updates the player's position and animation.
      */
+    @Override
     public void update() {
-        if (player.getPoint2ds().isPresent() && isMoving()){
+        if (player.getPoint2ds().isPresent() && isMoving()) {
             move(player.getPoint2ds().get());
         } else {
             playerSprite.setImage(playerDefault);
@@ -68,9 +71,6 @@ public class PlayerRender {
     }
 
     private boolean isMoving() {
-        if (!player.getPosition().equals(this.lastPosition)) {
-            return true;
-        }
-        return false;
+        return !player.getPosition().equals(this.lastPosition);
     }
 }

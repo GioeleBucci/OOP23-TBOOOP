@@ -19,6 +19,7 @@ import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.model.player.api.UnmodifiablePlayer;
+import tbooop.view.api.Animator;
 import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.enemy.EnemyAnimator;
@@ -37,7 +38,7 @@ public class ViewUpdater extends ViewImpl {
     private final Set<ViewComponent> viewComponents = new HashSet<>();
     private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
-    private PlayerRender playerRender;
+    private final Set<Animator> animators = new HashSet<>();
     private final BaseSpriteProvider spriteLoader = new BaseSpriteProviderImpl();
     private final Controller controller;
     private final InputManager inputManager;
@@ -69,9 +70,10 @@ public class ViewUpdater extends ViewImpl {
 
     /** {@inheritDoc} */
     @Override
-    public void addPlayer(final UnmodifiablePlayer player) {
+    public synchronized void addPlayer(final UnmodifiablePlayer player) {
         final ImageView playerSprite = new ImageView("player/down/down2.png");
-        this.playerRender = new PlayerRender(playerSprite, player);
+        final PlayerRender playerRender = new PlayerRender(playerSprite, player);
+        animators.add(playerRender);
         addGameObjectToView(playerSprite, player);
         final HealthView healthView = new HealthView(this, player);
         viewComponents.add(healthView);
@@ -147,7 +149,9 @@ public class ViewUpdater extends ViewImpl {
     /** Updates the position of all the sprites. */
     private synchronized void updateView() {
         enemyAnimator.update();
-        playerRender.update();
+
+        animators.forEach(a -> a.update());
+
         for (final var entry : gameObjMap.entrySet()) {
             Point2d newPos = worldToScreenPos(entry.getKey().getPosition());
             // subtract half the image size to center the image

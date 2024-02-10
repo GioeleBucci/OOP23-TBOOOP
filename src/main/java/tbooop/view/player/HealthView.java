@@ -45,12 +45,17 @@ public class HealthView extends ViewComponent {
     public synchronized void update() {
         if (this.currentHealth != this.player.getHealth()) {
             if (this.currentHealth > this.player.getHealth()) {
-                toggledHealth(this.currentHealth);
+                for (int i = this.currentHealth; i >= this.player.getHealth(); i--) {
+                    toggledHealth(i);
+                }
             } else {
-                addHealth(player.getHealth());
+                for (int i = this.currentHealth; i <= this.player.getHealth(); i++) { 
+                    addHealth(i);
+                }
             }
-            this.currentHealth = this.player.getHealth();
         }
+
+        this.currentHealth = this.player.getHealth();
 
         if (this.maxHealth != player.getMaxHealth()) {
             addMaxHealth();
@@ -90,5 +95,6 @@ public class HealthView extends ViewComponent {
         final ImageView heartView = new ImageView("test/empty_hearth.png");
         healthPoint.addMaxHealth(heartView, this.root);
         heartList.add(heartView);
+        addHealth(player.getHealth());
     }
 }
