@@ -52,11 +52,12 @@ public class SpicySauce extends ItemAbs {
             if (player.getCoin() >= this.itemCost) {
                 player.increaseProjectileVelocity();
                 player.setCoin(-itemCost);
+                destroy();
             }
         } else {
             player.increaseProjectileVelocity();
+            destroy();
         }
-        destroy();
     }
 
     /** {@inheritDoc} */

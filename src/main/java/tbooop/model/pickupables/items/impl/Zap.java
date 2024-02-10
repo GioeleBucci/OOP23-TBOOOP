@@ -53,11 +53,12 @@ public class Zap extends ItemAbs {
             if (player.getCoin() >= this.itemCost) {
                 player.increaseVelocity(VELOCITY_TO_INCREASE);
                 player.setCoin(-itemCost);
+                destroy();
             }
         } else {
             player.increaseVelocity(VELOCITY_TO_INCREASE);
+            destroy();
         }
-        destroy();
     }
 
     /** {@inheritDoc} */

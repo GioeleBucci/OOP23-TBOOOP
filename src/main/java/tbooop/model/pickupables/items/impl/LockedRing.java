@@ -52,11 +52,12 @@ public class LockedRing extends ItemAbs {
             if (player.getCoin() >= this.itemCost) {
                 player.increaseDamage(DAMAGE_TO_INCREASE);
                 player.setCoin(-itemCost);
+                destroy();
             }
         } else {
             player.increaseDamage(DAMAGE_TO_INCREASE);
+            destroy();
         }
-        destroy();
     }
 
     /** {@inheritDoc} */

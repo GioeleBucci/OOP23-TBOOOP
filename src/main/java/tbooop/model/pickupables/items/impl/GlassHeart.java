@@ -53,11 +53,12 @@ public class GlassHeart extends ItemAbs {
             if (player.getCoin() >= this.itemCost) {
                 player.maxRecovery();
                 player.setCoin(-itemCost);
+                destroy();
             }
         } else {
             player.maxRecovery();
+            destroy();
         }
-        destroy();
     }
 
     /** {@inheritDoc} */
