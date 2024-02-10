@@ -45,7 +45,7 @@ public class HealthView extends ViewComponent {
     public synchronized void update() {
 
         if (this.maxHealth != player.getMaxHealth()) {
-            for (int i = this.currentHealth; i < player.getMaxHealth(); i++) {
+            for (int i = this.maxHealth; i < player.getMaxHealth(); i++) {
                 addMaxHealth();
             }
             this.maxHealth = player.getMaxHealth();
