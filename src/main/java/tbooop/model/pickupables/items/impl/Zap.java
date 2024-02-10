@@ -18,7 +18,6 @@ public class Zap extends ItemAbs {
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private static final double VELOCITY_TO_INCREASE = 0.05;
     private final UnmovableName pickupTag = UnmovableName.ZAP;
-    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of the Zap item.
      * 
@@ -78,10 +77,5 @@ public class Zap extends ItemAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
-    }
-
-    @Override
-    public String getObjectDescription() {
-        return objectDescription;
     }
 }

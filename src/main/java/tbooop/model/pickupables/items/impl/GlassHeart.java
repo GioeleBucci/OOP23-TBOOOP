@@ -18,7 +18,6 @@ public class GlassHeart extends ItemAbs {
     private final int itemCost = PickupablePrices.GOLDENHEART_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final UnmovableName pickupTag = UnmovableName.GLASS_HEART;
-    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of a GlassHeart.
      * 
@@ -78,10 +77,5 @@ public class GlassHeart extends ItemAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
-    }
-
-    @Override
-    public String getObjectDescription() {
-        return objectDescription;
     }
 }

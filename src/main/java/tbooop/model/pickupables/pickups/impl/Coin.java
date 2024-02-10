@@ -16,7 +16,6 @@ public class Coin extends PickupAbs {
 
     private static final int COIN_VALUE = 1;
     private final UnmovableName pickupTag = UnmovableName.COIN;
-    private String description = "CIAO CIAO CIAO";
     /**
      * Create a new istance of a Coin.
      * 
@@ -49,7 +48,6 @@ public class Coin extends PickupAbs {
     */
     private void onPickup(final Player player) {
         player.setCoin(COIN_VALUE);
-        disableDescription();
         destroy();
     }
 
@@ -57,13 +55,5 @@ public class Coin extends PickupAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
-    }
-
-    private void disableDescription() {
-        description = "";
-    }
-
-    public String getObjectDescription() {
-        return this.description;
     }
 }

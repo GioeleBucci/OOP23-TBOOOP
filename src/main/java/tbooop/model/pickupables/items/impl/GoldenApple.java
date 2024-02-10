@@ -19,7 +19,6 @@ public class GoldenApple extends ItemAbs {
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final UnmovableName pickupTag = UnmovableName.GOLDEN_APPLE;
     private static final int MAX_HEALTH_TO_INCREASE = 2;
-    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of a GoldenApple.
      * 
@@ -77,10 +76,5 @@ public class GoldenApple extends ItemAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
-    }
-
-    @Override
-    public String getObjectDescription() {
-        return objectDescription;
     }
 }
