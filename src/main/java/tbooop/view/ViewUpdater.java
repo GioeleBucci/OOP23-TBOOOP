@@ -19,7 +19,6 @@ import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.Animator;
 import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.api.ViewComponent;
-import tbooop.view.api.enemy.EnemyAnimator;
 import tbooop.view.enemy.EnemyAnimatorImpl;
 import tbooop.view.pickupables.pickups.PlayerCoinsView;
 import tbooop.view.pickupables.pickups.PlayerKeysView;
@@ -36,7 +35,6 @@ public class ViewUpdater extends ViewImpl {
     private volatile Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
     private final Set<ViewComponent> viewComponents = new HashSet<>();
     private final RoomRenderer roomRenderer;
-    private final EnemyAnimator enemyAnimator;
     private final Set<Animator> animators = new HashSet<>();
     private final BaseSpriteProvider spriteLoader = new BaseSpriteProviderImpl();
     private final Controller controller;
@@ -45,7 +43,7 @@ public class ViewUpdater extends ViewImpl {
     /** Creates an instance of a ViewUpdater. */
     public ViewUpdater() {
         this.controller = new ControllerImpl(this);
-        this.enemyAnimator = new EnemyAnimatorImpl(gameObjMap);
+        this.animators.add(new EnemyAnimatorImpl(gameObjMap));
         this.roomRenderer = new RoomRenderer(this);
         this.inputManager = new InputManager(controller, this);
     }
@@ -55,12 +53,9 @@ public class ViewUpdater extends ViewImpl {
     public synchronized void start(final Stage stage) {
         super.start(stage);
         // Redirect keyboard events to the input manager
-
         super.getScene().setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
         super.getScene().setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
-
         roomRenderer.init();
-
         final Thread thread = new Thread(() -> {
             controller.mainLoop();
         });
@@ -136,10 +131,7 @@ public class ViewUpdater extends ViewImpl {
 
     /** Updates the position of all the sprites. */
     private synchronized void updateView() {
-        enemyAnimator.update();
-
         animators.forEach(a -> a.update());
-
         for (final var entry : gameObjMap.entrySet()) {
             Point2d newPos = worldToScreenPos(entry.getKey().getPosition());
             // subtract half the image size to center the image
