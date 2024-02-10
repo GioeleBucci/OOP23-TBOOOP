@@ -29,8 +29,9 @@ import java.util.concurrent.CopyOnWriteArraySet;
         + "and for that reason exposing the internal representation is necessary.")
 public final class WorldImpl implements World {
 
-    private static final int PLAYER_INITIAL_HEALTH = 100;
+    private static final int PLAYER_INITIAL_HEALTH = 10;
     private static final double PLAYER_INITIAL_SPEED = .2;
+    private static final int INITIAL_KEYS = 2; // let the player start with some keys
     private final View view;
     private final FloorManager floorManager;
 
@@ -52,8 +53,9 @@ public final class WorldImpl implements World {
     /** {@inheritDoc} */
     @Override
     public void init() {
-        player.pickupKeys();
-        player.pickupKeys();
+        for (int i = 0; i < INITIAL_KEYS; i++) {
+            player.pickupKeys();
+        }
         floorManager.init();
     }
 
@@ -110,18 +112,17 @@ public final class WorldImpl implements World {
     /** {@inheritDoc} */
     @Override
     public synchronized void clearAll() {
-        gameObjects.forEach(gameObject -> {
+        clearSet(gameObjects);
+        clearSet(projectiles);
+    }
+
+    private synchronized void clearSet(final Set<? extends GameObject> set) {
+        set.forEach(g -> {
             Platform.runLater(() -> {
-                view.removeGameObject(gameObject);
+                view.removeGameObject(g);
             });
         });
-        gameObjects.clear();
-        projectiles.forEach(projectile -> {
-            Platform.runLater(() -> {
-                view.removeGameObject(projectile);
-            });
-        });
-        projectiles.clear();
+        set.clear();
     }
 
     /** {@inheritDoc} */

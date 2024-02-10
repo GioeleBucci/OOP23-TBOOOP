@@ -74,4 +74,10 @@ public interface Player extends Entity, UnmodifiablePlayer {
      * Uses a key.
      */
     void useKey();
+
+    /**
+     * Increases the player's max health by a certain amount.
+     * @param amount the amount to increase;
+     */
+    void increaseMaxHealth(int amount);
 }

@@ -14,7 +14,6 @@ import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.view.api.View;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
@@ -26,7 +25,7 @@ import javafx.application.Platform;
 public final class ControllerImpl implements Controller {
 
     private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
-    private static final int COMMAND_QUEUE_SIZE = 100;
+    private static final int COMMAND_QUEUE_SIZE = 200;
     private final BlockingQueue<PlayerCommand> moveQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
     private final BlockingQueue<PlayerCommand> shootQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
     private final View view;
@@ -90,58 +89,40 @@ public final class ControllerImpl implements Controller {
     private void updateGame(final long dt) {
         world.getPlayer().updateState(dt);
         world.collectProjectiles((Entity) world.getPlayer());
-
         final Iterator<GameObject> gameObjIterator = world.getGameObjects().iterator();
-
-        Optional<DoorUnmodifiable> door = Optional.empty();
-        boolean changeFloor = false;
 
         while (gameObjIterator.hasNext()) {
             final GameObject gameObj = gameObjIterator.next();
             gameObj.updateState(dt);
             world.update();
-
             if (gameObj instanceof Entity) {
                 world.collectProjectiles((Entity) gameObj);
             }
-
             // GameObject-Player collision
             if (gameObj.getCollider().isColliding(world.getPlayer().getCollider())) {
                 if (gameObj instanceof DoorUnmodifiable) {
-                    door = Optional.of((DoorUnmodifiable) gameObj);
+                    world.onDoorCollision((DoorUnmodifiable) gameObj);
                 }
                 if (gameObj.getTag().equals(GameTag.TRAPDOOR)) {
-                    changeFloor = true;
+                    world.changeFloor();
                 }
                 gameObj.onPlayerCollision(world.getPlayer());
             }
-
             // update all projectiles
             final Iterator<Projectile> projectileIterator = world.getProjectiles().iterator();
             while (projectileIterator.hasNext()) {
                 final Projectile projectile = projectileIterator.next();
                 projectile.updateState(dt);
                 world.update();
-
                 // Projectile-Entity collision
                 if (gameObj instanceof Entity && gameObj.getCollider().isColliding(projectile.getCollider())) {
                     projectile.onEntityCollision((Entity) gameObj);
                 }
-
                 // Projectile-Player collision
                 if (projectile.getCollider().isColliding(world.getPlayer().getCollider())) {
-                    logger.info("Player health:" + world.getPlayer().getHealth());
                     projectile.onPlayerCollision(world.getPlayer());
-                    // projectile.onEntityCollision((Entity) world.getPlayer());
                 }
             }
-        }
-        // at last check if the room or the floor needs to be changed
-        if (door.isPresent()) {
-            world.onDoorCollision(door.get());
-        }
-        if (changeFloor) {
-            world.changeFloor();
         }
     }
 
@@ -165,5 +146,4 @@ public final class ControllerImpl implements Controller {
             }
         }
     }
-
 }

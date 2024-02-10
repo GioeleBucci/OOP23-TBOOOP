@@ -5,10 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javafx.beans.binding.Bindings;
 import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.RoomBounds;
@@ -19,6 +16,7 @@ import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.model.player.api.UnmodifiablePlayer;
+import tbooop.view.api.Animator;
 import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.enemy.EnemyAnimator;
@@ -39,12 +37,12 @@ public class ViewUpdater extends ViewImpl {
     private final Set<ViewComponent> viewComponents = new HashSet<>();
     private final RoomRenderer roomRenderer;
     private final EnemyAnimator enemyAnimator;
+    private final Set<Animator> animators = new HashSet<>();
     private final BaseSpriteProvider spriteLoader = new BaseSpriteProviderImpl();
     private final Controller controller;
     private final InputManager inputManager;
-    private boolean isMoving;
 
-    /** Creates an instance of a ViewUpdater.  */
+    /** Creates an instance of a ViewUpdater. */
     public ViewUpdater() {
         this.controller = new ControllerImpl(this);
         this.enemyAnimator = new EnemyAnimatorImpl(gameObjMap);
@@ -71,10 +69,11 @@ public class ViewUpdater extends ViewImpl {
 
     /** {@inheritDoc} */
     @Override
-    public void addPlayer(final UnmodifiablePlayer player) {
-        final PlayerRender playerRender = new PlayerRender(this, player);
-        viewComponents.add(playerRender);
-        addGameObjectToView(playerRender.getSprite(), player);
+    public synchronized void addPlayer(final UnmodifiablePlayer player) {
+        final ImageView playerSprite = new ImageView("player/down/down2.png");
+        final PlayerRender playerRender = new PlayerRender(playerSprite, player);
+        animators.add(playerRender);
+        addGameObjectToView(playerSprite, player);
         final HealthView healthView = new HealthView(this, player);
         viewComponents.add(healthView);
         final PlayerKeysView keysView = new PlayerKeysView(this, player);
@@ -89,16 +88,7 @@ public class ViewUpdater extends ViewImpl {
         inputManager.update();
         updateView();
         for (final ViewComponent viewComponent : viewComponents) {
-            if (viewComponent instanceof PlayerRender) {
-                // prevent player from being covered by other sprites
-                ((PlayerRender) viewComponent).getSprite().toFront();
-                if (isMoving) {
-                    viewComponent.update();
-                    this.isMoving = false;
-                }
-            } else {
-                viewComponent.update();
-            }
+            viewComponent.update();
         }
     }
 
@@ -142,26 +132,14 @@ public class ViewUpdater extends ViewImpl {
                 imgView.getImage().getHeight() * (super.getScene().getHeight() / BASE_ROOM_H * MULTIPLIER_SCALE)
                         / super.getWalkableArea().heightProperty().get()));
         super.getRoot().getChildren().add(imgView);
-        // attachDebugger(gobj);
-    }
-
-    private synchronized void attachDebugger(final GameObjectUnmodifiable gameObject) { //NOPMD temporary method.
-        final Circle circle = new Circle();
-        circle.setRadius(gameObject.getCollider().getRadius() * super.getScene().getWidth() / BASE_ROOM_W);
-        circle.setStroke(Color.BLUE);
-        circle.setFill(Color.TRANSPARENT);
-        circle.setStrokeWidth(2);
-        final ImageView img = gameObjMap.get(gameObject);
-        circle.centerXProperty().bind(img.xProperty().add(img.fitWidthProperty().divide(2)));
-        circle.centerYProperty().bind(img.yProperty().add(img.fitHeightProperty().divide(2)));
-        circle.radiusProperty().bind(Bindings.multiply(gameObject.getCollider().getRadius(),
-                Bindings.createDoubleBinding(() -> super.getScene().getWidth() / BASE_ROOM_W, super.getScene().widthProperty())));
-        super.getRoot().getChildren().add(circle);
     }
 
     /** Updates the position of all the sprites. */
     private synchronized void updateView() {
         enemyAnimator.update();
+
+        animators.forEach(a -> a.update());
+
         for (final var entry : gameObjMap.entrySet()) {
             Point2d newPos = worldToScreenPos(entry.getKey().getPosition());
             // subtract half the image size to center the image
@@ -178,13 +156,15 @@ public class ViewUpdater extends ViewImpl {
             }
         }
         super.getWalkableArea().setTranslateX(super.getScene().getWidth() / 2 - super.getWalkableArea().getWidth() / 2);
-        super.getWalkableArea().setTranslateY(super.getScene().getHeight() / 2 - super.getWalkableArea().getHeight() / 2);
+        super.getWalkableArea()
+                .setTranslateY(super.getScene().getHeight() / 2 - super.getWalkableArea().getHeight() / 2);
     }
 
     /**
      * Converts a world position (position of a GameObject in the model)
      * to a screen position (position inside the window).
-     * To perform the conversion (for one axis) the following proportion can be used:
+     * To perform the conversion (for one axis) the following proportion can be
+     * used:
      * <p>
      * RoomBounds.WIDTH : scene.getWidth() = gameObject.getPosition().getX() : x
      *
