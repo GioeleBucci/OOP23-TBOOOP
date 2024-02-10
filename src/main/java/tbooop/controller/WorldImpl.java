@@ -116,7 +116,7 @@ public final class WorldImpl implements World {
         clearSet(projectiles);
     }
 
-    private synchronized void clearSet(Set<? extends GameObject> set) {
+    private synchronized void clearSet(final Set<? extends GameObject> set) {
         set.forEach(g -> {
             Platform.runLater(() -> {
                 view.removeGameObject(g);

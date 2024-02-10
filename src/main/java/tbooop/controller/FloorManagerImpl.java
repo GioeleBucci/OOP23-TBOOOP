@@ -29,7 +29,6 @@ public class FloorManagerImpl implements FloorManager {
 
     private final World world;
     private final View view;
-    private Floor floor;
     private int currentFloorLevel = 1;
     private Room currentRoom;
     private final EnemyFactoryImpl enemyFactory;
@@ -102,8 +101,8 @@ public class FloorManagerImpl implements FloorManager {
 
     /** {@inheritDoc} */
     @Override
-    public void changeFloor() {
-        this.floor = new LevelFloor(currentFloorLevel++, enemyFactory);
+    public synchronized void changeFloor() {
+        final Floor floor = new LevelFloor(currentFloorLevel++, enemyFactory);
         logger.info("New floor: " + floor.toString());
         this.currentRoom = floor.getStaringRoom();
         view.changeFloor();
