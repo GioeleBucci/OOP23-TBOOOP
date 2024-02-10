@@ -14,6 +14,7 @@ import tbooop.model.player.api.Player;
 public class Heart extends PickupAbs {
 
     private final UnmovableName pickupTag = UnmovableName.HEART;
+    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of a Heart.
      * 
@@ -60,5 +61,10 @@ public class Heart extends PickupAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
+    }
+
+    @Override
+    public String getObjectDescription() {
+        return objectDescription;
     }
 }

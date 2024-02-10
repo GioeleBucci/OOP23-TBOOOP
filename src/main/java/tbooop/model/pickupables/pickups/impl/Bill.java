@@ -17,6 +17,7 @@ public class Bill extends PickupAbs {
 
     private static final int BILL_VALUE = 10;
     private final UnmovableName pickupTag = UnmovableName.BILL;
+    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of a Bill.
      * 
@@ -56,5 +57,10 @@ public class Bill extends PickupAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
+    }
+
+    @Override
+    public String getObjectDescription() {
+        return objectDescription;
     }
 }

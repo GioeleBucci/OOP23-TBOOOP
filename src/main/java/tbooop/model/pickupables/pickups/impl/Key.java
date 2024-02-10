@@ -16,6 +16,7 @@ import tbooop.model.player.api.Player;
 public class Key extends PickupAbs {
 
     private final UnmovableName pickupTag = UnmovableName.KEY;
+    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of a Key.
      * 
@@ -55,5 +56,10 @@ public class Key extends PickupAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
+    }
+
+    @Override
+    public String getObjectDescription() {
+        return objectDescription;
     }
 }

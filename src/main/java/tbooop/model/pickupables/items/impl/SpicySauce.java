@@ -17,6 +17,7 @@ public class SpicySauce extends ItemAbs {
     private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final UnmovableName pickupTag = UnmovableName.SPICY_SAUCE;
+    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of Fire Mind item.
      * 
@@ -76,5 +77,10 @@ public class SpicySauce extends ItemAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
+    }
+
+    @Override
+    public String getObjectDescription() {
+        return objectDescription;
     }
 }

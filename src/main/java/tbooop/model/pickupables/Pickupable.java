@@ -12,4 +12,13 @@ public interface Pickupable extends Unmovable {
      * @return an UnmovableName
      */
     UnmovableName getObjectName();
+
+    /**
+     * Return the description of
+     * relative item or pickup and
+     * eventually its price.
+     * 
+     * @return object description.
+     */
+    String getObjectDescription();
 }

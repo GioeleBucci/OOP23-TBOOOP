@@ -17,6 +17,7 @@ public class LockedRing extends ItemAbs {
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private static final int DAMAGE_TO_INCREASE = 1;
     private final UnmovableName pickupTag = UnmovableName.LOCKED_RING;
+    private String objectDescription = "CIAO CIAO";
     /**
      * Create a new istance of Iron Bar item.
      * 
@@ -76,5 +77,10 @@ public class LockedRing extends ItemAbs {
     @Override
     public UnmovableName getObjectName() {
         return this.pickupTag;
-    } 
+    }
+
+    @Override
+    public String getObjectDescription() {
+        return objectDescription;
+    }
 }

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
@@ -15,11 +16,13 @@ import tbooop.controller.api.Controller;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
+import tbooop.model.pickupables.Pickupable;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.Animator;
 import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.enemy.EnemyAnimatorImpl;
+import tbooop.view.pickupables.PickupableDescriptionRender;
 import tbooop.view.pickupables.pickups.PlayerCoinsView;
 import tbooop.view.pickupables.pickups.PlayerKeysView;
 import tbooop.view.player.HealthView;
@@ -39,6 +42,7 @@ public class ViewUpdater extends ViewImpl {
     private final BaseSpriteProvider spriteLoader = new BaseSpriteProviderImpl();
     private final Controller controller;
     private final InputManager inputManager;
+    private final PickupableDescriptionRender labelRender = new PickupableDescriptionRender();
 
     /** Creates an instance of a ViewUpdater. */
     public ViewUpdater() {
@@ -91,12 +95,18 @@ public class ViewUpdater extends ViewImpl {
     @Override
     public void addGameObject(final GameObjectUnmodifiable gameObject) {
         addGameObjectToView(this.spriteLoader.getGameObjectSprite(gameObject), gameObject);
+        if (gameObject instanceof Pickupable) {
+            labelRender.addLabel(getRoot(), worldToScreenPos(gameObject.getPosition()), (Pickupable) gameObject);
+        }
     }
 
     /** {@inheritDoc} */
     @Override
     public void removeGameObject(final GameObject gameObject) {
         super.getRoot().getChildren().remove(gameObjMap.get(gameObject));
+        if (gameObject instanceof Pickupable) {
+            labelRender.deleteLabel((Pickupable) gameObject);
+        }
         gameObjMap.remove(gameObject);
     }
 
