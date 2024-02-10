@@ -62,7 +62,7 @@ public class MusicPlayer {
         mediaPlayer = new MediaPlayer(
                 new Media(getMediaFromURL(track)));
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        mediaPlayer.setVolume(0.5);
+        mediaPlayer.setVolume(0.1);
         mediaPlayer.play();
     }
 
