@@ -1,4 +1,4 @@
-package tbooop.view.enemy;
+package tbooop.view;
 
 import java.util.List;
 import java.util.Objects;

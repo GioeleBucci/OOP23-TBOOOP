@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.enemy.api.Enemy;
+import tbooop.view.FrameUpdaterImpl;
 import tbooop.view.api.FrameUpdater;
 import tbooop.view.api.enemy.EnemyAnimator;
 
