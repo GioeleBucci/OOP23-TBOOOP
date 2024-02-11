@@ -29,12 +29,11 @@ public class FloorManagerImpl implements FloorManager {
 
     private final World world;
     private final View view;
-    private int currentFloorLevel = 1;
-    private Room currentRoom;
     private final EnemyFactoryImpl enemyFactory;
     private final PickupLogic pickupSpawner = new PickupLogic();
     private final Logger logger = Logger.getLogger(FloorManagerImpl.class.getName());
-
+    private int currentFloorLevel = 1;
+    private Room currentRoom;
     /**
      * If the room is locked, the player cannot leave it.
      * This flag that reduces the amount of checks for locked rooms.
@@ -93,10 +92,8 @@ public class FloorManagerImpl implements FloorManager {
         if (!door.isOpen()) {
             return;
         }
-        synchronized (this) {
-            changeRoom((Room) door.getRoom());
-            world.getPlayer().setPosition(newPlayerPosition(door));
-        }
+        changeRoom((Room) door.getRoom());
+        world.getPlayer().setPosition(newPlayerPosition(door));
     }
 
     /** {@inheritDoc} */
