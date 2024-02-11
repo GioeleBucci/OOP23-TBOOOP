@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.scene.image.Image;
+import tbooop.view.api.FrameUpdater;
+
+import java.util.ArrayList;
 
 /**
- * This class's purpose is to tell when an enemy's frame should be
+ * This class's purpose is to tell when a graphical entity's frame should be
  * updated in order to get the proper animation.
  */
-public class EnemyFrameUpdater {
+public class FrameUpdaterImpl implements FrameUpdater {
 
     private final List<Image> frames;
     private long latestUpdate;
@@ -23,19 +26,16 @@ public class EnemyFrameUpdater {
      * @param updateFrequency the update time frequency between frames
      * @throws NullPointerException if frames is null
      */
-    protected EnemyFrameUpdater(final List<Image> frames, final double updateFrequency) {
-        this.frames = Objects.requireNonNull(frames);
+    public FrameUpdaterImpl(final List<Image> frames, final double updateFrequency) {
+        this.frames = new ArrayList<>(Objects.requireNonNull(frames));
         this.updateFrequency = updateFrequency;
         this.latestUpdate = System.currentTimeMillis();
     }
 
-    /**
-     * returns the next frame of the animation. If the time passed since the
-     * last frame update is too short, this method will return the same frame.
-     * @param currentTime the current time
-     * @return the next frame
-     */
-    protected Image getNextFrame(final long currentTime) {
+    /** {@inheritDoc} */
+    @Override
+    public Image getNextFrame(final long currentTime) {
+        this.checkCurrentTime(currentTime);
         if (currentTime - this.latestUpdate > this.updateFrequency && !updated) {
             frameCount++;
             this.updated = true;
@@ -46,15 +46,20 @@ public class EnemyFrameUpdater {
         return this.frames.get(frameCount);
     }
 
-    /**
-     * if the frame has been updated at least once, the time of the latest frame update
-     * will be set as equal to the current time given as parameter.
-     * @param currentTime the current time
-     */
-    protected void resetIfUpdated(final long currentTime) {
+    /** {@inheritDoc} */
+    @Override
+    public void resetIfUpdated(final long currentTime) {
+        this.checkCurrentTime(currentTime);
         if (this.updated) {
             this.latestUpdate = currentTime;
             this.updated = false;
         }
     }
+
+    private void checkCurrentTime(final long currentTime) {
+        if (currentTime < 0) {
+            throw new IllegalArgumentException("currentTime can't be negative");
+        }
+    }
+
 }

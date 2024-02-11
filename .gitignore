@@ -12,3 +12,5 @@ bin/
 
 # ignore Package files
 *.jar
+
+.DS_Store

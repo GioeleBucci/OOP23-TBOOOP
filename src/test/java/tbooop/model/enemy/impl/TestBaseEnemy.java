@@ -23,11 +23,11 @@ class TestBaseEnemy {
 
     private static final Point2d BASE_POS = new Point2dImpl(0, 0);
     private static final int ENEMY_HP = 3;
-    private static final int PLAYER_HP = 3;
+    private static final int PLAYER_HP = 5;
     private static final double BASE_RADIUS = 15;
 
     private final Player player = new PlayerImpl(
-        BASE_POS, new HealthImpl(PLAYER_HP), 1.0);
+        BASE_POS);
     private Enemy enemy;
 
     @BeforeEach

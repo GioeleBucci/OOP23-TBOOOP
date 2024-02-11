@@ -14,8 +14,10 @@ public interface MovementAi {
      * @param initialPosition the current position where to move from
      * @param deltaTime the time passed since the previous position update
      * @param velocity the enemy's velocity
-     * @throws NullPointerException if initialPosition is null
      * @return the new position
+     * @throws NullPointerException if initialPosition is null
+     * @throws IllegalArgument exception if deltaTime is negative
      */
     Point2d newPosition(Point2d initialPosition, long deltaTime, double velocity);
+
 }

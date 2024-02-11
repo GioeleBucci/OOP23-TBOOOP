@@ -51,4 +51,9 @@ public interface View extends ViewElements {
      */
     void removeGameObject(GameObject gameObject);
 
+    /**
+     * Shows the death screen.
+     */
+    void showDeathScreen();
+
 }

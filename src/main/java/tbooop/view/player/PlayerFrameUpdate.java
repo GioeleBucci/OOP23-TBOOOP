@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.scene.image.Image;
+import tbooop.view.api.FrameUpdater;
 
 /**
  * This class's purpose is to tell when player frame should be
  * updated in order to get the proper animation.
  */
-public class PlayerFrameUpdate {
+public class PlayerFrameUpdate implements FrameUpdater {
 
     private final List<Image> frames;
     private long latestUpdate;
@@ -35,7 +36,8 @@ public class PlayerFrameUpdate {
      * @param currentTime the current time
      * @return the next frame
      */
-    protected Image getNextFrame(final long currentTime) {
+    @Override
+    public Image getNextFrame(final long currentTime) {
         if (currentTime - this.latestUpdate > this.updateFrequency) {
             frameCount++;
             this.updated = true;
@@ -51,7 +53,8 @@ public class PlayerFrameUpdate {
      * will be set as equal to the current time given as parameter.
      * @param currentTime the current time
      */
-    protected void resetIfUpdated(final long currentTime) {
+    @Override
+    public void resetIfUpdated(final long currentTime) {
         if (this.updated) {
             this.latestUpdate = currentTime;
             this.updated = false;

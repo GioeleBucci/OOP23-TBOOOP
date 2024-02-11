@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
@@ -23,11 +24,13 @@ import tbooop.view.enemy.EnemyAnimatorImpl;
 import tbooop.view.pickupables.pickups.PlayerCoinsView;
 import tbooop.view.pickupables.pickups.PlayerKeysView;
 import tbooop.view.player.HealthView;
-import tbooop.view.player.PlayerRender;
+import tbooop.view.player.PlayerAnimator;
 
 /**
  * The ViewUpdater pdates the GUI and communicates with the controller.
  */
+@SuppressFBWarnings(value = "DM_EXIT", justification = "Calling System.exit(0) when the application"
+        + " gets closed is appropriate.")
 public class ViewUpdater extends ViewImpl {
 
     private static final double MULTIPLIER_SCALE = 0.9;
@@ -39,6 +42,8 @@ public class ViewUpdater extends ViewImpl {
     private final BaseSpriteProvider spriteLoader = new BaseSpriteProviderImpl();
     private final Controller controller;
     private final InputManager inputManager;
+
+    private final ImageView playerSprite = new ImageView("player/down/down2.png");
 
     /** Creates an instance of a ViewUpdater. */
     public ViewUpdater() {
@@ -55,6 +60,8 @@ public class ViewUpdater extends ViewImpl {
         // Redirect keyboard events to the input manager
         super.getScene().setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
         super.getScene().setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
+        super.getStage().setOnCloseRequest(e -> System.exit(0));
+
         roomRenderer.init();
         final Thread thread = new Thread(() -> {
             controller.mainLoop();
@@ -65,8 +72,7 @@ public class ViewUpdater extends ViewImpl {
     /** {@inheritDoc} */
     @Override
     public synchronized void addPlayer(final UnmodifiablePlayer player) {
-        final ImageView playerSprite = new ImageView("player/down/down2.png");
-        final PlayerRender playerRender = new PlayerRender(playerSprite, player);
+        final PlayerAnimator playerRender = new PlayerAnimator(playerSprite, player);
         animators.add(playerRender);
         addGameObjectToView(playerSprite, player);
         final HealthView healthView = new HealthView(this, player);
@@ -79,12 +85,11 @@ public class ViewUpdater extends ViewImpl {
 
     /** {@inheritDoc} */
     @Override
-    public void update() {
+    public synchronized void update() {
+        playerSprite.toFront();
         inputManager.update();
         updateView();
-        for (final ViewComponent viewComponent : viewComponents) {
-            viewComponent.update();
-        }
+        viewComponents.forEach(ViewComponent::update);
     }
 
     /** {@inheritDoc} */
@@ -169,6 +174,12 @@ public class ViewUpdater extends ViewImpl {
         return new Point2dImpl(
                 worldPos.getX() * super.getWalkableArea().getWidth() / RoomBounds.WIDTH + xWallThickness,
                 worldPos.getY() * super.getWalkableArea().getHeight() / RoomBounds.HEIGHT + yWallThickness);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void showDeathScreen() {
+        super.getStage().setScene(new DeathScreen().getDeathScene(getStage().getWidth(), getStage().getHeight()));
     }
 
 }

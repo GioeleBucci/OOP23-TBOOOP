@@ -5,7 +5,6 @@ import java.util.Set;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Platform;
 
-import tbooop.commons.HealthImpl;
 import tbooop.commons.api.Projectile;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
@@ -15,6 +14,7 @@ import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
+
 import tbooop.view.api.View;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -29,16 +29,12 @@ import java.util.concurrent.CopyOnWriteArraySet;
         + "and for that reason exposing the internal representation is necessary.")
 public final class WorldImpl implements World {
 
-    private static final int PLAYER_INITIAL_HEALTH = 10;
-    private static final double PLAYER_INITIAL_SPEED = .2;
-    private static final int INITIAL_KEYS = 2; // let the player start with some keys
     private final View view;
     private final FloorManager floorManager;
 
     private volatile Set<GameObject> gameObjects = new CopyOnWriteArraySet<>();
     private volatile Set<Projectile> projectiles = new CopyOnWriteArraySet<>();
-    private volatile Player player = new PlayerImpl(RoomBounds.CENTER, new HealthImpl(PLAYER_INITIAL_HEALTH),
-            PLAYER_INITIAL_SPEED);
+    private volatile Player player = new PlayerImpl(RoomBounds.CENTER);
 
     /**
      * Constructs a new World with the specified view.
@@ -53,9 +49,6 @@ public final class WorldImpl implements World {
     /** {@inheritDoc} */
     @Override
     public void init() {
-        for (int i = 0; i < INITIAL_KEYS; i++) {
-            player.pickupKeys();
-        }
         floorManager.init();
     }
 

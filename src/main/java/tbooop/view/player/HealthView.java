@@ -43,24 +43,29 @@ public class HealthView extends ViewComponent {
     /** {@inheritDoc} */
     @Override
     public synchronized void update() {
-        if (this.currentHealth != this.player.getHealth()) {
-            if (this.currentHealth > this.player.getHealth()) {
-                for (int i = this.currentHealth; i >= this.player.getHealth(); i--) {
-                    toggledHealth(i);
-                }
-            } else {
-                for (int i = this.currentHealth; i <= this.player.getHealth(); i++) { 
-                    addHealth(i);
-                }
+
+        if (this.maxHealth != player.getMaxHealth()) {
+            for (int i = this.maxHealth; i < player.getMaxHealth(); i++) {
+                addMaxHealth();
             }
+            this.maxHealth = player.getMaxHealth();
+        }
+
+        if (this.currentHealth != this.player.getHealth()) {
+                if (this.currentHealth > this.player.getHealth()) {
+                    for (int i = this.currentHealth; i > this.player.getHealth(); i--) {
+                        if (i - 1 >= 0) {
+                            toggledHealth(i - 1);
+                        }
+                    }
+                } else {
+                    for (int i = this.currentHealth; i < this.player.getHealth(); i++) { 
+                        addHealth(i);
+                    }
+                }
         }
 
         this.currentHealth = this.player.getHealth();
-
-        if (this.maxHealth != player.getMaxHealth()) {
-            addMaxHealth();
-            this.maxHealth = player.getMaxHealth();
-        }
     }
 
     /** {@inheritDoc} */
@@ -76,7 +81,7 @@ public class HealthView extends ViewComponent {
      * @param currentHealth the heart to change
      */
     public synchronized void toggledHealth(final int currentHealth) {
-        this.heartList.get(currentHealth).setImage(new Image("test/empty_hearth.png"));
+        this.heartList.get(currentHealth).setImage(new Image("ui/empty_hearth.png"));
     }
 
     /**
@@ -85,16 +90,15 @@ public class HealthView extends ViewComponent {
      * @param currentHealth the heart to change
      */
     public synchronized void addHealth(final int currentHealth) {
-        this.heartList.get(currentHealth).setImage(new Image("test/full_hearth.png"));
+        this.heartList.get(currentHealth).setImage(new Image("ui/full_hearth.png"));
     }
 
     /**
      * Add a new Heart.
      */
     public synchronized void addMaxHealth() {
-        final ImageView heartView = new ImageView("test/empty_hearth.png");
+        final ImageView heartView = new ImageView("ui/empty_hearth.png");
         healthPoint.addMaxHealth(heartView, this.root);
         heartList.add(heartView);
-        addHealth(player.getHealth());
     }
 }

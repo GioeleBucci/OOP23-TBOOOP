@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
@@ -23,27 +22,27 @@ class TestPlayer {
     @BeforeAll
     static void initPlayer() {
         player = new PlayerImpl(
-            new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), 
-            new HealthImpl(1),
-            2);
+            new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2));
     }
 
     @Test
     void playerHealth() {
-        assertEquals(1, player.getHealth());
+        // CHECKSTYLE: MagicNumber OFF
+        // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
+        assertEquals(5, player.getHealth());
         player.recovery();
-        assertEquals(1, player.getHealth());
+        assertEquals(5, player.getHealth());
         player.increaseMaxHealth(2);
-        assertEquals(3, player.getMaxHealth());
-        assertEquals(3, player.getHealth());
+        assertEquals(7, player.getMaxHealth());
+        assertEquals(7, player.getHealth());
+        // CHECKSTYLE: MagicNumber ON
     }
 
     @Test 
     void playerPosition() {
         assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
         player.updateState(1);
-        player.move(Point2ds.UP);
-        assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2 - 1 * 2), player.getPosition());
+        assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
 
         for (int i = 0; i < MOVES; i++) {
             player.move(Point2ds.UP);
