@@ -6,12 +6,10 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.model.player.impl.PlayerImpl;
-import tbooop.model.player.impl.PlayerKeyImpl;
 
 class TestPlayer {
 
@@ -24,10 +22,7 @@ class TestPlayer {
     @BeforeAll
     static void initPlayer() {
         player = new PlayerImpl(
-            new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), 
-            new HealthImpl(1),
-            2, 
-            new PlayerKeyImpl());
+            new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2));
     }
 
     @Test

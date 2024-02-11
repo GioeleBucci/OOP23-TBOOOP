@@ -18,7 +18,6 @@ import tbooop.model.enemy.api.EnemyType;
 import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
-import tbooop.model.player.impl.PlayerKeyImpl;
 
 class TestMelee {
 
@@ -27,8 +26,7 @@ class TestMelee {
     private static final int PLAYER_HP = 100;
     private static final double MELEE_RADIUS = 15;
 
-    private final Player player = new PlayerImpl(
-        BASE_POS, new HealthImpl(PLAYER_HP), 1.0, new PlayerKeyImpl());
+    private final Player player = new PlayerImpl(BASE_POS);
     private Enemy melee;
 
     @BeforeEach
