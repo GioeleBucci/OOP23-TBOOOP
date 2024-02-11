@@ -2,11 +2,10 @@ package tbooop.model.player.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
+import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
-import tbooop.commons.api.Health;
 import tbooop.model.player.api.AbstractPlayer;
-import tbooop.model.player.api.PlayerKey;
 import tbooop.model.player.api.PlayerProjectile;
 
 /**
@@ -19,6 +18,8 @@ public class PlayerImpl extends AbstractPlayer {
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
     private static final double PROJECTILE_BASE_VELOCITY = 0.1;
     private static final long TIME_BETWEEN_SHOTS = 200;
+    private static final int PLAYER_INITIAL_HEALTH = 5;
+    private static final double PLAYER_INITIAL_SPEED = .2;
     private double projectileVelocity;
     private long deltaTime;
     private long timeSinceLastShoot;
@@ -35,8 +36,9 @@ public class PlayerImpl extends AbstractPlayer {
      * @param keys          the player's keys
      * @throws NullPointerException if any parameter passed is null
      */
-    public PlayerImpl(final Point2d position, final Health health, final double velocity, final PlayerKey keys) {
-        super(position, health, velocity, keys);
+    public PlayerImpl(final Point2d position) {
+        super(position,new HealthImpl(PLAYER_INITIAL_HEALTH),
+            PLAYER_INITIAL_SPEED, new PlayerKeyImpl());
         this.projectileVelocity = PROJECTILE_BASE_VELOCITY;
     }
 
