@@ -15,6 +15,8 @@ import tbooop.model.core.api.unmovable.UnmovableAbs;
  */
 public abstract class PickupAbs extends UnmovableAbs implements Pickup {
 
+    private boolean consumed;
+
     /**
      * Create a new istance of a Pickup.
      * 
@@ -27,5 +29,21 @@ public abstract class PickupAbs extends UnmovableAbs implements Pickup {
      */
     protected PickupAbs(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
+    }
+
+    /**
+     * Check if pickup is consumed.
+     * 
+     * @return true if pickup is consumed.
+     */
+    protected boolean isConsumed() {
+        return this.consumed;
+    }
+
+    /**
+     * Change pickup status as consumed.
+     */
+    protected void consume() {
+        this.consumed = true;
     }
 }
