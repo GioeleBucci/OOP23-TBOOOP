@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tbooop.commons.Point2dImpl;
@@ -28,6 +29,8 @@ import tbooop.view.player.PlayerAnimator;
 /**
  * The ViewUpdater pdates the GUI and communicates with the controller.
  */
+@SuppressFBWarnings(value = "DM_EXIT", justification = "Calling System.exit(0) when the application"
+        + " gets closed is appropriate.")
 public class ViewUpdater extends ViewImpl {
 
     private static final double MULTIPLIER_SCALE = 0.9;
@@ -57,6 +60,8 @@ public class ViewUpdater extends ViewImpl {
         // Redirect keyboard events to the input manager
         super.getScene().setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
         super.getScene().setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
+        super.getStage().setOnCloseRequest(e -> System.exit(0));
+
         roomRenderer.init();
         final Thread thread = new Thread(() -> {
             controller.mainLoop();
@@ -174,7 +179,7 @@ public class ViewUpdater extends ViewImpl {
     /** {@inheritDoc} */
     @Override
     public void showDeathScreen() {
-        super.getStage().setScene(new DeathScreen().getDeathScene());
+        super.getStage().setScene(new DeathScreen().getDeathScene(getStage().getWidth(), getStage().getHeight()));
     }
 
 }
