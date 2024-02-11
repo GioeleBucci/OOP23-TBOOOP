@@ -24,13 +24,12 @@ import javafx.application.Platform;
  */
 public final class ControllerImpl implements Controller {
 
-    private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
     private static final int COMMAND_QUEUE_SIZE = 200;
+    private final Logger logger = Logger.getLogger(ControllerImpl.class.getName());
     private final BlockingQueue<PlayerCommand> moveQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
     private final BlockingQueue<PlayerCommand> shootQueue = new ArrayBlockingQueue<>(COMMAND_QUEUE_SIZE);
     private final View view;
     private final World world;
-    private boolean playerAdded;
 
     private static final int FPS = 60; // frames per second
     private static final long REFRESH_PERIOD = (long) (1.0 / FPS * 1000); // in ms
@@ -46,13 +45,24 @@ public final class ControllerImpl implements Controller {
         this.world = new WorldImpl(view);
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void notifyCommand(final PlayerCommand cmd) {
+        if (cmd instanceof MoveCommand) {
+            this.moveQueue.add(cmd);
+        } else {
+            this.shootQueue.add(cmd);
+        }
+    }
+
     /**
      * The main game loop that processes input and updates the game state.
      */
     @Override
     public void mainLoop() {
-        long prevStartTime = System.currentTimeMillis();
         world.init();
+        Platform.runLater(() -> view.addPlayer(world.getPlayer()));
+        long prevStartTime = System.currentTimeMillis();
         while (!isGameOver()) {
             synchronized (this) {
                 final long startTime = System.currentTimeMillis();
@@ -72,9 +82,7 @@ public final class ControllerImpl implements Controller {
     }
 
     private void gameOver() {
-        Platform.runLater(() -> {
-            view.showDeathScreen();
-        });
+        Platform.runLater(() -> view.showDeathScreen());
     }
 
     private synchronized void processInput() {
@@ -87,13 +95,7 @@ public final class ControllerImpl implements Controller {
     }
 
     private synchronized void updateView() {
-        Platform.runLater(() -> {
-            if (!playerAdded) {
-                this.view.addPlayer(world.getPlayer());
-                playerAdded = true;
-            }
-            this.view.update();
-        });
+        Platform.runLater(() -> view.update());
     }
 
     private void updateGame(final long dt) {
@@ -110,12 +112,7 @@ public final class ControllerImpl implements Controller {
             }
             // GameObject-Player collision
             if (gameObj.getCollider().isColliding(world.getPlayer().getCollider())) {
-                if (gameObj instanceof DoorUnmodifiable) {
-                    world.onDoorCollision((DoorUnmodifiable) gameObj);
-                }
-                if (gameObj.getTag().equals(GameTag.TRAPDOOR)) {
-                    world.changeFloor();
-                }
+                checkDoorCollision(gameObj);
                 gameObj.onPlayerCollision(world.getPlayer());
             }
             // update all projectiles
@@ -136,13 +133,11 @@ public final class ControllerImpl implements Controller {
         }
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void notifyCommand(final PlayerCommand cmd) {
-        if (cmd instanceof MoveCommand) {
-            this.moveQueue.add(cmd);
-        } else {
-            this.shootQueue.add(cmd);
+    private void checkDoorCollision(final GameObject gameObj) {
+        if (gameObj instanceof DoorUnmodifiable) {
+            world.onDoorCollision((DoorUnmodifiable) gameObj);
+        } else if (gameObj.getTag().equals(GameTag.TRAPDOOR)) {
+            world.changeFloor();
         }
     }
 
