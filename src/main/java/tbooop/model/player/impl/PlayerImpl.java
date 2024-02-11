@@ -16,10 +16,10 @@ import tbooop.model.player.api.PlayerProjectile;
 public class PlayerImpl extends AbstractPlayer {
 
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
-    private static final double PROJECTILE_BASE_VELOCITY = 0.1;
-    private static final long TIME_BETWEEN_SHOTS = 200;
+    private static final double PROJECTILE_BASE_VELOCITY = 0.08;
+    private static final long TIME_BETWEEN_SHOTS = 300;
     private static final int PLAYER_INITIAL_HEALTH = 5;
-    private static final double PLAYER_INITIAL_SPEED = .2;
+    private static final double PLAYER_INITIAL_SPEED = .09;
     private double projectileVelocity;
     private long deltaTime;
     private long timeSinceLastShoot;
