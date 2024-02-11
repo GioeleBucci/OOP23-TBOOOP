@@ -4,6 +4,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import tbooop.view.enemy.FrameUpdaterImpl;
 
 /**
  * It's the class for animate the Player.
@@ -31,19 +32,19 @@ public class PlayerRenderer {
             new Image("player/right/right3.png"), 
             new Image("player/right/right4.png"));
 
-    private final PlayerFrameUpdate frameUpdateDown;
-    private final PlayerFrameUpdate frameUpdateUp;
-    private final PlayerFrameUpdate frameUpdateLeft;
-    private final PlayerFrameUpdate frameUpdateRight;
+    private final FrameUpdaterImpl frameUpdateDown;
+    private final FrameUpdaterImpl frameUpdateUp;
+    private final FrameUpdaterImpl frameUpdateLeft;
+    private final FrameUpdaterImpl frameUpdateRight;
 
     /**
      * It's the class for animate the Player.
      */
     public PlayerRenderer() {
-        frameUpdateDown = new PlayerFrameUpdate(downSprite, 100);
-        frameUpdateUp = new PlayerFrameUpdate(upSprite, 100);
-        frameUpdateLeft = new PlayerFrameUpdate(leftSprite, 100);
-        frameUpdateRight = new PlayerFrameUpdate(rightSprite, 100);
+        frameUpdateDown = new FrameUpdaterImpl(downSprite, 100);
+        frameUpdateUp = new FrameUpdaterImpl(upSprite, 100);
+        frameUpdateLeft = new FrameUpdaterImpl(leftSprite, 100);
+        frameUpdateRight = new FrameUpdaterImpl(rightSprite, 100);
     }
 
     /**
