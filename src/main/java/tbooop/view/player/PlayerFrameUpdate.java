@@ -36,6 +36,7 @@ public class PlayerFrameUpdate implements FrameUpdater {
      * @param currentTime the current time
      * @return the next frame
      */
+    @Override
     public Image getNextFrame(final long currentTime) {
         if (currentTime - this.latestUpdate > this.updateFrequency) {
             frameCount++;
@@ -52,6 +53,7 @@ public class PlayerFrameUpdate implements FrameUpdater {
      * will be set as equal to the current time given as parameter.
      * @param currentTime the current time
      */
+    @Override
     public void resetIfUpdated(final long currentTime) {
         if (this.updated) {
             this.latestUpdate = currentTime;
