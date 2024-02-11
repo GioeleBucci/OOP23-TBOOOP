@@ -52,15 +52,17 @@ public class HealthView extends ViewComponent {
         }
 
         if (this.currentHealth != this.player.getHealth()) {
-            if (this.currentHealth > this.player.getHealth()) {
-                for (int i = this.currentHealth; i > this.player.getHealth(); i--) {
-                    toggledHealth(i - 1);
+                if (this.currentHealth > this.player.getHealth()) {
+                    for (int i = this.currentHealth; i > this.player.getHealth(); i--) {
+                        if (i - 1 >= 0) {
+                            toggledHealth(i - 1);
+                        }
+                    }
+                } else {
+                    for (int i = this.currentHealth; i < this.player.getHealth(); i++) { 
+                        addHealth(i);
+                    }
                 }
-            } else {
-                for (int i = this.currentHealth; i < this.player.getHealth(); i++) { 
-                    addHealth(i);
-                }
-            }
         }
 
         this.currentHealth = this.player.getHealth();

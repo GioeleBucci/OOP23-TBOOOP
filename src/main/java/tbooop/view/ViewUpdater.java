@@ -84,9 +84,7 @@ public class ViewUpdater extends ViewImpl {
         playerSprite.toFront();
         inputManager.update();
         updateView();
-        for (final ViewComponent viewComponent : viewComponents) {
-            viewComponent.update();
-        }
+        viewComponents.forEach(ViewComponent::update);
     }
 
     /** {@inheritDoc} */
