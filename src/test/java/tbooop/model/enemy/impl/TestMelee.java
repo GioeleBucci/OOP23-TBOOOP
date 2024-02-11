@@ -23,7 +23,7 @@ class TestMelee {
 
     private static final Point2d BASE_POS = new Point2dImpl(0, 0);
     private static final int ENEMY_HP = 100;
-    private static final int PLAYER_HP = 100;
+    private static final int PLAYER_HP = 5;
     private static final double MELEE_RADIUS = 15;
 
     private final Player player = new PlayerImpl(BASE_POS);
