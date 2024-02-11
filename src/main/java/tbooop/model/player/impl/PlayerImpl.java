@@ -69,11 +69,13 @@ public class PlayerImpl extends AbstractPlayer {
     }
 
     /** {@inheritDoc} */
+    @Override
     public void pickupKeys() {
         setKeys(getKey() + 1);
     }
 
     /** {@inheritDoc} */
+    @Override
     public void useKey() {
         if (hasKey()) {
             setKeys(getKey() - 1);

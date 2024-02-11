@@ -4,7 +4,7 @@ package tbooop.model.player.api;
  * Represents the key of a player.
  */
 public interface PlayerKey {
-    
+
     /**
      * Checks if the player has a key.
      * 

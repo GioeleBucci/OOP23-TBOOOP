@@ -16,11 +16,13 @@ public class PlayerKeyImpl implements PlayerKey {
         this.keys = 0;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean hasKey() {
         return this.keys > 0;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void useKey() {
         if (this.keys > 0) {
@@ -28,16 +30,19 @@ public class PlayerKeyImpl implements PlayerKey {
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setKeys(final int keys) {
         this.keys = keys;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void pickupKeys() {
         this.keys = this.keys + 1;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int getKey() {
         return this.keys;

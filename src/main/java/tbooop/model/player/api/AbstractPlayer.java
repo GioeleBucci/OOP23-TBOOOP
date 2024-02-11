@@ -28,6 +28,7 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
      * @param position starting position
      * @param health the entity's health
      * @param velocity  it is the Entity velocity
+     * @param keys the player's keys
      */
     protected AbstractPlayer(final Point2d position, final Health health, final double velocity, final PlayerKey keys) {
         super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
