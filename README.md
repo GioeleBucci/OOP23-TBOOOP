@@ -9,22 +9,63 @@
   <img src="https://imgur.com/u0BDjx7.png">
 </p>
 
-2023 OOP Project.
+### About
+A demake of 'The Binding of Isaac', created as a project for the Object-Oriented Programming course (2023/24).
 
-## TODO's
+### Commands
+- **Move**: `W` `A` `S` `D`
+- **Attack**: `↑` `←` `↓` `→`
+- **Resize**: `P` `M`
 
-- [x] Generazione del dungeon e delle relative stanze.
-- [ ] Visualizzazione del gioco con grafica minimale.
-- [x] Playable character in grado di sparare nelle 4 direzioni cardinali
-- [ ] Condizioni di endgame (morte).
-- [x] Nemico “melee” in grado di fare danni a contatto
-- [x] Gestione delle collisioni.
-- [x] Oggetti, che modificano le statistiche del player.
-- [x] Spawn casuale di pickup (cuori, chiavi): i cuori guariscono il player e le chiavi aprono le stanze dell’oggetto
-    
-    
-    
-    
-    
-    
+### Items & Prices
+
+<div>
+    <table>
+        <tr>
+            <td>
+                <img src="src/main/resources/pickupables/items/zap.png" alt="Zap Image" style="float: left; margin-right: 20px;">
+            </td>
+            <td>
+                <b>Zap (10¢)</b><br>
+                <i>Speed Up</i>
+            </td>
+            <td>
+                <img src="src/main/resources/pickupables/items/glassHeart.png" alt="Glass Heart Image" style="float: left; margin-right: 20px;">
+            </td>
+            <td>
+                <b>Glass Heart (15¢)</b><br>
+                <i>Full Health</i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="src/main/resources/pickupables/items/LockedRings.png" alt="Shield Image" style="float: left; margin-right: 20px;">
+            </td>
+            <td>
+                <b>Locked Rings (15¢)</b><br>
+                <i>Damage Up</i>
+            </td>
+            <td>
+                <img src="src/main/resources/pickupables/items/forbiddenfruit.png" alt="Coin Image" style="float: left; margin-right: 20px;">
+            </td>
+            <td>
+                <b>Golden Apple (15¢)</b><br>
+                <i>Max Health Up</i>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="src/main/resources/pickupables/items/spicysauce.png" alt="Rocket Image" style="float: left; margin-right: 20px;">
+            </td>
+            <td>
+                <b>Spicy Sauce (20¢)</b><br>
+                <i>Shot Speed Up</i>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+
     
