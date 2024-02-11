@@ -2,31 +2,24 @@ package tbooop.model.player.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.core.api.movable.AbstractEntity;
-import tbooop.model.player.api.Player;
+import tbooop.model.player.api.AbstractPlayer;
 import tbooop.model.player.api.PlayerProjectile;
-import java.util.Optional;
 
 /**
  * A Player is a game object that can move on a 2D space,
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public class PlayerImpl extends AbstractEntity implements Player {
+public class PlayerImpl extends AbstractPlayer {
 
-    private static final int PLAYER_COINS = 40;
     private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
     private static final double PROJECTILE_BASE_VELOCITY = 0.1;
     private static final long TIME_BETWEEN_SHOTS = 200;
-    private int damage;
-    private int keys;
-    private int coin;
     private double projectileVelocity;
     private long deltaTime;
     private long timeSinceLastShoot;
@@ -44,8 +37,6 @@ public class PlayerImpl extends AbstractEntity implements Player {
      */
     public PlayerImpl(final Point2d position, final Health health, final double velocity) {
         super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
-        this.damage = 1;
-        this.coin = PLAYER_COINS; 
         this.projectileVelocity = PROJECTILE_BASE_VELOCITY;
     }
 
@@ -64,23 +55,10 @@ public class PlayerImpl extends AbstractEntity implements Player {
         }
     }
 
-    private void shootProjectile() {
-        this.timeSinceLastShoot = 0;
-        final PlayerProjectile shooted = new PlayerProjectileImpl(this.projDir, getPosition(), this.projectileVelocity);
-        shooted.setDamage(damage);
-        addProjectile(shooted);
-    }
-
     /** {@inheritDoc} */
     @Override
     public void maxRecovery() {
         increaseHealth(getMaxHealth() - getHealth());
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void increaseDamage(final int amount) {
-        this.damage = this.damage + amount;
     }
 
     /** {@inheritDoc} */
@@ -93,7 +71,15 @@ public class PlayerImpl extends AbstractEntity implements Player {
     /** {@inheritDoc} */
     @Override
     public void pickupKeys() {
-        this.keys = this.keys + 1;
+        setKeys(getKey() + 1);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void useKey() {
+        if (hasKey()) {
+            setKeys(getKey() - 1);
+        }
     }
 
     /** {@inheritDoc} */
@@ -111,31 +97,6 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void setCoin(final int amount) {
-        this.coin = this.coin + amount;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getCoin() {
-        return this.coin;
-    }
-
-    private void checkHealth() {
-        if (getHealth() > getMaxHealth()) {
-            takeDamage(1);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void shoot(final Vector2d direction) {
-        this.canShoot = true;
-        this.projDir = direction;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void increaseVelocity(final double amount) {
         setVelocity(getVelocity() + amount);
     }
@@ -148,36 +109,27 @@ public class PlayerImpl extends AbstractEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<Point2ds> getPoint2ds() {
-        for (final var point2d : Point2ds.getAll()) {
-            if (getDirection().toP2d().equals(point2d.toP2d())) {
-                return Optional.of(point2d);
-            }
-        }
-
-        if (!getDirection().toP2d().equals(Point2dImpl.ZERO)) {
-            throw new IllegalArgumentException();
-        }
-        return Optional.empty();
+    public void increaseDamage(final int amount) {
+        setDamage(getDamage() + amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public boolean hasKey() {
-        return this.keys > 0;
+    public void shoot(final Vector2d direction) {
+        this.canShoot = true;
+        this.projDir = direction;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void useKey() {
-        if (hasKey()) {
-            this.keys = this.keys - 1;
+    private void shootProjectile() {
+        this.timeSinceLastShoot = 0;
+        final PlayerProjectile shooted = new PlayerProjectileImpl(this.projDir, getPosition(), this.projectileVelocity);
+        shooted.setDamage(getDamage());
+        addProjectile(shooted);
+    }
+
+    private void checkHealth() {
+        if (getHealth() > getMaxHealth()) {
+            takeDamage(1);
         }
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getKey() {
-        return this.keys;
     }
 }
