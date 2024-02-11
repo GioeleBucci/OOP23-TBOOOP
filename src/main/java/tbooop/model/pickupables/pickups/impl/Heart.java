@@ -52,8 +52,11 @@ public class Heart extends PickupAbs {
      * @param player
     */
     private void onPickup(final Player player) {
-        player.recovery();
-        destroy();
+        if (!super.isConsumed()) {
+            player.recovery();
+            destroy();
+            super.consume();
+        }
     }
 
     /** {@inheritDoc} */

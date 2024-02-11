@@ -47,8 +47,11 @@ public class Key extends PickupAbs {
      * @param player
     */
     private void onPickup(final Player player) {
-        player.pickupKeys();
-        destroy();
+        if (!super.isConsumed()) {
+            player.pickupKeys();
+            destroy();
+            super.consume();
+        }
     }
 
     /** {@inheritDoc} */

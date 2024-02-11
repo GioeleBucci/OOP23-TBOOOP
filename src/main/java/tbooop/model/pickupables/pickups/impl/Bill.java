@@ -48,8 +48,11 @@ public class Bill extends PickupAbs {
      * @param player
     */
     private void onPickup(final Player player) {
-        player.setCoin(BILL_VALUE);
-        destroy();
+        if (!super.isConsumed()) {
+            player.setCoin(BILL_VALUE);
+            destroy();
+            super.consume();
+        }
     }
 
     /** {@inheritDoc} */
