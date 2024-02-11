@@ -12,11 +12,4 @@ public interface Floor {
      */
     Room getStaringRoom();
 
-    /**
-     * Returns the level of this floor.
-     * 
-     * @return this floor's difficulty level
-     */
-    int getLevel();
-
 }

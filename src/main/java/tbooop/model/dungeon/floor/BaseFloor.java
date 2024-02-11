@@ -42,16 +42,15 @@ public abstract class BaseFloor implements Floor {
     private final Supplier<Integer> enemyAmountSupplier;
     // dead ends are used for placing special rooms, such as item rooms, shops and
     // trapdoor rooms
+    private static final int SPECIAL_ROOMS_AMOUNT = 3;
+    private static final int MINIMUM_ROOMS_AMOUNT = SPECIAL_ROOMS_AMOUNT + 1;
+    private static final Random RAND = new Random(); // create a single istance and re-use it
     private final Point2d itemRoomPos;
     private final Point2d shopRoomPos;
     private final Point2d trapdoorRoomPos;
-    private List<Point2d> deadEnds;
-    private static final int SPECIAL_ROOMS_AMOUNT = 3;
-    private static final int MINIMUM_ROOMS_AMOUNT = SPECIAL_ROOMS_AMOUNT + 1;
-
     private final int roomsAmount;
     private int generatedRooms;
-    private static final Random RAND = new Random(); // create a single istance and re-use it
+    private List<Point2d> deadEnds;
 
     /**
      * Creates a new floor with the desired amount of rooms (>=3).
@@ -93,8 +92,8 @@ public abstract class BaseFloor implements Floor {
     }
 
     private void placeDoors() {
-        for (final Map.Entry<Point2d, Room> entry : roomsMap.entrySet()) {
-            for (final Point2ds offset : Point2ds.getAll()) {
+        roomsMap.entrySet().forEach(entry -> {
+            Point2ds.getAll().forEach(offset -> {
                 final Point2d newPoint = entry.getKey().add(offset.toP2d());
                 if (roomsMap.containsKey(newPoint)) {
                     final Room neighbour = roomsMap.get(newPoint);
@@ -105,8 +104,8 @@ public abstract class BaseFloor implements Floor {
                             : new RegularDoor(doorPos, neighbour);
                     entry.getValue().addDoor(offset, door);
                 }
-            }
-        }
+            });
+        });
     }
 
     private Point2d pickSpecialRoom() {
@@ -199,20 +198,20 @@ public abstract class BaseFloor implements Floor {
         final int mapEdgeLenght = 2 * MAX_DIST_FROM_START + 1;
         String[][] matrix = new String[mapEdgeLenght][mapEdgeLenght];
 
-        final Map<Point2d, List<String>> symbols = new HashMap<>();
-        symbols.put(Point2dImpl.ZERO, List.of("S", "Starting Room"));
-        symbols.put(itemRoomPos, List.of("?", "Item Room"));
-        symbols.put(shopRoomPos, List.of("$", "Shop Room"));
-        symbols.put(trapdoorRoomPos, List.of("T", "Trapdoor Room"));
+        final Map<Point2d, String> symbols = new HashMap<>();
+        symbols.put(Point2dImpl.ZERO, "S");
+        symbols.put(itemRoomPos, "?");
+        symbols.put(shopRoomPos, "$");
+        symbols.put(trapdoorRoomPos, "T");
 
         for (final Point2d room : roomsMap.keySet()) {
             final int x = (int) room.getX() + MAX_DIST_FROM_START;
             final int y = (int) room.getY() + MAX_DIST_FROM_START;
 
             String symbol = "O"; // Default room symbol
-            for (final Map.Entry<Point2d, List<String>> entry : symbols.entrySet()) {
+            for (final Map.Entry<Point2d, String> entry : symbols.entrySet()) {
                 if (room.equals(entry.getKey())) {
-                    symbol = entry.getValue().get(0);
+                    symbol = entry.getValue();
                     break;
                 }
             }
