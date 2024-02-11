@@ -46,7 +46,7 @@ public class Explosive extends EnemyDecorator {
         this.exploded = true;
         for (int x = 0; x < projectileAmount; x++) {
             super.addProjectile(new EnemyProjectile(new Vector2dImpl(
-                Math.cos(x * shootingAngle), Math.sin(x * shootingAngle)),
+                Math.cos(x * shootingAngle), Math.sin(x * shootingAngle)).normalize(),
                 super.getPosition(), PROJECTILE_VELOCITY));
         }
     }
