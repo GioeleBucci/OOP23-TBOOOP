@@ -7,7 +7,7 @@ import tbooop.model.pickupables.Pickupable;
  * sprites according to their
  * own label.
  */
-public class ItemRender {
+public class PickupableRender {
     /**Set the correct sprite for every
      * pickupable.
      * 

@@ -6,14 +6,14 @@ import tbooop.model.core.api.GameObjectUnmodifiable;
 import tbooop.model.pickupables.Pickupable;
 import tbooop.model.player.api.PlayerProjectile;
 import tbooop.view.api.BaseSpriteProvider;
-import tbooop.view.pickupables.ItemRender;
+import tbooop.view.pickupables.PickupableRender;
 
 /**
  * Basic implementation of BaseSpriteLoader.
  */
 public class BaseSpriteProviderImpl implements BaseSpriteProvider {
 
-    private final ItemRender itemRender = new ItemRender();
+    private final PickupableRender itemRender = new PickupableRender();
 
     /** {@inheritDoc} */
     @Override
