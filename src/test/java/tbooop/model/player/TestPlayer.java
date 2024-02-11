@@ -11,6 +11,7 @@ import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.model.player.impl.PlayerImpl;
+import tbooop.model.player.impl.PlayerKeyImpl;
 
 class TestPlayer {
 
@@ -25,7 +26,8 @@ class TestPlayer {
         player = new PlayerImpl(
             new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), 
             new HealthImpl(1),
-            2);
+            2, 
+            new PlayerKeyImpl());
     }
 
     @Test

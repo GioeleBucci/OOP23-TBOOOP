@@ -6,6 +6,7 @@ import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.player.api.AbstractPlayer;
+import tbooop.model.player.api.PlayerKey;
 import tbooop.model.player.api.PlayerProjectile;
 
 /**
@@ -33,8 +34,8 @@ public class PlayerImpl extends AbstractPlayer {
      * @param velocity      it is the Entity velocity
      * @throws NullPointerException if any parameter passed is null
      */
-    public PlayerImpl(final Point2d position, final Health health, final double velocity) {
-        super(position, health, velocity);
+    public PlayerImpl(final Point2d position, final Health health, final double velocity, final PlayerKey keys) {
+        super(position, health, velocity, keys);
         this.projectileVelocity = PROJECTILE_BASE_VELOCITY;
     }
 
@@ -67,13 +68,11 @@ public class PlayerImpl extends AbstractPlayer {
     }
 
     /** {@inheritDoc} */
-    @Override
     public void pickupKeys() {
         setKeys(getKey() + 1);
     }
 
     /** {@inheritDoc} */
-    @Override
     public void useKey() {
         if (hasKey()) {
             setKeys(getKey() - 1);

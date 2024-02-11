@@ -9,7 +9,7 @@ import tbooop.commons.api.Vector2d;
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public interface Player extends Entity, UnmodifiablePlayer {
+public interface Player extends Entity, UnmodifiablePlayer, PlayerKey {
 
     /**
      * Set the current health equals to the max health.
@@ -28,11 +28,6 @@ public interface Player extends Entity, UnmodifiablePlayer {
     * @param amount it's the amount of damege to increase.
     */
     void increaseDamage(int amount);
-
-    /**
-    * This method increases the number of keys in the player's possession.
-    */
-    void pickupKeys();
 
     /**
     * This method change the number of coin in the player's  possession.
@@ -62,24 +57,6 @@ public interface Player extends Entity, UnmodifiablePlayer {
      * Increases the projectile's speed by 10.
      */
     void increaseProjectileVelocity();
-
-    /**
-     * Checks if the player has a key.
-     * 
-     * @return true if the player has a key, false otherwise.
-     */
-    boolean hasKey();
-
-    /**
-     * Uses a key.
-     */
-    void useKey();
-
-    /**
-     * Sets the number of keys in the player's possession.
-     * @param keys the number of keys to set.
-     */
-    void setKeys(int keys);
 
     /**
      * Increases the player's max health by a certain amount.

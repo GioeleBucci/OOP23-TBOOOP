@@ -8,6 +8,7 @@ import tbooop.commons.api.Health;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
+import tbooop.model.player.impl.PlayerKeyImpl;
 
 /**
  * A Player is a game object that can move on a 2D space,
@@ -19,7 +20,7 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final int PLAYER_COINS = 40;
     private static final int PLAYER_INITIAL_DAMAGE = 1;
-    private int keys;
+    private final PlayerKey keys = new PlayerKeyImpl();
     private int coin;
     private int damage;
 
@@ -29,7 +30,7 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
      * @param health the entity's health
      * @param velocity  it is the Entity velocity
      */
-    protected AbstractPlayer(final Point2d position, final Health health, final double velocity) {
+    protected AbstractPlayer(final Point2d position, final Health health, final double velocity, final PlayerKey keys) {
         super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
         this.coin = PLAYER_COINS;
         this.damage = PLAYER_INITIAL_DAMAGE;
@@ -63,21 +64,18 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     }
 
     /** {@inheritDoc} */
-    @Override
     public void setKeys(final int keys) {
-        this.keys = keys;
+        this.keys.setKeys(keys);
     }
 
     /** {@inheritDoc} */
-    @Override
     public int getKey() {
-        return this.keys;
+        return this.keys.getKey();
     }
 
     /** {@inheritDoc} */
-    @Override
     public boolean hasKey() {
-        return this.keys > 0;
+        return this.keys.hasKey();
     }
 
     /**

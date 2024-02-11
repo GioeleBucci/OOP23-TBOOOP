@@ -18,6 +18,7 @@ import tbooop.commons.RoomBounds;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
+import tbooop.model.player.impl.PlayerKeyImpl;
 import tbooop.commons.HealthImpl;
 
 class TestChasingAi {
@@ -29,7 +30,7 @@ class TestChasingAi {
 
     @BeforeEach
     void initAi() {
-        this.player = new PlayerImpl(new Point2dImpl(0.0, 0.0), new HealthImpl(1), 1.0);
+        this.player = new PlayerImpl(new Point2dImpl(0.0, 0.0), new HealthImpl(1), 1.0, new PlayerKeyImpl());
         this.ai = new ChasingAi(this.player);
         positions.clear();
     }

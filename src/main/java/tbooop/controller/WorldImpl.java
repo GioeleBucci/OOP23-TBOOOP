@@ -15,6 +15,7 @@ import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
+import tbooop.model.player.impl.PlayerKeyImpl;
 import tbooop.view.api.View;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -38,7 +39,7 @@ public final class WorldImpl implements World {
     private volatile Set<GameObject> gameObjects = new CopyOnWriteArraySet<>();
     private volatile Set<Projectile> projectiles = new CopyOnWriteArraySet<>();
     private volatile Player player = new PlayerImpl(RoomBounds.CENTER, new HealthImpl(PLAYER_INITIAL_HEALTH),
-            PLAYER_INITIAL_SPEED);
+            PLAYER_INITIAL_SPEED, new PlayerKeyImpl());
 
     /**
      * Constructs a new World with the specified view.
