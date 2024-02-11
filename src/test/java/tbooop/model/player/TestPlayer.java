@@ -27,12 +27,15 @@ class TestPlayer {
 
     @Test
     void playerHealth() {
+        // CHECKSTYLE: MagicNumber OFF
+        // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
         assertEquals(5, player.getHealth());
         player.recovery();
         assertEquals(5, player.getHealth());
         player.increaseMaxHealth(2);
         assertEquals(7, player.getMaxHealth());
         assertEquals(7, player.getHealth());
+        // CHECKSTYLE: MagicNumber ON
     }
 
     @Test 
@@ -40,7 +43,7 @@ class TestPlayer {
         assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
         player.updateState(1);
         assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
-        
+
         for (int i = 0; i < MOVES; i++) {
             player.move(Point2ds.UP);
         }
