@@ -67,6 +67,7 @@ public class ViewUpdater extends ViewImpl {
             controller.mainLoop();
         });
         thread.start();
+        stage.show();
     }
 
     /** {@inheritDoc} */
