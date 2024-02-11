@@ -29,7 +29,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
         + "and for that reason exposing the internal representation is necessary.")
 public final class WorldImpl implements World {
 
-    private static final int INITIAL_KEYS = 2; // let the player start with some keys
     private final View view;
     private final FloorManager floorManager;
 
@@ -50,9 +49,6 @@ public final class WorldImpl implements World {
     /** {@inheritDoc} */
     @Override
     public void init() {
-        for (int i = 0; i < INITIAL_KEYS; i++) {
-            player.pickupKeys();
-        }
         floorManager.init();
     }
 

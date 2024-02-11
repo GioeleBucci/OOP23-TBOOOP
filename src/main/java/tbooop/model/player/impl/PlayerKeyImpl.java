@@ -7,13 +7,14 @@ import tbooop.model.player.api.PlayerKey;
  */
 public class PlayerKeyImpl implements PlayerKey {
 
+    private static final int INITIAL_KEYS = 2;
     private int keys;
 
     /**
      * Create a new instance of a PlayerKey.
      */
     public PlayerKeyImpl() {
-        this.keys = 0;
+        this.keys = INITIAL_KEYS;
     }
 
     /** {@inheritDoc} */
