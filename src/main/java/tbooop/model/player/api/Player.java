@@ -76,6 +76,12 @@ public interface Player extends Entity, UnmodifiablePlayer {
     void useKey();
 
     /**
+     * Sets the number of keys in the player's possession.
+     * @param keys the number of keys to set.
+     */
+    void setKeys(int keys);
+
+    /**
      * Increases the player's max health by a certain amount.
      * @param amount the amount to increase;
      */

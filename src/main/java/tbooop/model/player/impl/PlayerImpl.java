@@ -5,7 +5,6 @@ import tbooop.commons.api.Vector2d;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Health;
-import tbooop.model.core.api.GameTag;
 import tbooop.model.player.api.AbstractPlayer;
 import tbooop.model.player.api.PlayerProjectile;
 
@@ -16,7 +15,6 @@ import tbooop.model.player.api.PlayerProjectile;
 */
 public class PlayerImpl extends AbstractPlayer {
 
-    private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
     private static final double PROJECTILE_BASE_VELOCITY = 0.1;
     private static final long TIME_BETWEEN_SHOTS = 200;
@@ -36,7 +34,7 @@ public class PlayerImpl extends AbstractPlayer {
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position, final Health health, final double velocity) {
-        super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
+        super(position, health, velocity);
         this.projectileVelocity = PROJECTILE_BASE_VELOCITY;
     }
 
