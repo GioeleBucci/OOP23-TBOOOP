@@ -4,7 +4,7 @@ import java.util.List;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tbooop.view.enemy.FrameUpdaterImpl;
+import tbooop.view.FrameUpdaterImpl;
 
 /**
  * It's the class for animate the Player.
