@@ -14,7 +14,7 @@ import javafx.scene.text.Font;
 public abstract class PlayerPickupsRenderAbs {
     private static final double PICKUP_SIZE = 1.5;
     private static final double LABEL_SIZE = 1.0;
-    private final Font pickupFont = new Font("Serif", 18);
+    private final Font pickupFont = new Font("Serif", 20);
     /**
      * Binds pickup icon to the correct position
      * of the view.
@@ -37,8 +37,8 @@ public abstract class PlayerPickupsRenderAbs {
         .heightProperty()
         .multiply(pickupView.getImage().getHeight() / root.getScene().heightProperty().get()));
 
-        pickupView.setScaleX(LABEL_SIZE);
-        pickupView.setScaleY(LABEL_SIZE);
+        pickupView.setScaleX(PICKUP_SIZE);
+        pickupView.setScaleY(PICKUP_SIZE);
     }
 
     /**
@@ -53,8 +53,8 @@ public abstract class PlayerPickupsRenderAbs {
     protected void bindLabel(final Label label, final HBox root) {
         label.setFont(pickupFont);
         label.setTextFill(Color.GREY);
-        label.setScaleX(PICKUP_SIZE);
-        label.setScaleY(PICKUP_SIZE);
+        label.setScaleX(LABEL_SIZE);
+        label.setScaleY(LABEL_SIZE);
         root.getChildren().add(label);
     }
 

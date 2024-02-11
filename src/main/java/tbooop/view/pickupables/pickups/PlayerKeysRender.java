@@ -26,8 +26,8 @@ public class PlayerKeysRender extends PlayerPickupsRenderAbs {
     }
 
     private void init(final HBox root) {
-        super.bindLabel(keyLabel, root);
         super.bindPickup(keyView, root, KEY_IMAGE_LAYOUT);
+        super.bindLabel(keyLabel, root);
     }
 
     /** {@inheritDoc} */
