@@ -31,14 +31,10 @@ public class PlayerImpl extends AbstractPlayer {
      * Create a new istance of a Entity.
      *
      * @param position      starting position
-     * @param health        the entity's health
-     * @param velocity      it is the Entity velocity
-     * @param keys          the player's keys
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position) {
-        super(position,new HealthImpl(PLAYER_INITIAL_HEALTH),
-            PLAYER_INITIAL_SPEED, new PlayerKeyImpl());
+        super(position, new HealthImpl(PLAYER_INITIAL_HEALTH), PLAYER_INITIAL_SPEED, new PlayerKeyImpl());
         this.projectileVelocity = PROJECTILE_BASE_VELOCITY;
     }
 
