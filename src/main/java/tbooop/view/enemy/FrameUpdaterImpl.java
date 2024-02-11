@@ -21,8 +21,8 @@ public class FrameUpdaterImpl implements FrameUpdater {
     private final double updateFrequency;
 
     /**
-     * Creates an istance of an EnemyFrameUpdater.
-     * @param frames the enemy animation's frames
+     * Creates an istance of a FrameUpdaterImpl.
+     * @param frames the animation's frames
      * @param updateFrequency the update time frequency between frames
      * @throws NullPointerException if frames is null
      */
