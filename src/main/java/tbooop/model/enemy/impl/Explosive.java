@@ -12,7 +12,7 @@ import java.util.Objects;
  */
 public class Explosive extends EnemyDecorator {
 
-    private static final double PROJECTILE_VELOCITY = 0.02;
+    private static final double PROJECTILE_VELOCITY = 0.025;
     private final int projectileAmount;
     private final double shootingAngle;
     private boolean exploded;
