@@ -32,6 +32,7 @@ public class PlayerImpl extends AbstractPlayer {
      * @param position      starting position
      * @param health        the entity's health
      * @param velocity      it is the Entity velocity
+     * @param keys          the player's keys
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position, final Health health, final double velocity, final PlayerKey keys) {
