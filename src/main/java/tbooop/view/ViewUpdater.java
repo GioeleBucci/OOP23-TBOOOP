@@ -23,7 +23,7 @@ import tbooop.view.enemy.EnemyAnimatorImpl;
 import tbooop.view.pickupables.pickups.PlayerCoinsView;
 import tbooop.view.pickupables.pickups.PlayerKeysView;
 import tbooop.view.player.HealthView;
-import tbooop.view.player.PlayerRender;
+import tbooop.view.player.PlayerAnimator;
 
 /**
  * The ViewUpdater pdates the GUI and communicates with the controller.
@@ -67,7 +67,7 @@ public class ViewUpdater extends ViewImpl {
     /** {@inheritDoc} */
     @Override
     public synchronized void addPlayer(final UnmodifiablePlayer player) {
-        final PlayerRender playerRender = new PlayerRender(playerSprite, player);
+        final PlayerAnimator playerRender = new PlayerAnimator(playerSprite, player);
         animators.add(playerRender);
         addGameObjectToView(playerSprite, player);
         final HealthView healthView = new HealthView(this, player);
