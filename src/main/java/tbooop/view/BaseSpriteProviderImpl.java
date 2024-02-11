@@ -33,7 +33,7 @@ public class BaseSpriteProviderImpl implements BaseSpriteProvider {
                 }
             }
             case TRAPDOOR -> imgView.setImage(new Image("tileset/trapdoor.png"));
-            default -> imgView.setImage(new Image("enemy/melee/melee1.png"));
+            default -> imgView.setImage(new Image("others/missingSprite.png"));
         }
         return imgView;
     }
