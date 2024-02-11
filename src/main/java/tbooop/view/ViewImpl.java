@@ -40,6 +40,7 @@ public abstract class ViewImpl extends Application implements View {
         stage.setScene(scene);
         stage.setTitle("TBOOOP!");
         stage.getIcons().add(new Image("icon/icon.png")); 
+        stage.show();
         setBackgroundImage("tileset/room.png");
         setWalkableArea();
         stageAspectRatio = stage.getWidth() / stage.getHeight();

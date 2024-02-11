@@ -61,13 +61,11 @@ public class ViewUpdater extends ViewImpl {
         super.getScene().setOnKeyPressed(e -> inputManager.keyPressed(e.getCode()));
         super.getScene().setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
         super.getStage().setOnCloseRequest(e -> System.exit(0));
-
         roomRenderer.init();
         final Thread thread = new Thread(() -> {
             controller.mainLoop();
         });
         thread.start();
-        stage.show();
     }
 
     /** {@inheritDoc} */
