@@ -21,6 +21,7 @@ import tbooop.model.player.impl.PlayerImpl;
 
 class TestMelee {
 
+    private static final int UPDATE_TIME = 400;
     private static final Point2d BASE_POS = new Point2dImpl(0, 0);
     private static final int ENEMY_HP = 100;
     private static final int PLAYER_HP = 5;
@@ -32,10 +33,7 @@ class TestMelee {
     @BeforeEach
     void initEnemy() {
         this.player.maxRecovery();
-        this.melee = new Melee(new BaseEnemy(
-            BASE_POS,
-            new HealthImpl(ENEMY_HP),
-            1.0,
+        this.melee = new Melee(new BaseEnemy(BASE_POS, new HealthImpl(ENEMY_HP), 1.0,
             new ChasingAi(this.player), EnemyType.MELEE, MELEE_RADIUS));
     }
 
@@ -54,12 +52,15 @@ class TestMelee {
     @Test
     void testAttack() {
         this.melee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
         this.melee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 1);
         this.melee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
         this.melee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 2);
         this.melee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
         this.melee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 3);
     }
@@ -92,16 +93,19 @@ class TestMelee {
     void testDoubleMelee() {
         final Enemy doubleMelee = new Melee(this.melee);
         doubleMelee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
         doubleMelee.onPlayerCollision(this.player);
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
+        assertEquals(this.player.getHealth(), PLAYER_HP - 1);
+        doubleMelee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
+        doubleMelee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 2);
         doubleMelee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
         doubleMelee.onPlayerCollision(this.player);
-        assertEquals(this.player.getHealth(), PLAYER_HP - 4);
-        doubleMelee.updateState(1000);
-        doubleMelee.onPlayerCollision(this.player);
-        assertEquals(this.player.getHealth(), PLAYER_HP - 6);
+        assertEquals(this.player.getHealth(), PLAYER_HP - 3);
         // CHECKSTYLE: MagicNumber ON
     }
 
@@ -124,16 +128,19 @@ class TestMelee {
     void testTripleMelee() {
         final Enemy tripleMelee = new Melee(new Melee(this.melee));
         tripleMelee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
         tripleMelee.onPlayerCollision(this.player);
         // CHECKSTYLE: MagicNumber OFF
         // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
+        assertEquals(this.player.getHealth(), PLAYER_HP - 1);
+        tripleMelee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
+        tripleMelee.onPlayerCollision(this.player);
+        assertEquals(this.player.getHealth(), PLAYER_HP - 2);
+        tripleMelee.updateState(1000);
+        this.player.updateState(UPDATE_TIME);
+        tripleMelee.onPlayerCollision(this.player);
         assertEquals(this.player.getHealth(), PLAYER_HP - 3);
-        tripleMelee.updateState(1000);
-        tripleMelee.onPlayerCollision(this.player);
-        assertEquals(this.player.getHealth(), PLAYER_HP - 6);
-        tripleMelee.updateState(1000);
-        tripleMelee.onPlayerCollision(this.player);
-        assertEquals(this.player.getHealth(), PLAYER_HP - 9);
         // CHECKSTYLE: MagicNumber OFF
     }
 
