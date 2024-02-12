@@ -16,11 +16,11 @@ import tbooop.model.player.api.PlayerProjectile;
  */
 public class PlayerImpl extends AbstractPlayer {
 
-    private static final int TIME_BETWEEN_DAMAGE = 300;
     private static final int TOLERANCE = 5;
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
     private static final double PROJECTILE_BASE_VELOCITY = 0.11;
     private static final long TIME_BETWEEN_SHOTS = 300;
+    private static final long TIME_BETWEEN_DAMAGE = 300;
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private static final double PLAYER_INITIAL_SPEED = 0.11;
     private double projectileVelocity;
@@ -134,7 +134,7 @@ public class PlayerImpl extends AbstractPlayer {
 
     private void checkHealth() {
         if (getHealth() > getMaxHealth()) {
-            takeDamage(1);
+            super.takeDamage(1);
         }
     }
 }
