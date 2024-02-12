@@ -11,6 +11,13 @@
 
 ### About
 A demake of 'The Binding of Isaac', created as a project for the Object-Oriented Programming course (2023/24).
+#### Authors:
+- [@GioeleBucci](https://github.com/GioeleBucci)
+- [@edoardoceresi](https://github.com/edoardoceresi)
+- [@N1c0zz](https://github.com/N1c0zz)
+- [@SimoneM-17](https://github.com/SimoneM-17)
+
+[Sprites](https://www.reddit.com/r/themoddingofisaac/comments/77cvk5/free_assets_roomsbossesmusic_and_more/) by [CakeReddit](https://www.reddit.com/user/CakeReddit/)
 
 ### Commands
 - **Move**: `W` `A` `S` `D`
@@ -66,6 +73,3 @@ A demake of 'The Binding of Isaac', created as a project for the Object-Oriented
         </tr>
     </table>
 </div>
-
-
-    
