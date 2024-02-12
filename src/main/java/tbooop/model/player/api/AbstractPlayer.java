@@ -97,4 +97,18 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     public void setDamage(final int damage) {
         this.damage = damage;
     }
+
+    /** {@inheritDoc} */
+    @Override
+    public void pickupKeys() {
+        setKeys(getKey() + 1);
+    }
+    
+    /** {@inheritDoc} */
+    @Override
+    public void useKey() {
+        if (hasKey()) {
+            setKeys(getKey() - 1);
+        }
+    }
 }

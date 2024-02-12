@@ -3,6 +3,7 @@ package tbooop.model.player.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.HealthImpl;
+import tbooop.commons.Point2dImpl;
 import tbooop.commons.Point2ds;
 import tbooop.commons.RoomBounds;
 import tbooop.model.player.api.AbstractPlayer;
@@ -15,6 +16,7 @@ import tbooop.model.player.api.PlayerProjectile;
 */
 public class PlayerImpl extends AbstractPlayer {
 
+    private static final int TOLERANCE = 5;
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
     private static final double PROJECTILE_BASE_VELOCITY = 0.11;
     private static final long TIME_BETWEEN_SHOTS = 300;
@@ -68,29 +70,21 @@ public class PlayerImpl extends AbstractPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void pickupKeys() {
-        setKeys(getKey() + 1);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void useKey() {
-        if (hasKey()) {
-            setKeys(getKey() - 1);
-        }
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public void move(final Point2ds direction) {
         final Point2d nextPosition = getPosition()
         .add(direction.toP2d().mul(getVelocity() * deltaTime));
 
         setDirection(direction.toP2d().toV2d());
 
-        if (!RoomBounds.outOfBounds(nextPosition)) {
+        if (!checkMovement(nextPosition, direction)) {
             this.setPosition(nextPosition);
         }
+    }
+
+    private boolean checkMovement(Point2d nextPosition, Point2ds direction) {
+        return RoomBounds.outOfBounds(nextPosition) ||
+            (direction.equals(Point2ds.DOWN) && 
+            RoomBounds.outOfBounds(nextPosition.add(new Point2dImpl(0, getCollider().getRadius() - TOLERANCE))));
     }
 
     /** {@inheritDoc} */
