@@ -143,7 +143,6 @@ public class FloorManagerImpl implements FloorManager {
             currentRoom.closeDoors();
             isRoomLocked = true;
         }
-        currentRoom.setExplored();
         view.refreshRoom(currentRoom);
     }
 }

@@ -17,13 +17,6 @@ public interface RoomUnmodifiable {
     Map<Point2ds, DoorUnmodifiable> getDoorMap();
 
     /**
-     * Whether this room has been visited at least once or not.
-     * 
-     * @return whether the room has been visited
-     */
-    boolean isExplored();
-
-    /**
      * Whether this room is special or not.
      * 
      * @return whether the room is special

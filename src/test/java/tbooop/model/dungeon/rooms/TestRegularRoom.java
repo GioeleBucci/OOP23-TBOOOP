@@ -9,13 +9,11 @@ import tbooop.model.dungeon.rooms.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.impl.TrapdoorRoom;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class TestRegularRoom {
     @Test
     void checkFields() {
         final RegularRoom room = new TrapdoorRoom();
-        assertFalse(room.isExplored());
         // only one door per axis
         room.addDoor(Point2ds.UP, new RegularDoor(DoorPositions.TOP.getPosition(), new TrapdoorRoom()));
         room.addDoor(Point2ds.UP, new RegularDoor(DoorPositions.TOP.getPosition(), new TrapdoorRoom()));

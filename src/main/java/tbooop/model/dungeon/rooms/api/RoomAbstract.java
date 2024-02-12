@@ -21,7 +21,6 @@ import java.util.Collection;
 public abstract class RoomAbstract implements Room {
 
     private final Map<Point2ds, DoorUnmodifiable> doorMap = new HashMap<>();
-    private boolean isExplored;
     private final Set<GameObject> gameObjects = new HashSet<>();
 
     /** {@inheritDoc} */
@@ -35,18 +34,6 @@ public abstract class RoomAbstract implements Room {
     @Override
     public Map<Point2ds, DoorUnmodifiable> getDoorMap() {
         return Collections.unmodifiableMap(doorMap);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public boolean isExplored() {
-        return isExplored;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void setExplored() {
-        this.isExplored = true;
     }
 
     /** {@inheritDoc} */
@@ -78,7 +65,7 @@ public abstract class RoomAbstract implements Room {
     /** {@inheritDoc} */
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "[doorSet=" + getDoorMap() + ", isExplored=" + isExplored() + "]\n";
+        return this.getClass().getSimpleName() + "[doorSet=" + getDoorMap() + "]\n";
     }
 
     /** {@inheritDoc} */
