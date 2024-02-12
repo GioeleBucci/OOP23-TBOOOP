@@ -87,4 +87,20 @@ public abstract class RoomAbstract implements Room {
         return false;
     }
 
+    /** {@inheritDoc} */
+    @Override
+    public void closeDoors() {
+        getDoorMap().values().forEach(door -> {
+            ((Door) door).close();
+        });
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void openDoors() {
+        getDoorMap().values().forEach(door -> {
+            ((Door) door).open();
+        });
+    }
+
 }
