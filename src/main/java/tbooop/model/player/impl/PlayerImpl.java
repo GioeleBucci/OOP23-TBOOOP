@@ -13,9 +13,10 @@ import tbooop.model.player.api.PlayerProjectile;
  * A Player is a game object that can move on a 2D space,
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
-*/
+ */
 public class PlayerImpl extends AbstractPlayer {
 
+    private static final int TIME_BETWEEN_DAMAGE = 300;
     private static final int TOLERANCE = 5;
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.005;
     private static final double PROJECTILE_BASE_VELOCITY = 0.11;
@@ -25,6 +26,7 @@ public class PlayerImpl extends AbstractPlayer {
     private double projectileVelocity;
     private long deltaTime;
     private long timeSinceLastShoot;
+    private long timeSinceLastDamage;
 
     private boolean canShoot;
     private Vector2d projDir;
@@ -32,7 +34,7 @@ public class PlayerImpl extends AbstractPlayer {
     /**
      * Create a new istance of a Entity.
      *
-     * @param position      starting position
+     * @param position starting position
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position) {
@@ -45,7 +47,9 @@ public class PlayerImpl extends AbstractPlayer {
     public void updateState(final long deltaTime) {
         this.deltaTime = deltaTime;
         removeProjectiles();
+
         this.timeSinceLastShoot += this.deltaTime;
+        this.timeSinceLastDamage += this.deltaTime;
 
         if (this.canShoot) {
             this.canShoot = false;
@@ -72,7 +76,7 @@ public class PlayerImpl extends AbstractPlayer {
     @Override
     public void move(final Point2ds direction) {
         final Point2d nextPosition = getPosition()
-        .add(direction.toP2d().mul(getVelocity() * deltaTime));
+                .add(direction.toP2d().mul(getVelocity() * deltaTime));
 
         setDirection(direction.toP2d().toV2d());
 
@@ -81,10 +85,10 @@ public class PlayerImpl extends AbstractPlayer {
         }
     }
 
-    private boolean checkMovement(Point2d nextPosition, Point2ds direction) {
-        return RoomBounds.outOfBounds(nextPosition) ||
-            (direction.equals(Point2ds.DOWN) && 
-            RoomBounds.outOfBounds(nextPosition.add(new Point2dImpl(0, getCollider().getRadius() - TOLERANCE))));
+    private boolean checkMovement(final Point2d nextPosition, final Point2ds direction) {
+        return RoomBounds.outOfBounds(nextPosition)
+                || direction.equals(Point2ds.DOWN) 
+                && RoomBounds.outOfBounds(nextPosition.add(new Point2dImpl(0, getCollider().getRadius() - TOLERANCE)));
     }
 
     /** {@inheritDoc} */
@@ -103,6 +107,15 @@ public class PlayerImpl extends AbstractPlayer {
     @Override
     public void increaseDamage(final int amount) {
         setDamage(getDamage() + amount);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void takeDamage(final int amount) {
+        if (this.timeSinceLastDamage > TIME_BETWEEN_DAMAGE) {
+            this.timeSinceLastDamage = 0;
+            super.takeDamage(amount);
+        }
     }
 
     /** {@inheritDoc} */

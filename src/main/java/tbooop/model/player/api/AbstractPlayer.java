@@ -103,7 +103,7 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     public void pickupKeys() {
         setKeys(getKey() + 1);
     }
-    
+
     /** {@inheritDoc} */
     @Override
     public void useKey() {
