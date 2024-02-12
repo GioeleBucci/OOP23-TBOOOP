@@ -24,4 +24,14 @@ public interface Item extends Pickupable {
      * @return item's price.
      */
     int getPrice();
+
+    /**
+     * Returns a tag if the item is
+     * in the itemshop or not.
+     * 
+     * @return SPECIAL if it's
+     * in the itemshop, NORMAL
+     * if not.
+     */
+    PickupableStatus getStatus();
 }
