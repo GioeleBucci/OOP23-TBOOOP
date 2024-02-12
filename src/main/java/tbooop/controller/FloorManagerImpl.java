@@ -71,7 +71,7 @@ public class FloorManagerImpl implements FloorManager {
     }
 
     private void onRoomClear() {
-        if (currentRoom.isFirstRoom()) {
+        if (currentRoom.isFirstRoom() || currentRoom.isSpecial()) {
             return;
         }
         final Pickup pickup = pickupSpawner.getRandomPickup();
