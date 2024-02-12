@@ -2,21 +2,33 @@ package tbooop.model.dungeon.rooms;
 
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.Point2ds;
-import tbooop.model.dungeon.rooms.api.DoorPositions;
-import tbooop.model.dungeon.rooms.api.RegularRoom;
-import tbooop.model.dungeon.rooms.impl.RegularDoor;
-import tbooop.model.dungeon.rooms.impl.TrapdoorRoom;
+import tbooop.commons.RoomBounds;
+import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.dungeon.rooms.impl.EnemyRoom;
+import tbooop.model.enemy.api.EnemyFactory;
+import tbooop.model.enemy.impl.EnemyFactoryImpl;
+import tbooop.model.player.impl.PlayerImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TestRegularRoom {
+
+    private static EnemyFactory enemyFactory = new EnemyFactoryImpl(new PlayerImpl(RoomBounds.CENTER));
+
     @Test
     void checkFields() {
-        final RegularRoom room = new TrapdoorRoom();
-        // only one door per axis
-        room.addDoor(Point2ds.UP, new RegularDoor(DoorPositions.TOP.getPosition(), new TrapdoorRoom()));
-        room.addDoor(Point2ds.UP, new RegularDoor(DoorPositions.TOP.getPosition(), new TrapdoorRoom()));
-        assertEquals(1, room.getDoorMap().size());
+        final Room room = new EnemyRoom(enemyFactory, () -> 0);
+        assertFalse(room.isFirstRoom());
+        assertFalse(room.isSpecial());
+        assertTrue(room.getGameObjects().isEmpty());
     }
+
+    @Test
+    void checkSpawnAmount() {
+        final Room room = new EnemyRoom(enemyFactory, () -> 10);
+        assertEquals(10, room.getGameObjects().size());
+    }
+
 }
