@@ -32,11 +32,7 @@ import tbooop.view.player.PlayerAnimator;
 @SuppressFBWarnings(value = "DM_EXIT", justification = "Calling System.exit(0) when the application"
         + " gets closed is appropriate.")
 public class ViewUpdater extends ViewImpl {
-    /**
-     * Y offset for the player sprite (normally the center of a sprite is it's image
-     * center).
-     */
-    private static final int PLAYER_Y_OFFSET = -24;
+
     private static final double MULTIPLIER_SCALE = 0.9;
 
     private volatile Map<GameObjectUnmodifiable, ImageView> gameObjMap = new HashMap<>();
@@ -78,7 +74,6 @@ public class ViewUpdater extends ViewImpl {
         final PlayerAnimator playerRender = new PlayerAnimator(playerSprite, player);
         animators.add(playerRender);
         addGameObjectToView(playerSprite, player);
-        playerSprite.setLayoutY(PLAYER_Y_OFFSET);
         final HealthView healthView = new HealthView(this, player);
         viewComponents.add(healthView);
         final PlayerKeysView keysView = new PlayerKeysView(this, player);
