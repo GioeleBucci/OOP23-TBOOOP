@@ -18,7 +18,6 @@ import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
 
-
 class TestBaseEnemy {
 
     private static final Point2d BASE_POS = new Point2dImpl(0, 0);
@@ -26,14 +25,13 @@ class TestBaseEnemy {
     private static final int PLAYER_HP = 5;
     private static final double BASE_RADIUS = 15;
 
-    private final Player player = new PlayerImpl(
-        BASE_POS);
+    private final Player player = new PlayerImpl(BASE_POS);
     private Enemy enemy;
 
     @BeforeEach
     void initEnemy() {
-        this.enemy = new BaseEnemy(
-            BASE_POS, new HealthImpl(ENEMY_HP), 1.0, new ChasingAi(this.player), EnemyType.MELEE, BASE_RADIUS);
+        this.enemy = new BaseEnemy(BASE_POS, new HealthImpl(ENEMY_HP),
+            1.0, new ChasingAi(this.player), EnemyType.MELEE, BASE_RADIUS);
     }
 
     @Test
