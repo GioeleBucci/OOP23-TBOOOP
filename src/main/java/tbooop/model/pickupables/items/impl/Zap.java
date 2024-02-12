@@ -49,15 +49,19 @@ public class Zap extends ItemAbs {
      * @param player
     */
     private void onPickup(final Player player) {
-        if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
-            if (player.getCoin() >= this.itemCost) {
+        if (!super.isConsumed()) {
+            if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
+                if (player.getCoin() >= this.itemCost) {
+                    player.increaseVelocity(VELOCITY_TO_INCREASE);
+                    player.setCoin(-itemCost);
+                    destroy();
+                    super.consume();
+                }
+            } else {
                 player.increaseVelocity(VELOCITY_TO_INCREASE);
-                player.setCoin(-itemCost);
                 destroy();
+                super.consume();
             }
-        } else {
-            player.increaseVelocity(VELOCITY_TO_INCREASE);
-            destroy();
         }
     }
 
