@@ -55,9 +55,8 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
         final long currentTime = System.currentTimeMillis();
         gameObjMap.entrySet().stream()
             .filter(en -> en.getKey() instanceof Enemy)
-            .forEach(en -> frameUpdaters.entrySet().stream()
-                .filter(fu -> fu.getKey().equals(((Enemy) en.getKey()).getEnemyType()))
-                .forEach(fu -> en.getValue().setImage(fu.getValue().getNextFrame(currentTime))));
+            .forEach(en -> en.getValue().setImage(
+                frameUpdaters.get(((Enemy) en.getKey()).getEnemyType()).getNextFrame(currentTime)));
         frameUpdaters.values().forEach(fu -> fu.resetIfUpdated(currentTime));
     }
 
