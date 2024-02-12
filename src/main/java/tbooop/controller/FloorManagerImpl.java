@@ -15,7 +15,6 @@ import tbooop.model.dungeon.rooms.api.DoorLockable;
 import tbooop.model.dungeon.rooms.api.DoorPositions;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.Room;
-import tbooop.model.dungeon.rooms.api.RoomClosable;
 import tbooop.model.enemy.impl.EnemyFactoryImpl;
 import tbooop.model.pickupables.pickups.api.Pickup;
 import tbooop.model.pickupables.pickups.impl.PickupLogic;
@@ -65,13 +64,16 @@ public class FloorManagerImpl implements FloorManager {
     /** If there are no more alive enemies in this room opens the doors. */
     @Override
     public synchronized void update() {
-        if (isRoomLocked && currentRoom instanceof RoomClosable && !roomHasEnemies()) {
-            ((RoomClosable) currentRoom).openDoors();
+        if (isRoomLocked && !roomHasEnemies()) {
+            currentRoom.openDoors();
             onRoomClear();
         }
     }
 
     private void onRoomClear() {
+        if (currentRoom.isFirstRoom()) {
+            return;
+        }
         final Pickup pickup = pickupSpawner.getRandomPickup();
         world.addGameObject(pickup);
         currentRoom.getGameObjects().add(pickup); // save the pickup in the room so that it doesn't despawn
@@ -89,11 +91,10 @@ public class FloorManagerImpl implements FloorManager {
             world.getPlayer().useKey();
             ((DoorLockable) door).unlock();
         }
-        if (!door.isOpen()) {
-            return;
+        if (door.isOpen()) {
+            changeRoom((Room) door.getRoom());
+            world.getPlayer().setPosition(newPlayerPosition(door));
         }
-        changeRoom((Room) door.getRoom());
-        world.getPlayer().setPosition(newPlayerPosition(door));
     }
 
     /** {@inheritDoc} */
@@ -138,11 +139,10 @@ public class FloorManagerImpl implements FloorManager {
             }
         });
         currentRoom = newRoom;
-        if (currentRoom instanceof RoomClosable && roomHasEnemies()) {
-            ((RoomClosable) currentRoom).closeDoors();
+        if (roomHasEnemies()) {
+            currentRoom.closeDoors();
             isRoomLocked = true;
         }
-        currentRoom.setExplored();
         view.refreshRoom(currentRoom);
     }
 }

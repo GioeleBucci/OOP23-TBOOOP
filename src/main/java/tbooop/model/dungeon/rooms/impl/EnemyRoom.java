@@ -2,16 +2,14 @@ package tbooop.model.dungeon.rooms.impl;
 
 import java.util.function.Supplier;
 
-import tbooop.model.dungeon.rooms.api.Door;
 import tbooop.model.dungeon.rooms.api.RegularRoom;
-import tbooop.model.dungeon.rooms.api.RoomClosable;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.enemy.impl.EnemySpawnerImpl;
 
 /**
  * A room with enemies.
  */
-public class EnemyRoom extends RegularRoom implements RoomClosable {
+public class EnemyRoom extends RegularRoom {
 
     /**
      * Creates a new enemy room.
@@ -24,19 +22,4 @@ public class EnemyRoom extends RegularRoom implements RoomClosable {
         addMultipleGameObjects(new EnemySpawnerImpl(enemyFactory).getRandomEnemies(enemyAmountSupplier.get()));
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void closeDoors() {
-        getDoorMap().values().forEach(door -> {
-            ((Door) door).close();
-        });
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void openDoors() {
-        getDoorMap().values().forEach(door -> {
-            ((Door) door).open();
-        });
-    }
 }

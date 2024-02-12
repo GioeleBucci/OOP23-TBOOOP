@@ -8,4 +8,5 @@ public abstract class RegularRoom extends RoomAbstract {
     public boolean isSpecial() {
         return false;
     }
+
 }

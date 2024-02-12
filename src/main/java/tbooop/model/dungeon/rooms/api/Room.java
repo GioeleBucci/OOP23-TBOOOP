@@ -28,7 +28,14 @@ public interface Room extends RoomUnmodifiable {
      */
     Set<GameObject> getGameObjects();
 
-    /** Flags the room as explored. Cannot be undone. */
-    void setExplored();
+    /**
+     * Closes all the doors in the room.
+     */
+    void closeDoors();
+
+    /**
+     * Opens all the doors in the room.
+     */
+    void openDoors();
 
 }
