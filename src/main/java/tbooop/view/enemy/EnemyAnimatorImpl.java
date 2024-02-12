@@ -20,8 +20,8 @@ import tbooop.view.api.enemy.EnemyFrames;
  * @see EnemyAnimator
  */
 @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Due to design decisions"
-        + "this class should be able to access to the view's map of gameObjects in order to"
-        + "easily update the animation frames of only the enemies that may be present.")
+        + "this class should be able to directly access to the view's map of gameObjects in order to"
+        + "easily update the animation frames of only the enemies that may be present in such map.")
 public class EnemyAnimatorImpl implements EnemyAnimator {
 
     private static final double MELEE_UPDATE_FREQUENCY = 70.0;
