@@ -72,6 +72,9 @@ public class FloorManagerImpl implements FloorManager {
     }
 
     private void onRoomClear() {
+        if (currentRoom.isFirstRoom()) {
+            return;
+        }
         final Pickup pickup = pickupSpawner.getRandomPickup();
         world.addGameObject(pickup);
         currentRoom.getGameObjects().add(pickup); // save the pickup in the room so that it doesn't despawn
@@ -89,11 +92,10 @@ public class FloorManagerImpl implements FloorManager {
             world.getPlayer().useKey();
             ((DoorLockable) door).unlock();
         }
-        if (!door.isOpen()) {
-            return;
+        if (door.isOpen()) {
+            changeRoom((Room) door.getRoom());
+            world.getPlayer().setPosition(newPlayerPosition(door));
         }
-        changeRoom((Room) door.getRoom());
-        world.getPlayer().setPosition(newPlayerPosition(door));
     }
 
     /** {@inheritDoc} */
