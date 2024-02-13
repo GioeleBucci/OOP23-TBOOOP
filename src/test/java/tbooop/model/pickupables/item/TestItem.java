@@ -15,7 +15,7 @@ import tbooop.model.pickupables.items.impl.GoldenApple;
 /**
  * Test class for items.
  */
-public class TestItem {
+class TestItem {
 
     private static Item goldenApple;
 
