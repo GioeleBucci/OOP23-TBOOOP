@@ -16,7 +16,7 @@ import tbooop.model.player.api.Player;
 public class Zap extends ItemAbs {
     private final int itemCost = PickupablePrices.BELT_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
-    private static final double VELOCITY_TO_INCREASE = 0.05;
+    private static final double VELOCITY_TO_INCREASE = 0.02;
     private final PickupableName pickupTag = PickupableName.ZAP;
     /**
      * Create a new istance of the Zap item.
