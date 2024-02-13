@@ -68,8 +68,9 @@ public class PlayerImpl extends AbstractPlayer {
     /** {@inheritDoc} */
     @Override
     public void recovery() {
-        increaseHealth(1);
-        checkHealth();
+        if (getHealth() < getMaxHealth()) {
+            increaseHealth(1);
+        }
     }
 
     /** {@inheritDoc} */
@@ -130,11 +131,5 @@ public class PlayerImpl extends AbstractPlayer {
         final PlayerProjectile shooted = new PlayerProjectileImpl(this.projDir, getPosition(), this.projectileVelocity);
         shooted.setDamage(getDamage());
         addProjectile(shooted);
-    }
-
-    private void checkHealth() {
-        if (getHealth() > getMaxHealth()) {
-            super.takeDamage(1);
-        }
     }
 }
