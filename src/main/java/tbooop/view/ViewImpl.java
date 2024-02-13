@@ -146,9 +146,8 @@ public class ViewImpl extends AbstractView {
             imgView.setX(newPos.getX());
             imgView.setY(newPos.getY());
             if (entry.getKey().isDestroyed()) {
-                entry.getValue().setVisible(false); // TODO this does not actually remove the projectile
+                entry.getValue().setVisible(false);
                 super.getRoot().getChildren().remove(entry.getValue());
-                // gameObjMap.remove(entry.getKey());
             }
         }
         super.getWalkableArea().setTranslateX(super.getScene().getWidth() / 2 - super.getWalkableArea().getWidth() / 2);
