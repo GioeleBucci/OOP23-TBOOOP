@@ -9,7 +9,7 @@ public interface Pickupable extends Unmovable {
     /**Returns the name of this
      * item/pickup.
      * 
-     * @return an UnmovableName
+     * @return an PickupableName
      */
-    UnmovableName getObjectName();
+    PickupableName getObjectName();
 }

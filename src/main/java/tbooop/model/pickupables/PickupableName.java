@@ -3,7 +3,7 @@ package tbooop.model.pickupables;
 /** Names for every unmovable object
  *  in the game.
  */
-public enum UnmovableName {
+public enum PickupableName {
     /**Bill pickup name. */
     BILL,
     /**Coin pickup name. */

@@ -2,7 +2,7 @@ package tbooop.model.pickupables.items.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.UnmovableName;
+import tbooop.model.pickupables.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
 import tbooop.model.pickupables.items.api.PickupablePrices;
 import tbooop.model.pickupables.items.api.PickupableStatus;
@@ -16,7 +16,7 @@ import tbooop.model.player.api.Player;
 public class SpicySauce extends ItemAbs {
     private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
-    private final UnmovableName pickupTag = UnmovableName.SPICY_SAUCE;
+    private final PickupableName pickupTag = PickupableName.SPICY_SAUCE;
     /**
      * Create a new istance of Fire Mind item.
      * 
@@ -27,7 +27,7 @@ public class SpicySauce extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected SpicySauce(final Point2d position, final double colliderRadius, final GameTag tag) {
+    public SpicySauce(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
@@ -78,7 +78,13 @@ public class SpicySauce extends ItemAbs {
 
     /** {@inheritDoc} */
     @Override
-    public UnmovableName getObjectName() {
+    public PickupableName getObjectName() {
         return this.pickupTag;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public PickupableStatus getStatus() {
+        return this.itemTag;
     }
 }

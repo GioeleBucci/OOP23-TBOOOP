@@ -2,7 +2,7 @@ package tbooop.model.pickupables.pickups.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.UnmovableName;
+import tbooop.model.pickupables.PickupableName;
 import tbooop.model.pickupables.pickups.api.PickupAbs;
 import tbooop.model.player.api.Player;
 
@@ -15,7 +15,7 @@ import tbooop.model.player.api.Player;
  */
 public class Key extends PickupAbs {
 
-    private final UnmovableName pickupTag = UnmovableName.KEY;
+    private final PickupableName pickupTag = PickupableName.KEY;
     /**
      * Create a new istance of a Key.
      * 
@@ -26,7 +26,7 @@ public class Key extends PickupAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected Key(final Point2d position, final double colliderRadius, final GameTag tag) {
+    public Key(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
@@ -56,7 +56,7 @@ public class Key extends PickupAbs {
 
     /** {@inheritDoc} */
     @Override
-    public UnmovableName getObjectName() {
+    public PickupableName getObjectName() {
         return this.pickupTag;
     }
 }

@@ -2,7 +2,7 @@ package tbooop.model.pickupables.items.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.UnmovableName;
+import tbooop.model.pickupables.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
 import tbooop.model.pickupables.items.api.PickupablePrices;
 import tbooop.model.pickupables.items.api.PickupableStatus;
@@ -16,7 +16,7 @@ public class LockedRing extends ItemAbs {
     private final int itemCost = PickupablePrices.IRONBAR_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private static final int DAMAGE_TO_INCREASE = 1;
-    private final UnmovableName pickupTag = UnmovableName.LOCKED_RING;
+    private final PickupableName pickupTag = PickupableName.LOCKED_RING;
     /**
      * Create a new istance of Iron Bar item.
      * 
@@ -27,7 +27,7 @@ public class LockedRing extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected LockedRing(final Point2d position, final double colliderRadius, final GameTag tag) {
+    public LockedRing(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
@@ -78,7 +78,13 @@ public class LockedRing extends ItemAbs {
 
     /** {@inheritDoc} */
     @Override
-    public UnmovableName getObjectName() {
+    public PickupableName getObjectName() {
         return this.pickupTag;
-    } 
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public PickupableStatus getStatus() {
+        return this.itemTag;
+    }
 }

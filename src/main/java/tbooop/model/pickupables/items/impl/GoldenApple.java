@@ -2,7 +2,7 @@ package tbooop.model.pickupables.items.impl;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.UnmovableName;
+import tbooop.model.pickupables.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
 import tbooop.model.pickupables.items.api.PickupablePrices;
 import tbooop.model.pickupables.items.api.PickupableStatus;
@@ -17,7 +17,7 @@ public class GoldenApple extends ItemAbs {
 
     private final int itemCost = PickupablePrices.GOLDENAPPLE_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
-    private final UnmovableName pickupTag = UnmovableName.GOLDEN_APPLE;
+    private final PickupableName pickupTag = PickupableName.GOLDEN_APPLE;
     private static final int MAX_HEALTH_TO_INCREASE = 2;
     /**
      * Create a new istance of a GoldenApple.
@@ -29,7 +29,7 @@ public class GoldenApple extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected GoldenApple(final Point2d position, final double colliderRadius, final GameTag tag) {
+    public GoldenApple(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
@@ -78,7 +78,13 @@ public class GoldenApple extends ItemAbs {
 
     /** {@inheritDoc} */
     @Override
-    public UnmovableName getObjectName() {
+    public PickupableName getObjectName() {
         return this.pickupTag;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public PickupableStatus getStatus() {
+        return this.itemTag;
     }
 }
