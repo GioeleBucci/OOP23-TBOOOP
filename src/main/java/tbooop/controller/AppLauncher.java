@@ -1,7 +1,7 @@
 package tbooop.controller;
 
 import javafx.application.Application;
-import tbooop.view.ViewUpdater;
+import tbooop.view.ViewImpl;
 
 /**
  * Entry point of the TBOOOP application.
@@ -16,7 +16,7 @@ public final class AppLauncher {
      * @param args
      */
     public static void main(final String[] args) {
-        Application.launch(ViewUpdater.class, args);
+        Application.launch(ViewImpl.class, args);
     }
 
 }
