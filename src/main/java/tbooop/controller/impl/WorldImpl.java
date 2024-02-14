@@ -11,7 +11,7 @@ import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.movable.Entity;
-import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
+import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;
 

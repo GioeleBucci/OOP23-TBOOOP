@@ -9,6 +9,9 @@ import java.util.Set;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import tbooop.commons.api.CardinalDirection;
 import tbooop.model.core.api.GameObject;
+import tbooop.model.dungeon.doors.api.Door;
+import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
+
 import java.util.Collection;
 
 /**
@@ -16,7 +19,7 @@ import java.util.Collection;
  * A room can have up to 4 doors and a series of rooms
  * create a floor.
  * 
- * @see {@link tbooop.model.dungeon.floor.BaseFloor Floor}
+ * @see {@link tbooop.model.dungeon.floor.api.BaseFloor Floor}
  */
 public abstract class RoomAbstract implements Room {
 

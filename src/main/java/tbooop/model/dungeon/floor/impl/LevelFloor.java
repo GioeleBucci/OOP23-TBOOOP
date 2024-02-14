@@ -1,5 +1,6 @@
-package tbooop.model.dungeon.floor;
+package tbooop.model.dungeon.floor.impl;
 
+import tbooop.model.dungeon.floor.api.BaseFloor;
 import tbooop.model.enemy.api.EnemyFactory;
 
 /** A floor that gets more rooms the higher its level is. */

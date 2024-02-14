@@ -1,7 +1,7 @@
-package tbooop.model.dungeon.rooms.impl;
+package tbooop.model.dungeon.doors.impl;
 
 import tbooop.commons.api.Point2d;
-import tbooop.model.dungeon.rooms.api.DoorAbstract;
+import tbooop.model.dungeon.doors.api.DoorAbstract;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 
 /**

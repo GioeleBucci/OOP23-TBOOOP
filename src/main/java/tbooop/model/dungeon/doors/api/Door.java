@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.rooms.api;
+package tbooop.model.dungeon.doors.api;
 
 /** A door representation. */
 public interface Door extends DoorUnmodifiable {

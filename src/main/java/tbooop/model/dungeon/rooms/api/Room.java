@@ -4,11 +4,12 @@ import java.util.Set;
 
 import tbooop.commons.api.CardinalDirection;
 import tbooop.model.core.api.GameObject;
+import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 
 /**
  * Base for all Rooms implementations.
  * 
- * @see {@link tbooop.model.dungeon.floor.BaseFloor Floor}
+ * @see {@link tbooop.model.dungeon.floor.api.BaseFloor Floor}
  */
 public interface Room extends RoomUnmodifiable {
 

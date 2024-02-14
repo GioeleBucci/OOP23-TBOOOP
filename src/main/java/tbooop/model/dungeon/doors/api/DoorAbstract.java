@@ -1,8 +1,9 @@
-package tbooop.model.dungeon.rooms.api;
+package tbooop.model.dungeon.doors.api;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
+import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 
 /**
  * Abstract base class for doors.

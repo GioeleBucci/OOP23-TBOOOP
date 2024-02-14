@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.floor;
+package tbooop.model.dungeon.floor.api;
 
 import java.util.Queue;
 import java.util.Random;
@@ -10,15 +10,14 @@ import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.dungeon.rooms.impl.EnemyRoom;
 import tbooop.model.dungeon.rooms.impl.ItemRoom;
 import tbooop.model.dungeon.rooms.impl.ItemShopRoom;
-import tbooop.model.dungeon.rooms.impl.RegularDoor;
-import tbooop.model.dungeon.rooms.impl.SpecialDoor;
 import tbooop.model.dungeon.rooms.impl.StartingRoom;
 import tbooop.model.dungeon.rooms.impl.TrapdoorRoom;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.dungeon.rooms.api.Room;
-import tbooop.model.dungeon.floor.api.Floor;
-import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
-import tbooop.model.dungeon.rooms.api.DoorPositions;
+import tbooop.model.dungeon.doors.api.DoorPositions;
+import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
+import tbooop.model.dungeon.doors.impl.RegularDoor;
+import tbooop.model.dungeon.doors.impl.SpecialDoor;
 
 import java.util.ArrayList;
 import java.util.Collections;

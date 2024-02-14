@@ -12,7 +12,7 @@ import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
-import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
+import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.model.dungeon.rooms.api.ShopRoom;
 import tbooop.view.api.ViewComponent;

@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.rooms.api;
+package tbooop.model.dungeon.doors.api;
 
 import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;

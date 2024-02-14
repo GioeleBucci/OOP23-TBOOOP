@@ -1,6 +1,7 @@
-package tbooop.model.dungeon.rooms.api;
+package tbooop.model.dungeon.doors.api;
 
 import tbooop.model.core.api.unmovable.Unmovable;
+import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 
 /** A door representation. */
 public interface DoorUnmodifiable extends Unmovable {

@@ -1,5 +1,6 @@
 package tbooop.model.dungeon.rooms.impl;
 
+import tbooop.model.dungeon.doors.impl.TrapdoorImpl;
 import tbooop.model.dungeon.rooms.api.RegularRoom;
 
 /**

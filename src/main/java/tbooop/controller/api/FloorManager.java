@@ -1,6 +1,6 @@
 package tbooop.controller.api;
 
-import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;
+import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 
 /**
  * The FloorManager interface is responsible for managing the floors and rooms

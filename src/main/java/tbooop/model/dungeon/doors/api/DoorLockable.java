@@ -1,4 +1,4 @@
-package tbooop.model.dungeon.rooms.api;
+package tbooop.model.dungeon.doors.api;
 
 /**
  * A lockable door representation used in special rooms.
