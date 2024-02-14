@@ -2,7 +2,7 @@ package tbooop.model.pickupables.pickups.api;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.PickupableAbs;
+import tbooop.model.pickupables.api.PickupableAbs;
 
 /**
  * Abstract class for pickups

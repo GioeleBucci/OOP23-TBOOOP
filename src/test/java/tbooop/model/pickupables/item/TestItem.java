@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import tbooop.commons.api.RoomBounds;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.PickupableName;
+import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.Item;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.pickupables.items.impl.GoldenApple;
