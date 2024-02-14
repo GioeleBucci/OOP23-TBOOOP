@@ -1,4 +1,4 @@
-package tbooop.view;
+package tbooop.view.api;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
@@ -10,7 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tbooop.commons.api.RoomBounds;
-import tbooop.view.api.View;
 
 /**
  * The main view.

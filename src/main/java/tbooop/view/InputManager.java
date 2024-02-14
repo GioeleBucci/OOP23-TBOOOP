@@ -13,6 +13,7 @@ import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.controller.impl.MoveCommand;
 import tbooop.controller.impl.ShootCommand;
+import tbooop.view.api.Keybinds;
 import tbooop.view.api.ViewElements;
 
 /**
