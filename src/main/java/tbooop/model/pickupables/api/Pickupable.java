@@ -1,4 +1,4 @@
-package tbooop.model.pickupables;
+package tbooop.model.pickupables.api;
 
 import tbooop.model.core.api.unmovable.Unmovable;
 

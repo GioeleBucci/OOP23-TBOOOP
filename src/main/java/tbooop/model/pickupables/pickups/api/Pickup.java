@@ -1,6 +1,6 @@
 package tbooop.model.pickupables.pickups.api;
 
-import tbooop.model.pickupables.Pickupable;
+import tbooop.model.pickupables.api.Pickupable;
 
 /**
  * Interface for pickups in the game.

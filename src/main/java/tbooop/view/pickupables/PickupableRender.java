@@ -1,7 +1,7 @@
 package tbooop.view.pickupables;
 
 import javafx.scene.image.Image;
-import tbooop.model.pickupables.Pickupable;
+import tbooop.model.pickupables.api.Pickupable;
 /**
  * Renders items and pickups
  * sprites according to their

@@ -1,4 +1,4 @@
-package tbooop.model.pickupables;
+package tbooop.model.pickupables.api;
 
 /** Names for every unmovable object
  *  in the game.

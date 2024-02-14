@@ -3,7 +3,7 @@ package tbooop.view;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import tbooop.model.core.api.GameObjectUnmodifiable;
-import tbooop.model.pickupables.Pickupable;
+import tbooop.model.pickupables.api.Pickupable;
 import tbooop.model.player.api.PlayerProjectile;
 import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.pickupables.PickupableRender;
