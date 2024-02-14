@@ -9,10 +9,10 @@ import javafx.scene.input.KeyCode;
 import javafx.stage.Screen;
 import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.RoomBounds;
-import tbooop.controller.MoveCommand;
-import tbooop.controller.ShootCommand;
 import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
+import tbooop.controller.impl.MoveCommand;
+import tbooop.controller.impl.ShootCommand;
 import tbooop.view.api.ViewElements;
 
 /**

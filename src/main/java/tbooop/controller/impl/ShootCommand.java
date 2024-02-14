@@ -1,4 +1,4 @@
-package tbooop.controller;
+package tbooop.controller.impl;
 
 import tbooop.commons.api.CardinalDirection;
 import tbooop.controller.api.PlayerCommand;
