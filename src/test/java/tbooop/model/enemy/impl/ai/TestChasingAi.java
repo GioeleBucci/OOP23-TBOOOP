@@ -13,7 +13,7 @@ import java.util.Random;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2dImpl;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.RoomBounds;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.player.api.Player;
@@ -117,15 +117,15 @@ class TestChasingAi {
         this.player.setPosition(
             new Point2dImpl(RoomBounds.WIDTH / 2.0, RoomBounds.HEIGHT / 2.0));
         //player moves up
-        this.movePlayerAndAi(50, Point2ds.UP.toP2d());
+        this.movePlayerAndAi(50, CardinalDirection.UP.toP2d());
         //player moves down-right
         this.movePlayerAndAi(50,
-            Point2ds.RIGHT.toP2d().add(Point2ds.DOWN.toP2d()));
+            CardinalDirection.RIGHT.toP2d().add(CardinalDirection.DOWN.toP2d()));
         //player moves left
-        this.movePlayerAndAi(100, Point2ds.LEFT.toP2d());
+        this.movePlayerAndAi(100, CardinalDirection.LEFT.toP2d());
         //player moves up-right
         this.movePlayerAndAi(50,
-            Point2ds.RIGHT.toP2d().add(Point2ds.UP.toP2d()));
+            CardinalDirection.RIGHT.toP2d().add(CardinalDirection.UP.toP2d()));
         //chasing positions reach the player
         positions.forEach(p -> {
             for (int i = 0; i < 400; i++) {

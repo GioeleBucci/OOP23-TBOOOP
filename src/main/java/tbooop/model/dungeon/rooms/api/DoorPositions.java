@@ -1,7 +1,7 @@
 package tbooop.model.dungeon.rooms.api;
 
 import tbooop.commons.Point2dImpl;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.api.Point2d;
 
@@ -42,7 +42,7 @@ public enum DoorPositions {
      * @param direction where the door will be placed
      * @return the position of the door
      */
-    public static Point2d getDoorPosition(final Point2ds direction) {
+    public static Point2d getDoorPosition(final CardinalDirection direction) {
         return switch (direction) {
             case UP -> TOP.getPosition();
             case DOWN -> BOTTOM.getPosition();

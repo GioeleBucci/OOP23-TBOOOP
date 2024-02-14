@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2dImpl;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.RoomBounds;
 import tbooop.model.player.api.AbstractPlayer;
 import tbooop.model.player.api.PlayerProjectile;
@@ -75,7 +75,7 @@ public class PlayerImpl extends AbstractPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void move(final Point2ds direction) {
+    public void move(final CardinalDirection direction) {
         final Point2d nextPosition = getPosition()
                 .add(direction.toP2d().mul(getVelocity() * deltaTime));
 
@@ -86,9 +86,9 @@ public class PlayerImpl extends AbstractPlayer {
         }
     }
 
-    private boolean checkMovement(final Point2d nextPosition, final Point2ds direction) {
+    private boolean checkMovement(final Point2d nextPosition, final CardinalDirection direction) {
         return RoomBounds.outOfBounds(nextPosition)
-                || direction.equals(Point2ds.DOWN) 
+                || direction.equals(CardinalDirection.DOWN) 
                 && RoomBounds.outOfBounds(nextPosition.add(new Point2dImpl(0, getCollider().getRadius() - TOLERANCE)));
     }
 

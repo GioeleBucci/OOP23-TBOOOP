@@ -1,7 +1,7 @@
 package tbooop.model.player.api;
 
 import tbooop.model.core.api.movable.Entity;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.api.Vector2d;
 
 /**
@@ -39,7 +39,7 @@ public interface Player extends Entity, UnmodifiablePlayer, PlayerKey {
      * This method it's used for moving the player in the four direction.
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */
-    void move(Point2ds direction);
+    void move(CardinalDirection direction);
 
     /**
      * This method it's used for shooting in the four direction.

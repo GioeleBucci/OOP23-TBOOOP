@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
@@ -119,7 +119,7 @@ public class RoomRenderer extends ViewComponent {
         musicPlayer.playDefaultMusic();
     }
 
-    private void rotateDoor(final ImageView imgView, final Point2ds dir) {
+    private void rotateDoor(final ImageView imgView, final CardinalDirection dir) {
         switch (dir) {
             case DOWN -> imgView.setRotate(180);
             case LEFT -> imgView.setRotate(90 * -1);

@@ -3,7 +3,7 @@ package tbooop.view.player;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.Animator;
@@ -34,7 +34,7 @@ public class PlayerAnimator implements Animator {
      * 
      * @param direction the direction in which the player should move
      */
-    private void move(final Point2ds direction) {
+    private void move(final CardinalDirection direction) {
         switch (direction) {
             case DOWN:
                 this.playerRenderSprite.goDown(playerSprite);

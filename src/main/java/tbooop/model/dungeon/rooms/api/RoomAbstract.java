@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.model.core.api.GameObject;
 import java.util.Collection;
 
@@ -20,19 +20,19 @@ import java.util.Collection;
  */
 public abstract class RoomAbstract implements Room {
 
-    private final Map<Point2ds, DoorUnmodifiable> doorMap = new HashMap<>();
+    private final Map<CardinalDirection, DoorUnmodifiable> doorMap = new HashMap<>();
     private final Set<GameObject> gameObjects = new HashSet<>();
 
     /** {@inheritDoc} */
     @Override
-    public void addDoor(final Point2ds direction, final DoorUnmodifiable door) {
+    public void addDoor(final CardinalDirection direction, final DoorUnmodifiable door) {
         doorMap.put(direction, door);
         addGameObject(door);
     }
 
     /** {@inheritDoc} */
     @Override
-    public Map<Point2ds, DoorUnmodifiable> getDoorMap() {
+    public Map<CardinalDirection, DoorUnmodifiable> getDoorMap() {
         return Collections.unmodifiableMap(doorMap);
     }
 

@@ -1,6 +1,6 @@
 package tbooop.controller;
 
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.player.api.Player;
 
@@ -9,14 +9,14 @@ import tbooop.model.player.api.Player;
  */
 public class ShootCommand implements PlayerCommand {
 
-    private final Point2ds direction;
+    private final CardinalDirection direction;
 
     /**
      * Constructs a ShootCommand object with the specified direction.
      * 
      * @param direction the direction in which the player should shoot
      */
-    public ShootCommand(final Point2ds direction) {
+    public ShootCommand(final CardinalDirection direction) {
         this.direction = direction;
     }
 

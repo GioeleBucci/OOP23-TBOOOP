@@ -5,7 +5,7 @@ import java.util.List;
 import tbooop.commons.api.Point2d;
 
 /** Cardinal directions, expressed as Point2ds. */
-public enum Point2ds {
+public enum CardinalDirection {
 
     /** expands to {@code new Point2d(0, -1)}. */
     UP(new Point2dImpl(0, -1)),
@@ -18,7 +18,7 @@ public enum Point2ds {
 
     private final Point2d dir;
 
-    Point2ds(final Point2dImpl p2d) {
+    CardinalDirection(final Point2dImpl p2d) {
         this.dir = p2d;
     }
 
@@ -27,7 +27,7 @@ public enum Point2ds {
      * 
      * @return a list of all 4 axis directions.
      */
-    public static List<Point2ds> getAll() {
+    public static List<CardinalDirection> getAll() {
         return List.of(UP, DOWN, LEFT, RIGHT);
     }
 

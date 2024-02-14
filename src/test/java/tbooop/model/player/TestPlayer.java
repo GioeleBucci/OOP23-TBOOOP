@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import tbooop.commons.Point2dImpl;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.RoomBounds;
 import tbooop.model.player.impl.PlayerImpl;
 
@@ -45,11 +45,11 @@ class TestPlayer {
         assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
 
         for (int i = 0; i < MOVES; i++) {
-            player.move(Point2ds.UP);
+            player.move(CardinalDirection.UP);
         }
 
         for (int i = 0; i < MOVES; i++) {
-            player.move(Point2ds.LEFT);
+            player.move(CardinalDirection.LEFT);
         }
 
         if (RoomBounds.outOfBounds(player.getPosition())) {

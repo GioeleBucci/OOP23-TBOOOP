@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.Point2dImpl;
 import tbooop.model.dungeon.rooms.impl.EnemyRoom;
@@ -93,7 +93,7 @@ public abstract class BaseFloor implements Floor {
 
     private void placeDoors() {
         roomsMap.entrySet().forEach(entry -> {
-            Point2ds.getAll().forEach(offset -> {
+            CardinalDirection.getAll().forEach(offset -> {
                 final Point2d newPoint = entry.getKey().add(offset.toP2d());
                 if (roomsMap.containsKey(newPoint)) {
                     final Room neighbour = roomsMap.get(newPoint);
@@ -156,10 +156,10 @@ public abstract class BaseFloor implements Floor {
         generatedRooms++;
         while (!queue.isEmpty()) {
             final Point2d current = queue.poll();
-            final List<Point2ds> directions = new ArrayList<>(Point2ds.getAll());
+            final List<CardinalDirection> directions = new ArrayList<>(CardinalDirection.getAll());
             Collections.shuffle(directions);
             // check all neighbouring rooms
-            for (final Point2ds dir : directions) {
+            for (final CardinalDirection dir : directions) {
                 final Point2d newSpot = current.add(dir.toP2d());
                 // if neighbouring room is already occupied, has more than two neighbours or no
                 // more rooms can be generated, give up
@@ -176,7 +176,7 @@ public abstract class BaseFloor implements Floor {
 
     private int neighboursAmount(final Point2d pos) {
         int out = 0;
-        for (final Point2ds offset : Point2ds.getAll()) {
+        for (final CardinalDirection offset : CardinalDirection.getAll()) {
             final Point2d newPos = pos.add(offset.toP2d());
             if (roomsMap.containsKey(newPos)) {
                 out++;

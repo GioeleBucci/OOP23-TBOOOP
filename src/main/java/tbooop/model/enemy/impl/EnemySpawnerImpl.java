@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.Random;
 
 import tbooop.commons.Point2dImpl;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.RoomBounds;
 import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Point2d;
@@ -78,12 +78,12 @@ public class EnemySpawnerImpl implements EnemySpawner {
             rand.nextDouble(UPPER_BOUND, LOWER_BOUND));
     }
 
-    private Point2ds randomCardinalDirection() {
+    private CardinalDirection randomCardinalDirection() {
         final int pick = rand.nextInt(0, CARDINAL_DIRECTIONS + 1);
-        return pick == 0 ? Point2ds.UP
-            : pick == 1 ? Point2ds.DOWN
-            : pick == 2 ? Point2ds.LEFT
-            : Point2ds.RIGHT;
+        return pick == 0 ? CardinalDirection.UP
+            : pick == 1 ? CardinalDirection.DOWN
+            : pick == 2 ? CardinalDirection.LEFT
+            : CardinalDirection.RIGHT;
     }
 
 }

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Screen;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.RoomBounds;
 import tbooop.controller.MoveCommand;
 import tbooop.controller.ShootCommand;
@@ -91,14 +91,14 @@ public final class InputManager {
             return;
         }
         switch (keybind.get()) {
-            case UP -> sendCommand(new MoveCommand(Point2ds.UP));
-            case DOWN -> sendCommand(new MoveCommand(Point2ds.DOWN));
-            case LEFT -> sendCommand(new MoveCommand(Point2ds.LEFT));
-            case RIGHT -> sendCommand(new MoveCommand(Point2ds.RIGHT));
-            case SHOOT_UP -> sendCommand(new ShootCommand(Point2ds.UP));
-            case SHOOT_DOWN -> sendCommand(new ShootCommand(Point2ds.DOWN));
-            case SHOOT_LEFT -> sendCommand(new ShootCommand(Point2ds.LEFT));
-            case SHOOT_RIGHT -> sendCommand(new ShootCommand(Point2ds.RIGHT));
+            case UP -> sendCommand(new MoveCommand(CardinalDirection.UP));
+            case DOWN -> sendCommand(new MoveCommand(CardinalDirection.DOWN));
+            case LEFT -> sendCommand(new MoveCommand(CardinalDirection.LEFT));
+            case RIGHT -> sendCommand(new MoveCommand(CardinalDirection.RIGHT));
+            case SHOOT_UP -> sendCommand(new ShootCommand(CardinalDirection.UP));
+            case SHOOT_DOWN -> sendCommand(new ShootCommand(CardinalDirection.DOWN));
+            case SHOOT_LEFT -> sendCommand(new ShootCommand(CardinalDirection.LEFT));
+            case SHOOT_RIGHT -> sendCommand(new ShootCommand(CardinalDirection.RIGHT));
             case FULLSCREEN -> view.getStage().setFullScreen(!view.getStage().isFullScreen());
             case ZOOM_IN -> resizeWindow(true);
             case ZOOM_OUT -> resizeWindow(false);

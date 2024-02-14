@@ -2,7 +2,7 @@ package tbooop.model.dungeon.rooms.api;
 
 import java.util.Map;
 
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 
 /**
  * An unmodifiable room representation.
@@ -12,9 +12,9 @@ public interface RoomUnmodifiable {
      * The doors that this room has.
      * 
      * @return a map with an entry for each direction in which a door is present.
-     * @see Point2ds
+     * @see CardinalDirection
      */
-    Map<Point2ds, DoorUnmodifiable> getDoorMap();
+    Map<CardinalDirection, DoorUnmodifiable> getDoorMap();
 
     /**
      * Whether this room is special or not.

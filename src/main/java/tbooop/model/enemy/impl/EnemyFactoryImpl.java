@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import tbooop.commons.HealthImpl;
 import tbooop.commons.Point2dImpl;
-import tbooop.commons.Point2ds;
+import tbooop.commons.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.Enemy;
@@ -55,7 +55,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
 
     /** {@inheritDoc} */
     @Override
-    public Enemy shooter(final Point2ds initialDirection) {
+    public Enemy shooter(final CardinalDirection initialDirection) {
         return new Shooter(new BaseEnemy(new Point2dImpl(0, 0),
             new HealthImpl(SHOOTER_HP), SHOOTER_SPEED,
             new LinearAi(Objects.requireNonNull(initialDirection), SHOOTER_RADIUS),
