@@ -2,7 +2,7 @@ package tbooop.model.dungeon.rooms.api;
 
 import java.util.Map;
 
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 
 /**
  * An unmodifiable room representation.

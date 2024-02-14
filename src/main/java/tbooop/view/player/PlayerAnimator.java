@@ -3,7 +3,7 @@ package tbooop.view.player;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.Animator;

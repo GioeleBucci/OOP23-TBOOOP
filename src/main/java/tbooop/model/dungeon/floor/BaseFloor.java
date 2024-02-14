@@ -4,9 +4,9 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.function.Supplier;
 
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
-import tbooop.commons.Point2dImpl;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.dungeon.rooms.impl.EnemyRoom;
 import tbooop.model.dungeon.rooms.impl.ItemRoom;
 import tbooop.model.dungeon.rooms.impl.ItemShopRoom;

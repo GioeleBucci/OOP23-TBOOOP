@@ -1,7 +1,7 @@
 package tbooop.model.player.api;
 
 import tbooop.model.core.api.movable.Entity;
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Vector2d;
 
 /**

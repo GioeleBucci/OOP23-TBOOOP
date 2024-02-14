@@ -2,7 +2,7 @@ package tbooop.model.dungeon.rooms;
 
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.RoomBounds;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.dungeon.rooms.impl.EnemyRoom;
 import tbooop.model.enemy.api.EnemyFactory;

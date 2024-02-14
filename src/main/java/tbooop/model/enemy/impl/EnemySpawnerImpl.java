@@ -5,11 +5,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.CardinalDirection;
-import tbooop.commons.RoomBounds;
-import tbooop.commons.Vector2dImpl;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
+import tbooop.commons.impl.Point2dImpl;
+import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.enemy.api.EnemySpawner;

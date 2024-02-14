@@ -9,10 +9,10 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.HealthImpl;
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.RoomBounds;
+import tbooop.commons.impl.HealthImpl;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyType;
 import tbooop.model.enemy.impl.ai.ChasingAi;

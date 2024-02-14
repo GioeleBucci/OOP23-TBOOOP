@@ -6,9 +6,9 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Platform;
 
 import tbooop.commons.api.Projectile;
+import tbooop.commons.api.RoomBounds;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
-import tbooop.commons.RoomBounds;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.dungeon.rooms.api.DoorUnmodifiable;

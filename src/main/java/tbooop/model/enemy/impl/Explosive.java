@@ -1,6 +1,6 @@
 package tbooop.model.enemy.impl;
 
-import tbooop.commons.Vector2dImpl;
+import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;
 

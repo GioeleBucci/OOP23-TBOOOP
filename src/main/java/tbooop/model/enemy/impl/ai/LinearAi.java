@@ -2,9 +2,9 @@ package tbooop.model.enemy.impl.ai;
 
 import java.util.Objects;
 
-import tbooop.commons.CardinalDirection;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
 import tbooop.model.enemy.api.ai.AbstractAi;
 
 /**

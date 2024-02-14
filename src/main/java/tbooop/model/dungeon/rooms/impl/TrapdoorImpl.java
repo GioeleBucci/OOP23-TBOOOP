@@ -1,6 +1,6 @@
 package tbooop.model.dungeon.rooms.impl;
 
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
 import tbooop.model.dungeon.rooms.api.Trapdoor;

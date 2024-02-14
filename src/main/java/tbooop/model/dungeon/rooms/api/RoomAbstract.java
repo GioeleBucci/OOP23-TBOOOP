@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.model.core.api.GameObject;
 import java.util.Collection;
 

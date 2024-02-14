@@ -1,6 +1,6 @@
 package tbooop.controller;
 
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.player.api.Player;
 

@@ -9,7 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.RoomBounds;
 import tbooop.view.api.View;
 
 /**

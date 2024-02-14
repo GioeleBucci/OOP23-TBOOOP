@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Screen;
-import tbooop.commons.CardinalDirection;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.RoomBounds;
 import tbooop.controller.MoveCommand;
 import tbooop.controller.ShootCommand;
 import tbooop.controller.api.Controller;

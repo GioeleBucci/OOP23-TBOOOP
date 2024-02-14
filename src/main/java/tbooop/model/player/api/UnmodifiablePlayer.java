@@ -1,6 +1,6 @@
 package tbooop.model.player.api;
 
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import java.util.Optional;
 

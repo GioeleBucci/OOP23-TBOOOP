@@ -1,9 +1,9 @@
 package tbooop.model.dungeon.rooms.api;
 
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.CardinalDirection;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
+import tbooop.commons.impl.Point2dImpl;
 
 /**
  * An enumeration representing the positions of doors in a dungeon floor.

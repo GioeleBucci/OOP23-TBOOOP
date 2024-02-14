@@ -1,6 +1,6 @@
 package tbooop.model.enemy.api;
 
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
 
 /**

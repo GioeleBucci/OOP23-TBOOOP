@@ -1,4 +1,4 @@
-package tbooop.commons;
+package tbooop.commons.impl;
 
 import tbooop.commons.api.CircleCollider;
 import tbooop.commons.api.Point2d;

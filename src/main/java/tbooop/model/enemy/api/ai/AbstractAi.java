@@ -1,7 +1,7 @@
 package tbooop.model.enemy.api.ai;
 
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.impl.Point2dImpl;
 
 import java.util.Objects;
 

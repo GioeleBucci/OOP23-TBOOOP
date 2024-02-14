@@ -2,8 +2,8 @@ package tbooop.model.enemy.impl;
 
 import java.util.Objects;
 
-import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Vector2d;
+import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;

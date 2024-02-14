@@ -2,10 +2,10 @@ package tbooop.model.player.api;
 
 import java.util.Optional;
 
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.CardinalDirection;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Health;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
 

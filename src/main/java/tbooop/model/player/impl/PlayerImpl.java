@@ -1,11 +1,11 @@
 package tbooop.model.player.impl;
 
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
 import tbooop.commons.api.Vector2d;
-import tbooop.commons.HealthImpl;
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.CardinalDirection;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.impl.HealthImpl;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.player.api.AbstractPlayer;
 import tbooop.model.player.api.PlayerProjectile;
 

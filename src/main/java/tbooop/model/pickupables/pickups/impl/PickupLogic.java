@@ -3,7 +3,8 @@ package tbooop.model.pickupables.pickups.impl;
 import java.util.List;
 import java.util.Random;
 import java.util.Arrays;
-import tbooop.commons.RoomBounds;
+
+import tbooop.commons.api.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.pickups.api.Pickup;
 

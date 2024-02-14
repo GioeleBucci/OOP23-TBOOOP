@@ -2,9 +2,9 @@ package tbooop.model.core.api.movable;
 
 import java.util.Objects;
 
-import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Health;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.core.api.GameTag;
 
 /**

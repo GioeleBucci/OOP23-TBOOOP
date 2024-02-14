@@ -11,10 +11,10 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Random;
 
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.CardinalDirection;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.RoomBounds;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.player.api.Player;
 import tbooop.model.player.impl.PlayerImpl;

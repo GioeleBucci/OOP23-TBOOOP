@@ -1,7 +1,6 @@
 package tbooop.commons.api;
 
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractMovable;
 

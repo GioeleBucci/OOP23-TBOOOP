@@ -3,11 +3,11 @@ package tbooop.model.pickupables.items.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.items.api.Item;
-import tbooop.commons.RoomBounds;
 
 /**
  * Class implementing item's handling logic

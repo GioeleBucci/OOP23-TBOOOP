@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import tbooop.commons.api.CircleCollider;
+import tbooop.commons.impl.CircleColliderImpl;
+import tbooop.commons.impl.Point2dImpl;
 
 class CircleColliderTest {
     @Test

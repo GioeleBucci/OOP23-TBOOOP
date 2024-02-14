@@ -3,7 +3,7 @@ package tbooop.model.enemy.impl.ai;
 import java.util.Objects;
 
 import tbooop.commons.api.Point2d;
-import tbooop.commons.Vector2dImpl;
+import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.core.api.movable.Movable;
 import tbooop.model.enemy.api.ai.AbstractAi;
 

@@ -1,6 +1,6 @@
-package tbooop.commons;
+package tbooop.commons.api;
 
-import tbooop.commons.api.Point2d;
+import tbooop.commons.impl.Point2dImpl;
 
 /**
  * Dimensions for the rooms.

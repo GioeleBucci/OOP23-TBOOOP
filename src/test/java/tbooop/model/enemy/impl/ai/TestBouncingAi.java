@@ -7,10 +7,10 @@ import java.util.Random;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.RoomBounds;
-import tbooop.commons.Vector2dImpl;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
+import tbooop.commons.impl.Point2dImpl;
+import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.enemy.api.ai.MovementAi;
 
 class TestBouncingAi {

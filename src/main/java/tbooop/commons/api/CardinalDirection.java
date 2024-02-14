@@ -1,8 +1,8 @@
-package tbooop.commons;
+package tbooop.commons.api;
 
 import java.util.List;
 
-import tbooop.commons.api.Point2d;
+import tbooop.commons.impl.Point2dImpl;
 
 /** Cardinal directions, expressed as Point2ds. */
 public enum CardinalDirection {

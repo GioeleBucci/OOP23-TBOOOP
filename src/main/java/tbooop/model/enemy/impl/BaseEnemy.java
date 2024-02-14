@@ -3,7 +3,7 @@ package tbooop.model.enemy.impl;
 import java.util.Objects;
 
 import tbooop.commons.api.Point2d;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.enemy.api.AbstractEnemy;
 import tbooop.model.enemy.api.EnemyType;

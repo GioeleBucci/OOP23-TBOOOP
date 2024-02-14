@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.Point2dImpl;
-import tbooop.commons.CardinalDirection;
-import tbooop.commons.RoomBounds;
+import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.RoomBounds;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.player.impl.PlayerImpl;
 
 class TestPlayer {

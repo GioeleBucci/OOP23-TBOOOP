@@ -3,8 +3,8 @@ package tbooop.controller;
 import java.util.logging.Logger;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import tbooop.commons.Point2dImpl;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
 import tbooop.model.core.api.GameTag;
