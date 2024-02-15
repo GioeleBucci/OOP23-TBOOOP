@@ -21,7 +21,7 @@ public class SpecialDoor extends AbstractDoor implements DoorLockable {
      */
     public SpecialDoor(final Point2d pos, final RoomUnmodifiable room) {
         super(pos, room);
-        setOpen(false);
+        super.close(); // special doors are closed by default
     }
 
     /** {@inheritDoc} */
@@ -58,7 +58,7 @@ public class SpecialDoor extends AbstractDoor implements DoorLockable {
     @Override
     public void open() {
         if (!isLocked) {
-            this.setOpen(true);
+            super.open();
         }
     }
 }

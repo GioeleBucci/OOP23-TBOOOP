@@ -35,23 +35,20 @@ public abstract class AbstractDoor extends UnmovableAbs implements Door {
 
     /** {@inheritDoc} */
     @Override
-    public void close() {
-        this.isOpen = false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean isOpen() {
         return this.isOpen;
     }
 
-    /**
-     * Sets the door open or closed.
-     * 
-     * @param isOpen the new state of the door
-     */
-    protected void setOpen(final boolean isOpen) {
-        this.isOpen = isOpen;
+    /** {@inheritDoc} */
+    @Override
+    public void open() {
+        this.isOpen = true;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void close() {
+        this.isOpen = false;
     }
 
 }

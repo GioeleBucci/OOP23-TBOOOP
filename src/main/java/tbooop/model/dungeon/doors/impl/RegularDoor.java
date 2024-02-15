@@ -25,10 +25,4 @@ public class RegularDoor extends AbstractDoor {
         return false;
     }
 
-    /** {@inheritDoc} */
-    @Override
-    public void open() {
-        this.setOpen(true);
-    }
-
 }
