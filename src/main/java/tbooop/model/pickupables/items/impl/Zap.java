@@ -53,7 +53,7 @@ public class Zap extends ItemAbs {
             if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
                 if (player.getCoin() >= this.itemCost) {
                     player.increaseVelocity(VELOCITY_TO_INCREASE);
-                    player.setCoin(-itemCost);
+                    player.consumeCoins(itemCost);
                     destroy();
                     super.consume();
                 }

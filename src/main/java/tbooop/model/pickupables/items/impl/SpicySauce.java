@@ -52,7 +52,7 @@ public class SpicySauce extends ItemAbs {
             if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
                 if (player.getCoin() >= this.itemCost) {
                     player.increaseProjectileVelocity();
-                    player.setCoin(-itemCost);
+                    player.consumeCoins(itemCost);
                     destroy();
                     super.consume();
                 }

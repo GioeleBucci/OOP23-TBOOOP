@@ -48,7 +48,7 @@ public class Coin extends PickupAbs {
     */
     private void onPickup(final Player player) {
         if (!super.isConsumed()) {
-            player.setCoin(COIN_VALUE);
+            player.addCoins(COIN_VALUE);
             destroy();
             super.consume();
         }
