@@ -1,5 +1,7 @@
 package tbooop.model.player.impl;
 
+import tbooop.model.player.api.PlayerCoin;
+
 public class PlayerCoinImpl implements PlayerCoin {
 
     private static final int INITIAL_COINS = 0;

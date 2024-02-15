@@ -1,4 +1,4 @@
-package tbooop.model.player.impl;
+package tbooop.model.player.api;
 
 
 /**
