@@ -62,8 +62,8 @@ public class PlayerAnimatorImpl implements PlayerAnimator {
      */
     @Override
     public void update() {
-        if (player.getPoint2ds().isPresent() && isMoving()) {
-            move(player.getPoint2ds().get());
+        if (player.getCardinalDirection().isPresent() && isMoving()) {
+            move(player.getCardinalDirection().get());
         } else {
             playerSprite.setImage(playerDefault);
         }

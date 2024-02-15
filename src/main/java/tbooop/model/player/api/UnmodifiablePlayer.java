@@ -11,9 +11,9 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
 
     /**
      * Get one of four direction (UP,DOWN,LEFT,RIGHT).
-     * @return Optional<Point2ds> one of four diection or Optional.empty()
+     * @return Optional<CardinalDirection> one of four diection or Optional.empty()
      */
-    Optional<CardinalDirection> getPoint2ds();
+    Optional<CardinalDirection> getCardinalDirection();
 
     /**
      * Get the max health.

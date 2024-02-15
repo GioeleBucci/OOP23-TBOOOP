@@ -39,7 +39,7 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<CardinalDirection> getPoint2ds() {
+    public Optional<CardinalDirection> getCardinalDirection() {
         for (final var point2d : CardinalDirection.getAll()) {
             if (getDirection().toP2d().equals(point2d.toP2d())) {
                 return Optional.of(point2d);
