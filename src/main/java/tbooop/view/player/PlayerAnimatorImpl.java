@@ -6,12 +6,12 @@ import javafx.scene.image.ImageView;
 import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.model.player.api.UnmodifiablePlayer;
-import tbooop.view.api.Animator;
+import tbooop.view.api.player.PlayerAnimator;
 
 /** Renders a Player. */
 @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "Passing modifiable view elements"
         + "is required to distribute the work load between the various view components.")
-public class PlayerAnimator implements Animator {
+public class PlayerAnimatorImpl implements PlayerAnimator {
 
     private final PlayerRenderer playerRenderSprite = new PlayerRenderer();
     private final ImageView playerSprite;
@@ -24,7 +24,7 @@ public class PlayerAnimator implements Animator {
      * @param imgView the ImageView representing the player
      * @param player the UnmodifiablePlayer object representing the player
      */
-    public PlayerAnimator(final ImageView imgView, final UnmodifiablePlayer player) {
+    public PlayerAnimatorImpl(final ImageView imgView, final UnmodifiablePlayer player) {
         this.player = player;
         this.playerSprite = imgView;
         this.lastPosition = player.getPosition();

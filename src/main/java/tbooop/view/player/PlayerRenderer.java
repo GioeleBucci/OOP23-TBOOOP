@@ -40,7 +40,7 @@ public class PlayerRenderer {
     /**
      * It's the class for animate the Player.
      */
-    public PlayerRenderer() {
+    protected PlayerRenderer() {
         frameUpdateDown = new FrameUpdaterImpl(downSprite, 100);
         frameUpdateUp = new FrameUpdaterImpl(upSprite, 100);
         frameUpdateLeft = new FrameUpdaterImpl(leftSprite, 100);
@@ -52,7 +52,7 @@ public class PlayerRenderer {
      * 
      * @param player The ImageView representing the player character.
      */
-    public void goDown(final ImageView player) {
+    protected void goDown(final ImageView player) {
         player.setImage(frameUpdateDown.getNextFrame(System.currentTimeMillis()));
         frameUpdateDown.resetIfUpdated(System.currentTimeMillis());
     }
@@ -62,7 +62,7 @@ public class PlayerRenderer {
      * 
      * @param player The ImageView representing the player character.
      */
-    public void goUp(final ImageView player) {
+    protected void goUp(final ImageView player) {
         player.setImage(frameUpdateUp.getNextFrame(System.currentTimeMillis()));
         frameUpdateUp.resetIfUpdated(System.currentTimeMillis());
     }
@@ -72,7 +72,7 @@ public class PlayerRenderer {
      * 
      * @param player The ImageView representing the player character.
      */
-    public void goLeft(final ImageView player) {
+    protected void goLeft(final ImageView player) {
         player.setImage(frameUpdateLeft.getNextFrame(System.currentTimeMillis()));
         frameUpdateLeft.resetIfUpdated(System.currentTimeMillis());
     }
@@ -82,7 +82,7 @@ public class PlayerRenderer {
      * 
      * @param player The ImageView representing the player character.
      */
-    public void goRight(final ImageView player) {
+    protected void goRight(final ImageView player) {
         player.setImage(frameUpdateRight.getNextFrame(System.currentTimeMillis()));
         frameUpdateRight.resetIfUpdated(System.currentTimeMillis());
     }
