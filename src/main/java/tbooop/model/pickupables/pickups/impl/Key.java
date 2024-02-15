@@ -48,7 +48,7 @@ public class Key extends PickupAbs {
     */
     private void onPickup(final Player player) {
         if (!super.isConsumed()) {
-            player.pickupKeys();
+            player.pickupKey();
             destroy();
             super.consume();
         }

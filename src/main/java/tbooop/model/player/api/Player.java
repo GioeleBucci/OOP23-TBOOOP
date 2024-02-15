@@ -9,7 +9,7 @@ import tbooop.commons.api.Vector2d;
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public interface Player extends Entity, UnmodifiablePlayer, PlayerKey {
+public interface Player extends Entity, UnmodifiablePlayer, PlayerKey, PlayerCoin {
 
     /**
      * Set the current health equals to the max health.
@@ -28,12 +28,6 @@ public interface Player extends Entity, UnmodifiablePlayer, PlayerKey {
     * @param amount it's the amount of damege to increase.
     */
     void increaseDamage(int amount);
-
-    /**
-    * This method change the number of coin in the player's  possession.
-    * @param amount it's the amount of coin to change.
-    */
-    void setCoin(int amount);
 
     /**
      * This method it's used for moving the player in the four direction.

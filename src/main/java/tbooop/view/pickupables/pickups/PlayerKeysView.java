@@ -2,14 +2,14 @@ package tbooop.view.pickupables.pickups;
 
 import javafx.scene.layout.HBox;
 import tbooop.model.player.api.UnmodifiablePlayer;
-import tbooop.view.api.ViewComponent;
+import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
 
 /**
  * Represents view of the number of keys
  * owned by the player.
  */
-public class PlayerKeysView extends ViewComponent {
+public class PlayerKeysView extends ViewComponentImpl {
 
     private final HBox root = new HBox();
     private final PlayerKeysRender keyRender;

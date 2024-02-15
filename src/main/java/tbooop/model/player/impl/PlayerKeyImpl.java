@@ -33,13 +33,7 @@ public class PlayerKeyImpl implements PlayerKey {
 
     /** {@inheritDoc} */
     @Override
-    public void setKeys(final int keys) {
-        this.keys = keys;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void pickupKeys() {
+    public void pickupKey() {
         this.keys = this.keys + 1;
     }
 

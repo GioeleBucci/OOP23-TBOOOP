@@ -4,8 +4,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import tbooop.model.player.api.UnmodifiablePlayer;
-import tbooop.view.api.ViewComponent;
+import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
+import tbooop.view.api.player.HealthView;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  * This class is responsible for rendering the health bar and updating it based
  * on the player's health.
  */
-public class HealthView extends ViewComponent {
+public class HealthViewImpl extends ViewComponentImpl implements HealthView {
 
     private final HBox root = new HBox();
     private final List<ImageView> heartList = new ArrayList<>();
@@ -31,7 +33,7 @@ public class HealthView extends ViewComponent {
      * @param view   The ViewElements object used for rendering the view.
      * @param player The UnmodifiablePlayer object representing the player.
      */
-    public HealthView(final ViewElements view, final UnmodifiablePlayer player) {
+    public HealthViewImpl(final ViewElements view, final UnmodifiablePlayer player) {
         super(view);
         this.player = player;
         view.getRoot().getChildren().add(root);
@@ -71,8 +73,6 @@ public class HealthView extends ViewComponent {
     /** {@inheritDoc} */
     @Override
     public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'init'");
     }
 
     /**
@@ -80,6 +80,7 @@ public class HealthView extends ViewComponent {
      * 
      * @param currentHealth the heart to change
      */
+    @Override
     public synchronized void toggledHealth(final int currentHealth) {
         this.heartList.get(currentHealth).setImage(new Image("ui/empty_hearth.png"));
     }
@@ -89,6 +90,7 @@ public class HealthView extends ViewComponent {
      * 
      * @param currentHealth the heart to change
      */
+    @Override
     public synchronized void addHealth(final int currentHealth) {
         this.heartList.get(currentHealth).setImage(new Image("ui/full_hearth.png"));
     }
@@ -96,6 +98,7 @@ public class HealthView extends ViewComponent {
     /**
      * Add a new Heart.
      */
+    @Override
     public synchronized void addMaxHealth() {
         final ImageView heartView = new ImageView("ui/empty_hearth.png");
         healthPoint.addMaxHealth(heartView, this.root);

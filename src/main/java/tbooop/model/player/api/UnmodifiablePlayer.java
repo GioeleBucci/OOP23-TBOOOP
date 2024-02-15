@@ -11,9 +11,9 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
 
     /**
      * Get one of four direction (UP,DOWN,LEFT,RIGHT).
-     * @return Optional<Point2ds> one of four diection or Optional.empty()
+     * @return Optional<CardinalDirection> one of four diection or Optional.empty()
      */
-    Optional<CardinalDirection> getPoint2ds();
+    Optional<CardinalDirection> getCardinalDirection();
 
     /**
      * Get the max health.
@@ -31,7 +31,7 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      * This method return the amount of coin in the player's possession.
      * @return the amount of coin.
      */
-    int getCoin();
+    int getCoins();
 
     /**
      * Returns the key associated with this player.
