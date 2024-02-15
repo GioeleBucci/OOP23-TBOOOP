@@ -1,7 +1,7 @@
 package tbooop.model.dungeon.doors.impl;
 
 import tbooop.commons.api.Point2d;
-import tbooop.model.dungeon.doors.api.DoorAbstract;
+import tbooop.model.dungeon.doors.api.AbstractDoor;
 import tbooop.model.dungeon.doors.api.DoorLockable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 
@@ -9,7 +9,7 @@ import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
  * A special door spawns as locked and can be unlocked using a key.
  * It leads to a special room.
  */
-public class SpecialDoor extends DoorAbstract implements DoorLockable {
+public class SpecialDoor extends AbstractDoor implements DoorLockable {
 
     private boolean isLocked = true;
 

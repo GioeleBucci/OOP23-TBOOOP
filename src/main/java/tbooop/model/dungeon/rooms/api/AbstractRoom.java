@@ -21,7 +21,7 @@ import java.util.Collection;
  * 
  * @see {@link tbooop.model.dungeon.floor.api.BaseFloor Floor}
  */
-public abstract class RoomAbstract implements Room {
+public abstract class AbstractRoom implements Room {
 
     private final Map<CardinalDirection, DoorUnmodifiable> doorMap = new HashMap<>();
     private final Set<GameObject> gameObjects = new HashSet<>();
@@ -61,7 +61,7 @@ public abstract class RoomAbstract implements Room {
      * 
      * @param gameObjects the elements to add
      */
-    protected void addMultipleGameObjects(final Collection<? extends GameObject> gameObjects) {
+    protected void addGameObjects(final Collection<? extends GameObject> gameObjects) {
         gameObjects.forEach(this::addGameObject);
     }
 
