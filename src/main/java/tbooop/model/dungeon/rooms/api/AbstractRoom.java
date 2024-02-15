@@ -23,13 +23,13 @@ import java.util.Collection;
  */
 public abstract class AbstractRoom implements Room {
 
-    private final Map<CardinalDirection, DoorUnmodifiable> doorMap = new HashMap<>();
+    private final Map<CardinalDirection, Door> doorMap = new HashMap<>();
     private final Set<GameObject> gameObjects = new HashSet<>();
 
     /** {@inheritDoc} */
     @Override
     public void addDoor(final CardinalDirection direction, final DoorUnmodifiable door) {
-        doorMap.put(direction, door);
+        doorMap.put(direction, (Door) door);
         addGameObject(door);
     }
 
@@ -80,16 +80,16 @@ public abstract class AbstractRoom implements Room {
     /** {@inheritDoc} */
     @Override
     public void closeDoors() {
-        getDoorMap().values().forEach(door -> {
-            ((Door) door).close();
+        doorMap.values().forEach(door -> {
+            door.close();
         });
     }
 
     /** {@inheritDoc} */
     @Override
     public void openDoors() {
-        getDoorMap().values().forEach(door -> {
-            ((Door) door).open();
+        doorMap.values().forEach(door -> {
+            door.open();
         });
     }
 
