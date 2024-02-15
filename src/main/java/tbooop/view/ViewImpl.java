@@ -24,7 +24,7 @@ import tbooop.view.api.ViewComponent;
 import tbooop.view.enemy.EnemyAnimatorImpl;
 import tbooop.view.pickupables.pickups.PlayerCoinsView;
 import tbooop.view.pickupables.pickups.PlayerKeysView;
-import tbooop.view.player.HealthView;
+import tbooop.view.player.HealthViewImpl;
 import tbooop.view.player.PlayerAnimator;
 
 /**
@@ -75,7 +75,7 @@ public class ViewImpl extends AbstractView {
         final PlayerAnimator playerRender = new PlayerAnimator(playerSprite, player);
         animators.add(playerRender);
         addGameObjectToView(playerSprite, player);
-        final HealthView healthView = new HealthView(this, player);
+        final HealthView healthView = new HealthViewImpl(this, player);
         viewComponents.add(healthView);
         final PlayerKeysView keysView = new PlayerKeysView(this, player);
         viewComponents.add(keysView);

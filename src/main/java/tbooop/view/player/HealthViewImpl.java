@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * This class is responsible for rendering the health bar and updating it based
  * on the player's health.
  */
-public class HealthView extends ViewComponent {
+public class HealthViewImpl extends ViewComponent {
 
     private final HBox root = new HBox();
     private final List<ImageView> heartList = new ArrayList<>();
@@ -31,7 +31,7 @@ public class HealthView extends ViewComponent {
      * @param view   The ViewElements object used for rendering the view.
      * @param player The UnmodifiablePlayer object representing the player.
      */
-    public HealthView(final ViewElements view, final UnmodifiablePlayer player) {
+    public HealthViewImpl(final ViewElements view, final UnmodifiablePlayer player) {
         super(view);
         this.player = player;
         view.getRoot().getChildren().add(root);
