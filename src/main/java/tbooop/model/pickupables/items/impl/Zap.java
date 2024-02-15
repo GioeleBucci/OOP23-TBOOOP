@@ -28,7 +28,7 @@ public class Zap extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    public Zap(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected Zap(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

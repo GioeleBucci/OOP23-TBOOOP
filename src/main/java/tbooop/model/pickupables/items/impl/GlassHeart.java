@@ -28,7 +28,7 @@ public class GlassHeart extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    public GlassHeart(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected GlassHeart(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 
