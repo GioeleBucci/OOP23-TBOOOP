@@ -47,8 +47,9 @@ public interface Player extends Entity, UnmodifiablePlayer, PlayerKey, PlayerCoi
      */
     void increaseVelocity(double amount);
 
+    
     /**
-     * Increases the projectile's speed by 10.
+     * Increases the velocity of the player's projectiles.
      */
     void increaseProjectileVelocity();
 
