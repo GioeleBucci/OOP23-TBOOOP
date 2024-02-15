@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
-import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.ItemPrice;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 /**
@@ -13,7 +13,7 @@ import tbooop.model.player.api.Player;
  * will increase its damage.
  */
 public class LockedRing extends ItemAbs {
-    private final int itemCost = PickupablePrices.IRONBAR_PRICE.getItemPrice();
+    private final int itemCost = ItemPrice.LOCKEDRING_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private static final int DAMAGE_TO_INCREASE = 1;
     private final PickupableName pickupTag = PickupableName.LOCKED_RING;

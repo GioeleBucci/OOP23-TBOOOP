@@ -4,15 +4,15 @@ package tbooop.model.pickupables.items.api;
  * Rapresents prices for every item
  * in the game.
  */
-public enum PickupablePrices {
+public enum ItemPrice {
     /**Price for GlassHeart item.*/
-    GOLDENHEART_PRICE(15),
+    GLASSHEART_PRICE(15),
     /**Price for the Zap item. */
-    BELT_PRICE(10),
+    ZAP_PRICE(10),
     /**Price for SpicySauce item. */
-    FIREMIND_PRICE(20),
-    /**Price for Iron Bar item. */
-    IRONBAR_PRICE(15),
+    SPICYSAUCE_PRICE(20),
+    /**Price for LockedRing item. */
+    LOCKEDRING_PRICE(15),
     /**Price for Golden Apple item. */
     GOLDENAPPLE_PRICE(15);
 
@@ -24,7 +24,7 @@ public enum PickupablePrices {
     public int getItemPrice() {
         return itemPrice;
     }
-    PickupablePrices(final int itemPrice) {
+    ItemPrice(final int itemPrice) {
         this.itemPrice = itemPrice;
     }
 }

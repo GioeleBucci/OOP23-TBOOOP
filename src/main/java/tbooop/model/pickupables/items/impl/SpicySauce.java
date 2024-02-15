@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
-import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.ItemPrice;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 /**
@@ -14,7 +14,7 @@ import tbooop.model.player.api.Player;
  * velocity.
  */
 public class SpicySauce extends ItemAbs {
-    private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
+    private final int itemCost = ItemPrice.SPICYSAUCE_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final PickupableName pickupTag = PickupableName.SPICY_SAUCE;
     /**

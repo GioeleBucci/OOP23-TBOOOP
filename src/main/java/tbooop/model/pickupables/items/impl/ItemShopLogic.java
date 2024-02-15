@@ -6,7 +6,6 @@ import java.util.Map;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.RoomBounds;
 import tbooop.commons.impl.Point2dImpl;
-import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.items.api.Item;
 
 /**
@@ -15,19 +14,19 @@ import tbooop.model.pickupables.items.api.Item;
  */
 public class ItemShopLogic {
 
-    private static final double ITEM_COLLIDER_RADIUS = 1.0;
     private static final int BASE_WIDTH_DIVISION = 2;
     private static final int BASE_HEIGHT_DIVISION = 3;
     private static final int GLASS_HEART_NUM = 1;
     private static final int ZAP_NUM = 2;
-    private static final int SPICY_SOUCE_NUM = 3;
+    private static final int SPICY_SAUCE_NUM = 3;
     private static final int LOCKED_RING_NUM = 4;
     private static final int GOLDEN_APPLE_NUM = 5;
-    private final Item glassHeart = new GlassHeart(getItemPosition(GLASS_HEART_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item zap = new Zap(getItemPosition(ZAP_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item spicySauce = new SpicySauce(getItemPosition(SPICY_SOUCE_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item lockedRing = new LockedRing(getItemPosition(LOCKED_RING_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
-    private final Item goldenApple = new GoldenApple(getItemPosition(GOLDEN_APPLE_NUM), ITEM_COLLIDER_RADIUS, GameTag.PICKUP);
+    private final ItemFactoryImpl factory = new ItemFactoryImpl();
+    private final Item glassHeart = factory.glassHeart();
+    private final Item zap = factory.zap();
+    private final Item spicySauce = factory.spicySauce();
+    private final Item lockedRing = factory.lockedRing();
+    private final Item goldenApple = factory.goldenApple();
 
     /**
      * Returns a map from an item to its
@@ -39,6 +38,7 @@ public class ItemShopLogic {
      */
     public Map<Item, Integer> getItemPool() {
         final Map<Item, Integer> itemsMap = new HashMap<>();
+        setItemsPositions();
         glassHeart.setInShop();
         itemsMap.put(glassHeart, glassHeart.getPrice());
         zap.setInShop();
@@ -54,6 +54,18 @@ public class ItemShopLogic {
     }
 
     /**
+     * Set every item correct position in
+     * the item shop.
+     */
+    private void setItemsPositions() {
+        glassHeart.setPosition(getItemPosition(GLASS_HEART_NUM));
+        zap.setPosition(getItemPosition(ZAP_NUM));
+        spicySauce.setPosition(getItemPosition(SPICY_SAUCE_NUM));
+        lockedRing.setPosition(getItemPosition(LOCKED_RING_NUM));
+        goldenApple.setPosition(getItemPosition(GOLDEN_APPLE_NUM));
+    }
+
+    /**
      * Calculate and return a Point2d
      * for item's location.
      * 
@@ -66,7 +78,7 @@ public class ItemShopLogic {
         switch (itemNumber) {
             case GLASS_HEART_NUM: return new Point2dImpl(BASE_WIDTH_DIVISION * widthDivision, heightDivision);
             case ZAP_NUM: return new Point2dImpl((BASE_WIDTH_DIVISION + 2) * widthDivision, heightDivision);
-            case SPICY_SOUCE_NUM: return new Point2dImpl((BASE_WIDTH_DIVISION + 4) * widthDivision, heightDivision);
+            case SPICY_SAUCE_NUM: return new Point2dImpl((BASE_WIDTH_DIVISION + 4) * widthDivision, heightDivision);
             case LOCKED_RING_NUM: return new Point2dImpl(BASE_HEIGHT_DIVISION * widthDivision, 
                                                         BASE_WIDTH_DIVISION * heightDivision);
             case GOLDEN_APPLE_NUM: return new Point2dImpl((BASE_HEIGHT_DIVISION + 2) * widthDivision, 
