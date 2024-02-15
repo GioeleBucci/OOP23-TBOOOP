@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Arrays;
 
-import tbooop.commons.api.RoomBounds;
-import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.pickups.api.Pickup;
 
 /**
@@ -19,6 +17,7 @@ public class PickupLogic {
 
     private static final int PICKUPS_NUMBER = 4;
     private final Random random = new Random();
+    private final PickupFactoryImpl factory = new PickupFactoryImpl();
 
     /**
      * Return a random Pickupable.
@@ -26,10 +25,8 @@ public class PickupLogic {
      * @return a random Pickupable
      */
     public Pickup getRandomPickup() {
-        final List<Pickup> list = Arrays.asList(new Coin(RoomBounds.CENTER, 2.0, GameTag.PICKUP), 
-                            new Heart(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
-                            new Key(RoomBounds.CENTER, 2.0, GameTag.PICKUP),
-                            new Bill(RoomBounds.CENTER, 2.0, GameTag.PICKUP));
+        final List<Pickup> list = Arrays.asList(factory.bill(), factory.coin(),
+                                                 factory.heart(), factory.key());
         return list.get(random.nextInt(PICKUPS_NUMBER));
     }
 }

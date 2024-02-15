@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
-import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.ItemPrice;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 /**
@@ -14,7 +14,7 @@ import tbooop.model.player.api.Player;
  * determined amount.
  */
 public class Zap extends ItemAbs {
-    private final int itemCost = PickupablePrices.BELT_PRICE.getItemPrice();
+    private final int itemCost = ItemPrice.ZAP_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private static final double VELOCITY_TO_INCREASE = 0.02;
     private final PickupableName pickupTag = PickupableName.ZAP;

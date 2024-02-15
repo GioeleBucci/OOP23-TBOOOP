@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
-import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.ItemPrice;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 
@@ -15,7 +15,7 @@ import tbooop.model.player.api.Player;
  */
 public class GlassHeart extends ItemAbs {
 
-    private final int itemCost = PickupablePrices.GOLDENHEART_PRICE.getItemPrice();
+    private final int itemCost = ItemPrice.GLASSHEART_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final PickupableName pickupTag = PickupableName.GLASS_HEART;
     /**
