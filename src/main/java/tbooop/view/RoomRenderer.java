@@ -15,14 +15,14 @@ import tbooop.model.core.api.unmovable.UnmovableAbs;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.model.dungeon.rooms.api.ShopRoom;
-import tbooop.view.api.ViewComponent;
+import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
 
 /**
  * The RoomRenderer class is responsible for rendering the room and its doors in
  * the game view.
  */
-public class RoomRenderer extends ViewComponent {
+public class RoomRenderer extends ViewComponentImpl {
     private static final Image REGULAR_DOOR_OPEN = new Image("tileset/door_open.png");
     private static final Image REGULAR_DOOR_CLOSED = new Image("tileset/door_closed.png");
     private static final Image ITEM_DOOR_OPEN = new Image("tileset/special_door_open.png");

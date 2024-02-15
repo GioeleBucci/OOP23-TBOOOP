@@ -2,13 +2,13 @@ package tbooop.view.pickupables.pickups;
 
 import javafx.scene.layout.HBox;
 import tbooop.model.player.api.UnmodifiablePlayer;
-import tbooop.view.api.ViewComponent;
+import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
 /**
  * Represents view of the number of coins
  * owned by the player.
  */
-public class PlayerCoinsView extends ViewComponent {
+public class PlayerCoinsView extends ViewComponentImpl {
 
     private final HBox root = new HBox();
     private final PlayerCoinsRender coinRender;

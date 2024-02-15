@@ -4,8 +4,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import tbooop.model.player.api.UnmodifiablePlayer;
-import tbooop.view.api.ViewComponent;
+import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
+import tbooop.view.api.player.HealthView;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
  * This class is responsible for rendering the health bar and updating it based
  * on the player's health.
  */
-public class HealthViewImpl extends ViewComponent implements HealthView {
+public class HealthViewImpl extends ViewComponentImpl implements HealthView {
 
     private final HBox root = new HBox();
     private final List<ImageView> heartList = new ArrayList<>();
@@ -71,8 +73,6 @@ public class HealthViewImpl extends ViewComponent implements HealthView {
     /** {@inheritDoc} */
     @Override
     public void init() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'init'");
     }
 
     /**

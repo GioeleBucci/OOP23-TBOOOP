@@ -21,6 +21,7 @@ import tbooop.view.api.AbstractView;
 import tbooop.view.api.Animator;
 import tbooop.view.api.BaseSpriteProvider;
 import tbooop.view.api.ViewComponent;
+import tbooop.view.api.player.HealthView;
 import tbooop.view.enemy.EnemyAnimatorImpl;
 import tbooop.view.pickupables.pickups.PlayerCoinsView;
 import tbooop.view.pickupables.pickups.PlayerKeysView;

@@ -1,7 +1,8 @@
+package tbooop.view.api.player;
 
-package tbooop.view.player;
+import tbooop.view.api.ViewComponent;
 
-public interface HealthView {
+public interface HealthView extends ViewComponent {
 
     /**
      * Change the empty heart with the full one.
