@@ -2,10 +2,6 @@ package tbooop.model.pickupables.items.impl;
 
 import java.util.List;
 
-import tbooop.commons.api.Point2d;
-import tbooop.commons.api.RoomBounds;
-import tbooop.commons.impl.Point2dImpl;
-import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.items.api.Item;
 
 /**
@@ -15,18 +11,14 @@ import tbooop.model.pickupables.items.api.Item;
  * to spawn there.
  */
 public class ItemRoomLogic {
-    private final Point2d location = new Point2dImpl(RoomBounds.WIDTH / 2, RoomBounds.HEIGHT / 2);
-    private static final double ITEM_COLLIDER_RADIUS = 1.0;
-    private static final double GOLDENHEART_PROB = 0.1;
-    private static final double BELT_PROB = 0.2;
-    private static final double IRONBAR_PROB = 0.2;
-    private static final double FIREMIND_PROB = 0.2;
-    private static final double GOLDENAPPLE_PROB = 0.3;
-    private final List<Item> itemsList = List.of(new GlassHeart(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new Zap(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new LockedRing(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new SpicySauce(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP),
-                                                new GoldenApple(location, ITEM_COLLIDER_RADIUS, GameTag.PICKUP));
+    private static final double SPICYSAUCE_PROB = 0.45;
+    private static final double ZAP_PROB = 0.70;
+    private static final double GLASSHEART_PROB = 0.85;
+    private static final double LOCKEDRING_PROB = 0.95;
+    private final ItemFactoryImpl factory = new ItemFactoryImpl();
+    private final List<Item> itemsList = List.of(factory.spicySauce(), factory.zap(),
+                                                factory.glassHeart(), factory.lockedRing(),
+                                                factory.goldenApple());
 
     /**
      * Compute the chances every item has
@@ -37,13 +29,13 @@ public class ItemRoomLogic {
      * the max number of Item.
      */
     private int getChanceToSpawn(final double randomNumber) {
-        if (randomNumber <= GOLDENHEART_PROB) {
+        if (randomNumber <= SPICYSAUCE_PROB) {
             return 0;
-        } else if (randomNumber > GOLDENHEART_PROB && randomNumber <= (GOLDENHEART_PROB + BELT_PROB)) {
+        } else if (randomNumber > SPICYSAUCE_PROB && randomNumber <= ZAP_PROB) {
             return 1;
-        } else if (randomNumber > IRONBAR_PROB && randomNumber <= (IRONBAR_PROB + FIREMIND_PROB)) {
+        } else if (randomNumber > ZAP_PROB && randomNumber <= GLASSHEART_PROB) {
             return 2;
-        } else if (randomNumber > (GOLDENAPPLE_PROB + GOLDENHEART_PROB) && randomNumber <= (IRONBAR_PROB * 3)) {
+        } else if (randomNumber > GLASSHEART_PROB && randomNumber <= LOCKEDRING_PROB) {
             return 3;
         } else {
             return 4;
