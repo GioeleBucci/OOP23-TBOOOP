@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * This class is responsible for rendering the health bar and updating it based
  * on the player's health.
  */
-public class HealthViewImpl extends ViewComponent {
+public class HealthViewImpl extends ViewComponent implements HealthView {
 
     private final HBox root = new HBox();
     private final List<ImageView> heartList = new ArrayList<>();
@@ -80,6 +80,7 @@ public class HealthViewImpl extends ViewComponent {
      * 
      * @param currentHealth the heart to change
      */
+    @Override
     public synchronized void toggledHealth(final int currentHealth) {
         this.heartList.get(currentHealth).setImage(new Image("ui/empty_hearth.png"));
     }
@@ -89,6 +90,7 @@ public class HealthViewImpl extends ViewComponent {
      * 
      * @param currentHealth the heart to change
      */
+    @Override
     public synchronized void addHealth(final int currentHealth) {
         this.heartList.get(currentHealth).setImage(new Image("ui/full_hearth.png"));
     }
@@ -96,6 +98,7 @@ public class HealthViewImpl extends ViewComponent {
     /**
      * Add a new Heart.
      */
+    @Override
     public synchronized void addMaxHealth() {
         final ImageView heartView = new ImageView("ui/empty_hearth.png");
         healthPoint.addMaxHealth(heartView, this.root);
