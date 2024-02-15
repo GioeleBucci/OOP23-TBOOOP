@@ -31,7 +31,7 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      * This method return the amount of coin in the player's possession.
      * @return the amount of coin.
      */
-    int getCoin();
+    int getCoins();
 
     /**
      * Returns the key associated with this player.

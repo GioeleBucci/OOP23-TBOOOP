@@ -24,17 +24,17 @@ public class PlayerCoinsView extends ViewComponentImpl {
         super(view);
         this.player = player; 
         view.getRoot().getChildren().add(root);
-        coinRender = new PlayerCoinsRender(this.player.getCoin(), this.root);
-        this.currentCoins = this.player.getCoin();
+        coinRender = new PlayerCoinsRender(this.player.getCoins(), this.root);
+        this.currentCoins = this.player.getCoins();
     }
 
     /** {@inheritDoc} */
     @Override
     public synchronized void update() {
-        if (this.currentCoins != this.player.getCoin()) {
-            updateLabel(this.player.getCoin());
+        if (this.currentCoins != this.player.getCoins()) {
+            updateLabel(this.player.getCoins());
         }
-        this.currentCoins = this.player.getCoin();
+        this.currentCoins = this.player.getCoins();
     }
 
     /** {@inheritDoc} */

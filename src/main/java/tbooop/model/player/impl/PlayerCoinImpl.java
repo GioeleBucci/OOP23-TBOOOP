@@ -20,7 +20,7 @@ public class PlayerCoinImpl implements PlayerCoin {
 
     /** {@inheritDoc} */
     @Override
-    public int getCoin() {
+    public int getCoins() {
         return this.coins;
     }
 

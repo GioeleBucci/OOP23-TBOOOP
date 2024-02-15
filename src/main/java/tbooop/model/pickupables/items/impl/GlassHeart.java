@@ -51,7 +51,7 @@ public class GlassHeart extends ItemAbs {
     private void onPickup(final Player player) {
         if (!super.isConsumed()) {
             if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
-                if (player.getCoin() >= this.itemCost) {
+                if (player.getCoins() >= this.itemCost) {
                     player.maxRecovery();
                     player.consumeCoins(itemCost);
                     destroy();

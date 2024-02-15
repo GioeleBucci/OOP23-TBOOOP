@@ -11,7 +11,7 @@ public interface PlayerCoin {
      *
      * @return the number of coins
      */
-    int getCoin();
+    int getCoins();
 
     /**
      * Adds the specified number of coins to the player's total.

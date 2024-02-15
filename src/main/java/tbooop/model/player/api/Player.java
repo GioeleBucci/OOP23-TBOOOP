@@ -30,12 +30,6 @@ public interface Player extends Entity, UnmodifiablePlayer, PlayerKey, PlayerCoi
     void increaseDamage(int amount);
 
     /**
-    * This method change the number of coin in the player's  possession.
-    * @param amount it's the amount of coin to change.
-    */
-    void setCoin(int amount);
-
-    /**
      * This method it's used for moving the player in the four direction.
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */

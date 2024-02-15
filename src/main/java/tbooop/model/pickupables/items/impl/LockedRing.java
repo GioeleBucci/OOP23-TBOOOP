@@ -50,7 +50,7 @@ public class LockedRing extends ItemAbs {
     private void onPickup(final Player player) {
         if (!super.isConsumed()) {
             if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
-                if (player.getCoin() >= this.itemCost) {
+                if (player.getCoins() >= this.itemCost) {
                     player.increaseDamage(DAMAGE_TO_INCREASE);
                     player.consumeCoins(itemCost);
                     destroy();
