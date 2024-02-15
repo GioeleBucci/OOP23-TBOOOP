@@ -9,7 +9,7 @@ import tbooop.commons.api.Vector2d;
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public interface Player extends Entity, UnmodifiablePlayer, PlayerKey {
+public interface Player extends Entity, UnmodifiablePlayer, PlayerKey, PlayerCoin {
 
     /**
      * Set the current health equals to the max health.

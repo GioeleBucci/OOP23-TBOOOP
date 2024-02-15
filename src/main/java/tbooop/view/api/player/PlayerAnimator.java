@@ -11,5 +11,5 @@ import tbooop.view.api.Animator;
  * It is responsible for managing the animations of the player's movements.
  */
 public interface PlayerAnimator extends Animator {
-    
+
 }
