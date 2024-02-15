@@ -72,12 +72,6 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void setKeys(final int keys) {
-        this.keys.setKeys(keys);
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public int getKey() {
         return this.keys.getKey();
     }
@@ -106,15 +100,15 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public void pickupKeys() {
-        setKeys(getKey() + 1);
+    public void pickupKey() {
+        this.keys.pickupKey();
     }
 
     /** {@inheritDoc} */
     @Override
     public void useKey() {
         if (hasKey()) {
-            setKeys(getKey() - 1);
+            this.keys.useKey();
         }
     }
 }

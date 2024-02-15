@@ -18,15 +18,9 @@ public interface PlayerKey {
     void useKey();
 
     /**
-     * Sets the number of keys in the player's possession.
-     * @param keys the number of keys to set.
-     */
-    void setKeys(int keys);
-
-    /**
     * This method increases the number of keys in the player's possession.
     */
-    void pickupKeys();
+    void pickupKey();
 
     /**
      * Returns the number of keys in the player's possession.
