@@ -19,7 +19,7 @@ public class EnemyRoom extends RegularRoom {
      *                            spawn
      */
     public EnemyRoom(final EnemyFactory enemyFactory, final Supplier<Integer> enemyAmountSupplier) {
-        addMultipleGameObjects(new EnemySpawnerImpl(enemyFactory).getRandomEnemies(enemyAmountSupplier.get()));
+        addGameObjects(new EnemySpawnerImpl(enemyFactory).getRandomEnemies(enemyAmountSupplier.get()));
     }
 
 }

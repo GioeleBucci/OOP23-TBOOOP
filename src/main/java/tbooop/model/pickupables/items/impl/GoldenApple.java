@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
-import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.ItemPrice;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 
@@ -15,7 +15,7 @@ import tbooop.model.player.api.Player;
  */
 public class GoldenApple extends ItemAbs {
 
-    private final int itemCost = PickupablePrices.GOLDENAPPLE_PRICE.getItemPrice();
+    private final int itemCost = ItemPrice.GOLDENAPPLE_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final PickupableName pickupTag = PickupableName.GOLDEN_APPLE;
     private static final int MAX_HEALTH_TO_INCREASE = 2;
@@ -29,7 +29,7 @@ public class GoldenApple extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    public GoldenApple(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected GoldenApple(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

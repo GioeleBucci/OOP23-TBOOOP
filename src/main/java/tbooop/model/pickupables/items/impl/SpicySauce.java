@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
-import tbooop.model.pickupables.items.api.PickupablePrices;
+import tbooop.model.pickupables.items.api.ItemPrice;
 import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 /**
@@ -14,11 +14,11 @@ import tbooop.model.player.api.Player;
  * velocity.
  */
 public class SpicySauce extends ItemAbs {
-    private final int itemCost = PickupablePrices.FIREMIND_PRICE.getItemPrice();
+    private final int itemCost = ItemPrice.SPICYSAUCE_PRICE.getItemPrice();
     private PickupableStatus itemTag = PickupableStatus.NORMAL;
     private final PickupableName pickupTag = PickupableName.SPICY_SAUCE;
     /**
-     * Create a new istance of Fire Mind item.
+     * Create a new istance of spicy sauce item.
      * 
      * @param position       spawn position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
@@ -27,7 +27,7 @@ public class SpicySauce extends ItemAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    public SpicySauce(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected SpicySauce(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

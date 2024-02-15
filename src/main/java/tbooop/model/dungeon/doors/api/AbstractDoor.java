@@ -8,7 +8,7 @@ import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 /**
  * Abstract base class for doors.
  */
-public abstract class DoorAbstract extends UnmovableAbs implements Door {
+public abstract class AbstractDoor extends UnmovableAbs implements Door {
 
     private static final double COLLIDER_RADIUS = 20;
 
@@ -22,7 +22,7 @@ public abstract class DoorAbstract extends UnmovableAbs implements Door {
      * @param position the position of the door
      * @param room     the room that the door takes to
      */
-    protected DoorAbstract(final Point2d position, final RoomUnmodifiable room) {
+    protected AbstractDoor(final Point2d position, final RoomUnmodifiable room) {
         super(position, COLLIDER_RADIUS, GameTag.DOOR);
         this.room = room;
     }
@@ -35,23 +35,20 @@ public abstract class DoorAbstract extends UnmovableAbs implements Door {
 
     /** {@inheritDoc} */
     @Override
-    public void close() {
-        this.isOpen = false;
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean isOpen() {
         return this.isOpen;
     }
 
-    /**
-     * Sets the door open or closed.
-     * 
-     * @param isOpen the new state of the door
-     */
-    protected void setOpen(final boolean isOpen) {
-        this.isOpen = isOpen;
+    /** {@inheritDoc} */
+    @Override
+    public void open() {
+        this.isOpen = true;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void close() {
+        this.isOpen = false;
     }
 
 }

@@ -21,15 +21,15 @@ import java.util.Collection;
  * 
  * @see {@link tbooop.model.dungeon.floor.api.BaseFloor Floor}
  */
-public abstract class RoomAbstract implements Room {
+public abstract class AbstractRoom implements Room {
 
-    private final Map<CardinalDirection, DoorUnmodifiable> doorMap = new HashMap<>();
+    private final Map<CardinalDirection, Door> doorMap = new HashMap<>();
     private final Set<GameObject> gameObjects = new HashSet<>();
 
     /** {@inheritDoc} */
     @Override
     public void addDoor(final CardinalDirection direction, final DoorUnmodifiable door) {
-        doorMap.put(direction, door);
+        doorMap.put(direction, (Door) door);
         addGameObject(door);
     }
 
@@ -61,7 +61,7 @@ public abstract class RoomAbstract implements Room {
      * 
      * @param gameObjects the elements to add
      */
-    protected void addMultipleGameObjects(final Collection<? extends GameObject> gameObjects) {
+    protected void addGameObjects(final Collection<? extends GameObject> gameObjects) {
         gameObjects.forEach(this::addGameObject);
     }
 
@@ -80,16 +80,16 @@ public abstract class RoomAbstract implements Room {
     /** {@inheritDoc} */
     @Override
     public void closeDoors() {
-        getDoorMap().values().forEach(door -> {
-            ((Door) door).close();
+        doorMap.values().forEach(door -> {
+            door.close();
         });
     }
 
     /** {@inheritDoc} */
     @Override
     public void openDoors() {
-        getDoorMap().values().forEach(door -> {
-            ((Door) door).open();
+        doorMap.values().forEach(door -> {
+            door.open();
         });
     }
 

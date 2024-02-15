@@ -5,12 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.api.RoomBounds;
-import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.Item;
 import tbooop.model.pickupables.items.api.PickupableStatus;
-import tbooop.model.pickupables.items.impl.GoldenApple;
+import tbooop.model.pickupables.items.impl.ItemFactoryImpl;
 
 /**
  * Test class for items.
@@ -18,13 +16,14 @@ import tbooop.model.pickupables.items.impl.GoldenApple;
 class TestItem {
 
     private static Item goldenApple;
+    private static ItemFactoryImpl factory = new ItemFactoryImpl();
 
     /**
      * Configuration step: this is performed BEFORE each test.
      */
     @BeforeAll
     static void initRandomItem() {
-        goldenApple = new GoldenApple(RoomBounds.CENTER, 2.0, GameTag.PICKUP);
+        goldenApple = factory.goldenApple();
     }
 
     @Test

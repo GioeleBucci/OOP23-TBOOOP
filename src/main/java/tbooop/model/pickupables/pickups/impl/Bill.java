@@ -27,7 +27,7 @@ public class Bill extends PickupAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    public Bill(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected Bill(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

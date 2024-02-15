@@ -26,7 +26,7 @@ public class Coin extends PickupAbs {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    public Coin(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected Coin(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

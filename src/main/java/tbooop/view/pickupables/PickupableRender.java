@@ -17,7 +17,7 @@ public class PickupableRender {
     public Image getPickupableSprite(final Pickupable gameObject) {
         switch (gameObject.getObjectName()) {
             case GLASS_HEART: return new Image("pickupables/items/glassHeart.png");
-            case LOCKED_RING: return new Image("pickupables/items/LockedRings.png");
+            case LOCKED_RING: return new Image("pickupables/items/lockedRings.png");
             case SPICY_SAUCE: return new Image("pickupables/items/spicysauce.png");
             case ZAP: return new Image("pickupables/items/zap.png");
             case GOLDEN_APPLE: return new Image("pickupables/items/forbiddenfruit.png");
