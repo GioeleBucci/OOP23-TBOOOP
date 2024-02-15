@@ -29,8 +29,10 @@ public abstract class AbstractRoom implements Room {
     /** {@inheritDoc} */
     @Override
     public void addDoor(final CardinalDirection direction, final DoorUnmodifiable door) {
-        doorMap.put(direction, (Door) door);
-        addGameObject(door);
+        if (!doorMap.containsKey(direction)) {
+            doorMap.put(direction, (Door) door);
+            addGameObject(door);
+        }
     }
 
     /** {@inheritDoc} */
