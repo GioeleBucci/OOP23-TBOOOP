@@ -1,6 +1,6 @@
 package tbooop.model.player.impl;
 
-public class PlayerCoinImpl {
+public class PlayerCoinImpl implements PlayerCoin {
 
     private static final int INITIAL_COINS = 0;
     private int coins;
@@ -9,14 +9,17 @@ public class PlayerCoinImpl {
         this.coins = INITIAL_COINS;
     }
 
+    @Override
     public int getCoins() {
         return this.coins;
     }
 
+    @Override
     public void addCoins(final int coins) {
         this.coins += coins;
     }
 
+    @Override
     public void consumeCoins(final int coins) {
         this.coins -= coins;
     }
