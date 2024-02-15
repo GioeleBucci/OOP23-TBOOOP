@@ -2,6 +2,9 @@ package tbooop.view.api.player;
 
 import tbooop.view.api.ViewComponent;
 
+/**
+ * Represents a view component for displaying health information.
+ */
 public interface HealthView extends ViewComponent {
 
     /**
