@@ -1,4 +1,4 @@
-package tbooop.model.player.api;
+package tbooop.model.player.api.projectile;
 
 import tbooop.commons.api.Projectile;
 
