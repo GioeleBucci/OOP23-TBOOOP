@@ -1,7 +1,7 @@
 package tbooop.model.player.api.coin;
 
-public abstract class AbstractCoin implements Coin {
-    
+public abstract class AbstractCoin implements Coins {
+
     private int coins;
 
     public AbstractCoin(int coins) {

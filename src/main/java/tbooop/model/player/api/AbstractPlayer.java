@@ -8,7 +8,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
-import tbooop.model.player.api.coin.PlayerCoin;
+import tbooop.model.player.api.coin.Coins;
 import tbooop.model.player.api.key.PlayerKey;
 import tbooop.model.player.impl.PlayerCoinImpl;
 
@@ -22,7 +22,7 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     private static final int PLAYER_COLLIDER_RADIUS = 15;
     private static final int PLAYER_INITIAL_DAMAGE = 1;
     private final PlayerKey keys;
-    private final PlayerCoin coins;
+    private final Coins coins;
     private int damage;
 
     /**

@@ -5,7 +5,7 @@ package tbooop.model.player.api.coin;
  * The Coin interface represents a collection of coins.
  * It provides methods to get the number of coins, add coins to the collection, and consume coins from the collection.
  */
-public interface Coin {
+public interface Coins {
     /**
      * Returns the number of coins in the collection.
      *
