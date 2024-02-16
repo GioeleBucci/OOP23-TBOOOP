@@ -165,7 +165,7 @@ public abstract class BaseFloor implements Floor {
                 if (!roomsMap.containsKey(newSpot) && generatedRooms < roomsAmount && neighboursAmount(newSpot) < 2
                         && Math.random() > 0.5 && Math.abs(newSpot.getX()) <= MAX_DIST_FROM_START
                         && Math.abs(newSpot.getY()) <= MAX_DIST_FROM_START) {
-                    roomsMap.put(newSpot, roomFactory.enemyRoom(enemyFactory, enemyAmountSupplier));
+                    roomsMap.put(newSpot, roomFactory.enemyRoom(enemyFactory, enemyAmountSupplier.get()));
                     queue.add(newSpot);
                     generatedRooms++;
                 }

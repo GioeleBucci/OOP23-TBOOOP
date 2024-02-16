@@ -21,7 +21,7 @@ class TestEnemyRoom {
 
     @Test
     void checkFields() {
-        final Room room = roomFactory.enemyRoom(enemyFactory, () -> 0);
+        final Room room = roomFactory.enemyRoom(enemyFactory, 0);
         room.init();
         assertFalse(room.isFirstRoom());
         assertFalse(room.isSpecial());
@@ -30,7 +30,7 @@ class TestEnemyRoom {
 
     @Test
     void checkSpawnAmount() {
-        final Room room = roomFactory.enemyRoom(enemyFactory, () -> 10);
+        final Room room = roomFactory.enemyRoom(enemyFactory, 10);
         room.init();
         assertEquals(10, room.getGameObjects().size());
     }

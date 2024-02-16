@@ -1,7 +1,5 @@
 package tbooop.model.dungeon.rooms.impl;
 
-import java.util.function.Supplier;
-
 import tbooop.model.dungeon.doors.impl.TrapdoorImpl;
 import tbooop.model.dungeon.rooms.api.RegularRoom;
 import tbooop.model.dungeon.rooms.api.Room;
@@ -19,11 +17,11 @@ public class RoomFactoryImpl implements RoomFactory {
 
     /** {@inheritDoc} */
     @Override
-    public Room enemyRoom(final EnemyFactory enemyFactory, final Supplier<Integer> enemyAmountSupplier) {
+    public Room enemyRoom(final EnemyFactory enemyFactory, final int amount) {
         return new RegularRoom() {
             @Override
             public void init() {
-                addGameObjects(new EnemySpawnerImpl(enemyFactory).getRandomEnemies(enemyAmountSupplier.get()));
+                addGameObjects(new EnemySpawnerImpl(enemyFactory).getRandomEnemies(amount));
             }
         };
     }

@@ -1,7 +1,5 @@
 package tbooop.model.dungeon.rooms.api;
 
-import java.util.function.Supplier;
-
 import tbooop.model.enemy.api.EnemyFactory;
 
 /**
@@ -19,12 +17,11 @@ public interface RoomFactory {
     /**
      * Creates an enemy room.
      *
-     * @param enemyFactory        the factory used to spawn the enemies
-     * @param enemyAmountSupplier the function used to get the amount of enemies to
-     *                            spawn
+     * @param enemyFactory the factory used to spawn the enemies
+     * @param amount       the amount of enemies to spawn
      * @return the created enemy room
      */
-    Room enemyRoom(EnemyFactory enemyFactory, Supplier<Integer> enemyAmountSupplier);
+    Room enemyRoom(EnemyFactory enemyFactory, int amount);
 
     /**
      * Creates an item room.
