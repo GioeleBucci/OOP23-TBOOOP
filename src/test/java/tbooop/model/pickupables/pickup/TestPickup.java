@@ -1,4 +1,4 @@
-package tbooop.model.pickupables;
+package tbooop.model.pickupables.pickup;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
