@@ -2,7 +2,7 @@ package tbooop.model.pickupables.pickups.api;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.PickupableAbs;
+import tbooop.model.pickupables.api.AbstractPickupable;
 
 /**
  * Abstract class for pickups
@@ -13,7 +13,7 @@ import tbooop.model.pickupables.api.PickupableAbs;
  * be implemented by single different
  * classes.
  */
-public abstract class AbstractPickup extends PickupableAbs implements Pickup {
+public abstract class AbstractPickup extends AbstractPickupable implements Pickup {
 
     /**
      * Create a new istance of a Pickup.

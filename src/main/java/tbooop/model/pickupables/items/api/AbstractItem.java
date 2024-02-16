@@ -2,7 +2,7 @@ package tbooop.model.pickupables.items.api;
 
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
-import tbooop.model.pickupables.api.PickupableAbs;
+import tbooop.model.pickupables.api.AbstractPickupable;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.player.api.Player;
 
@@ -15,7 +15,7 @@ import tbooop.model.player.api.Player;
  * be implemented by single different
  * classes.
  */
-public abstract class AbstractItem extends PickupableAbs implements Item {
+public abstract class AbstractItem extends AbstractPickupable implements Item {
 
     private final int itemCost;
     private ItemStatus itemTag = ItemStatus.NORMAL;
