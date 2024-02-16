@@ -39,4 +39,10 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      * @return the key of the player
      */
     int getKey();
+
+    /**
+     * Returns the velocity of the player's projectiles.
+     * @return the velocity of the player's projectiles.
+     */
+    double getProjectileVelocity();
 }
