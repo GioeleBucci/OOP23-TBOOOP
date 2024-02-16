@@ -4,7 +4,7 @@ public abstract class AbstractKey implements Key {
     
     private int keys;
 
-    AbstractKey(final int initialKeys) {
+    public AbstractKey(final int initialKeys) {
         this.keys = initialKeys;
     }
 
