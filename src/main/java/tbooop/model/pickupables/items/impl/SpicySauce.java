@@ -4,8 +4,6 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.ItemAbs;
-import tbooop.model.pickupables.items.api.ItemPrice;
-import tbooop.model.pickupables.items.api.PickupableStatus;
 import tbooop.model.player.api.Player;
 /**
  * Class rapresenting Fire Mind item in the
@@ -14,9 +12,7 @@ import tbooop.model.player.api.Player;
  * velocity.
  */
 public class SpicySauce extends ItemAbs {
-    private final int itemCost = ItemPrice.SPICYSAUCE_PRICE.getItemPrice();
-    private PickupableStatus itemTag = PickupableStatus.NORMAL;
-    private final PickupableName pickupTag = PickupableName.SPICY_SAUCE;
+
     /**
      * Create a new istance of spicy sauce item.
      * 
@@ -25,19 +21,16 @@ public class SpicySauce extends ItemAbs {
      *                       The center of the collider will be this game object's
      *                       position
      * @param tag            the tag of this game object
+     * @param itemCost       cost of this item
+     * @param pickupTag      name of this item
      * @throws NullPointerException if any parameter passed is null
      */
-    protected SpicySauce(final Point2d position, final double colliderRadius, final GameTag tag) {
-        super(position, colliderRadius, tag);
-    }
-
-    /** {@inheritDoc} 
-     * 
-     * @param player
-    */
-    @Override
-    public void onPlayerCollision(final Player player) {
-        onPickup(player);
+    protected SpicySauce(final Point2d position, 
+                        final double colliderRadius, 
+                        final GameTag tag,
+                        final int itemCost,
+                        final PickupableName pickupTag) {
+        super(position, colliderRadius, tag, itemCost, pickupTag);
     }
 
     /**
@@ -47,44 +40,9 @@ public class SpicySauce extends ItemAbs {
      * 
      * @param player
     */
-    private void onPickup(final Player player) {
-        if (!super.isConsumed()) {
-            if (this.itemTag.equals(PickupableStatus.SPECIAL)) {
-                if (player.getCoins() >= this.itemCost) {
-                    player.increaseProjectileVelocity();
-                    player.consumeCoins(itemCost);
-                    destroy();
-                    super.consume();
-                }
-            } else {
-                player.increaseProjectileVelocity();
-                destroy();
-                super.consume();
-            }
-        }
-    }
-
-    /** {@inheritDoc} */
     @Override
-    public void setInShop() {
-        this.itemTag = PickupableStatus.SPECIAL;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getPrice() {
-        return this.itemCost;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PickupableName getObjectName() {
-        return this.pickupTag;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public PickupableStatus getStatus() {
-        return this.itemTag;
+    protected void onPickup(final Player player) {
+        player.increaseProjectileVelocity();
+        destroy();
     }
 }
