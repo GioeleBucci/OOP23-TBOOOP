@@ -7,7 +7,7 @@ import tbooop.model.player.api.coin.PlayerCoin;
  * Implementation of the PlayerCoin interface.
  * Represents a player's coins in a game.
  */
-public class BaseCoinImpl extends AbstractCoin implements PlayerCoin {
+public class BasePlayerCoinImpl extends AbstractCoin implements PlayerCoin {
 
     private static final int MAX_COIN = 200;
     private static final int INITIAL_COINS = 20;
@@ -15,7 +15,7 @@ public class BaseCoinImpl extends AbstractCoin implements PlayerCoin {
     /**
      * Create a new instance of a PlayerCoin.
      */
-    public BaseCoinImpl() {
+    public BasePlayerCoinImpl() {
         super(INITIAL_COINS);
     }
 

@@ -38,7 +38,7 @@ public class PlayerImpl extends AbstractPlayer {
      * @throws NullPointerException if any parameter passed is null
      */
     public PlayerImpl(final Point2d position) {
-        super(position, new HealthImpl(PLAYER_INITIAL_HEALTH), PLAYER_INITIAL_SPEED, new BaseKeyImpl());
+        super(position, new HealthImpl(PLAYER_INITIAL_HEALTH), PLAYER_INITIAL_SPEED, new BasePlayerKeyImpl());
         this.projectileVelocity = PROJECTILE_BASE_VELOCITY;
     }
 
