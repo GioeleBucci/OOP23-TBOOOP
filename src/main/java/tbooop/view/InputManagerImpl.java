@@ -38,13 +38,7 @@ public final class InputManagerImpl implements InputManager {
         this.view = view;
     }
 
-    /**
-     * Handles the key press event.
-     * If the key corresponds to a GUI keybind, it calls the handleInput method.
-     * Otherwise, it adds the key to the list of pressed keys.
-     *
-     * @param key The KeyCode of the pressed key.
-     */
+    /** {@inheritDoc} */
     @Override
     public void keyPressed(final KeyCode key) {
         final Optional<Keybinds> keybind = Keybinds.getKeybind(key);
@@ -55,12 +49,7 @@ public final class InputManagerImpl implements InputManager {
         }
     }
 
-    /**
-     * Called when a key is released.
-     * Removes the released key from the list of pressed keys.
-     *
-     * @param key the key that was released
-     */
+    /** {@inheritDoc} */
     @Override
     public void keyReleased(final KeyCode key) {
         if (keysPressed.contains(key)) {
@@ -68,11 +57,7 @@ public final class InputManagerImpl implements InputManager {
         }
     }
 
-    /**
-     * Updates the input state by handling the pressed keys.
-     * This method filters the pressed keys, extracts the valid keybinds,
-     * and then handles the input based on the type of keybind.
-     */
+    /** {@inheritDoc} */
     @Override
     public void update() {
         final Set<Keybinds> validKeys = keysPressed.stream()
@@ -83,13 +68,7 @@ public final class InputManagerImpl implements InputManager {
         handleInput(validKeys.stream().filter(Keybinds::isShoot).findFirst());
     }
 
-    /**
-     * Handles the input based on the provided keybind.
-     * If the keybind is not present, the method returns without performing any action.
-     * Otherwise, it executes the corresponding command based on the keybind.
-     *
-     * @param keybind The optional keybind to handle.
-     */
+    /** {@inheritDoc} */
     @Override
     public void handleInput(final Optional<Keybinds> keybind) {
         if (!keybind.isPresent()) {

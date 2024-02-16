@@ -5,6 +5,12 @@ import java.util.Optional;
 import javafx.scene.input.KeyCode;
 import tbooop.view.api.Keybinds;
 
+
+/**
+ * The InputManager interface defines methods for handling user input events.
+ * It provides functionality for handling key press and release events,
+ * updating the input state, and handling input based on keybinds.
+ */
 public interface InputManager {
 
     /**
