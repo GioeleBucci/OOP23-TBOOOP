@@ -1,9 +1,8 @@
-package tbooop.view;
+package tbooop.view.api;
 
 import java.util.Optional;
 
 import javafx.scene.input.KeyCode;
-import tbooop.view.api.Keybinds;
 
 
 /**
