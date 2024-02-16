@@ -1,38 +1,29 @@
 package tbooop.model.player.impl;
 
+import tbooop.model.player.api.coin.AbstractCoin;
 import tbooop.model.player.api.coin.PlayerCoin;
 
 /**
  * Implementation of the PlayerCoin interface.
  * Represents a player's coins in a game.
  */
-public class PlayerCoinImpl implements PlayerCoin {
+public class PlayerCoinImpl extends AbstractCoin implements PlayerCoin {
 
+    private static final int MAX_COIN = 200;
     private static final int INITIAL_COINS = 20;
-    private int coins;
 
     /**
      * Create a new instance of a PlayerCoin.
      */
     public PlayerCoinImpl() {
-        this.coins = INITIAL_COINS;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int getCoins() {
-        return this.coins;
+        super(INITIAL_COINS);
     }
 
     /** {@inheritDoc} */
     @Override
     public void addCoins(final int coins) {
-        this.coins += coins;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public void consumeCoins(final int coins) {
-        this.coins -= coins;
+        if (coins < MAX_COIN) {
+            super.addCoins(coins);
+        }
     }
 }
