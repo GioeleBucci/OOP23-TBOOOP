@@ -14,7 +14,6 @@ import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
-import tbooop.model.dungeon.rooms.api.ShopRoom;
 import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
 
@@ -25,10 +24,8 @@ import tbooop.view.api.ViewElements;
 public class RoomRenderer extends ViewComponentImpl {
     private static final Image REGULAR_DOOR_OPEN = new Image("tileset/door_open.png");
     private static final Image REGULAR_DOOR_CLOSED = new Image("tileset/door_closed.png");
-    private static final Image ITEM_DOOR_OPEN = new Image("tileset/special_door_open.png");
-    private static final Image ITEM_DOOR_CLOSED = new Image("tileset/special_door_closed.png");
-    private static final Image SHOP_DOOR_OPEN = new Image("tileset/shop_door_open.png");
-    private static final Image SHOP_DOOR_CLOSED = new Image("tileset/shop_door_closed.png");
+    private static final Image SPECIAL_DOOR_OPEN = new Image("tileset/special_door_open.png");
+    private static final Image SPECIAL_DOOR_CLOSED = new Image("tileset/special_door_closed.png");
     /**
      * An image with the commands that should be rendered only in the first room.
      */
@@ -75,13 +72,8 @@ public class RoomRenderer extends ViewComponentImpl {
             newRoom.getDoorMap().entrySet().forEach(e -> {
                 ImageView imgView;
                 if (e.getValue().isSpecial()) {
-                    if (newRoom instanceof ShopRoom || e.getValue().getRoom() instanceof ShopRoom) {
-                        imgView = new ImageView(
-                                e.getValue().isOpen() ? SHOP_DOOR_OPEN : SHOP_DOOR_CLOSED);
-                    } else {
-                        imgView = new ImageView(
-                                e.getValue().isOpen() ? ITEM_DOOR_OPEN : ITEM_DOOR_CLOSED);
-                    }
+                    imgView = new ImageView(
+                            e.getValue().isOpen() ? SPECIAL_DOOR_OPEN : SPECIAL_DOOR_CLOSED);
                 } else {
                     imgView = new ImageView(
                             e.getValue().isOpen() ? REGULAR_DOOR_OPEN : REGULAR_DOOR_CLOSED);
