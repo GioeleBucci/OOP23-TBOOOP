@@ -13,7 +13,7 @@ import tbooop.model.pickupables.api.PickupableAbs;
  * be implemented by single different
  * classes.
  */
-public abstract class PickupAbs extends PickupableAbs implements Pickup {
+public abstract class AbstractPickup extends PickupableAbs implements Pickup {
 
     /**
      * Create a new istance of a Pickup.
@@ -25,7 +25,7 @@ public abstract class PickupAbs extends PickupableAbs implements Pickup {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected PickupAbs(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected AbstractPickup(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 }

@@ -3,7 +3,7 @@ package tbooop.model.pickupables.pickups.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
-import tbooop.model.pickupables.pickups.api.PickupAbs;
+import tbooop.model.pickupables.pickups.api.AbstractPickup;
 import tbooop.model.player.api.Player;
 
 /**
@@ -13,7 +13,7 @@ import tbooop.model.player.api.Player;
  * owned by the player, and they will be
  * used to open doors.
  */
-public class Key extends PickupAbs {
+public class Key extends AbstractPickup {
 
     private final PickupableName pickupTag = PickupableName.KEY;
     /**
