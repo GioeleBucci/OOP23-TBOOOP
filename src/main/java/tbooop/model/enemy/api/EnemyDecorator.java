@@ -18,7 +18,7 @@ import tbooop.model.player.api.Player;
  */
 public abstract class EnemyDecorator implements Enemy {
 
-    private final Enemy concretEnemy;
+    private final Enemy concreteEnemy;
 
     /**
      * Creates an instance of an enemy decorator.
@@ -26,85 +26,85 @@ public abstract class EnemyDecorator implements Enemy {
      * @param concreteEnemy the enemy stored and decorated.
      */
     protected EnemyDecorator(final Enemy concreteEnemy) {
-        this.concretEnemy = Objects.requireNonNull(concreteEnemy);
+        this.concreteEnemy = Objects.requireNonNull(concreteEnemy);
     }
 
     /** {@inheritDoc} */
     @Override
     public void takeDamage(final int damage) {
-        this.concretEnemy.takeDamage(damage);
+        this.concreteEnemy.takeDamage(damage);
     }
 
     /** {@inheritDoc} */
     @Override
     public final int getHealth() {
-        return this.concretEnemy.getHealth();
+        return this.concreteEnemy.getHealth();
     }
 
     /** {@inheritDoc} */
     @Override
     public final int getMaxHealth() {
-        return this.concretEnemy.getMaxHealth();
+        return this.concreteEnemy.getMaxHealth();
     }
 
     /** {@inheritDoc} */
     @Override
     public void onPlayerCollision(final Player player) {
-        this.concretEnemy.onPlayerCollision(player);
+        this.concreteEnemy.onPlayerCollision(player);
     }
 
     /** {@inheritDoc} */
     @Override
     public void updateState(final long deltaTime) {
-        this.concretEnemy.updateState(deltaTime);
+        this.concreteEnemy.updateState(deltaTime);
     }
 
     /** {@inheritDoc} */
     @Override
     public final void setPosition(final Point2d newPos) {
-        this.concretEnemy.setPosition(newPos);
+        this.concreteEnemy.setPosition(newPos);
     }
 
     /** {@inheritDoc} */
     @Override
     public final Point2d getPosition() {
-        return this.concretEnemy.getPosition();
+        return this.concreteEnemy.getPosition();
     }
 
     /** {@inheritDoc} */
     @Override
     public final CircleCollider getCollider() {
-        return this.concretEnemy.getCollider();
+        return this.concreteEnemy.getCollider();
     }
 
     /** {@inheritDoc} */
     @Override
     public final GameTag getTag() {
-        return this.concretEnemy.getTag();
+        return this.concreteEnemy.getTag();
     }
 
     /** {@inheritDoc} */
     @Override
     public final boolean isDestroyed() {
-        return this.concretEnemy.isDestroyed();
+        return this.concreteEnemy.isDestroyed();
     }
 
     /** {@inheritDoc} */
     @Override
     public final Set<Projectile> getShotProjectiles() {
-        return this.concretEnemy.getShotProjectiles();
+        return this.concreteEnemy.getShotProjectiles();
     }
 
     /** {@inheritDoc} */
     @Override
     public final void addProjectile(final Projectile projectile) {
-        this.concretEnemy.addProjectile(projectile);
+        this.concreteEnemy.addProjectile(projectile);
     }
 
     /** {@inheritDoc} */
     @Override
     public final EnemyType getEnemyType() {
-        return this.concretEnemy.getEnemyType();
+        return this.concreteEnemy.getEnemyType();
     }
 
 }
