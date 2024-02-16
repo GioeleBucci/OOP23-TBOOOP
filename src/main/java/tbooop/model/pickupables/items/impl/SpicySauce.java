@@ -41,7 +41,7 @@ public class SpicySauce extends ItemAbs {
     }
 
     /**
-     * When the Fire Mind item is picked up
+     * When the Spicy Sauce item is picked up
      * by the player, its projectiles
      * velocity will increse.
      * 
