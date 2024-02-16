@@ -7,13 +7,10 @@ import java.util.function.Supplier;
 import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.impl.Point2dImpl;
-import tbooop.model.dungeon.rooms.impl.EnemyRoom;
-import tbooop.model.dungeon.rooms.impl.ItemRoom;
-import tbooop.model.dungeon.rooms.impl.ItemShopRoom;
-import tbooop.model.dungeon.rooms.impl.StartingRoom;
-import tbooop.model.dungeon.rooms.impl.TrapdoorRoom;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.dungeon.rooms.api.Room;
+import tbooop.model.dungeon.rooms.api.RoomFactory;
+import tbooop.model.dungeon.rooms.impl.RoomFactoryImpl;
 import tbooop.model.dungeon.doors.api.DoorPositions;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.doors.impl.RegularDoor;
@@ -21,7 +18,6 @@ import tbooop.model.dungeon.doors.impl.SpecialDoor;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -35,24 +31,23 @@ import java.util.Objects;
 public abstract class BaseFloor implements Floor {
     /** maximum distance in each axis a room can be from the starting room (0;0). */
     public static final int MAX_DIST_FROM_START = 3;
-    private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();
-    /** This factory instance will be used to create enemies inside enemy rooms. */
-    private final EnemyFactory enemyFactory;
-    private final Supplier<Integer> enemyAmountSupplier;
-    // dead ends are used for placing special rooms, such as item rooms, shops and
-    // trapdoor rooms
     private static final int SPECIAL_ROOMS_AMOUNT = 3;
     private static final int MINIMUM_ROOMS_AMOUNT = SPECIAL_ROOMS_AMOUNT + 1;
     private static final Random RAND = new Random(); // create a single istance and re-use it
-    private final Point2d itemRoomPos;
-    private final Point2d shopRoomPos;
-    private final Point2d trapdoorRoomPos;
+    private final EnemyFactory enemyFactory;
+    private final Supplier<Integer> enemyAmountSupplier;
+    private final RoomFactory roomFactory;
+    private final Map<Point2d, Room> roomsMap = new LinkedHashMap<>();
     private final int roomsAmount;
     private int generatedRooms;
+    /*
+     * dead ends are used for placing special rooms, such as item rooms, shops and
+     * trapdoor rooms.
+     */
     private List<Point2d> deadEnds;
 
     /**
-     * Creates a new floor with the desired amount of rooms (>=3).
+     * Creates a new floor with the desired amount of rooms (>=4).
      * 
      * @param rooms               the amount of rooms to generate
      * @param enemyFactory        the factory used for creating enemies inside enemy
@@ -63,24 +58,25 @@ public abstract class BaseFloor implements Floor {
      * @throws IllegalArgumentException if a number < 4 is passed
      */
     protected BaseFloor(final int rooms, final EnemyFactory enemyFactory, final Supplier<Integer> enemyAmountSupplier) {
-        this.roomsAmount = Objects.requireNonNull(rooms);
-        this.enemyFactory = Objects.requireNonNull(enemyFactory);
-        this.enemyAmountSupplier = Objects.requireNonNull(enemyAmountSupplier);
-        if (roomsAmount < MINIMUM_ROOMS_AMOUNT) {
+        if (rooms < MINIMUM_ROOMS_AMOUNT) {
             throw new IllegalArgumentException("You must pass a number greater than " + MINIMUM_ROOMS_AMOUNT);
         }
-        // generate until desired dead ends and rooms amount is reached
-        // number of dead ends needs to be >= number of special rooms
+        this.enemyFactory = Objects.requireNonNull(enemyFactory);
+        this.enemyAmountSupplier = Objects.requireNonNull(enemyAmountSupplier);
+        this.roomsAmount = rooms;
+        this.roomFactory = new RoomFactoryImpl();
+        /*
+         * generate until desired dead ends and rooms amount is reached
+         * number of dead ends needs to be >= number of special rooms
+         */
         do {
             generate();
             deadEnds = getDeadEnds();
         } while (generatedRooms != rooms || deadEnds.size() < SPECIAL_ROOMS_AMOUNT);
-        trapdoorRoomPos = pickTrapdoorRoom();
-        roomsMap.put(trapdoorRoomPos, new TrapdoorRoom());
-        shopRoomPos = pickSpecialRoom();
-        roomsMap.put(shopRoomPos, new ItemShopRoom());
-        itemRoomPos = pickSpecialRoom();
-        roomsMap.put(itemRoomPos, new ItemRoom());
+        roomsMap.put(pickTrapdoorRoomPos(), roomFactory.trapdoorRoom());
+        roomsMap.put(pickSpecialRoomPos(), roomFactory.shopRoom());
+        roomsMap.put(pickSpecialRoomPos(), roomFactory.itemRoom());
+        roomsMap.values().forEach(Room::init);
         placeDoors();
     }
 
@@ -107,15 +103,17 @@ public abstract class BaseFloor implements Floor {
         });
     }
 
-    private Point2d pickSpecialRoom() {
+    private Point2d pickSpecialRoomPos() {
         final Point2d picked = deadEnds.get(RAND.nextInt(deadEnds.size()));
         deadEnds.remove(picked);
         return picked;
     }
 
-    // The room that takes to the next level is the furthest dead end from the
-    // starting room.
-    private Point2d pickTrapdoorRoom() {
+    /*
+     * The room that takes to the next level is the furthest dead end from
+     * the starting room.
+     */
+    private Point2d pickTrapdoorRoomPos() {
         final Iterator<Point2d> iterator = roomsMap.keySet().iterator();
         Point2d lastElement = null;
         while (iterator.hasNext()) {
@@ -125,7 +123,9 @@ public abstract class BaseFloor implements Floor {
         return lastElement;
     }
 
-    // A dead end is a room with only one neighbor (except the starting room).
+    /*
+     * A dead end is a room with only one neighbor (except the starting room).
+     */
     private List<Point2d> getDeadEnds() {
         final List<Point2d> out = new ArrayList<>();
         for (final Point2d roomPos : roomsMap.keySet()) {
@@ -150,7 +150,7 @@ public abstract class BaseFloor implements Floor {
         generatedRooms = 0;
         final Queue<Point2d> queue = new LinkedList<>();
         final Point2d startingRoomPos = Point2dImpl.ZERO;
-        roomsMap.put(startingRoomPos, new StartingRoom());
+        roomsMap.put(startingRoomPos, roomFactory.emptyRoom());
         queue.add(startingRoomPos);
         generatedRooms++;
         while (!queue.isEmpty()) {
@@ -165,7 +165,7 @@ public abstract class BaseFloor implements Floor {
                 if (!roomsMap.containsKey(newSpot) && generatedRooms < roomsAmount && neighboursAmount(newSpot) < 2
                         && Math.random() > 0.5 && Math.abs(newSpot.getX()) <= MAX_DIST_FROM_START
                         && Math.abs(newSpot.getY()) <= MAX_DIST_FROM_START) {
-                    roomsMap.put(newSpot, new EnemyRoom(enemyFactory, enemyAmountSupplier));
+                    roomsMap.put(newSpot, roomFactory.enemyRoom(enemyFactory, enemyAmountSupplier));
                     queue.add(newSpot);
                     generatedRooms++;
                 }
@@ -182,47 +182,5 @@ public abstract class BaseFloor implements Floor {
             }
         }
         return out;
-    }
-
-    /**
-     * A graphical representation of the Floor.
-     * <p>
-     * <i>S=Start Room ?=Item Room T=Trapdoor Room $=Shop Room</i>
-     * 
-     * @return A representation of the floor's layout
-     */
-    @Override
-    public String toString() {
-        // the lenght of a single side of the square map
-        final int mapEdgeLenght = 2 * MAX_DIST_FROM_START + 1;
-        String[][] matrix = new String[mapEdgeLenght][mapEdgeLenght];
-
-        final Map<Point2d, String> symbols = new HashMap<>();
-        symbols.put(Point2dImpl.ZERO, "S");
-        symbols.put(itemRoomPos, "?");
-        symbols.put(shopRoomPos, "$");
-        symbols.put(trapdoorRoomPos, "T");
-
-        for (final Point2d room : roomsMap.keySet()) {
-            final int x = (int) room.getX() + MAX_DIST_FROM_START;
-            final int y = (int) room.getY() + MAX_DIST_FROM_START;
-
-            String symbol = "O"; // Default room symbol
-            for (final Map.Entry<Point2d, String> entry : symbols.entrySet()) {
-                if (room.equals(entry.getKey())) {
-                    symbol = entry.getValue();
-                    break;
-                }
-            }
-            matrix[y][x] = symbol;
-        }
-        final StringBuilder output = new StringBuilder();
-        for (int i = 0; i < mapEdgeLenght; i++) {
-            for (int j = 0; j < mapEdgeLenght; j++) {
-                output.append('[').append(matrix[i][j] == null ? ' ' : matrix[i][j]).append(']');
-            }
-            output.append('\n');
-        }
-        return output.toString();
     }
 }

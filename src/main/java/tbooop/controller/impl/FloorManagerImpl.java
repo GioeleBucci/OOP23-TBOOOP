@@ -1,7 +1,5 @@
 package tbooop.controller.impl;
 
-import java.util.logging.Logger;
-
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.impl.Point2dImpl;
@@ -30,7 +28,6 @@ public class FloorManagerImpl implements FloorManager {
     private final View view;
     private final EnemyFactoryImpl enemyFactory;
     private final PickupLogic pickupSpawner = new PickupLogic();
-    private final Logger logger = Logger.getLogger(FloorManagerImpl.class.getName());
     private int currentFloorLevel = 1;
     private Room currentRoom;
     /**
@@ -101,7 +98,6 @@ public class FloorManagerImpl implements FloorManager {
     @Override
     public synchronized void changeFloor() {
         final Floor floor = new LevelFloor(currentFloorLevel++, enemyFactory);
-        logger.info("New floor: " + floor.toString());
         this.currentRoom = floor.getStaringRoom();
         view.changeFloor();
         changeRoom(currentRoom);

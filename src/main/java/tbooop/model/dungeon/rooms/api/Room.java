@@ -14,6 +14,13 @@ import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 public interface Room extends RoomUnmodifiable {
 
     /**
+     * Initializes the room.
+     * <p>
+     * <b>Note</b>: This method should be called every time a new room is created.
+     */
+    void init();
+
+    /**
      * Adds a door to this room.
      * 
      * @param direction where the door is located

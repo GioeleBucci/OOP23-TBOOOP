@@ -69,12 +69,6 @@ public abstract class AbstractRoom implements Room {
 
     /** {@inheritDoc} */
     @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + "[doorSet=" + getDoorMap() + "]\n";
-    }
-
-    /** {@inheritDoc} */
-    @Override
     public boolean isFirstRoom() {
         return false;
     }
