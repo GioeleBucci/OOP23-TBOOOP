@@ -15,7 +15,7 @@ import tbooop.model.player.api.Player;
  * be implemented by single different
  * classes.
  */
-public abstract class ItemAbs extends PickupableAbs implements Item {
+public abstract class AbstractItem extends PickupableAbs implements Item {
 
     private final int itemCost;
     private ItemStatus itemTag = ItemStatus.NORMAL;
@@ -33,7 +33,7 @@ public abstract class ItemAbs extends PickupableAbs implements Item {
      * @param pickupTag      name of this item
      * @throws NullPointerException if any parameter passed is null
      */
-    protected ItemAbs(final Point2d position, 
+    protected AbstractItem(final Point2d position, 
                     final double colliderRadius, 
                     final GameTag tag,
                     final int itemCost,

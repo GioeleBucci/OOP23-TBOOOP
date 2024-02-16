@@ -3,14 +3,14 @@ package tbooop.model.pickupables.items.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
-import tbooop.model.pickupables.items.api.ItemAbs;
+import tbooop.model.pickupables.items.api.AbstractItem;
 import tbooop.model.player.api.Player;
 /**
  * Class rapresenting Iron Bar item in the
  * game. If picked up by the player, it
  * will increase its damage.
  */
-public class LockedRing extends ItemAbs {
+public class LockedRing extends AbstractItem {
 
     private static final int DAMAGE_TO_INCREASE = 1;
 
