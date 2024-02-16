@@ -5,10 +5,16 @@ import java.util.function.Supplier;
 import tbooop.model.enemy.api.EnemyFactory;
 
 /**
- * The RoomsFactory interface represents a factory for creating different types
- * of rooms.
+ * A RoomFactory allows the creation different types of rooms.
  */
 public interface RoomFactory {
+
+    /**
+     * Creates an empty room.
+     *
+     * @return the created starting room
+     */
+    Room emptyRoom();
 
     /**
      * Creates an enemy room.
@@ -39,12 +45,6 @@ public interface RoomFactory {
      *
      * @return the created trapdoor room
      */
-    Room trapDoorRoom();
+    Room trapdoorRoom();
 
-    /**
-     * Creates a starting room.
-     *
-     * @return the created starting room
-     */
-    Room startingRoom();
 }

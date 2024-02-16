@@ -15,6 +15,8 @@ public interface Room extends RoomUnmodifiable {
 
     /**
      * Initializes the room.
+     * <p>
+     * <b>Note</b>: This method should be called every time a new room is created.
      */
     void init();
 

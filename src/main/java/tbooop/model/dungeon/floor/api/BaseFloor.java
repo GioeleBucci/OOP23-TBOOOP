@@ -73,7 +73,7 @@ public abstract class BaseFloor implements Floor {
             generate();
             deadEnds = getDeadEnds();
         } while (generatedRooms != rooms || deadEnds.size() < SPECIAL_ROOMS_AMOUNT);
-        roomsMap.put(pickTrapdoorRoomPos(), roomFactory.trapDoorRoom());
+        roomsMap.put(pickTrapdoorRoomPos(), roomFactory.trapdoorRoom());
         roomsMap.put(pickSpecialRoomPos(), roomFactory.shopRoom());
         roomsMap.put(pickSpecialRoomPos(), roomFactory.itemRoom());
         roomsMap.values().forEach(Room::init);
@@ -150,7 +150,7 @@ public abstract class BaseFloor implements Floor {
         generatedRooms = 0;
         final Queue<Point2d> queue = new LinkedList<>();
         final Point2d startingRoomPos = Point2dImpl.ZERO;
-        roomsMap.put(startingRoomPos, roomFactory.startingRoom());
+        roomsMap.put(startingRoomPos, roomFactory.emptyRoom());
         queue.add(startingRoomPos);
         generatedRooms++;
         while (!queue.isEmpty()) {

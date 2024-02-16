@@ -52,7 +52,7 @@ public class RoomFactoryImpl implements RoomFactory {
 
     /** {@inheritDoc} */
     @Override
-    public Room trapDoorRoom() {
+    public Room trapdoorRoom() {
         return new RegularRoom() {
             @Override
             public void init() {
@@ -63,7 +63,7 @@ public class RoomFactoryImpl implements RoomFactory {
 
     /** {@inheritDoc} */
     @Override
-    public Room startingRoom() {
+    public Room emptyRoom() {
         return new RegularRoom() {
             @Override
             public boolean isFirstRoom() {
