@@ -11,20 +11,22 @@ import tbooop.commons.api.CardinalDirection;
 import tbooop.model.dungeon.doors.api.DoorPositions;
 import tbooop.model.dungeon.doors.impl.SpecialDoor;
 import tbooop.model.dungeon.rooms.api.Room;
-import tbooop.model.dungeon.rooms.impl.ItemRoom;
+import tbooop.model.dungeon.rooms.api.RoomFactory;
+import tbooop.model.dungeon.rooms.impl.RoomFactoryImpl;
 
 class TestSpecialDoor {
 
+    private final RoomFactory roomFactory = new RoomFactoryImpl();
     private Room room;
     private SpecialDoor doorA;
     private SpecialDoor doorB;
 
     @BeforeEach
     void initRoom() {
-        room = new ItemRoom();
+        room = roomFactory.itemRoom();
         doorA = new SpecialDoor(DoorPositions.TOP.getPosition(), room);
         // doorA takes to room, and doorB takes back.
-        doorB = new SpecialDoor(DoorPositions.BOTTOM.getPosition(), new ItemRoom());
+        doorB = new SpecialDoor(DoorPositions.BOTTOM.getPosition(), roomFactory.itemRoom());
         room.addDoor(CardinalDirection.DOWN, doorB);
     }
 
