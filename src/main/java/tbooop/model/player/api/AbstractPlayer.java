@@ -10,8 +10,7 @@ import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
 import tbooop.model.player.api.coin.Coins;
 import tbooop.model.player.api.key.Key;
-import tbooop.model.player.api.key.PlayerKey;
-import tbooop.model.player.impl.PlayerCoinImpl;
+import tbooop.model.player.impl.BaseCoinImpl;
 
 /**
  * A Player is a game object that can move on a 2D space,
@@ -33,9 +32,9 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
      * @param velocity  it is the Entity velocity
      * @param keys the player's keys
      */
-    protected AbstractPlayer(final Point2d position, final Health health, final double velocity, final PlayerKey keys) {
+    protected AbstractPlayer(final Point2d position, final Health health, final double velocity, final Key keys) {
         super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
-        this.coins = new PlayerCoinImpl();
+        this.coins = new BaseCoinImpl();
         this.damage = PLAYER_INITIAL_DAMAGE;
         this.keys = keys;
     }

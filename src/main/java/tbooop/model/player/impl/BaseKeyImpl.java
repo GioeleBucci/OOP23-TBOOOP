@@ -6,14 +6,14 @@ import tbooop.model.player.api.key.PlayerKey;
 /**
  * Represents the key of a player.
  */
-public class PlayerKeyImpl extends AbstractKey implements PlayerKey {
+public class BaseKeyImpl extends AbstractKey implements PlayerKey {
 
     private static final int INITIAL_KEYS = 2;
 
     /**
-     * Create a new instance of a PlayerKey.
+     * Create a new instance of a BaseKey.
      */
-    public PlayerKeyImpl() {
+    public BaseKeyImpl() {
         super(INITIAL_KEYS);
     }
 
