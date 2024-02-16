@@ -49,15 +49,17 @@ class TestItem {
     void testItemGeneralEffect() {
         final int playerInitialMaxHealth = player.getMaxHealth();
         final int playerInitialDamage = player.getDamage();
+        final double playerInitialProjectilesVel = player.getProjectileVelocity();
         goldenApple.onPlayerCollision(player);
         assertEquals(playerInitialMaxHealth + 2, player.getMaxHealth());
         glassHeart.onPlayerCollision(player);
         assertEquals(player.getHealth(), player.getMaxHealth());
         lockedRing.onPlayerCollision(player);
         assertEquals(playerInitialDamage + 1, player.getDamage());
-        zap.onPlayerCollision(player);
-        assertEquals(1, 1);
         spicySauce.onPlayerCollision(player);
-        assertEquals(1, 1);
+        // CHECKSTYLE: MagicNumber OFF
+        // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
+        assertEquals(playerInitialProjectilesVel + 0.005, player.getProjectileVelocity());
+        // CHECKSTYLE: MagicNumber ON
     }
 }
