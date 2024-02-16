@@ -1,20 +1,20 @@
-package tbooop.model.player.impl;
+package tbooop.model.player.api.key;
 
-import tbooop.model.player.api.PlayerKey;
 
 /**
- * Represents the key of a player.
+ * An abstract implementation of the Key interface that provides common functionality for key objects.
  */
-public class PlayerKeyImpl implements PlayerKey {
+public abstract class AbstractKey implements Key {
 
-    private static final int INITIAL_KEYS = 2;
     private int keys;
 
     /**
-     * Create a new instance of a PlayerKey.
+     * Constructs a new AbstractKey object with the specified initial number of keys.
+     *
+     * @param initialKeys the initial number of keys
      */
-    public PlayerKeyImpl() {
-        this.keys = INITIAL_KEYS;
+    public AbstractKey(final int initialKeys) {
+        this.keys = initialKeys;
     }
 
     /** {@inheritDoc} */

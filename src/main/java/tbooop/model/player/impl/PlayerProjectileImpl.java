@@ -4,7 +4,7 @@ import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.enemy.api.Enemy;
-import tbooop.model.player.api.PlayerProjectile;
+import tbooop.model.player.api.projectile.PlayerProjectile;
 import tbooop.commons.api.AbstractProjectile;
 
 /**
