@@ -8,7 +8,6 @@ public class LevelFloor extends BaseFloor {
 
     private static final int MINIMUM_ROOMS_AMOUNT = 5;
     private static final double MULTIPLIER = 2.6;
-    private final int floorLevel;
 
     /**
      * Builds the floor according to the following formula:
@@ -24,12 +23,5 @@ public class LevelFloor extends BaseFloor {
         super((int) (Math.random() * 2 + MINIMUM_ROOMS_AMOUNT + floorLevel * MULTIPLIER),
                 enemyFactory,
                 () -> (int) (floorLevel + 1 + Math.random() * 2));
-        this.floorLevel = floorLevel;
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public String toString() {
-        return "Floor " + floorLevel + ":\n" + super.toString();
     }
 }
