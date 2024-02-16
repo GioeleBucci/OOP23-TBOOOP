@@ -47,7 +47,7 @@ public abstract class BaseFloor implements Floor {
     private List<Point2d> deadEnds;
 
     /**
-     * Creates a new floor with the desired amount of rooms (>=3).
+     * Creates a new floor with the desired amount of rooms (>=4).
      * 
      * @param rooms               the amount of rooms to generate
      * @param enemyFactory        the factory used for creating enemies inside enemy
