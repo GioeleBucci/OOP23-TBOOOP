@@ -3,7 +3,7 @@ package tbooop.model.pickupables.pickups.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
-import tbooop.model.pickupables.pickups.api.PickupAbs;
+import tbooop.model.pickupables.pickups.api.AbstractPickup;
 import tbooop.model.player.api.Player;
 
 /**
@@ -13,7 +13,7 @@ import tbooop.model.player.api.Player;
  * and will increment its coins to use
  * in the item shop.
  */
-public class Bill extends PickupAbs {
+public class Bill extends AbstractPickup {
 
     private static final int BILL_VALUE = 10;
     private final PickupableName pickupTag = PickupableName.BILL;

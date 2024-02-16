@@ -3,7 +3,7 @@ package tbooop.model.pickupables.pickups.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
-import tbooop.model.pickupables.pickups.api.PickupAbs;
+import tbooop.model.pickupables.pickups.api.AbstractPickup;
 import tbooop.model.player.api.Player;
 
 /**
@@ -11,7 +11,7 @@ import tbooop.model.player.api.Player;
  * game. If picked up by the player, it
  * will increase its health of one unit.
  */
-public class Heart extends PickupAbs {
+public class Heart extends AbstractPickup {
 
     private final PickupableName pickupTag = PickupableName.HEART;
     /**

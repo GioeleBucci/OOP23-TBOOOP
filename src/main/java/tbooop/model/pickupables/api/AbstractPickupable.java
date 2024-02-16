@@ -10,7 +10,7 @@ import tbooop.model.core.api.unmovable.UnmovableAbs;
  * Contains methods to be shared among
  * all items and pickups.
  */
-public abstract class PickupableAbs extends UnmovableAbs implements Pickupable {
+public abstract class AbstractPickupable extends UnmovableAbs implements Pickupable {
 
     private boolean consumed;
 
@@ -24,7 +24,7 @@ public abstract class PickupableAbs extends UnmovableAbs implements Pickupable {
      * @param tag            the tag of this game object
      * @throws NullPointerException if any parameter passed is null
      */
-    protected PickupableAbs(final Point2d position, final double colliderRadius, final GameTag tag) {
+    protected AbstractPickupable(final Point2d position, final double colliderRadius, final GameTag tag) {
         super(position, colliderRadius, tag);
     }
 

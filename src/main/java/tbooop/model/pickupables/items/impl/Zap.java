@@ -3,7 +3,7 @@ package tbooop.model.pickupables.items.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
-import tbooop.model.pickupables.items.api.ItemAbs;
+import tbooop.model.pickupables.items.api.AbstractItem;
 import tbooop.model.player.api.Player;
 /**
  * Class rapresenting "the Zap" item in the
@@ -11,7 +11,7 @@ import tbooop.model.player.api.Player;
  * will increase its velocity of a
  * determined amount.
  */
-public class Zap extends ItemAbs {
+public class Zap extends AbstractItem {
 
     private static final double VELOCITY_TO_INCREASE = 0.02;
 
