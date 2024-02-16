@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class TestRegularRoom {
+class TestEnemyRoom {
 
     private final RoomFactory roomFactory = new RoomFactoryImpl();
     private final EnemyFactory enemyFactory = new EnemyFactoryImpl(new PlayerImpl(RoomBounds.CENTER));

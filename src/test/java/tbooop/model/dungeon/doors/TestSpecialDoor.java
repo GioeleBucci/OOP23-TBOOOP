@@ -23,10 +23,10 @@ class TestSpecialDoor {
 
     @BeforeEach
     void initRoom() {
-        room = roomFactory.itemRoom();
+        room = roomFactory.emptyRoom();
         doorA = new SpecialDoor(DoorPositions.TOP.getPosition(), room);
         // doorA takes to room, and doorB takes back.
-        doorB = new SpecialDoor(DoorPositions.BOTTOM.getPosition(), roomFactory.itemRoom());
+        doorB = new SpecialDoor(DoorPositions.BOTTOM.getPosition(), roomFactory.emptyRoom());
         room.addDoor(CardinalDirection.DOWN, doorB);
     }
 

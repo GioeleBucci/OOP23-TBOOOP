@@ -9,10 +9,9 @@ import tbooop.model.dungeon.rooms.impl.RoomFactoryImpl;
 
 class TestItemRoom {
 
-    private final Room itemRoom = new RoomFactoryImpl().itemRoom();
-
     @Test
     void testOnlyOneItemInside() {
+        final Room itemRoom = new RoomFactoryImpl().itemRoom();
         itemRoom.init();
         assertEquals(1, itemRoom.getGameObjects().size());
     }
