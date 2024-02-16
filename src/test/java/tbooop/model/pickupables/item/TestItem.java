@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.Item;
-import tbooop.model.pickupables.items.api.PickupableStatus;
+import tbooop.model.pickupables.items.api.ItemStatus;
 import tbooop.model.pickupables.items.impl.ItemFactoryImpl;
 
 /**
@@ -28,9 +28,9 @@ class TestItem {
 
     @Test
     void checkItemStatus() {
-        assertEquals(goldenApple.getStatus(), PickupableStatus.NORMAL);
+        assertEquals(goldenApple.getStatus(), ItemStatus.NORMAL);
         goldenApple.setInShop();
-        assertEquals(goldenApple.getStatus(), PickupableStatus.SPECIAL);
+        assertEquals(goldenApple.getStatus(), ItemStatus.SPECIAL);
     }
 
     @Test

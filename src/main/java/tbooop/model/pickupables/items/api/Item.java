@@ -33,5 +33,5 @@ public interface Item extends Pickupable {
      * in the itemshop, NORMAL
      * if not.
      */
-    PickupableStatus getStatus();
+    ItemStatus getStatus();
 }
