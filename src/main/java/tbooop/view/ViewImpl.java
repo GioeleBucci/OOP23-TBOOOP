@@ -53,7 +53,7 @@ public class ViewImpl extends AbstractView {
         this.controller = new ControllerImpl(this);
         this.animators.add(new EnemyAnimatorImpl(gameObjMap));
         this.roomRenderer = new RoomRenderer(this);
-        this.inputManager = new InputManager(controller, this);
+        this.inputManager = new InputManagerImpl(controller, this);
     }
 
     /** {@inheritDoc} */
