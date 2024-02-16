@@ -14,6 +14,11 @@ import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 public interface Room extends RoomUnmodifiable {
 
     /**
+     * Initializes the room.
+     */
+    void init();
+
+    /**
      * Adds a door to this room.
      * 
      * @param direction where the door is located

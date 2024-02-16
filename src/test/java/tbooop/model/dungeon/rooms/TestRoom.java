@@ -13,20 +13,21 @@ import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.doors.impl.RegularDoor;
 import tbooop.model.dungeon.rooms.api.Room;
-import tbooop.model.dungeon.rooms.impl.ItemRoom;
+import tbooop.model.dungeon.rooms.api.RoomFactory;
+import tbooop.model.dungeon.rooms.impl.RoomFactoryImpl;
 
 class TestRoom {
 
+    private final RoomFactory roomFactory = new RoomFactoryImpl();
     private Room room;
 
     @BeforeEach
     void initRoom() {
-        room = new ItemRoom();
-        room.getGameObjects().clear(); // obtain an empty room
+        room = roomFactory.itemRoom();
     }
 
     private DoorUnmodifiable createMockDoor() {
-        return new RegularDoor(Point2dImpl.ZERO, new ItemRoom());
+        return new RegularDoor(Point2dImpl.ZERO, roomFactory.itemRoom());
     }
 
     @Test
