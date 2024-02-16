@@ -8,6 +8,7 @@ import tbooop.model.player.api.key.PlayerKey;
  */
 public class BaseKeyImpl extends AbstractKey implements PlayerKey {
 
+    private static final int MAX_KEYS = 20;
     private static final int INITIAL_KEYS = 2;
 
     /**
@@ -20,7 +21,7 @@ public class BaseKeyImpl extends AbstractKey implements PlayerKey {
     /** {@inheritDoc} */
     @Override
     public void pickupKey() {
-        if (getKey() < 20) {
+        if (getKey() < MAX_KEYS) {
             super.pickupKey();
         }
     }
