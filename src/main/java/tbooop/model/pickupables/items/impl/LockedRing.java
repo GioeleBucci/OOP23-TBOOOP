@@ -18,7 +18,7 @@ public class LockedRing extends ItemAbs {
     private static final int DAMAGE_TO_INCREASE = 1;
     private final PickupableName pickupTag = PickupableName.LOCKED_RING;
     /**
-     * Create a new istance of Iron Bar item.
+     * Create a new istance of Locked Ring item.
      * 
      * @param position       spawn position (as a Point2d)
      * @param colliderRadius radius of the circle collider (hitbox).
@@ -41,7 +41,7 @@ public class LockedRing extends ItemAbs {
     }
 
     /**
-     * When the Iron Bar item is picked up
+     * When the Locked Ring item is picked up
      * by the player, its
      * damage will increse.
      * 
