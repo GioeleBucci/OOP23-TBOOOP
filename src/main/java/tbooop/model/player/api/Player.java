@@ -1,6 +1,8 @@
 package tbooop.model.player.api;
 
 import tbooop.model.core.api.movable.Entity;
+import tbooop.model.player.api.coin.PlayerCoin;
+import tbooop.model.player.api.key.PlayerKey;
 import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Vector2d;
 

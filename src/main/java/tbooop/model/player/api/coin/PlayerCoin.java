@@ -1,4 +1,4 @@
-package tbooop.model.player.api;
+package tbooop.model.player.api.coin;
 
 
 /**

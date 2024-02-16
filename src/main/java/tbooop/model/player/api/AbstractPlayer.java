@@ -8,6 +8,8 @@ import tbooop.commons.api.Point2d;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
+import tbooop.model.player.api.coin.PlayerCoin;
+import tbooop.model.player.api.key.PlayerKey;
 import tbooop.model.player.impl.PlayerCoinImpl;
 
 /**

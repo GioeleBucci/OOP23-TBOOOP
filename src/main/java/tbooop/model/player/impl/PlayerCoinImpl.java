@@ -1,6 +1,6 @@
 package tbooop.model.player.impl;
 
-import tbooop.model.player.api.PlayerCoin;
+import tbooop.model.player.api.coin.PlayerCoin;
 
 /**
  * Implementation of the PlayerCoin interface.

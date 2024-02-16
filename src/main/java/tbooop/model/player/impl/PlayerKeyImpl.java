@@ -1,6 +1,6 @@
 package tbooop.model.player.impl;
 
-import tbooop.model.player.api.PlayerKey;
+import tbooop.model.player.api.key.PlayerKey;
 
 /**
  * Represents the key of a player.

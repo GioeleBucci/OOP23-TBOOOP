@@ -1,4 +1,4 @@
-package tbooop.model.player.api;
+package tbooop.model.player.api.key;
 
 /**
  * Represents the key of a player.
