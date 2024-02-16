@@ -55,6 +55,12 @@ public interface Player extends Entity, UnmodifiablePlayer, PlayerKey, PlayerCoi
     void increaseProjectileVelocity();
 
     /**
+     * Returns the velocity of the player's projectiles.
+     * @return the velocity of the player's projectiles.
+     */
+    double getProjectileVelocity();
+
+    /**
      * Increases the player's max health by a certain amount.
      * @param amount the amount to increase;
      */

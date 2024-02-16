@@ -100,6 +100,12 @@ public class PlayerImpl extends AbstractPlayer {
 
     /** {@inheritDoc} */
     @Override
+    public double getProjectileVelocity() {
+        return this.projectileVelocity;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public void increaseProjectileVelocity() {
         this.projectileVelocity = this.projectileVelocity + PROJECTILE_VELOCITY_INCREMENT;
     }
