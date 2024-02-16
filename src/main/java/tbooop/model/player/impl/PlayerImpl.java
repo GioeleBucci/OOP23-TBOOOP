@@ -7,7 +7,7 @@ import tbooop.commons.api.Vector2d;
 import tbooop.commons.impl.HealthImpl;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.player.api.AbstractPlayer;
-import tbooop.model.player.api.PlayerProjectile;
+import tbooop.model.player.api.projectile.PlayerProjectile;
 
 /**
  * A Player is a game object that can move on a 2D space,
