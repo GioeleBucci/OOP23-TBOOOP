@@ -75,10 +75,7 @@ public final class Vector2dImpl implements Vector2d {
     /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj) {
-        if (obj instanceof Vector2d) {
-            return this.vector.equals(toV2D((Vector2d) obj));
-        }
-        return false;
+        return obj instanceof Vector2d && this.vector.equals(toV2D((Vector2d) obj));
     }
 
     /** {@inheritDoc} */
