@@ -44,6 +44,17 @@ public class HealthRender {
 
     private void bindHeart(final ImageView heartView, final HBox root) {
         root.getChildren().add(heartView);
+
+        heartView.fitWidthProperty()
+        .bind(root.getScene()
+        .widthProperty()
+        .multiply(heartView.getImage().getWidth() / root.getScene().widthProperty().get()));
+
+        heartView.fitHeightProperty()
+        .bind(root.getScene()
+        .heightProperty()
+        .multiply(heartView.getImage().getHeight() / root.getScene().heightProperty().get()));
+        
         heartView.setScaleX(HEART_SIZE);
         heartView.setScaleY(HEART_SIZE);
     }
