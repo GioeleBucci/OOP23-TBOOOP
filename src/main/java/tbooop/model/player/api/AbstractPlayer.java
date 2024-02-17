@@ -55,19 +55,16 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     }
 
     /** {@inheritDoc} */
-    @Override
     public int getCoins() {
         return this.coins.getCoins();
     }
 
     /** {@inheritDoc} */
-    @Override
     public void addCoins(final int coins) {
         this.coins.addCoins(coins);
     }
 
     /** {@inheritDoc} */
-    @Override
     public void consumeCoins(final int coins) {
         this.coins.consumeCoins(coins);
     }
@@ -79,7 +76,6 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     }
 
     /** {@inheritDoc} */
-    @Override
     public boolean hasKey() {
         return this.keys.hasKey();
     }
@@ -101,13 +97,11 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     }
 
     /** {@inheritDoc} */
-    @Override
     public void pickupKey() {
         this.keys.pickupKey();
     }
 
     /** {@inheritDoc} */
-    @Override
     public void useKey() {
         if (hasKey()) {
             this.keys.useKey();
