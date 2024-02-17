@@ -129,7 +129,7 @@ public enum Keybinds {
      */
     public static Optional<Keybinds> getKeybind(final KeyCode keyCode) {
         for (final Keybinds keybind : Keybinds.values()) {
-            if (keybind.getKeyCode() == keyCode) {
+            if (keybind.getKeyCode().equals(keyCode)) {
                 return Optional.of(keybind);
             }
         }
