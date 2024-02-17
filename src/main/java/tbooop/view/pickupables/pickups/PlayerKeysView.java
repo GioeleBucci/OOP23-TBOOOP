@@ -41,7 +41,6 @@ public class PlayerKeysView extends ViewComponentImpl {
     /** {@inheritDoc} */
     @Override
     public void init() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'init'");
     }
 
