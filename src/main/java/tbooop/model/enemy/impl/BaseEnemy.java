@@ -3,7 +3,6 @@ package tbooop.model.enemy.impl;
 import java.util.Objects;
 
 import tbooop.commons.api.Point2d;
-import tbooop.commons.api.RoomBounds;
 import tbooop.commons.api.Health;
 import tbooop.model.enemy.api.AbstractEnemy;
 import tbooop.model.enemy.api.EnemyType;
@@ -16,8 +15,6 @@ import tbooop.model.player.api.Player;
  */
 public class BaseEnemy extends AbstractEnemy {
 
-    private final MovementAi ai;
-
     /**
      * creates a new istance of a basic enemy.
      * 
@@ -27,6 +24,7 @@ public class BaseEnemy extends AbstractEnemy {
      * @param ai the enemy's movement ai
      * @param enemyType the enemy's type
      * @param colliderRadius the enemy's collider radius
+     * @throws NullPointerException if either ai or enemyType are null
      */
     protected BaseEnemy(
         final Point2d position,
@@ -35,8 +33,7 @@ public class BaseEnemy extends AbstractEnemy {
         final MovementAi ai,
         final EnemyType enemyType,
         final double colliderRadius) {
-        super(position, health, velocity, enemyType, colliderRadius);
-        this.ai = Objects.requireNonNull(ai);
+        super(position, health, velocity, ai, enemyType, colliderRadius);
     }
 
     /** {@inheritDoc}
@@ -58,24 +55,7 @@ public class BaseEnemy extends AbstractEnemy {
         if (super.getHealth() <= 0) {
             super.destroy();
         }
-        this.move(deltaTime);
-    }
-
-    /**
-     * Updates the enemy's position.
-     * 
-     * @param deltaTime the time passed since the previous position update
-     * @throws IllegalArgumentException if deltaTime is negative
-     */
-    protected void move(final long deltaTime) {
-        if (deltaTime < 0) {
-            throw new IllegalArgumentException("deltaTime can't be negative.");
-        }
-        final Point2d newPos = this.ai.newPosition(
-            super.getPosition(), deltaTime, super.getVelocity());
-        if (!RoomBounds.outOfBounds(newPos)) {
-            super.setPosition(newPos);
-        }
+        super.move(deltaTime);
     }
 
 }
