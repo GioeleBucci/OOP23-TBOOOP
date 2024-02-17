@@ -75,10 +75,7 @@ public final class Point2dImpl implements Point2d {
     /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj) {
-        if (obj instanceof Point2d) {
-            return this.vector.equals(toV2D((Point2d) obj));
-        }
-        return false;
+        return obj instanceof Point2d && this.vector.equals(toV2D((Point2d) obj));
     }
 
     /** {@inheritDoc} */
