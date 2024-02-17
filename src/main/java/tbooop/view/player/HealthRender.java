@@ -54,7 +54,7 @@ public class HealthRender {
         .bind(root.getScene()
         .heightProperty()
         .multiply(heartView.getImage().getHeight() / root.getScene().heightProperty().get()));
-        
+
         heartView.setScaleX(HEART_SIZE);
         heartView.setScaleY(HEART_SIZE);
     }

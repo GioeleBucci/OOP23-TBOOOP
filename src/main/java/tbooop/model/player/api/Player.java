@@ -59,13 +59,6 @@ public interface Player extends Entity, UnmodifiablePlayer {
     void increaseMaxHealth(int amount);
 
     /**
-     * Returns the number of coins in the collection.
-     *
-     * @return the number of coins
-     */
-    int getCoins();
-
-    /**
      * Adds the specified number of coins to the collection.
      *
      * @param coins the number of coins to add
