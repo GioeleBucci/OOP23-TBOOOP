@@ -62,4 +62,22 @@ class TestItem {
         assertEquals(playerInitialProjectilesVel + 0.005, player.getProjectileVelocity());
         // CHECKSTYLE: MagicNumber ON
     }
+
+    /**
+     * Test one casual item is enough
+     * cause they all share the same
+     * behaviour when pickuped in the item
+     * shop by the player.
+     */
+    @Test
+    void testItemPrices() {
+        final int playerInitialCoins = player.getCoins();
+        zap.setInShop();
+        zap.onPlayerCollision(player);
+        if (playerInitialCoins >= zap.getPrice()) {
+            assertEquals(playerInitialCoins - zap.getPrice(), player.getCoins());
+        } else {
+            assertEquals(playerInitialCoins, player.getCoins());
+        }
+    }
 }
