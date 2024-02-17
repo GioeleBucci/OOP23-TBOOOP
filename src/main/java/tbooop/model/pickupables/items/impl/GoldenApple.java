@@ -3,7 +3,7 @@ package tbooop.model.pickupables.items.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
-import tbooop.model.pickupables.items.api.ItemAbs;
+import tbooop.model.pickupables.items.api.AbstractItem;
 import tbooop.model.player.api.Player;
 
 /**
@@ -11,7 +11,7 @@ import tbooop.model.player.api.Player;
  * game. If picked up by the player, it
  * will increase its health to max level.
  */
-public class GoldenApple extends ItemAbs {
+public class GoldenApple extends AbstractItem {
 
     private static final int MAX_HEALTH_TO_INCREASE = 2;
 

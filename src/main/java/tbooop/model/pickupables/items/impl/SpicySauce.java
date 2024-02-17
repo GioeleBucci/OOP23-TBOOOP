@@ -3,15 +3,15 @@ package tbooop.model.pickupables.items.impl;
 import tbooop.commons.api.Point2d;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
-import tbooop.model.pickupables.items.api.ItemAbs;
+import tbooop.model.pickupables.items.api.AbstractItem;
 import tbooop.model.player.api.Player;
 /**
  * Class rapresenting Fire Mind item in the
  * game. If picked up by the player, it
  * will increase its projectiles
- * velocity.
+ * velocity.AbstractItem
  */
-public class SpicySauce extends ItemAbs {
+public class SpicySauce extends AbstractItem {
 
     /**
      * Create a new istance of spicy sauce item.

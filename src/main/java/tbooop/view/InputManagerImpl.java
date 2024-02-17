@@ -13,6 +13,7 @@ import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.controller.impl.MoveCommand;
 import tbooop.controller.impl.ShootCommand;
+import tbooop.view.api.InputManager;
 import tbooop.view.api.Keybinds;
 import tbooop.view.api.ViewElements;
 
@@ -20,7 +21,7 @@ import tbooop.view.api.ViewElements;
  * The InputManager class handles user input and triggers the corresponding
  * events.
  */
-public final class InputManager {
+public final class InputManagerImpl implements InputManager {
 
     private final Controller commandListener;
     private final ViewElements view;
@@ -33,18 +34,13 @@ public final class InputManager {
      * @param controller the controller commands will be sent to
      * @param view       the main view
      */
-    public InputManager(final Controller controller, final ViewElements view) {
+    public InputManagerImpl(final Controller controller, final ViewElements view) {
         this.commandListener = controller;
         this.view = view;
     }
 
-    /**
-     * Handles the key press event.
-     * If the key corresponds to a GUI keybind, it calls the handleInput method.
-     * Otherwise, it adds the key to the list of pressed keys.
-     *
-     * @param key The KeyCode of the pressed key.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void keyPressed(final KeyCode key) {
         final Optional<Keybinds> keybind = Keybinds.getKeybind(key);
         if (keybind.isPresent() && Keybinds.isGui(keybind.get())) {
@@ -54,23 +50,16 @@ public final class InputManager {
         }
     }
 
-    /**
-     * Called when a key is released.
-     * Removes the released key from the list of pressed keys.
-     *
-     * @param key the key that was released
-     */
+    /** {@inheritDoc} */
+    @Override
     public void keyReleased(final KeyCode key) {
         if (keysPressed.contains(key)) {
             keysPressed.remove(key);
         }
     }
 
-    /**
-     * Updates the input state by handling the pressed keys.
-     * This method filters the pressed keys, extracts the valid keybinds,
-     * and then handles the input based on the type of keybind.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void update() {
         final Set<Keybinds> validKeys = keysPressed.stream()
                 .map(Keybinds::getKeybind)
@@ -80,13 +69,8 @@ public final class InputManager {
         handleInput(validKeys.stream().filter(Keybinds::isShoot).findFirst());
     }
 
-    /**
-     * Handles the input based on the provided keybind.
-     * If the keybind is not present, the method returns without performing any action.
-     * Otherwise, it executes the corresponding command based on the keybind.
-     *
-     * @param keybind The optional keybind to handle.
-     */
+    /** {@inheritDoc} */
+    @Override
     public void handleInput(final Optional<Keybinds> keybind) {
         if (!keybind.isPresent()) {
             return;

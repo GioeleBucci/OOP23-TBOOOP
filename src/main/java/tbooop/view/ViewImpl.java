@@ -20,6 +20,7 @@ import tbooop.model.player.api.UnmodifiablePlayer;
 import tbooop.view.api.AbstractView;
 import tbooop.view.api.Animator;
 import tbooop.view.api.BaseSpriteProvider;
+import tbooop.view.api.InputManager;
 import tbooop.view.api.ViewComponent;
 import tbooop.view.api.player.HealthView;
 import tbooop.view.enemy.EnemyAnimatorImpl;
@@ -53,7 +54,7 @@ public class ViewImpl extends AbstractView {
         this.controller = new ControllerImpl(this);
         this.animators.add(new EnemyAnimatorImpl(gameObjMap));
         this.roomRenderer = new RoomRenderer(this);
-        this.inputManager = new InputManager(controller, this);
+        this.inputManager = new InputManagerImpl(controller, this);
     }
 
     /** {@inheritDoc} */

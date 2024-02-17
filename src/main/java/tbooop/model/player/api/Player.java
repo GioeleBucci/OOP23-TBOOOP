@@ -1,8 +1,6 @@
 package tbooop.model.player.api;
 
 import tbooop.model.core.api.movable.Entity;
-import tbooop.model.player.api.coin.PlayerCoin;
-import tbooop.model.player.api.key.PlayerKey;
 import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Vector2d;
 
@@ -11,7 +9,7 @@ import tbooop.commons.api.Vector2d;
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
 */
-public interface Player extends Entity, UnmodifiablePlayer, PlayerKey, PlayerCoin {
+public interface Player extends Entity, UnmodifiablePlayer {
 
     /**
      * Set the current health equals to the max health.
@@ -55,14 +53,39 @@ public interface Player extends Entity, UnmodifiablePlayer, PlayerKey, PlayerCoi
     void increaseProjectileVelocity();
 
     /**
-     * Returns the velocity of the player's projectiles.
-     * @return the velocity of the player's projectiles.
-     */
-    double getProjectileVelocity();
-
-    /**
      * Increases the player's max health by a certain amount.
      * @param amount the amount to increase;
      */
     void increaseMaxHealth(int amount);
+
+    /**
+     * Adds the specified number of coins to the collection.
+     *
+     * @param coins the number of coins to add
+     */
+    void addCoins(int coins);
+
+    /**
+     * Consumes the specified number of coins from the collection.
+     *
+     * @param coins the number of coins to consume
+     */
+    void consumeCoins(int coins);
+
+    /**
+     * Indicates whether the collection has a key.
+     * 
+     * @return true if the collection has a key, otherwise false
+    */
+    boolean hasKey();
+
+    /**
+     * Decrement the number of key to the collection by 1.
+     */
+    void useKey();
+
+    /**
+     * Increment the number of key to the collection by 1.
+     */
+    void pickupKey();
 }

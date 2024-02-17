@@ -49,15 +49,35 @@ class TestItem {
     void testItemGeneralEffect() {
         final int playerInitialMaxHealth = player.getMaxHealth();
         final int playerInitialDamage = player.getDamage();
+        final double playerInitialProjectilesVel = player.getProjectileVelocity();
         goldenApple.onPlayerCollision(player);
         assertEquals(playerInitialMaxHealth + 2, player.getMaxHealth());
         glassHeart.onPlayerCollision(player);
         assertEquals(player.getHealth(), player.getMaxHealth());
         lockedRing.onPlayerCollision(player);
         assertEquals(playerInitialDamage + 1, player.getDamage());
-        zap.onPlayerCollision(player);
-        assertEquals(1, 1);
         spicySauce.onPlayerCollision(player);
-        assertEquals(1, 1);
+        // CHECKSTYLE: MagicNumber OFF
+        // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
+        assertEquals(playerInitialProjectilesVel + 0.005, player.getProjectileVelocity());
+        // CHECKSTYLE: MagicNumber ON
+    }
+
+    /**
+     * Test one casual item is enough
+     * cause they all share the same
+     * behaviour when pickuped in the item
+     * shop by the player.
+     */
+    @Test
+    void testItemPrices() {
+        final int playerInitialCoins = player.getCoins();
+        zap.setInShop();
+        zap.onPlayerCollision(player);
+        if (playerInitialCoins >= zap.getPrice()) {
+            assertEquals(playerInitialCoins - zap.getPrice(), player.getCoins());
+        } else {
+            assertEquals(playerInitialCoins, player.getCoins());
+        }
     }
 }
