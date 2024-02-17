@@ -57,19 +57,19 @@ public final class Vector2dImpl implements Vector2d {
     /** {@inheritDoc} */
     @Override
     public Vector2d normalize() {
-        return toVector(this.vector.normalize());
+        return toV2d(this.vector.normalize());
     }
 
     /** {@inheritDoc} */
     @Override
     public Vector2d negate() {
-        return toVector(this.vector.negate());
+        return toV2d(this.vector.negate());
     }
 
     /** {@inheritDoc} */
     @Override
     public Vector2d scalarMultiply(final double a) {
-        return toVector(this.vector.scalarMultiply(a));
+        return toV2d(this.vector.scalarMultiply(a));
     }
 
     /** {@inheritDoc} */
@@ -96,7 +96,7 @@ public final class Vector2dImpl implements Vector2d {
         return new Point2dImpl(getX(), getY());
     }
 
-    private Vector2d toVector(final Vector2D v) {
+    private Vector2d toV2d(final Vector2D v) {
         return new Vector2dImpl(v.getX(), v.getY());
     }
 
