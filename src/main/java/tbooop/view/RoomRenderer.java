@@ -95,17 +95,10 @@ public class RoomRenderer extends ViewComponentImpl {
 
     private void onRoomSwap(final RoomUnmodifiable newRoom) {
         updateTooltipVisibility(newRoom);
-        playRoomMusic(newRoom);
     }
 
     private void updateTooltipVisibility(final RoomUnmodifiable newRoom) {
         COMMANDS_TOOLTIP.setVisible(newRoom.isFirstRoom());
-    }
-
-    private void playRoomMusic(final RoomUnmodifiable newRoom) {
-        if (newRoom.isSpecial()) {
-            return;
-        }
     }
 
     private void rotateDoor(final ImageView imgView, final CardinalDirection dir) {
