@@ -13,7 +13,7 @@ import tbooop.model.enemy.api.ai.AbstractAi;
 public class LinearAi extends AbstractAi {
 
     private static final double UPPER_BOUND = RoomBounds.HEIGHT * 0.1;
-    private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.9;
+    private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.8;
     private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.1;
     private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.9;
     private final double radius;
