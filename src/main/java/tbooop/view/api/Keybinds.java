@@ -61,7 +61,12 @@ public enum Keybinds {
     /**
      * Keybind for toggling fullscreen mode.
      */
-    FULLSCREEN(KeyCode.F11);
+    FULLSCREEN(KeyCode.F11),
+
+    /** 
+     * Keybind for exiting fullscreen mode. 
+    */
+    EXIT_FULLSCREEN(KeyCode.ESCAPE);
 
     private final KeyCode keyCode;
 
@@ -92,7 +97,8 @@ public enum Keybinds {
     public static boolean isGui(final Keybinds keybind) {
         return keybind == Keybinds.FULLSCREEN
                 || keybind == Keybinds.ZOOM_IN
-                || keybind == Keybinds.ZOOM_OUT;
+                || keybind == Keybinds.ZOOM_OUT
+                || keybind == Keybinds.EXIT_FULLSCREEN;
     }
 
     /**
