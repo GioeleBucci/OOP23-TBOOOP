@@ -85,7 +85,11 @@ public final class InputManagerImpl implements InputManager {
             case SHOOT_LEFT -> sendCommand(new ShootCommand(CardinalDirection.LEFT));
             case SHOOT_RIGHT -> sendCommand(new ShootCommand(CardinalDirection.RIGHT));
             case FULLSCREEN -> view.getStage().setFullScreen(!view.getStage().isFullScreen());
-            case EXIT_FULLSCREEN -> resizeWindow(false);
+            case EXIT_FULLSCREEN -> {
+                System.out.println("Exiting fullscreen");
+                view.getStage().setWidth(view.getStage().getWidth() / 2);
+                resizeWindow(false);
+            }
             case ZOOM_IN -> resizeWindow(true);
             case ZOOM_OUT -> resizeWindow(false);
             default -> {
@@ -103,8 +107,7 @@ public final class InputManagerImpl implements InputManager {
         if (newWidth < RoomBounds.WIDTH) {
             return;
         }
-        if (newWidth / view.getStageAspectRatio()
-        > Screen.getPrimary().getVisualBounds().getHeight()) {
+        if (newWidth / view.getStageAspectRatio() > Screen.getPrimary().getVisualBounds().getHeight()) {
             view.getStage().setFullScreen(true);
             return;
         }

@@ -182,6 +182,6 @@ public class ViewImpl extends AbstractView {
     @Override
     public void showDeathScreen() {
         super.getStage().setScene(new DeathScreen().getDeathScene(getStage().getWidth(), getStage().getHeight()));
-    }
+    } 
 
 }
