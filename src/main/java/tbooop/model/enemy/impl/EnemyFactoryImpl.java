@@ -40,9 +40,10 @@ public class EnemyFactoryImpl implements EnemyFactory {
      * Creates an instance of a factory of enemies.
      * 
      * @param player the player that will be attacked by the enemies
+     * @throws NullPointerException if player is null
      */
     public EnemyFactoryImpl(final Damageable player) {
-        this.player = player;
+        this.player = Objects.requireNonNull(player);
     }
 
     /** {@inheritDoc} */
