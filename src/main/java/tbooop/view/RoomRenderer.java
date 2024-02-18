@@ -32,7 +32,6 @@ public class RoomRenderer extends ViewComponentImpl {
     private static final ImageView COMMANDS_TOOLTIP = new ImageView(new Image("tileset/commands.png"));
 
     private final Map<DoorUnmodifiable, ImageView> doorsSpriteMap = new HashMap<>();
-    private final MusicPlayer musicPlayer = new MusicPlayer();
 
     private final ViewElements view;
 
@@ -105,10 +104,8 @@ public class RoomRenderer extends ViewComponentImpl {
 
     private void playRoomMusic(final RoomUnmodifiable newRoom) {
         if (newRoom.isSpecial()) {
-            musicPlayer.playSpecialRoomMusic();
             return;
         }
-        musicPlayer.playDefaultMusic();
     }
 
     private void rotateDoor(final ImageView imgView, final CardinalDirection dir) {
