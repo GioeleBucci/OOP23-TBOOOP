@@ -85,6 +85,7 @@ public final class InputManagerImpl implements InputManager {
             case SHOOT_LEFT -> sendCommand(new ShootCommand(CardinalDirection.LEFT));
             case SHOOT_RIGHT -> sendCommand(new ShootCommand(CardinalDirection.RIGHT));
             case FULLSCREEN -> view.getStage().setFullScreen(!view.getStage().isFullScreen());
+            case EXIT_FULLSCREEN -> resizeWindow(false);
             case ZOOM_IN -> resizeWindow(true);
             case ZOOM_OUT -> resizeWindow(false);
             default -> {

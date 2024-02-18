@@ -61,7 +61,12 @@ public enum Keybinds {
     /**
      * Keybind for toggling fullscreen mode.
      */
-    FULLSCREEN(KeyCode.F11);
+    FULLSCREEN(KeyCode.F11),
+
+    /** 
+     * Keybind for exiting fullscreen mode. 
+    */
+    EXIT_FULLSCREEN(KeyCode.ESCAPE);
 
     private final KeyCode keyCode;
 
