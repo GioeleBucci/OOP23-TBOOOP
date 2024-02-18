@@ -103,7 +103,7 @@ public final class InputManagerImpl implements InputManager {
             return;
         }
         if (newWidth / view.getStageAspectRatio()
-        > Screen.getPrimary().getVisualBounds().getHeight()) {
+        > Screen.getPrimary().getVisualBounds().getHeight() && scaleUp) {
             view.getStage().setFullScreen(true);
             return;
         }
