@@ -119,8 +119,6 @@ public final class ControllerImpl implements Controller {
             final Iterator<Projectile> projectileIterator = world.getProjectiles().iterator();
             while (projectileIterator.hasNext()) {
                 final Projectile projectile = projectileIterator.next();
-                projectile.updateState(dt);
-                world.update();
                 // Projectile-Entity collision
                 if (gameObj instanceof Entity && gameObj.getCollider().isColliding(projectile.getCollider())) {
                     projectile.onEntityCollision((Entity) gameObj);
@@ -131,6 +129,7 @@ public final class ControllerImpl implements Controller {
                 }
             }
         }
+        world.getProjectiles().iterator().forEachRemaining(p -> p.updateState(dt));
     }
 
     private void checkDoorCollision(final GameObject gameObj) {
