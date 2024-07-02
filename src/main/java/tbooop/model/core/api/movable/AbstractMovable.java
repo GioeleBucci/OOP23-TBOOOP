@@ -48,7 +48,7 @@ public abstract class AbstractMovable extends GameObjectAbs implements Movable {
      * 
      * @return immutableDirection
      */
-    protected Vector2d getDirection() {
+    public Vector2d getDirection() {
         return new Vector2dImpl(this.direction);
     }
 
@@ -64,7 +64,7 @@ public abstract class AbstractMovable extends GameObjectAbs implements Movable {
      * Getter for the Entity's velocity.
      * @return the velocity value.
      */
-    protected double getVelocity() {
+    public double getVelocity() {
         return this.velocity;
     }
 
