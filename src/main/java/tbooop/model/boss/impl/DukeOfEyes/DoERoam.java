@@ -1,6 +1,6 @@
 package tbooop.model.boss.impl.DukeOfEyes;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Point2dUtils;
 import tbooop.model.boss.impl.DukeOfEyes.DoESM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
 import tbooop.model.enemy.api.ai.MovementAi;
@@ -14,7 +14,7 @@ public class DoERoam extends AbstractState<DoESM.State> {
     public DoERoam(DukeOfEyes doe) {
         super(doe);
         this.doe = doe;
-        ai = new BouncingAi(CardinalDirection.UP.toP2d(), doe.getCollider().getRadius());
+        ai = new BouncingAi(Point2dUtils.random(), doe.getCollider().getRadius());
     }
 
     @Override

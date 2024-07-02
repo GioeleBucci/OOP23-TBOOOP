@@ -1,7 +1,7 @@
 package tbooop.controller.impl;
 
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.player.api.Player;
 
@@ -11,14 +11,14 @@ import tbooop.model.player.api.Player;
  */
 public class MoveCommand implements PlayerCommand {
 
-    private final CardinalDirection direction;
+    private final Direction direction;
 
     /**
      * Constructs a MoveCommand object with the specified direction.
      * 
      * @param direction the direction in which the player should move
      */
-    public MoveCommand(final CardinalDirection direction) {
+    public MoveCommand(final Direction direction) {
         this.direction = direction;
     }
 

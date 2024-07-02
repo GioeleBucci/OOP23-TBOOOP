@@ -2,7 +2,7 @@ package tbooop.model.dungeon.rooms.api;
 
 import java.util.Set;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 
@@ -25,9 +25,9 @@ public interface Room extends RoomUnmodifiable {
      * 
      * @param direction where the door is located
      * @param door      the door to add
-     * @see CardinalDirection
+     * @see Direction
      */
-    void addDoor(CardinalDirection direction, DoorUnmodifiable door);
+    void addDoor(Direction direction, DoorUnmodifiable door);
 
     /**
      * Get all the game objects in the room.

@@ -2,7 +2,7 @@ package tbooop.model.enemy.impl.ai;
 
 import java.util.Objects;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.RoomBounds;
 import tbooop.model.enemy.api.ai.AbstractAi;
@@ -17,7 +17,7 @@ public class LinearAi extends AbstractAi {
     private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.1;
     private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.9;
     private final double radius;
-    private CardinalDirection cardinalDirection;
+    private Direction cardinalDirection;
 
     /**
      * Creates a new istance of a LinearAi.
@@ -29,7 +29,7 @@ public class LinearAi extends AbstractAi {
      * @throws NullPointerException if initialDirection is null
      * @throws IllegalArgumentException if radius is negative
      */
-    public LinearAi(final CardinalDirection initialDirection, final double radius) {
+    public LinearAi(final Direction initialDirection, final double radius) {
         if (radius < 0) {
             throw new IllegalArgumentException("radius can't be negative");
         }
@@ -52,12 +52,12 @@ public class LinearAi extends AbstractAi {
         return super.nextPos(initialPosition, deltaTime, velocity);
     }
 
-    private CardinalDirection switchDirection() {
+    private Direction switchDirection() {
         return switch (this.cardinalDirection) {
-            case UP -> CardinalDirection.DOWN;
-            case DOWN -> CardinalDirection.UP;
-            case RIGHT -> CardinalDirection.LEFT;
-            case LEFT -> CardinalDirection.RIGHT;
+            case UP -> Direction.DOWN;
+            case DOWN -> Direction.UP;
+            case RIGHT -> Direction.LEFT;
+            case LEFT -> Direction.RIGHT;
         };
     }
 

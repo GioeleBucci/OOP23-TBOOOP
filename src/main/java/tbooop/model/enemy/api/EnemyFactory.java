@@ -1,6 +1,6 @@
 package tbooop.model.enemy.api;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
 import tbooop.model.boss.api.Boss;
 
@@ -29,7 +29,7 @@ public interface EnemyFactory {
      * @return an instance of a shooter
      * @throws NullPointerException if the parameter is null
      */
-    Enemy shooter(CardinalDirection initialDirection);
+    Enemy shooter(Direction initialDirection);
 
     /**
      * Creates and returns an enemy that moves in a straight line and bounces on walls 

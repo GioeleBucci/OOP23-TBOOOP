@@ -1,6 +1,6 @@
 package tbooop.controller.impl;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.controller.api.PlayerCommand;
 import tbooop.model.player.api.Player;
 
@@ -9,14 +9,14 @@ import tbooop.model.player.api.Player;
  */
 public class ShootCommand implements PlayerCommand {
 
-    private final CardinalDirection direction;
+    private final Direction direction;
 
     /**
      * Constructs a ShootCommand object with the specified direction.
      * 
      * @param direction the direction in which the player should shoot
      */
-    public ShootCommand(final CardinalDirection direction) {
+    public ShootCommand(final Direction direction) {
         this.direction = direction;
     }
 

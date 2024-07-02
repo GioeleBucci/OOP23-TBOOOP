@@ -4,6 +4,7 @@ import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
+import java.util.Random;
 
 /**
  * This class represents a 2-dimensional Vector.

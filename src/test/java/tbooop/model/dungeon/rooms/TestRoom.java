@@ -8,7 +8,7 @@ import java.util.Collection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.doors.impl.RegularDoor;
@@ -33,15 +33,15 @@ class TestRoom {
     @Test
     void testAddDoorInSamePosition() {
         assertTrue(room.getGameObjects().isEmpty());
-        room.addDoor(CardinalDirection.UP, createMockDoor());
-        room.addDoor(CardinalDirection.UP, createMockDoor());
+        room.addDoor(Direction.UP, createMockDoor());
+        room.addDoor(Direction.UP, createMockDoor());
         assertEquals(1, room.getDoorMap().size()); // only one door per cardinal direction
         assertEquals(1, room.getGameObjects().size());
     }
 
     @Test
     void testOpenAndCloseDoors() {
-        CardinalDirection.getAll().forEach(d -> {
+        Direction.getAll().forEach(d -> {
             room.addDoor(d, createMockDoor());
         });
         final Collection<DoorUnmodifiable> doors = room.getDoorMap().values();

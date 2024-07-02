@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.commons.api.RoomBounds;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.player.impl.PlayerImpl;
@@ -45,11 +45,11 @@ class TestPlayer {
         assertEquals(new Point2dImpl(RoomBounds.HEIGHT / 2, RoomBounds.WIDTH / 2), player.getPosition());
 
         for (int i = 0; i < MOVES; i++) {
-            player.move(CardinalDirection.UP);
+            player.move(Direction.UP);
         }
 
         for (int i = 0; i < MOVES; i++) {
-            player.move(CardinalDirection.LEFT);
+            player.move(Direction.LEFT);
         }
 
         if (RoomBounds.outOfBounds(player.getPosition())) {

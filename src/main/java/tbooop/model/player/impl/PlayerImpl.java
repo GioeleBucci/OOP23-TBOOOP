@@ -1,6 +1,6 @@
 package tbooop.model.player.impl;
 
-import tbooop.commons.api.CardinalDirection;
+import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.RoomBounds;
 import tbooop.commons.api.Vector2d;
@@ -75,7 +75,7 @@ public class PlayerImpl extends AbstractPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void move(final CardinalDirection direction) {
+    public void move(final Direction direction) {
         final Point2d nextPosition = getPosition()
                 .add(direction.toP2d().mul(getVelocity() * deltaTime));
 
@@ -86,9 +86,9 @@ public class PlayerImpl extends AbstractPlayer {
         }
     }
 
-    private boolean checkMovement(final Point2d nextPosition, final CardinalDirection direction) {
+    private boolean checkMovement(final Point2d nextPosition, final Direction direction) {
         return RoomBounds.outOfBounds(nextPosition)
-                || direction.equals(CardinalDirection.DOWN) 
+                || direction.equals(Direction.DOWN) 
                 && RoomBounds.outOfBounds(nextPosition.add(new Point2dImpl(0, getCollider().getRadius() - TOLERANCE)));
     }
 
