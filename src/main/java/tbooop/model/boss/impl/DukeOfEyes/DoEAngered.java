@@ -2,35 +2,30 @@ package tbooop.model.boss.impl.DukeOfEyes;
 
 import tbooop.model.boss.impl.DukeOfEyes.DoESM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
+import tbooop.model.enemy.api.ai.MovementAi;
+import tbooop.model.enemy.impl.ai.ChasingAi;
+import tbooop.model.player.api.Player;
 
 public class DoEAngered extends AbstractState<DoESM.State> {
 
-    public DoEAngered(DukeOfEyes dukeOfEyes) {
-        // TODO Auto-generated constructor stub
+    private DukeOfEyes doe;
+    private MovementAi ai;
+
+    public DoEAngered(DukeOfEyes doe, Player p) {
+        super(doe);
+        this.doe = doe;
+        ai = new ChasingAi(p);
     }
 
     @Override
     public void updateState(long deltaTime) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateState'");
-    }
-
-    @Override
-    public void enterState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'enterState'");
-    }
-
-    @Override
-    public void exitState() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'exitState'");
+        var nextPos = ai.newPosition(doe.getPosition(), deltaTime, doe.getVelocity());
+        doe.setPosition(nextPos);
     }
 
     @Override
     public State getNextStateKey() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getNextStateKey'");
+        return State.ANGERED;
     }
 
 }

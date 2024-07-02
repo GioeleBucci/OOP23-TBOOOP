@@ -1,6 +1,8 @@
 package tbooop.model.boss.impl.DukeOfEyes;
 
 import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
+import tbooop.model.player.api.Player;
+
 import java.util.Map;
 
 public class DoESM extends AbstractStateMachine<DoESM.State> {
@@ -10,8 +12,9 @@ public class DoESM extends AbstractStateMachine<DoESM.State> {
         ANGERED;
     }
 
-    public DoESM(DukeOfEyes dukeOfEyes) {
-        setStates(Map.of(State.ROAMING, new DoERoam(),
-                State.ANGERED, new DoEAngered(dukeOfEyes)));
+    public DoESM(DukeOfEyes doe, Player p) {
+        super(State.ROAMING);
+        setStates(Map.of(State.ROAMING, new DoERoam(doe),
+                State.ANGERED, new DoEAngered(doe, p)));
     }
 }
