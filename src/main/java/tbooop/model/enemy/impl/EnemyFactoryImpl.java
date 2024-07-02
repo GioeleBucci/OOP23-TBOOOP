@@ -6,13 +6,15 @@ import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.impl.HealthImpl;
 import tbooop.commons.impl.Point2dImpl;
-import tbooop.model.core.api.movable.Damageable;
+import tbooop.model.boss.api.Boss;
+import tbooop.model.boss.impl.DukeOfEyes.DukeOfEyes;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.enemy.api.EnemyType;
 import tbooop.model.enemy.impl.ai.BouncingAi;
 import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.enemy.impl.ai.LinearAi;
+import tbooop.model.player.api.Player;
 
 /**
  * Factory of enemies, its method create and return a particular
@@ -31,10 +33,10 @@ public class EnemyFactoryImpl implements EnemyFactory {
     private static final double SHOOTER_SPEED = 0.06;
     private static final double SHOOTER_RADIUS = 15;
     private static final int CRAZY_HP = 3;
-    private static final double CRAZY_SPEED = 0.03;
+    private static final double CRAZY_SPEED = 0.04;
     private static final double CRAZY_RADIUS = 15;
     private static final int CRAZY_PROJ_AMOUNT = 5;
-    private final Damageable player;
+    private final Player player;
 
     /**
      * Creates an instance of a factory of enemies.
@@ -42,7 +44,7 @@ public class EnemyFactoryImpl implements EnemyFactory {
      * @param player the player that will be attacked by the enemies
      * @throws NullPointerException if player is null
      */
-    public EnemyFactoryImpl(final Damageable player) {
+    public EnemyFactoryImpl(final Player player) {
         this.player = Objects.requireNonNull(player);
     }
 
@@ -79,5 +81,10 @@ public class EnemyFactoryImpl implements EnemyFactory {
             new Point2dImpl(0, 0), new HealthImpl(CRAZY_HP), CRAZY_SPEED,
             new ChasingAi(player), EnemyType.CRAZY, CRAZY_RADIUS), player)), CRAZY_PROJ_AMOUNT);
     }
+
+    @Override
+    public Boss boss() {
+        return new DukeOfEyes(player); // there's only one boss rn
+    }   
 
 }

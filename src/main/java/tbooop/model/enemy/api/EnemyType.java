@@ -11,5 +11,7 @@ public enum EnemyType {
     /** an enemy that bounces on walls. */
     BOUNCER,
     /** an enemy that uses all the attack systems available. */
-    CRAZY;
+    CRAZY,
+    /** a spooky boss! */
+    DUKE_OF_EYES;
 }

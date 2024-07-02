@@ -73,7 +73,7 @@ public abstract class BaseFloor implements Floor {
             generate();
             deadEnds = getDeadEnds();
         } while (generatedRooms != rooms || deadEnds.size() < SPECIAL_ROOMS_AMOUNT);
-        roomsMap.put(pickTrapdoorRoomPos(), roomFactory.trapdoorRoom());
+        roomsMap.put(pickBossRoomPos(), roomFactory.bossRoom(enemyFactory));
         roomsMap.put(pickSpecialRoomPos(), roomFactory.shopRoom());
         roomsMap.put(pickSpecialRoomPos(), roomFactory.itemRoom());
         roomsMap.values().forEach(Room::init);
@@ -110,10 +110,10 @@ public abstract class BaseFloor implements Floor {
     }
 
     /*
-     * The room that takes to the next level is the furthest dead end from
+     * The boss room is the furthest dead end from
      * the starting room.
      */
-    private Point2d pickTrapdoorRoomPos() {
+    private Point2d pickBossRoomPos() {
         final Iterator<Point2d> iterator = roomsMap.keySet().iterator();
         Point2d lastElement = null;
         while (iterator.hasNext()) {

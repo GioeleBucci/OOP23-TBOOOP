@@ -1,6 +1,5 @@
 package tbooop.model.dungeon.rooms.impl;
 
-import tbooop.model.dungeon.doors.impl.TrapdoorImpl;
 import tbooop.model.dungeon.rooms.api.RegularRoom;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.dungeon.rooms.api.RoomFactory;
@@ -50,11 +49,12 @@ public class RoomFactoryImpl implements RoomFactory {
 
     /** {@inheritDoc} */
     @Override
-    public Room trapdoorRoom() {
+    public Room bossRoom(final EnemyFactory enemyFactory) {
         return new RegularRoom() {
             @Override
             public void init() {
-                addGameObject(new TrapdoorImpl());
+                addGameObject(enemyFactory.boss());
+                // addGameObject(new TrapdoorImpl()); // the trapdoor must spawn when the boss is defeated
             }
         };
     }

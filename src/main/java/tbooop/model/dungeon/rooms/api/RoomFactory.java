@@ -38,10 +38,11 @@ public interface RoomFactory {
     Room shopRoom();
 
     /**
-     * Creates a trapdoor room.
+     * Creates a boss room.
      *
-     * @return the created trapdoor room
+     * @param enemyFactory the factory used to spawn the boss 
+     * @return the created boss room
      */
-    Room trapdoorRoom();
+    Room bossRoom(EnemyFactory enemyFactory);
 
 }

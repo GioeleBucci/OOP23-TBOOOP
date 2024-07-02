@@ -5,8 +5,9 @@ import tbooop.commons.api.RoomBounds;
 import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
+import tbooop.model.enemy.api.EnemyType;
 
-public abstract class AbstractBoss<EState extends Enum<EState>> extends AbstractEntity {
+public abstract class AbstractBoss<EState extends Enum<EState>> extends AbstractEntity implements Boss {
 
     private AbstractStateMachine<EState> stateMachine;
 
@@ -21,6 +22,11 @@ public abstract class AbstractBoss<EState extends Enum<EState>> extends Abstract
     @Override
     public void updateState(long deltaTime) {
         stateMachine.update(deltaTime);
+    }
+
+    @Override
+    public EnemyType getEnemyType() {
+        return EnemyType.DUKE_OF_EYES;
     }
 
 }

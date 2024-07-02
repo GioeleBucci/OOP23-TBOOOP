@@ -2,6 +2,7 @@ package tbooop.model.enemy.api;
 
 import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
+import tbooop.model.boss.api.Boss;
 
 /**
  * An enemy factory is an object that handles the creation of enemies.
@@ -48,4 +49,5 @@ public interface EnemyFactory {
      */
     Enemy crazy();
 
+    Boss boss();
 }

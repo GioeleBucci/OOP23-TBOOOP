@@ -11,6 +11,7 @@ import tbooop.model.dungeon.doors.api.DoorLockable;
 import tbooop.model.dungeon.doors.api.DoorPositions;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.floor.api.Floor;
+import tbooop.model.dungeon.floor.impl.BossFloor;
 import tbooop.model.dungeon.floor.impl.LevelFloor;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.enemy.impl.EnemyFactoryImpl;
@@ -97,7 +98,8 @@ public class FloorManagerImpl implements FloorManager {
     /** {@inheritDoc} */
     @Override
     public synchronized void changeFloor() {
-        final Floor floor = new LevelFloor(currentFloorLevel++, enemyFactory);
+        // final Floor floor = new LevelFloor(currentFloorLevel++, enemyFactory);
+        final Floor floor = new BossFloor(enemyFactory);
         this.currentRoom = floor.getStaringRoom();
         view.changeFloor();
         changeRoom(currentRoom);

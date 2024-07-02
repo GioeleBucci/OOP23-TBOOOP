@@ -16,5 +16,6 @@ public class DoESM extends AbstractStateMachine<DoESM.State> {
         super(State.ROAMING);
         setStates(Map.of(State.ROAMING, new DoERoam(doe),
                 State.ANGERED, new DoEAngered(doe, p)));
+        init();
     }
 }

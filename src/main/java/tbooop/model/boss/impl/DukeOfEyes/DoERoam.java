@@ -14,7 +14,7 @@ public class DoERoam extends AbstractState<DoESM.State> {
     public DoERoam(DukeOfEyes doe) {
         super(doe);
         this.doe = doe;
-        ai = new BouncingAi(CardinalDirection.UP.toP2d(), 1000);
+        ai = new BouncingAi(CardinalDirection.UP.toP2d(), doe.getCollider().getRadius());
     }
 
     @Override

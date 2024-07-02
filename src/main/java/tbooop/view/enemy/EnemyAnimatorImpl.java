@@ -11,6 +11,7 @@ import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyType;
 import tbooop.view.FrameUpdaterImpl;
 import tbooop.view.api.FrameUpdater;
+import tbooop.view.api.enemy.BossFrames;
 import tbooop.view.api.enemy.EnemyAnimator;
 import tbooop.view.api.enemy.EnemyFrames;
 
@@ -24,12 +25,14 @@ import tbooop.view.api.enemy.EnemyFrames;
         + "easily update the animation frames of only the enemies that may be present in such map.")
 public class EnemyAnimatorImpl implements EnemyAnimator {
 
-    private static final double MELEE_UPDATE_FREQUENCY = 70.0;
-    private static final double SHOOTER_UPDATE_FREQUENCY = 125.0;
-    private static final double BOUNCER_UPDATE_FREQUENCY = 250.0;
-    private static final double CRAZY_UPDATE_FREQUENCY = 200.0;
+    private static final double MELEE_UPDATE_FREQ = 70.0;
+    private static final double SHOOTER_UPDATE_FREQ = 125.0;
+    private static final double BOUNCER_UPDATE_FREQ = 250.0;
+    private static final double CRAZY_UPDATE_FREQ = 200.0;
+    private static final double DOE_UPDATE_FREQ = 300.0;
     private final Map<GameObjectUnmodifiable, ImageView> gameObjMap;
     private final EnemyFrames enemyFrames = new EnemyFramesImpl();
+    private final BossFrames bossFrames = new BossFramesImpl();
     private final Map<EnemyType, FrameUpdater> frameUpdaters = new HashMap<>();
 
     /**
@@ -40,13 +43,16 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
     public EnemyAnimatorImpl(final Map<GameObjectUnmodifiable, ImageView> gameObjMap) {
         this.gameObjMap = Objects.requireNonNull(gameObjMap);
         frameUpdaters.put(EnemyType.MELEE,
-            new FrameUpdaterImpl(enemyFrames.meleeFrames(), MELEE_UPDATE_FREQUENCY));
+            new FrameUpdaterImpl(enemyFrames.meleeFrames(), MELEE_UPDATE_FREQ));
         frameUpdaters.put(EnemyType.SHOOTER,
-            new FrameUpdaterImpl(enemyFrames.shooterFrames(), SHOOTER_UPDATE_FREQUENCY));
+            new FrameUpdaterImpl(enemyFrames.shooterFrames(), SHOOTER_UPDATE_FREQ));
         frameUpdaters.put(EnemyType.BOUNCER,
-            new FrameUpdaterImpl(enemyFrames.bouncerFrames(), BOUNCER_UPDATE_FREQUENCY));
+            new FrameUpdaterImpl(enemyFrames.bouncerFrames(), BOUNCER_UPDATE_FREQ));
         frameUpdaters.put(EnemyType.CRAZY,
-            new FrameUpdaterImpl(enemyFrames.crazyFrames(), CRAZY_UPDATE_FREQUENCY));
+            new FrameUpdaterImpl(enemyFrames.crazyFrames(), CRAZY_UPDATE_FREQ));
+        // bosses
+        frameUpdaters.put(EnemyType.DUKE_OF_EYES,
+                new FrameUpdaterImpl(bossFrames.dukeOfEyesFrames(), DOE_UPDATE_FREQ));        
     }
 
     /** {@inheritDoc} */
