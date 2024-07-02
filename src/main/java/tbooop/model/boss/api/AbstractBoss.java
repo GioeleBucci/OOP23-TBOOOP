@@ -14,7 +14,7 @@ public abstract class AbstractBoss<EState extends Enum<EState>> extends Abstract
         super(RoomBounds.CENTER, health, velocity, GameTag.BOSS, colliderRadius);
     }
 
-    public void setStateMachine(AbstractStateMachine<EState> stateMachine) {
+    protected void setStateMachine(AbstractStateMachine<EState> stateMachine) {
         this.stateMachine = stateMachine;
     }
 

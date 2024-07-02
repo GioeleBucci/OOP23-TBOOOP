@@ -10,13 +10,21 @@ public abstract class AbstractStateMachine<EState extends Enum<EState>> {
     private EState currentStateKey;
     private AbstractState<EState> currentState;
 
+    public AbstractStateMachine(EState initialState) {
+        changeState(initialState);
+    }
+
     public void update(long deltaTime) {
         EState next = currentState.getNextStateKey();
         if (next != currentStateKey) {
-            currentStateKey = next;
-            currentState = states.get(currentStateKey);
+            changeState(next);
         }
         currentState.updateState(deltaTime);
+    }
+
+    private void changeState(EState newState) {
+        currentStateKey = newState;
+        currentState = states.get(currentStateKey);
     }
 
     protected void setStates(Map<EState, AbstractState<EState>> states) {
