@@ -12,7 +12,7 @@ public interface RoomFactory {
      *
      * @return the created starting room
      */
-    Room emptyRoom();
+    Room startingRoom();
 
     /**
      * Creates an enemy room.

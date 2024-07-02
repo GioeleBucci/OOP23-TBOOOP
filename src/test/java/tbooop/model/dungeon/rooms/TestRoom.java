@@ -23,11 +23,11 @@ class TestRoom {
 
     @BeforeEach
     void initRoom() {
-        room = roomFactory.emptyRoom();
+        room = roomFactory.startingRoom();
     }
 
     private DoorUnmodifiable createMockDoor() {
-        return new RegularDoor(Point2dImpl.ZERO, roomFactory.emptyRoom());
+        return new RegularDoor(Point2dImpl.ZERO, roomFactory.startingRoom());
     }
 
     @Test

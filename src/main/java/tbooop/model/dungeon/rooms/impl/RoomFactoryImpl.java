@@ -61,7 +61,7 @@ public class RoomFactoryImpl implements RoomFactory {
 
     /** {@inheritDoc} */
     @Override
-    public Room emptyRoom() {
+    public Room startingRoom() {
         return new RegularRoom() {
             @Override
             public boolean isFirstRoom() {

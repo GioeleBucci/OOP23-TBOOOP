@@ -150,7 +150,7 @@ public abstract class BaseFloor implements Floor {
         generatedRooms = 0;
         final Queue<Point2d> queue = new LinkedList<>();
         final Point2d startingRoomPos = Point2dImpl.ZERO;
-        roomsMap.put(startingRoomPos, roomFactory.emptyRoom());
+        roomsMap.put(startingRoomPos, roomFactory.startingRoom());
         queue.add(startingRoomPos);
         generatedRooms++;
         while (!queue.isEmpty()) {
