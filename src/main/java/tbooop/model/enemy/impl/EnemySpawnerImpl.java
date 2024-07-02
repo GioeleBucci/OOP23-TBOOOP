@@ -7,9 +7,9 @@ import java.util.Random;
 
 import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.Point2dUtils;
 import tbooop.commons.api.RoomBounds;
 import tbooop.commons.impl.Point2dImpl;
-import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.enemy.api.EnemySpawner;
@@ -24,8 +24,6 @@ public class EnemySpawnerImpl implements EnemySpawner {
     private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.8;
     private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.2;
     private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.8;
-    private static final double MIN_VALUE = -10.0;
-    private static final double MAX_VALUE = 10.0;
     private static final int CARDINAL_DIRECTIONS = 4;
     private static final int ENEMY_TYPES = 4;
     private static final int SPAWN_MELEE = 0;
@@ -66,10 +64,7 @@ public class EnemySpawnerImpl implements EnemySpawner {
     }
 
     private Point2d randomDirection() {
-        return new Vector2dImpl(
-            rand.nextDouble(MIN_VALUE, MAX_VALUE),
-            rand.nextDouble(MIN_VALUE, MAX_VALUE))
-            .normalize().toP2d();
+        return Point2dUtils.random();
     }
 
     private Point2d randomPosition() {
