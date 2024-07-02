@@ -2,6 +2,8 @@ package tbooop.model.pickupables.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.lang.reflect.Field;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -46,7 +48,7 @@ class TestItem {
     }
 
     @Test
-    void testItemGeneralEffect() {
+    void testItemGeneralEffect() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
         final int playerInitialMaxHealth = player.getMaxHealth();
         final int playerInitialDamage = player.getDamage();
         final double playerInitialProjectilesVel = player.getProjectileVelocity();
@@ -57,10 +59,10 @@ class TestItem {
         lockedRing.onPlayerCollision(player);
         assertEquals(playerInitialDamage + 1, player.getDamage());
         spicySauce.onPlayerCollision(player);
-        // CHECKSTYLE: MagicNumber OFF
-        // rule disabled because these numbers are not supposed to have any meaning and are only for testing purpose
-        assertEquals(playerInitialProjectilesVel + 0.005, player.getProjectileVelocity());
-        // CHECKSTYLE: MagicNumber ON
+        Field field = PlayerImpl.class.getDeclaredField("PROJECTILE_VELOCITY_INCREMENT");
+        field.setAccessible(true); 
+        double projectileVelocityIncrement = field.getDouble(player);
+        assertEquals(playerInitialProjectilesVel + projectileVelocityIncrement, player.getProjectileVelocity());
     }
 
     /**
