@@ -51,10 +51,7 @@ public class BaseEnemy extends AbstractEnemy {
     /** {@inheritDoc} */
     @Override
     public void updateState(final long deltaTime) {
-        super.removeProjectiles();
-        if (super.getHealth() <= 0) {
-            super.destroy();
-        }
+        super.updateState(deltaTime);
         super.move(deltaTime);
     }
 

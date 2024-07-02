@@ -21,6 +21,7 @@ public abstract class AbstractBoss<EState extends Enum<EState>> extends Abstract
 
     @Override
     public void updateState(long deltaTime) {
+        super.updateState(deltaTime);
         stateMachine.update(deltaTime);
     }
 

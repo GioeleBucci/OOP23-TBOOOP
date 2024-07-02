@@ -21,20 +21,20 @@ public abstract class AbstractEntity extends AbstractDamageable implements Entit
     /**
      * Create a new istance of an Entity.
      * 
-     * @param position      starting position
-     * @param health the entity's health
-     * @param velocity      it is the Entity velocity
-     * @param tag specifies the type of entity
+     * @param position       starting position
+     * @param health         the entity's health
+     * @param velocity       it is the Entity velocity
+     * @param tag            specifies the type of entity
      * @param colliderRadius the collider radius
      * @throws NullPointerException if any parameter is null
      */
     protected AbstractEntity(final Point2d position, final Health health,
-    final double velocity, final GameTag tag, final double colliderRadius) {
+            final double velocity, final GameTag tag, final double colliderRadius) {
         super(position, health, velocity, tag, colliderRadius);
     }
 
     /**
-     * Returns the latest projectiles that have been shot. 
+     * Returns the latest projectiles that have been shot.
      * 
      * @return the set of projectiles
      */
@@ -54,5 +54,11 @@ public abstract class AbstractEntity extends AbstractDamageable implements Entit
      */
     protected void removeProjectiles() {
         this.shotProjectiles.clear();
+    }
+
+    @Override
+    public void updateState(long deltaTime) {
+        super.updateState(deltaTime);
+        removeProjectiles();
     }
 }
