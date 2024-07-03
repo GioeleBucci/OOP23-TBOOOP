@@ -1,7 +1,9 @@
 ## v1.1
 
 ### New features
-- Added a new boss: Duke of Eyes!
+- Added the first boss: Duke of Eyes!
+- Each boss has a custom attack patterns and deals contact damage
+- When a boss is defeated the trapdoor for the next floor spawns, alongside a free item
 
 ### Tweaks and changes
 - Increased invincibility duration after being hit by an attack to 0.8 seconds
