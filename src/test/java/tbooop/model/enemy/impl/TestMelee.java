@@ -21,7 +21,7 @@ import tbooop.model.player.impl.PlayerImpl;
 
 class TestMelee {
 
-    private static final int UPDATE_TIME = 400;
+    private static final int UPDATE_TIME = 1000;
     private static final Point2d BASE_POS = new Point2dImpl(0, 0);
     private static final int ENEMY_HP = 100;
     private static final int PLAYER_HP = 5;
@@ -51,6 +51,7 @@ class TestMelee {
 
     @Test
     void testAttack() {
+        assertEquals(this.player.getHealth(), PLAYER_HP);
         this.melee.updateState(1000);
         this.player.updateState(UPDATE_TIME);
         this.melee.onPlayerCollision(this.player);
