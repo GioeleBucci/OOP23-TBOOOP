@@ -2,8 +2,7 @@ package tbooop.model.enemy.impl;
 
 import java.util.Objects;
 
-import tbooop.commons.api.Vector2d;
-import tbooop.commons.impl.Vector2dImpl;
+import tbooop.model.boss.attacks.Attack;
 import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;
@@ -17,7 +16,7 @@ import tbooop.model.enemy.api.EnemyDecorator;
 public class Shooter extends EnemyDecorator {
 
     private static final long TIME_BETWEEN_SHOTS = 2500;
-    private static final double PROJECTILE_VELOCITY = 0.13;
+    private static final double PROJECTILE_SPEED = 0.13;
     private final Damageable player;
     private long timeSinceLastShoot;
 
@@ -40,21 +39,7 @@ public class Shooter extends EnemyDecorator {
         this.timeSinceLastShoot += deltaTime;
         if (this.timeSinceLastShoot >= TIME_BETWEEN_SHOTS) {
             this.timeSinceLastShoot = 0;
-            super.addProjectile(new EnemyProjectile(
-                this.playerDirection(), super.getPosition(), PROJECTILE_VELOCITY));
+            Attack.snipe(this, player.getPosition(), PROJECTILE_SPEED);
         }
     }
-
-    /**
-     * Calculates the direction pointing from the current position
-     * towards the player's current position.
-     * @return the direction towards the player
-     */
-    private Vector2d playerDirection() {
-        return this.getPosition().equals(player.getPosition()) ? new Vector2dImpl(0, 0)
-            : new Vector2dImpl(this.player.getPosition()
-                .subtract(super.getPosition()).toV2d())
-                .normalize();
-    }
-
 }
