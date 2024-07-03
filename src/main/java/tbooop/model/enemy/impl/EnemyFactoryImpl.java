@@ -8,6 +8,7 @@ import tbooop.commons.impl.HealthImpl;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.boss.api.Boss;
 import tbooop.model.boss.impl.DukeOfEyes.DukeOfEyes;
+import tbooop.model.boss.impl.Meaty.Meaty;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.enemy.api.EnemyType;
@@ -84,7 +85,8 @@ public class EnemyFactoryImpl implements EnemyFactory {
 
     @Override
     public Boss boss() {
-        return new DukeOfEyes(player); // there's only one boss rn
+        return new Meaty(player); // TODO add the other one
+        // return new DukeOfEyes(player); // there's only one boss rn
     }   
 
 }

@@ -12,6 +12,7 @@ public enum EnemyType {
     BOUNCER,
     /** an enemy that uses all the attack systems available. */
     CRAZY,
-    /** a spooky boss! */
-    DUKE_OF_EYES;
+    // spooky bosses ahead !
+    DUKE_OF_EYES,
+    MEATY;
 }

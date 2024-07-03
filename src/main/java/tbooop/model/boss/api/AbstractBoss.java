@@ -5,7 +5,6 @@ import tbooop.commons.api.RoomBounds;
 import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
-import tbooop.model.enemy.api.EnemyType;
 import tbooop.model.player.api.Player;
 
 public abstract class AbstractBoss<EState extends Enum<EState>> extends AbstractEntity implements Boss {
@@ -32,10 +31,4 @@ public abstract class AbstractBoss<EState extends Enum<EState>> extends Abstract
         super.onPlayerCollision(player);
         player.takeDamage(1);
     }
-
-    @Override
-    public EnemyType getEnemyType() {
-        return EnemyType.DUKE_OF_EYES;
-    }
-
 }
