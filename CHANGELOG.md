@@ -4,7 +4,7 @@
 - Added a new boss: Duke of Eyes!
 
 ### Tweaks and changes
-- Increased invincibility duration after being hit by an attack to .5 seconds
+- Increased invincibility duration after being hit by an attack to 0.8 seconds
 
 ### Bugfixes
 - Fixed a bug with inconsistent projectile speed

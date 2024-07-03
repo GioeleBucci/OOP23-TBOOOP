@@ -73,6 +73,11 @@ public abstract class AbstractRoom implements Room {
         return false;
     }
 
+    @Override
+    public boolean isBossRoom() {
+        return false;
+    }
+
     /** {@inheritDoc} */
     @Override
     public void closeDoors() {

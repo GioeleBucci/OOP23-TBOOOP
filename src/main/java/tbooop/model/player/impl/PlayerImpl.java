@@ -20,7 +20,7 @@ public class PlayerImpl extends AbstractPlayer {
     private static final double PROJECTILE_VELOCITY_INCREMENT = 0.02;
     private static final double PROJECTILE_BASE_VELOCITY = 0.2;
     private static final long TIME_BETWEEN_SHOTS = 350;
-    private static final long TIME_BETWEEN_DAMAGE = 500;
+    private static final long TIME_BETWEEN_DAMAGE = 800;
     private static final int PLAYER_INITIAL_HEALTH = 5;
     private static final double PLAYER_INITIAL_SPEED = 0.11;
     private double projectileVelocity;

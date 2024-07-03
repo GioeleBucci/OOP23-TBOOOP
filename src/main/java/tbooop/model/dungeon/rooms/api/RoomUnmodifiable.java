@@ -32,4 +32,12 @@ public interface RoomUnmodifiable {
      */
     boolean isFirstRoom();
 
+    /**
+     * Whether this room is the boss room or not.
+     * Special criteria may apply to the boss room.
+     * 
+     * @return whether the room is the boss room of the floor
+     */
+    boolean isBossRoom();
+
 }

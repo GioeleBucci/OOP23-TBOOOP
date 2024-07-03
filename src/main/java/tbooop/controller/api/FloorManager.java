@@ -19,4 +19,9 @@ public interface FloorManager extends ControllerComponent {
      * Sets the floor to a new, more difficult, one.
      */
     void changeFloor();
+
+    /**
+     * Spawns the trapdoor for the next floor.
+     */
+    public void spawnTrapdoor();
 }

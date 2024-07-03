@@ -52,9 +52,13 @@ public class RoomFactoryImpl implements RoomFactory {
     public Room bossRoom(final EnemyFactory enemyFactory) {
         return new RegularRoom() {
             @Override
+            public boolean isBossRoom() {
+                return true;
+            }
+
+            @Override
             public void init() {
                 addGameObject(enemyFactory.boss());
-                // addGameObject(new TrapdoorImpl()); // the trapdoor must spawn when the boss is defeated
             }
         };
     }

@@ -2,19 +2,23 @@ package tbooop.controller.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.controller.api.FloorManager;
 import tbooop.controller.api.World;
+import tbooop.model.core.api.GameObject;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.dungeon.doors.api.Door;
 import tbooop.model.dungeon.doors.api.DoorLockable;
 import tbooop.model.dungeon.doors.api.DoorPositions;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
+import tbooop.model.dungeon.doors.impl.TrapdoorImpl;
 import tbooop.model.dungeon.floor.api.Floor;
 import tbooop.model.dungeon.floor.impl.BossFloor;
 import tbooop.model.dungeon.floor.impl.LevelFloor;
 import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.enemy.impl.EnemyFactoryImpl;
+import tbooop.model.pickupables.items.impl.ItemRoomLogic;
 import tbooop.model.pickupables.pickups.api.Pickup;
 import tbooop.model.pickupables.pickups.impl.PickupLogic;
 import tbooop.view.api.View;
@@ -29,6 +33,7 @@ public class FloorManagerImpl implements FloorManager {
     private final View view;
     private final EnemyFactoryImpl enemyFactory;
     private final PickupLogic pickupSpawner = new PickupLogic();
+    private final ItemRoomLogic itemSpawner = new ItemRoomLogic();
     private int currentFloorLevel = 1;
     private Room currentRoom;
     /**
@@ -72,11 +77,35 @@ public class FloorManagerImpl implements FloorManager {
         if (currentRoom.isFirstRoom() || currentRoom.isSpecial()) {
             return;
         }
+        if (currentRoom.isBossRoom()) {
+            onBossRoomClear();
+            return;
+        }
         final Pickup pickup = pickupSpawner.getRandomPickup();
-        world.addGameObject(pickup);
-        currentRoom.getGameObjects().add(pickup); // save the pickup in the room so that it doesn't despawn
-        view.refreshRoom(currentRoom);
+        addGameObjToRoom(pickup);
         isRoomLocked = false;
+    }
+
+    private void onBossRoomClear() {
+        spawnTrapdoor();
+        GameObject item = itemSpawner.getRandomItem();
+        item.setPosition(new Point2dImpl(RoomBounds.CENTER.getX(),
+                RoomBounds.CENTER.getY() + RoomBounds.HEIGHT / 5));
+        addGameObjToRoom(item);
+        isRoomLocked = false;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public void spawnTrapdoor() {
+        addGameObjToRoom(new TrapdoorImpl());
+    }
+
+    private void addGameObjToRoom(GameObject gobj) {
+        world.addGameObject(gobj);
+        // save the gameObject in the room so that it doesn't despawn
+        currentRoom.getGameObjects().add(gobj);
+        view.refreshRoom(currentRoom);
     }
 
     /** {@inheritDoc} */
@@ -99,7 +128,7 @@ public class FloorManagerImpl implements FloorManager {
     @Override
     public synchronized void changeFloor() {
         final Floor floor = new LevelFloor(currentFloorLevel++, enemyFactory);
-        // final Floor floor = new BossFloor(enemyFactory); TODO remove
+        // final Floor floor = new BossFloor(enemyFactory); // TODO remove
         this.currentRoom = floor.getStaringRoom();
         view.changeFloor();
         changeRoom(currentRoom);
