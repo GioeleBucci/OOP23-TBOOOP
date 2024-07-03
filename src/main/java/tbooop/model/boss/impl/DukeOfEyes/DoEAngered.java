@@ -12,8 +12,8 @@ import java.util.Random;
 
 public class DoEAngered extends AbstractState<DoESM.State> {
 
-    private static final double VELOCITY_MULTIPLIER = 1.6;
-    private static final long TIME_BETWEEN_ATTACKS = 3000;
+    private static final double VELOCITY_MULTIPLIER = 2;
+    private static final long TIME_BETWEEN_ATTACKS = 2800;
     private static final long ATK_DURATION = 1000;
     private static final long ATK_FREQUENCY = 20;
     private static final double PROJECTILE_SPEED = 0.16;

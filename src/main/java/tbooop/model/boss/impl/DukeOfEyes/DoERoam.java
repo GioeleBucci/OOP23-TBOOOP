@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class DoERoam extends AbstractState<DoESM.State> {
 
-    private static final long TIME_BETWEEN_ATTACKS = 3000;
+    private static final long TIME_BETWEEN_ATTACKS = 2500;
     private static final double PROJECTILE_SPEED = 0.08;
     private DukeOfEyes doe;
     private Player p;
@@ -43,7 +43,7 @@ public class DoERoam extends AbstractState<DoESM.State> {
                 Attack.radiusWithGap(doe, PROJECTILE_SPEED, 20, 4);
                 break;
             default:
-                Attack.snipe(doe, p.getPosition(), PROJECTILE_SPEED * 2);
+                Attack.snipe(doe, p.getPosition(), PROJECTILE_SPEED * 2.5);
         }
     }
 
