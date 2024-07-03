@@ -50,6 +50,14 @@ public interface Vector2d {
      */
     Vector2d scalarMultiply(double a);
 
+    /** 
+     * Rotate this vector by a certain angle
+     * 
+     * @param degrees rotation amount
+     * @return a new rotated vector
+     */
+    Vector2d rotate(double degrees);
+
     /**
      * Get a Point2d from this istance.
      * 

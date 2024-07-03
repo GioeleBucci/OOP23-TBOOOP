@@ -23,7 +23,7 @@ public class EnemyProjectile extends AbstractProjectile {
      * @param initialPoint the starting position
      * @param velocity the projectile's velocity
      */
-    protected EnemyProjectile(final Vector2d direction,
+    public EnemyProjectile(final Vector2d direction,
     final Point2d initialPoint, final double velocity) {
         super(direction, initialPoint, velocity);
     }

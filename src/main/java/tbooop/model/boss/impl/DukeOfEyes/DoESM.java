@@ -14,7 +14,7 @@ public class DoESM extends AbstractStateMachine<DoESM.State> {
 
     public DoESM(DukeOfEyes doe, Player p) {
         super(State.ROAMING);
-        setStates(Map.of(State.ROAMING, new DoERoam(doe),
+        setStates(Map.of(State.ROAMING, new DoERoam(doe, p),
                 State.ANGERED, new DoEAngered(doe, p)));
         init();
     }

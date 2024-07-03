@@ -4,7 +4,6 @@ import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
 
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
-import java.util.Random;
 
 /**
  * This class represents a 2-dimensional Vector.
@@ -75,6 +74,17 @@ public final class Vector2dImpl implements Vector2d {
 
     /** {@inheritDoc} */
     @Override
+    public Vector2d rotate(double degrees) {
+        double radians = Math.toRadians(degrees);
+        double cosTheta = Math.cos(radians);
+        double sinTheta = Math.sin(radians);
+        double x = this.getX() * cosTheta - this.getY() * sinTheta;
+        double y = this.getX() * sinTheta + this.getY() * cosTheta;
+        return new Vector2dImpl(x, y);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public boolean equals(final Object obj) {
         return obj instanceof Vector2d && this.vector.equals(toV2D((Vector2d) obj));
     }
@@ -104,5 +114,4 @@ public final class Vector2dImpl implements Vector2d {
     private Vector2D toV2D(final Vector2d p) {
         return new Vector2D(p.getX(), p.getY());
     }
-
 }
