@@ -6,6 +6,7 @@ import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
 import tbooop.model.enemy.api.EnemyType;
+import tbooop.model.player.api.Player;
 
 public abstract class AbstractBoss<EState extends Enum<EState>> extends AbstractEntity implements Boss {
 
@@ -23,6 +24,13 @@ public abstract class AbstractBoss<EState extends Enum<EState>> extends Abstract
     public void updateState(long deltaTime) {
         super.updateState(deltaTime);
         stateMachine.update(deltaTime);
+    }
+
+    /** all bosses should deal contact damage. */
+    @Override
+    public void onPlayerCollision(final Player player) {
+        super.onPlayerCollision(player);
+        player.takeDamage(1);
     }
 
     @Override
