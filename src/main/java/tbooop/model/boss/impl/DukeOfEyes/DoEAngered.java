@@ -2,10 +2,11 @@ package tbooop.model.boss.impl.DukeOfEyes;
 
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.Vector2dUtils;
-import tbooop.model.boss.attacks.Attack;
+import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.DukeOfEyes.DoESM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
 import tbooop.model.enemy.api.ai.MovementAi;
+import tbooop.model.enemy.attacks.Attack;
 import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.player.api.Player;
 import java.util.Random;
@@ -17,7 +18,7 @@ public class DoEAngered extends AbstractState<DoESM.State> {
     private static final long ATK_DURATION = 1000;
     private static final long ATK_FREQUENCY = 20;
     private static final double PROJECTILE_SPEED = 0.16;
-    private DukeOfEyes doe;
+    private AbstractBoss<State> boss;
     private Player p;
     private MovementAi ai;
     private double velocity;
@@ -26,12 +27,12 @@ public class DoEAngered extends AbstractState<DoESM.State> {
     private AttackType attackType;
     Random rand = new Random();
 
-    public DoEAngered(DukeOfEyes doe, Player p) {
-        super(doe);
-        this.doe = doe;
+    public DoEAngered(AbstractBoss<State> boss, Player p) {
+        super(boss);
+        this.boss = boss;
         this.p = p;
         ai = new ChasingAi(p);
-        velocity = doe.getVelocity() * VELOCITY_MULTIPLIER;
+        velocity = boss.getVelocity() * VELOCITY_MULTIPLIER;
     }
 
     @Override
@@ -45,8 +46,8 @@ public class DoEAngered extends AbstractState<DoESM.State> {
     @Override
     public void updateState(long deltaTime) {
         if (!(isAttacking && attackType == AttackType.SPIRAL)) {
-            var nextPos = ai.newPosition(doe.getPosition(), deltaTime, velocity);
-            doe.setPosition(nextPos);
+            var nextPos = ai.newPosition(boss.getPosition(), deltaTime, velocity);
+            boss.setPosition(nextPos);
         }
         this.timeSinceLastAttack += deltaTime;
         if (isAttacking) {
@@ -76,10 +77,10 @@ public class DoEAngered extends AbstractState<DoESM.State> {
     private void performAttack() {
         switch (attackType) {
             case SPIRAL:
-                dir = Attack.spiral(doe, PROJECTILE_SPEED / 2, dir, 35);
+                dir = Attack.spiral(boss, PROJECTILE_SPEED / 2, dir, 35);
                 break;
             case VOMIT:
-                Attack.vomit(doe, p.getPosition(), 10, PROJECTILE_SPEED, 30);
+                Attack.vomit(boss, p.getPosition(), 10, PROJECTILE_SPEED, 30);
                 break;
         }
     }
