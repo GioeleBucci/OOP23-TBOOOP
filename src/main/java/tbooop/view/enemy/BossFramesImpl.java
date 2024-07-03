@@ -16,5 +16,14 @@ public class BossFramesImpl implements BossFrames {
             new Image("boss/dukeOfEyes/doe4.png")
         );
     }
+
+    @Override
+    public List<Image> meatyFrames() {
+        return List.of(
+                new Image("boss/meaty/meaty1.png"),
+                new Image("boss/meaty/meaty2.png"),
+                new Image("boss/meaty/meaty3.png"),
+                new Image("boss/meaty/meaty4.png"));
+    }
     
 }

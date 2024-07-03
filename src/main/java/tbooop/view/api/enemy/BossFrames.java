@@ -8,9 +8,17 @@ import java.util.List;
  * each boss.
  */
 public interface BossFrames {
-        /**
+    /**
      * getter for DoE's animation frames.
-     * @return a list of melee's frames
+     * 
+     * @return a list of DoE's frames
      */
     List<Image> dukeOfEyesFrames();
+
+    /**
+     * getter for Meaty's animation frames.
+     * 
+     * @return a list of Meaty's frames
+     */
+    public List<Image> meatyFrames();
 }
