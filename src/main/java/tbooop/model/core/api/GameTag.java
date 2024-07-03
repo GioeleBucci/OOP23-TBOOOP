@@ -8,8 +8,6 @@ public enum GameTag {
     PLAYER,
     /** Enemy tag. */
     ENEMY,
-    /** Boss tag. */
-    BOSS,
     /** Pickup tag. */
     PICKUP,
     /** Projectile tag. */
