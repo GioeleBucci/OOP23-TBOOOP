@@ -50,7 +50,7 @@ public interface Vector2d {
      */
     Vector2d scalarMultiply(double a);
 
-    /** 
+    /**
      * Rotate this vector by a certain angle
      * 
      * @param degrees rotation amount
@@ -64,5 +64,13 @@ public interface Vector2d {
      * @return a new vector
      */
     Point2d toP2d();
+
+    /**
+     * Get the angle of this vector.
+     * 
+     * @return the angle of this vector in degrees, from 0 to 360 (origin is the
+     *         positive x axis, clockwise rotation)
+     */
+    double getAngle();
 
 }

@@ -85,6 +85,14 @@ public final class Vector2dImpl implements Vector2d {
 
     /** {@inheritDoc} */
     @Override
+    public double getAngle() {
+        double rad = Math.atan2(this.getY(), this.getX());
+        double deg = Math.toDegrees(rad);
+        return deg < 0 ? deg + 360 : deg;
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public boolean equals(final Object obj) {
         return obj instanceof Vector2d && this.vector.equals(toV2D((Vector2d) obj));
     }
