@@ -1,8 +1,8 @@
 package tbooop.model.enemy.impl;
 
-import tbooop.model.boss.attacks.Attack;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;
+import tbooop.model.enemy.attacks.Attack;
 
 import java.util.Objects;
 

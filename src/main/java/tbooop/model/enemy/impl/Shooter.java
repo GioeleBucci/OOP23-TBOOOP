@@ -2,10 +2,10 @@ package tbooop.model.enemy.impl;
 
 import java.util.Objects;
 
-import tbooop.model.boss.attacks.Attack;
 import tbooop.model.core.api.movable.Damageable;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyDecorator;
+import tbooop.model.enemy.attacks.Attack;
 
 /**
  * a Shooter decorator allows the enemy to shoot a projectile

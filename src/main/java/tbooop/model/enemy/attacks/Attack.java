@@ -1,15 +1,17 @@
-package tbooop.model.boss.attacks;
+package tbooop.model.enemy.attacks;
 
 import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.Vector2dUtils;
+import tbooop.commons.impl.Point2dImpl;
 import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.enemy.impl.EnemyProjectile;
 import java.util.Random;
 
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.ArrayList;
 
 /** scatter angle is max rotation degrees */
@@ -49,31 +51,58 @@ public class Attack {
     }
 
     public static void radius(Entity source, double projSpeed, int projectileAmount) {
-        radiusWithGap(source, projSpeed, projectileAmount, 0);
+        radiusWithGap(source, Point2dImpl.ZERO, 0, projSpeed, projectileAmount, 0);
     }
 
-    public static void radiusWithGap(Entity source, double projSpeed, int projectileAmount, int gapSize) {
+    public static void radiusWithGap(Entity source, Point2d target, double maxScatterAngle,
+            double projSpeed, int projectileAmount, int gapSize) {
         double angle = 360 / projectileAmount;
         List<Double> angles = new ArrayList<>();
         for (int i = 0; i < projectileAmount; i++) {
             angles.add(i * angle);
         }
-        removeUpToNElements(angles, gapSize).forEach(a -> source.addProjectile(
+        Vector2d targetVec = Vector2dUtils.directionTowards(source.getPosition(), target);
+        Random r = new Random();
+        double scatterAngle = (targetVec.getAngle()
+                + r.nextDouble(-maxScatterAngle, maxScatterAngle)) % 360;
+        removeUpToNElements(angles, gapSize, scatterAngle).forEach(a -> source.addProjectile(
                 new EnemyProjectile(Direction.RIGHT.toP2d().toV2d().rotate(a).normalize(),
                         source.getPosition(), projSpeed)));
     }
 
-    private static <T> List<T> removeUpToNElements(List<T> list, int n) {
+    static List<Double> removeUpToNElements(List<Double> list, int n, double angle) {
         if (list == null || list.isEmpty() || n <= 0) {
             return list;
         }
         int size = list.size();
-        Random random = new Random();
-        int startIndex = random.nextInt(size);
-        List<T> result = new ArrayList<>();
-        for (int i = 0; i < size - n; i++) {
-            result.add(list.get((startIndex + i) % size));
+        if (n >= list.size()) {
+            return List.of();
         }
-        return result;
+        int closestIndex = findClosestAngleIndex(list, angle);
+        int startIndex = (closestIndex - (n / 2) + size) % size;
+        List<Double> removedElements = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            double elem = list.get((startIndex + i) % size);
+            removedElements.add(elem);
+        }
+        return list.stream().filter(e -> !removedElements.contains(e)).toList();
+    }
+
+    static int findClosestAngleIndex(List<Double> list, double angle) {
+        return IntStream.range(0, list.size())
+                .boxed()
+                .min((i, j) -> Double.compare(Math.abs(list.get(i) - angle), Math.abs(list.get(j) - angle)))
+                .get();
+    }
+
+    public static void circle(Entity source, Point2d target, double radius, int projAmount, double projSpeed){
+        Vector2d dir = Vector2dUtils.directionTowards(source.getPosition(), target);
+        Point2d center = source.getPosition().add(dir.toP2d().mul(radius));
+        double angle = 360 / projAmount;
+        for (int i = 0; i < projAmount; i++) {
+            Point2d spawnPoint = center.add(new Vector2dImpl(0,radius).rotate(angle * i).toP2d());
+            source.addProjectile(new EnemyProjectile(dir, spawnPoint, projSpeed));
+        }
+
     }
 }
