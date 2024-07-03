@@ -26,14 +26,14 @@ public class Attack {
         double scatterAngle = r.nextDouble(-maxScatterAngle, maxScatterAngle);
         Vector2d vec = new Vector2dImpl(target
                 .subtract(source.getPosition()).toV2d()).normalize();
-        double speed = r.nextDouble(maxprojSpeed - (projSpeedVariation * maxprojSpeed), maxprojSpeed);
+        double speed = r.nextDouble(maxprojSpeed - (projSpeedVariation / 100 * maxprojSpeed), maxprojSpeed);
         EnemyProjectile proj = new EnemyProjectile(vec.rotate(scatterAngle), source.getPosition(), speed);
         source.addProjectile(proj);
     }
 
     /** Returns the next direction */
     public static Vector2d spiral(Entity source, double projSpeed, Vector2d direction, double angle) {
-        Vector2d newDir = direction.rotate(angle);
+        Vector2d newDir = direction.rotate(angle).normalize();
         EnemyProjectile proj = new EnemyProjectile(newDir, source.getPosition(), projSpeed);
         source.addProjectile(proj);
         return newDir;
@@ -59,7 +59,7 @@ public class Attack {
             angles.add(i * angle);
         }
         removeUpToNElements(angles, gapSize).forEach(a -> source.addProjectile(
-                new EnemyProjectile(Direction.RIGHT.toP2d().toV2d().rotate(a),
+                new EnemyProjectile(Direction.RIGHT.toP2d().toV2d().rotate(a).normalize(),
                         source.getPosition(), projSpeed)));
     }
 
