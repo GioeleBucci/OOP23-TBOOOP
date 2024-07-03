@@ -1,11 +1,6 @@
 # TBOOOP! A demake of The Binding of Isaac
 
 <p align="center">
-  <img src="https://github.com/GioeleBucci/TBOOOP/actions/workflows/build-java.yml/badge.svg" alt="Build Status">
-</p>
-
-
-<p align="center">
   <img src="https://imgur.com/u0BDjx7.png">
 </p>
 
