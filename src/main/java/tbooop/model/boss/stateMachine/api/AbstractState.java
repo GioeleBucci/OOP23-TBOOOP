@@ -10,6 +10,8 @@ public abstract class AbstractState<EState extends Enum<EState>> {
         this.boss = boss;
     }
 
+    public void onStateEnter() { }
+
     public abstract void updateState(long deltaTime);
 
     public abstract EState getNextStateKey();

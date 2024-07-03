@@ -25,6 +25,7 @@ public abstract class AbstractStateMachine<EState extends Enum<EState>> {
     private void changeState(EState newStateKey) {
         currentStateKey = newStateKey;
         currentState = states.get(currentStateKey);
+        currentState.onStateEnter();
     }
 
     protected void setStates(Map<EState, AbstractState<EState>> states) {
