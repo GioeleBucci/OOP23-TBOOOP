@@ -5,6 +5,8 @@ import tbooop.commons.api.Vector2d;
 import tbooop.model.core.api.movable.Entity;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.player.api.projectile.PlayerProjectile;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 import tbooop.commons.api.AbstractProjectile;
 
 /**
@@ -28,6 +30,7 @@ public class PlayerProjectileImpl extends AbstractProjectile implements PlayerPr
         final Point2d initialPoint, 
         final double velocity) {
         super(direction, initialPoint, velocity);
+        SoundManager.getInstance().playSound(Sound.SHOOT);
     }
 
     /** {@inheritDoc} */

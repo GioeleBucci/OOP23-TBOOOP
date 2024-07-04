@@ -5,6 +5,8 @@ import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.pickups.api.AbstractPickup;
 import tbooop.model.player.api.Player;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 /**
  * Class rapresenting "Coin" item in
@@ -37,6 +39,7 @@ public class Coin extends AbstractPickup {
     @Override
     public void onPlayerCollision(final Player player) {
         onPickup(player);
+        SoundManager.getInstance().playSound(Sound.COIN_PICKUP);
     }
 
     /**

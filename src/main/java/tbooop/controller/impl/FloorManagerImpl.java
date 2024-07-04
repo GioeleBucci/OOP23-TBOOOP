@@ -22,6 +22,8 @@ import tbooop.model.pickupables.items.impl.ItemRoomLogic;
 import tbooop.model.pickupables.pickups.api.Pickup;
 import tbooop.model.pickupables.pickups.impl.PickupLogic;
 import tbooop.view.api.View;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 /**
  * The FloorManagerImpl class is responsible for managing the floors and rooms

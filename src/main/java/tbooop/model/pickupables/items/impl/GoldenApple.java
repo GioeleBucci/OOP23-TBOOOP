@@ -44,6 +44,7 @@ public class GoldenApple extends AbstractItem {
     */
     @Override
     protected void onPickup(final Player player) {
+        super.onPickup(player);
         player.increaseMaxHealth(MAX_HEALTH_TO_INCREASE);
         destroy();
     }

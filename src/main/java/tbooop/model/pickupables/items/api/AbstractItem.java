@@ -5,6 +5,8 @@ import tbooop.model.core.api.GameTag;
 import tbooop.model.pickupables.api.AbstractPickupable;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.player.api.Player;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 /**
  * Abstract class for pickupable items
@@ -33,11 +35,11 @@ public abstract class AbstractItem extends AbstractPickupable implements Item {
      * @param pickupTag      name of this item
      * @throws NullPointerException if any parameter passed is null
      */
-    protected AbstractItem(final Point2d position, 
-                    final double colliderRadius, 
-                    final GameTag tag,
-                    final int itemCost,
-                    final PickupableName pickupTag) {
+    protected AbstractItem(final Point2d position,
+            final double colliderRadius,
+            final GameTag tag,
+            final int itemCost,
+            final PickupableName pickupTag) {
         super(position, colliderRadius, tag);
         this.itemCost = itemCost;
         this.pickupTag = pickupTag;
@@ -92,5 +94,7 @@ public abstract class AbstractItem extends AbstractPickupable implements Item {
      * 
      * @param player
      */
-    protected abstract void onPickup(Player player);
+    protected void onPickup(Player player) {
+        SoundManager.getInstance().playSound(Sound.ITEM_PICKUP);
+    }
 }

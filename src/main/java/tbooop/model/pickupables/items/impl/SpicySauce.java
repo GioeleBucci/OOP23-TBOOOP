@@ -42,6 +42,7 @@ public class SpicySauce extends AbstractItem {
     */
     @Override
     protected void onPickup(final Player player) {
+        super.onPickup(player);
         player.increaseProjectileVelocity();
         destroy();
     }

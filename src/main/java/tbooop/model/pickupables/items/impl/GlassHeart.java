@@ -41,6 +41,7 @@ public class GlassHeart extends AbstractItem {
     */
     @Override
     protected void onPickup(final Player player) {
+        super.onPickup(player);
         player.maxRecovery();
         destroy();
     }
