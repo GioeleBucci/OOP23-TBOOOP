@@ -118,6 +118,35 @@ public class Attack {
     }
 
     /**
+     * Performs an attack closing in on the target by creating projectiles in a
+     * circular pattern around it directed towards the center.
+     * This attack gets instantiated with a single call.
+     *
+     * @param source     the entity performing the attack
+     * @param target     the target position
+     * @param radius     the radius of the circle
+     * @param projAmount the number of projectiles to create
+     * @param projSpeed  the projectile speed (consider putting a lower value since
+     *                   the projectiles don't originate from an enemy but are put
+     *                   around the target instead)
+     */
+    public static void closeIn(Entity source, Point2d target, double radius, int projAmount, double projSpeed) {
+        Point2d center = target;
+        double angle = 360 / projAmount;
+        Random r = new Random();
+        double randomAngleOffset = r.nextDouble(angle);
+        for (int i = 0; i < projAmount; i++) {
+            Point2d spawnPoint = center.add(new Vector2dImpl(0, radius)
+                    .rotate((i * angle + randomAngleOffset) % 360)
+                    .toP2d());
+            source.addProjectile(new EnemyProjectile(
+                    Vector2dUtils.directionTowards(spawnPoint, target),
+                    spawnPoint,
+                    projSpeed));
+        }
+    }
+
+    /**
      * Performs a ring attack by creating projectiles in a circular pattern.
      * This attack gets instantiated with a single call.
      *
