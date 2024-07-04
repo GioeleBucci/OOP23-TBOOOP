@@ -1,8 +1,8 @@
-package tbooop.model.boss.impl.DukeOfEyes;
+package tbooop.model.boss.impl.duke_of_eyes;
 
 import tbooop.commons.api.Vector2dUtils;
 import tbooop.model.boss.api.AbstractBoss;
-import tbooop.model.boss.impl.DukeOfEyes.DoESM.State;
+import tbooop.model.boss.impl.duke_of_eyes.DoESM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.enemy.attacks.Attack;
@@ -39,21 +39,18 @@ public class DoERoam extends AbstractState<DoESM.State> {
     }
 
     private void performRandomAttack() {
-        switch (rand.nextInt(2)) {
-            case 0:
-                Attack.radiusWithGap(boss, p.getPosition(), 10, PROJECTILE_SPEED, 20, 4);
-                break;
-            default:
-                Attack.snipe(boss, p.getPosition(), PROJECTILE_SPEED * 2.5);
+        if (rand.nextInt(2) == 0) {
+            Attack.ring(boss, PROJECTILE_SPEED, 15);
+            return;
         }
+        Attack.snipe(boss, p.getPosition(), PROJECTILE_SPEED * 2.5);
     }
 
     @Override
     public State getNextStateKey() {
-        if (boss.getHealth() <= boss.getMaxHealth() / 2) {
-            return State.ANGERED;
-        }
-        return State.ROAMING;
+        return boss.getHealth() <= boss.getMaxHealth() / 2
+                ? State.ANGERED
+                : State.ROAMING;
     }
 
 }

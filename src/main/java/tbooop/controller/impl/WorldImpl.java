@@ -93,12 +93,10 @@ public final class WorldImpl implements World {
     /** {@inheritDoc} */
     @Override
     public synchronized void collectProjectiles(final Entity entity) {
-        final Set<Projectile> projectiles = entity.getShotProjectiles();
-        for (final Projectile projectile : projectiles) {
+        final Set<Projectile> projs = entity.getShotProjectiles();
+        for (final Projectile projectile : projs) {
             getProjectiles().add(projectile);
-            Platform.runLater(() -> {
-                view.addGameObject(projectile);
-            });
+            Platform.runLater(() -> view.addGameObject(projectile));
         }
     }
 
@@ -110,11 +108,7 @@ public final class WorldImpl implements World {
     }
 
     private synchronized void clearSet(final Set<? extends GameObject> set) {
-        set.forEach(g -> {
-            Platform.runLater(() -> {
-                view.removeGameObject(g);
-            });
-        });
+        set.forEach(g -> Platform.runLater(() -> view.removeGameObject(g)));
         set.clear();
     }
 
@@ -122,8 +116,6 @@ public final class WorldImpl implements World {
     @Override
     public synchronized void addGameObject(final GameObject gameObject) {
         gameObjects.add(gameObject);
-        Platform.runLater(() -> {
-            view.addGameObject(gameObject);
-        });
+        Platform.runLater(() -> view.addGameObject(gameObject));
     }
 }

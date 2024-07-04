@@ -1,4 +1,4 @@
-package tbooop.model.boss.impl.DukeOfEyes;
+package tbooop.model.boss.impl.duke_of_eyes;
 
 import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
 import tbooop.model.player.api.Player;

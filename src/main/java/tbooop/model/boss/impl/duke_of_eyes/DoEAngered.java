@@ -1,9 +1,9 @@
-package tbooop.model.boss.impl.DukeOfEyes;
+package tbooop.model.boss.impl.duke_of_eyes;
 
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.Vector2dUtils;
 import tbooop.model.boss.api.AbstractBoss;
-import tbooop.model.boss.impl.DukeOfEyes.DoESM.State;
+import tbooop.model.boss.impl.duke_of_eyes.DoESM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.enemy.attacks.Attack;

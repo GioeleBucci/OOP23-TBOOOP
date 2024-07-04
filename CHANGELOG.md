@@ -1,9 +1,11 @@
-## v1.1
+## v1.2
 
 ### New features
-- Added more attack patterns!
+- New boss
+- More attack patterns
 
 ### Tweaks and changes
+- Reduced player hitbox size
 
 ### Bugfixes
 

@@ -1,14 +1,15 @@
 package tbooop.model.enemy.impl;
 
 import java.util.Objects;
+import java.util.Random;
 
 import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.impl.HealthImpl;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.boss.api.Boss;
-import tbooop.model.boss.impl.DukeOfEyes.DukeOfEyes;
-import tbooop.model.boss.impl.Meaty.Meaty;
+import tbooop.model.boss.impl.duke_of_eyes.DukeOfEyes;
+import tbooop.model.boss.impl.meaty.Meaty;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
 import tbooop.model.enemy.api.EnemyType;
@@ -39,6 +40,8 @@ public class EnemyFactoryImpl implements EnemyFactory {
     private static final int CRAZY_PROJ_AMOUNT = 5;
     private final Player player;
 
+    private static final Random rand = new Random();
+
     /**
      * Creates an instance of a factory of enemies.
      * 
@@ -53,40 +56,42 @@ public class EnemyFactoryImpl implements EnemyFactory {
     @Override
     public Enemy melee() {
         return new Melee(new BaseEnemy(new Point2dImpl(0, 0),
-            new HealthImpl(MELEE_HP), MELEE_SPEED, new ChasingAi(this.player),
-            EnemyType.MELEE, MELEE_RADIUS));
+                new HealthImpl(MELEE_HP), MELEE_SPEED, new ChasingAi(this.player),
+                EnemyType.MELEE, MELEE_RADIUS));
     }
 
     /** {@inheritDoc} */
     @Override
     public Enemy shooter(final Direction initialDirection) {
         return new Shooter(new BaseEnemy(new Point2dImpl(0, 0),
-            new HealthImpl(SHOOTER_HP), SHOOTER_SPEED,
-            new LinearAi(Objects.requireNonNull(initialDirection), SHOOTER_RADIUS),
-            EnemyType.SHOOTER, SHOOTER_RADIUS), this.player);
+                new HealthImpl(SHOOTER_HP), SHOOTER_SPEED,
+                new LinearAi(Objects.requireNonNull(initialDirection), SHOOTER_RADIUS),
+                EnemyType.SHOOTER, SHOOTER_RADIUS), this.player);
     }
 
     /** {@inheritDoc} */
     @Override
     public Enemy bouncer(final Point2d initialDirection) {
         return new Explosive(new Melee(new BaseEnemy(new Point2dImpl(0, 0),
-            new HealthImpl(BOUNCER_HP), BOUNCER_SPEED,
-            new BouncingAi(Objects.requireNonNull(initialDirection), BOUNCER_RADIUS),
-            EnemyType.BOUNCER, BOUNCER_RADIUS)), BOUNCER_PROJ_AMOUNT);
+                new HealthImpl(BOUNCER_HP), BOUNCER_SPEED,
+                new BouncingAi(Objects.requireNonNull(initialDirection), BOUNCER_RADIUS),
+                EnemyType.BOUNCER, BOUNCER_RADIUS)), BOUNCER_PROJ_AMOUNT);
     }
 
     /** {@inheritDoc} */
     @Override
     public Enemy crazy() {
         return new Explosive(new Melee(new Shooter(new BaseEnemy(
-            new Point2dImpl(0, 0), new HealthImpl(CRAZY_HP), CRAZY_SPEED,
-            new ChasingAi(player), EnemyType.CRAZY, CRAZY_RADIUS), player)), CRAZY_PROJ_AMOUNT);
+                new Point2dImpl(0, 0), new HealthImpl(CRAZY_HP), CRAZY_SPEED,
+                new ChasingAi(player), EnemyType.CRAZY, CRAZY_RADIUS), player)), CRAZY_PROJ_AMOUNT);
     }
 
     @Override
     public Boss boss() {
-        return new Meaty(player); // TODO add the other one
-        // return new DukeOfEyes(player); // there's only one boss rn
-    }   
+        if (rand.nextInt(2) == 0) {
+            return new Meaty(player);
+        }
+        return new DukeOfEyes(player);
+    }
 
 }

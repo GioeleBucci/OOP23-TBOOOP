@@ -43,7 +43,7 @@ public class Explosive extends EnemyDecorator {
 
     private void explode() {
         this.exploded = true;
-        Attack.radius(this, PROJECTILE_SPEED, projectileAmount);
+        Attack.ring(this, PROJECTILE_SPEED, projectileAmount);
     }
 
 }

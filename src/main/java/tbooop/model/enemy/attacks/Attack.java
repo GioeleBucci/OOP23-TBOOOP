@@ -20,6 +20,11 @@ import java.util.ArrayList;
  */
 public class Attack {
 
+    private Attack() {
+    }
+
+    private static final Random r = new Random();
+
     /**
      * Istantiates a single projectile that goes straight for the target.
      *
@@ -44,7 +49,6 @@ public class Attack {
      */
     public static void vomit(Entity source, Point2d target,
             double maxScatterAngle, double maxprojSpeed, double maxProjSpeedVariation) {
-        Random r = new Random();
         double scatterAngle = r.nextDouble(-maxScatterAngle, maxScatterAngle);
         Vector2d vec = new Vector2dImpl(target
                 .subtract(source.getPosition()).toV2d()).normalize();
@@ -89,7 +93,7 @@ public class Attack {
      */
     public static Vector2d multiSpiral(Entity source, double projSpeed, Vector2d direction, double angle,
             int spiralsAmount) {
-        double angleBetweenSpirals = 360 / spiralsAmount;
+        double angleBetweenSpirals = 360. / spiralsAmount;
         for (int i = 0; i < spiralsAmount; i++) {
             spiral(source, projSpeed, direction.rotate(angleBetweenSpirals * i), angle);
         }
@@ -110,9 +114,12 @@ public class Attack {
     public static void circle(Entity source, Point2d target, double radius, int projAmount, double projSpeed) {
         Vector2d dir = Vector2dUtils.directionTowards(source.getPosition(), target);
         Point2d center = source.getPosition().add(dir.toP2d().mul(radius));
-        double angle = 360 / projAmount;
+        double angle = 360. / projAmount;
+        double randomAngleOffset = r.nextDouble(angle);
         for (int i = 0; i < projAmount; i++) {
-            Point2d spawnPoint = center.add(new Vector2dImpl(0, radius).rotate(angle * i).toP2d());
+            Point2d spawnPoint = center.add(new Vector2dImpl(0, radius)
+                    .rotate((angle * i + randomAngleOffset) % 360)
+                    .toP2d());
             source.addProjectile(new EnemyProjectile(dir, spawnPoint, projSpeed));
         }
     }
@@ -132,8 +139,7 @@ public class Attack {
      */
     public static void closeIn(Entity source, Point2d target, double radius, int projAmount, double projSpeed) {
         Point2d center = target;
-        double angle = 360 / projAmount;
-        Random r = new Random();
+        double angle = 360. / projAmount;
         double randomAngleOffset = r.nextDouble(angle);
         for (int i = 0; i < projAmount; i++) {
             Point2d spawnPoint = center.add(new Vector2dImpl(0, radius)
@@ -175,8 +181,7 @@ public class Attack {
      */
     public static void ringWithGap(Entity source, Point2d target, double maxGapDeviationAngle,
             double projSpeed, int projectileAmount, int gapSize) {
-        double angle = 360 / projectileAmount;
-        Random r = new Random();
+        double angle = 360. / projectileAmount;
         double randomAngleOffset = r.nextDouble(angle);
         List<Double> angles = new ArrayList<>();
         for (int i = 0; i < projectileAmount; i++) {
