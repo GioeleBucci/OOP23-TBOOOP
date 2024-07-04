@@ -33,8 +33,26 @@ public class Attack {
      * @param projSpeed the projectile speed
      */
     public static void snipe(Entity source, Point2d target, double projSpeed) {
+        shotgun(source, target, projSpeed, 1, 0);
+    }
+
+    /**
+     * Istantiates multiple projectiles with random scatter angles.
+     * This attack gets instantiated with a single call.
+     *
+     * @param source      the entity performing the attack
+     * @param target      the target position
+     * @param projSpeed   the projectile speed
+     * @param projAmount  the number of projectiles to create
+     * @param spreadAngle the maximum scatter angle
+     */
+    public static void shotgun(Entity source, Point2d target, double projSpeed, int projAmount, double spreadAngle) {
         Vector2d dir = Vector2dUtils.directionTowards(source.getPosition(), target);
-        source.addProjectile(new EnemyProjectile(dir, source.getPosition(), projSpeed));
+        double angleOffset = spreadAngle / projAmount;
+        for (int i = 0; i < projAmount; i++) {
+            Vector2d newDir = dir.rotate((i * angleOffset) % 360).normalize();
+            source.addProjectile(new EnemyProjectile(newDir, source.getPosition(), projSpeed));
+        }
     }
 
     /**
