@@ -37,9 +37,9 @@ public class HealthViewImpl extends ViewComponentImpl implements HealthView {
         super(view);
         this.player = player;
         view.getRoot().getChildren().add(root);
-        healthPoint = new HealthRender(this.player.getMaxHealth(), this.root, this.heartList);
-        this.currentHealth = this.player.getHealth();
-        this.maxHealth = this.player.getMaxHealth();
+        healthPoint = new HealthRender((int) this.player.getMaxHealth(), this.root, this.heartList);
+        this.currentHealth = (int) this.player.getHealth();
+        this.maxHealth = (int) this.player.getMaxHealth();
     }
 
     /** {@inheritDoc} */
@@ -50,24 +50,24 @@ public class HealthViewImpl extends ViewComponentImpl implements HealthView {
             for (int i = this.maxHealth; i < player.getMaxHealth(); i++) {
                 addMaxHealth();
             }
-            this.maxHealth = player.getMaxHealth();
+            this.maxHealth = (int) player.getMaxHealth();
         }
 
         if (this.currentHealth != this.player.getHealth()) {
-                if (this.currentHealth > this.player.getHealth()) {
-                    for (int i = this.currentHealth; i > this.player.getHealth(); i--) {
-                        if (i - 1 >= 0) {
-                            toggledHealth(i - 1);
-                        }
-                    }
-                } else {
-                    for (int i = this.currentHealth; i < this.player.getHealth(); i++) { 
-                        addHealth(i);
+            if (this.currentHealth > this.player.getHealth()) {
+                for (int i = this.currentHealth; i > this.player.getHealth(); i--) {
+                    if (i - 1 >= 0) {
+                        toggledHealth(i - 1);
                     }
                 }
+            } else {
+                for (int i = this.currentHealth; i < this.player.getHealth(); i++) {
+                    addHealth(i);
+                }
+            }
         }
 
-        this.currentHealth = this.player.getHealth();
+        this.currentHealth = (int) this.player.getHealth();
     }
 
     /** {@inheritDoc} */

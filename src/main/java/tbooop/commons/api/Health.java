@@ -8,29 +8,29 @@ public interface Health {
      * Getter for the curruent health. 
      * @return current health.
      */
-    int getCurrenthHealth();
+    float getCurrenthHealth();
 
     /**
      * Getter for the max health. 
      * @return max health.
      */
-    int getMaxHealth();
+    float getMaxHealth();
 
     /**
      * Decreases the current healt value.
      * @param amount to subtract from the current health.
      */
-    void decreaseHealth(int amount);
+    void decreaseHealth(float amount);
 
     /**
      * Increases the current healt value.
      * @param amount to add to the current health.
      */
-    void increaseHealth(int amount);
+    void increaseHealth(float amount);
 
     /**
      * Increases the current healt value.
      * @param amount to add to the max health.
      */
-    void increaseMaxHealth(int amount);
+    void increaseMaxHealth(float amount);
 }

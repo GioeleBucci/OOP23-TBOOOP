@@ -19,13 +19,13 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      * Get the max health.
      * @return int the max health
      */
-    int getMaxHealth();
+    float getMaxHealth();
 
     /**
      * Get the current health.
      * @return int the current health
      */
-    int getHealth();
+    float getHealth();
 
     /**
      * This method return the amount of coin in the player's possession.

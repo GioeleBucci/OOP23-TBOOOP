@@ -34,19 +34,19 @@ public abstract class AbstractDamageable extends AbstractMovable implements Dama
 
     /** {@inheritDoc} */
     @Override
-    public void takeDamage(final int damage) {
+    public void takeDamage(final float damage) {
         this.health.decreaseHealth(damage);
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getHealth() {
+    public float getHealth() {
         return this.health.getCurrenthHealth();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getMaxHealth() {
+    public float getMaxHealth() {
         return this.health.getMaxHealth();
     }
 

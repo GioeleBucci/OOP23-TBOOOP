@@ -14,7 +14,7 @@ import tbooop.commons.api.AbstractProjectile;
  */
 public class PlayerProjectileImpl extends AbstractProjectile implements PlayerProjectile {
 
-    private int damage;
+    private float damage;
     /**
     * Create a new istance of a Player Projectile.
     * 
@@ -41,7 +41,7 @@ public class PlayerProjectileImpl extends AbstractProjectile implements PlayerPr
 
     /** {@inheritDoc} */
     @Override
-    public void setDamage(final int amount) {
+    public void setDamage(final float amount) {
         this.damage = amount;
     }
 }

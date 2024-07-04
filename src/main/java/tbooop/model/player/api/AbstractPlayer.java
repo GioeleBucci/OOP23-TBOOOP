@@ -23,14 +23,15 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
     private static final int PLAYER_INITIAL_DAMAGE = 1;
     private final Key keys;
     private final Coins coins;
-    private int damage;
+    private float damage;
 
     /**
      * Create a new istance of a Entity.
+     * 
      * @param position starting position
-     * @param health the entity's health
-     * @param velocity  it is the Entity velocity
-     * @param keys the player's keys
+     * @param health   the entity's health
+     * @param velocity it is the Entity velocity
+     * @param keys     the player's keys
      */
     protected AbstractPlayer(final Point2d position, final Health health, final double velocity, final Key keys) {
         super(position, health, velocity, GameTag.PLAYER, PLAYER_COLLIDER_RADIUS);
@@ -86,17 +87,19 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
 
     /**
      * This method increases the amount of damage the Player can do.
+     * 
      * @return the amount of damage the player can do.
      */
-    public int getDamage() {
+    public float getDamage() {
         return this.damage;
     }
 
     /**
      * This method increases the amount of damage the Player can do.
+     * 
      * @param damage it's the amount of damege to increase.
      */
-    public void setDamage(final int damage) {
+    public void setDamage(final float damage) {
         this.damage = damage;
     }
 

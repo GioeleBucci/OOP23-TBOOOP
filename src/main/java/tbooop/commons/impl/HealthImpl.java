@@ -7,8 +7,8 @@ import tbooop.commons.api.Health;
  */
 public class HealthImpl implements Health {
 
-    private int maxHealth;
-    private int currentHealth;
+    private float maxHealth;
+    private float currentHealth;
 
     /**
      * Creates a new instance of Health, the initial health value
@@ -18,7 +18,7 @@ public class HealthImpl implements Health {
      * @throws IllegalArgumentException if the input parameter is
      * a negative number.
      */
-    public HealthImpl(final int maxHealth) {
+    public HealthImpl(final float maxHealth) {
         if (maxHealth < 0) {
             throw new IllegalArgumentException();
         }
@@ -28,31 +28,31 @@ public class HealthImpl implements Health {
 
     /** {@inheritDoc} */
     @Override
-    public int getCurrenthHealth() {
+    public float getCurrenthHealth() {
         return this.currentHealth;
     }
 
     /** {@inheritDoc} */
     @Override
-    public int getMaxHealth() {
+    public float getMaxHealth() {
        return this.maxHealth;
     }
 
     /** {@inheritDoc} */
     @Override
-    public void decreaseHealth(final int amount) {
+    public void decreaseHealth(final float amount) {
         this.setCurrentHealth(this.currentHealth - amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void increaseHealth(final int amount) {
+    public void increaseHealth(final float amount) {
         this.setCurrentHealth(this.currentHealth + amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void increaseMaxHealth(final int amount) {
+    public void increaseMaxHealth(final float amount) {
         this.setMaxHealth(this.maxHealth + amount);
     }
 
@@ -62,7 +62,7 @@ public class HealthImpl implements Health {
      * @param value the value set as current health.
      * @throws IllegalArgumentException if value is a negative number.
      */
-    protected void setCurrentHealth(final int value) {
+    protected void setCurrentHealth(final float value) {
         this.currentHealth = value;
     }
 
@@ -72,7 +72,7 @@ public class HealthImpl implements Health {
      * @param value the value to set as max Health.
      * @throws IllegalArgumentException if value is a negative number.
      */
-    protected void setMaxHealth(final int value) {
+    protected void setMaxHealth(final float value) {
         if (value < 0) {
             throw new IllegalArgumentException();
         }

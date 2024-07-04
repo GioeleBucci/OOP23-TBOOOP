@@ -8,7 +8,7 @@ import tbooop.commons.api.Vector2d;
  * A Player is a game object that can move on a 2D space,
  * a player can interact with an enemy trying to kill him or can collect
  * objects on the map.
-*/
+ */
 public interface Player extends Entity, UnmodifiablePlayer {
 
     /**
@@ -18,31 +18,36 @@ public interface Player extends Entity, UnmodifiablePlayer {
 
     /**
      * Increase the current health by 1.
+     * 
      * @throws IllegalArgumentException if the input parameter is
-     * a negative number.
+     *                                  a negative number.
      */
     void recovery();
 
     /**
-    * This method increases the amount of damage the Player can do.
-    * @param amount it's the amount of damege to increase.
-    */
-    void increaseDamage(int amount);
+     * This method increases the amount of damage the Player can do.
+     * 
+     * @param amount it's the amount of damege to increase.
+     */
+    void increaseDamage(float amount);
 
     /**
      * This method it's used for moving the player in the four direction.
+     * 
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */
     void move(Direction direction);
 
     /**
      * This method it's used for shooting in the four direction.
+     * 
      * @param direction can be UP,DOWN,LEFT,RIGHT.
      */
     void shoot(Vector2d direction);
 
     /**
      * Increases the player's speed by a certain amount.
+     * 
      * @param amount the amount to increase;
      */
     void increaseVelocity(double amount);
@@ -54,6 +59,7 @@ public interface Player extends Entity, UnmodifiablePlayer {
 
     /**
      * Increases the player's max health by a certain amount.
+     * 
      * @param amount the amount to increase;
      */
     void increaseMaxHealth(int amount);
@@ -76,7 +82,7 @@ public interface Player extends Entity, UnmodifiablePlayer {
      * Indicates whether the collection has a key.
      * 
      * @return true if the collection has a key, otherwise false
-    */
+     */
     boolean hasKey();
 
     /**
@@ -88,4 +94,11 @@ public interface Player extends Entity, UnmodifiablePlayer {
      * Increment the number of key to the collection by 1.
      */
     void pickupKey();
+
+    /**
+     * Returns the amount of damage the player can do.
+     * 
+     * @return the amount of damage the player can do.
+     */
+    float getDamage();
 }

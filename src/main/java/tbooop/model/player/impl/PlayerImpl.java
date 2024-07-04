@@ -62,7 +62,7 @@ public class PlayerImpl extends AbstractPlayer {
     /** {@inheritDoc} */
     @Override
     public void maxRecovery() {
-        increaseHealth(getMaxHealth() - getHealth());
+        increaseHealth((int) (getMaxHealth() - getHealth()));
     }
 
     /** {@inheritDoc} */
@@ -88,8 +88,9 @@ public class PlayerImpl extends AbstractPlayer {
 
     private boolean checkMovement(final Point2d nextPosition, final Direction direction) {
         return RoomBounds.outOfBounds(nextPosition)
-                || direction.equals(Direction.DOWN) 
-                && RoomBounds.outOfBounds(nextPosition.add(new Point2dImpl(0, getCollider().getRadius() - TOLERANCE)));
+                || direction.equals(Direction.DOWN)
+                        && RoomBounds.outOfBounds(
+                                nextPosition.add(new Point2dImpl(0, getCollider().getRadius() - TOLERANCE)));
     }
 
     /** {@inheritDoc} */
@@ -112,13 +113,13 @@ public class PlayerImpl extends AbstractPlayer {
 
     /** {@inheritDoc} */
     @Override
-    public void increaseDamage(final int amount) {
+    public void increaseDamage(final float amount) {
         setDamage(getDamage() + amount);
     }
 
     /** {@inheritDoc} */
     @Override
-    public void takeDamage(final int amount) {
+    public void takeDamage(final float amount) {
         if (this.timeSinceLastDamage > TIME_BETWEEN_DAMAGE) {
             this.timeSinceLastDamage = 0;
             super.takeDamage(amount);

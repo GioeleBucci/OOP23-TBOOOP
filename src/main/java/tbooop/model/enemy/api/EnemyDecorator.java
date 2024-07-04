@@ -31,19 +31,19 @@ public abstract class EnemyDecorator implements Enemy {
 
     /** {@inheritDoc} */
     @Override
-    public void takeDamage(final int damage) {
+    public void takeDamage(final float damage) {
         this.concreteEnemy.takeDamage(damage);
     }
 
     /** {@inheritDoc} */
     @Override
-    public final int getHealth() {
+    public final float getHealth() {
         return this.concreteEnemy.getHealth();
     }
 
     /** {@inheritDoc} */
     @Override
-    public final int getMaxHealth() {
+    public final float getMaxHealth() {
         return this.concreteEnemy.getMaxHealth();
     }
 

@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class DoERoam extends AbstractState<DoESM.State> {
 
-    private static final long TIME_BETWEEN_ATTACKS = 2500;
+    private static final long TIME_BETWEEN_ATTACKS = 2000;
     private static final double PROJECTILE_SPEED = 0.08;
     private AbstractBoss<State> boss;
     private Player p;
@@ -39,11 +39,11 @@ public class DoERoam extends AbstractState<DoESM.State> {
     }
 
     private void performRandomAttack() {
-        if (rand.nextInt(2) == 0) {
-            Attack.ring(boss, PROJECTILE_SPEED, 15);
+        if (rand.nextInt(3) == 0) {
+            Attack.snipe(boss, p.getPosition(), PROJECTILE_SPEED * 2.5);
             return;
         }
-        Attack.snipe(boss, p.getPosition(), PROJECTILE_SPEED * 2.5);
+        Attack.ring(boss, PROJECTILE_SPEED, 15);
     }
 
     @Override

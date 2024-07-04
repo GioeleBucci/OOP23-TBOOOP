@@ -11,6 +11,7 @@ import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.pickupables.api.PickupableName;
 import tbooop.model.pickupables.items.api.Item;
 import tbooop.model.pickupables.items.impl.ItemFactoryImpl;
+import tbooop.model.pickupables.items.impl.LockedRing;
 import tbooop.model.player.impl.PlayerImpl;
 
 /**
@@ -40,24 +41,24 @@ class TestItem {
 
     @Test
     void testItemName() {
-        assertEquals(glassHeart.getObjectName(), PickupableName.GLASS_HEART);
-        assertEquals(goldenApple.getObjectName(), PickupableName.GOLDEN_APPLE);
-        assertEquals(zap.getObjectName(), PickupableName.ZAP);
-        assertEquals(lockedRing.getObjectName(), PickupableName.LOCKED_RING);
-        assertEquals(spicySauce.getObjectName(), PickupableName.SPICY_SAUCE);
+        assertEquals(PickupableName.GLASS_HEART, glassHeart.getObjectName());
+        assertEquals(PickupableName.GOLDEN_APPLE, goldenApple.getObjectName());
+        assertEquals(PickupableName.ZAP, zap.getObjectName());
+        assertEquals(PickupableName.LOCKED_RING, lockedRing.getObjectName());
+        assertEquals(PickupableName.SPICY_SAUCE, spicySauce.getObjectName());
     }
 
     @Test
     void testItemGeneralEffect() throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
-        final int playerInitialMaxHealth = player.getMaxHealth();
-        final int playerInitialDamage = player.getDamage();
+        final int playerInitialMaxHealth = (int) player.getMaxHealth();
+        final float playerInitialDamage = player.getDamage();
         final double playerInitialProjectilesVel = player.getProjectileVelocity();
         goldenApple.onPlayerCollision(player);
         assertEquals(playerInitialMaxHealth + 2, player.getMaxHealth());
         glassHeart.onPlayerCollision(player);
         assertEquals(player.getHealth(), player.getMaxHealth());
         lockedRing.onPlayerCollision(player);
-        assertEquals(playerInitialDamage + 1, player.getDamage());
+        assertEquals(playerInitialDamage * LockedRing.DAMAGE_MULTIPLIER, player.getDamage());
         spicySauce.onPlayerCollision(player);
         Field field = PlayerImpl.class.getDeclaredField("PROJECTILE_VELOCITY_INCREMENT");
         field.setAccessible(true); 

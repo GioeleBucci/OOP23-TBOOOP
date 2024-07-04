@@ -14,7 +14,7 @@ public interface Damageable extends Movable {
      * 
      * @param damage is the damage a GameObject takes.
      */
-    void takeDamage(int damage);
+    void takeDamage(float damage);
 
     /**
      *  This method it is used to get the current health of an Damageable GameObject.
@@ -22,7 +22,7 @@ public interface Damageable extends Movable {
      * 
      * @return the current health.
      */
-    int getHealth();
+    float getHealth();
 
     /**
      * This method it is used to get the max health of an Damageable GameObject.
@@ -30,5 +30,5 @@ public interface Damageable extends Movable {
      * 
      * @return the max health
      */
-    int getMaxHealth();
+    float getMaxHealth();
 }

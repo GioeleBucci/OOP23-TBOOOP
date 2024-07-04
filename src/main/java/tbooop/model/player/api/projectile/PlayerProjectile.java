@@ -13,5 +13,5 @@ public interface PlayerProjectile extends Projectile {
     * This method set the amount of damage the Player can do.
     * @param amount the amount of damage to set.
     */
-    void setDamage(int amount);
+    void setDamage(float amount);
 }
