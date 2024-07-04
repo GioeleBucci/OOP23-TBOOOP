@@ -50,21 +50,23 @@ public class Attack {
         return direction.rotate(angle);
     }
 
-    public static void radius(Entity source, double projSpeed, int projectileAmount) {
-        radiusWithGap(source, Point2dImpl.ZERO, 0, projSpeed, projectileAmount, 0);
+    public static void ring(Entity source, double maxScatterAngle, double projSpeed, int projectileAmount) {
+        ringWithGap(source, Point2dImpl.ZERO, maxScatterAngle, projSpeed, projectileAmount, 0);
     }
 
-    public static void radiusWithGap(Entity source, Point2d target, double maxScatterAngle,
+    public static void ringWithGap(Entity source, Point2d target, double maxScatterAngle,
             double projSpeed, int projectileAmount, int gapSize) {
         double angle = 360 / projectileAmount;
+        Random r = new Random();
+        double randomAngleOffset = r.nextDouble(angle);
         List<Double> angles = new ArrayList<>();
         for (int i = 0; i < projectileAmount; i++) {
-            angles.add(i * angle);
+            angles.add((i * angle + randomAngleOffset) % 360);
         }
         Vector2d targetVec = Vector2dUtils.directionTowards(source.getPosition(), target);
-        Random r = new Random();
-        double scatterAngle = (targetVec.getAngle()
-                + r.nextDouble(-maxScatterAngle, maxScatterAngle)) % 360;
+        double scatterAngle = maxScatterAngle == 0 ? 0
+                : (targetVec.getAngle()
+                        + r.nextDouble(-maxScatterAngle, maxScatterAngle)) % 360;
         removeUpToNElements(angles, gapSize, scatterAngle).forEach(a -> source.addProjectile(
                 new EnemyProjectile(Direction.RIGHT.toP2d().toV2d().rotate(a).normalize(),
                         source.getPosition(), projSpeed)));
@@ -95,14 +97,13 @@ public class Attack {
                 .get();
     }
 
-    public static void circle(Entity source, Point2d target, double radius, int projAmount, double projSpeed){
+    public static void circle(Entity source, Point2d target, double radius, int projAmount, double projSpeed) {
         Vector2d dir = Vector2dUtils.directionTowards(source.getPosition(), target);
         Point2d center = source.getPosition().add(dir.toP2d().mul(radius));
         double angle = 360 / projAmount;
         for (int i = 0; i < projAmount; i++) {
-            Point2d spawnPoint = center.add(new Vector2dImpl(0,radius).rotate(angle * i).toP2d());
+            Point2d spawnPoint = center.add(new Vector2dImpl(0, radius).rotate(angle * i).toP2d());
             source.addProjectile(new EnemyProjectile(dir, spawnPoint, projSpeed));
         }
-
     }
 }
