@@ -35,17 +35,17 @@ class TestPickup {
 
     @Test
     void testPickupName() {
-        assertEquals(bill.getObjectName(), PickupableName.BILL);
-        assertEquals(coin.getObjectName(), PickupableName.COIN);
-        assertEquals(key.getObjectName(), PickupableName.KEY);
-        assertEquals(heart.getObjectName(), PickupableName.HEART);
+        assertEquals(PickupableName.BILL, bill.getObjectName());
+        assertEquals(PickupableName.COIN, coin.getObjectName());
+        assertEquals(PickupableName.KEY, key.getObjectName());
+        assertEquals(PickupableName.HEART, heart.getObjectName());
     }
 
     @Test
     void testPickupEffect() {
         final int initialPlayerKeys = player.getKey();
         int initialePlayerCoins = player.getCoins();
-        final int initialPlayerHealth = player.getHealth();
+        final int initialPlayerHealth = (int) player.getHealth();
         bill.onPlayerCollision(player);
         assertEquals(initialePlayerCoins + 10, player.getCoins());
         initialePlayerCoins = player.getCoins();

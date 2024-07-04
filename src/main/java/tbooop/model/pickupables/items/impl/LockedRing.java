@@ -12,7 +12,7 @@ import tbooop.model.player.api.Player;
  */
 public class LockedRing extends AbstractItem {
 
-    private static final int DAMAGE_TO_INCREASE = 1;
+    public static final float DAMAGE_MULTIPLIER = 1.3f;
 
     /**
      * Create a new istance of Locked Ring item.
@@ -43,7 +43,7 @@ public class LockedRing extends AbstractItem {
     */
     @Override
     protected void onPickup(final Player player) {
-        player.increaseDamage(DAMAGE_TO_INCREASE);
+        player.increaseDamage(player.getDamage() * DAMAGE_MULTIPLIER - player.getDamage());
         destroy();
     }
 }
