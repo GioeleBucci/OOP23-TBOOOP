@@ -19,7 +19,7 @@ import tbooop.model.player.impl.BasePlayerCoinImpl;
  */
 public abstract class AbstractPlayer extends AbstractEntity implements Player {
 
-    private static final int PLAYER_COLLIDER_RADIUS = 15;
+    private static final int PLAYER_COLLIDER_RADIUS = 12;
     private static final int PLAYER_INITIAL_DAMAGE = 1;
     private final Key keys;
     private final Coins coins;
