@@ -1,14 +1,13 @@
 package tbooop.model.enemy.api;
 
 import tbooop.commons.api.Point2d;
-import tbooop.commons.api.RoomBounds;
-
 import java.util.Objects;
-
 import tbooop.commons.api.Health;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
 import tbooop.model.enemy.api.ai.MovementAi;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 /**
  * Abstract Enemy class which contains the essential components of an enemy.
@@ -21,21 +20,21 @@ public abstract class AbstractEnemy extends AbstractEntity implements Enemy {
     /**
      * creates a new istance of an AbstractEnemy.
      * 
-     * @param position on the 2D map
-     * @param health the enemy's health
-     * @param velocity determines how fast the enemy moves
-     * @param ai the enemy's movement ai
-     * @param enemyType the enemy's type
+     * @param position       on the 2D map
+     * @param health         the enemy's health
+     * @param velocity       determines how fast the enemy moves
+     * @param ai             the enemy's movement ai
+     * @param enemyType      the enemy's type
      * @param colliderRadius the enemy's collider radius
      * @throws NullPointerException if either ai or enemyType are null
      */
     protected AbstractEnemy(
-        final Point2d position,
-        final Health health,
-        final double velocity,
-        final MovementAi ai,
-        final EnemyType enemyType,
-        final double colliderRadius) {
+            final Point2d position,
+            final Health health,
+            final double velocity,
+            final MovementAi ai,
+            final EnemyType enemyType,
+            final double colliderRadius) {
         super(position, health, velocity, GameTag.ENEMY, colliderRadius);
         this.enemyType = Objects.requireNonNull(enemyType);
         this.ai = Objects.requireNonNull(ai);
@@ -58,8 +57,18 @@ public abstract class AbstractEnemy extends AbstractEntity implements Enemy {
             throw new IllegalArgumentException("deltaTime can't be negative.");
         }
         final Point2d newPos = this.ai.newPosition(
-            super.getPosition(), deltaTime, super.getVelocity());
-            super.setPosition(newPos);
+                super.getPosition(), deltaTime, super.getVelocity());
+        super.setPosition(newPos);
     }
 
+    private boolean deathSoundPlayed = false;
+
+    @Override
+    public void updateState(long deltaTime) {
+        super.updateState(deltaTime);
+        if (this.isDestroyed() && !deathSoundPlayed) {
+            SoundManager.getInstance().playSound(Sound.ENEMY_DEATH);
+            deathSoundPlayed = true;
+        }
+    }
 }

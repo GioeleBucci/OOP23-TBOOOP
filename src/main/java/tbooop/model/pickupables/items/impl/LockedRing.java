@@ -43,6 +43,7 @@ public class LockedRing extends AbstractItem {
     */
     @Override
     protected void onPickup(final Player player) {
+        super.onPickup(player);
         player.increaseDamage(player.getDamage() * DAMAGE_MULTIPLIER - player.getDamage());
         destroy();
     }

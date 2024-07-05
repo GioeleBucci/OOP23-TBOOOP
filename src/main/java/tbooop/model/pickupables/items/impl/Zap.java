@@ -44,6 +44,7 @@ public class Zap extends AbstractItem {
     */
     @Override
     protected void onPickup(final Player player) {
+        super.onPickup(player);
         player.increaseVelocity(VELOCITY_TO_INCREASE);
         destroy();
     }

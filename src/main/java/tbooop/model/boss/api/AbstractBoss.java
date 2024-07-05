@@ -6,12 +6,14 @@ import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.movable.AbstractEntity;
 import tbooop.model.player.api.Player;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 public abstract class AbstractBoss<EState extends Enum<EState>> extends AbstractEntity implements Boss {
 
     private AbstractStateMachine<EState> stateMachine;
 
-    public AbstractBoss(Health health, double velocity, double colliderRadius) {
+    protected AbstractBoss(Health health, double velocity, double colliderRadius) {
         super(RoomBounds.CENTER, health, velocity, GameTag.ENEMY, colliderRadius);
     }
 
@@ -19,10 +21,16 @@ public abstract class AbstractBoss<EState extends Enum<EState>> extends Abstract
         this.stateMachine = stateMachine;
     }
 
+    private boolean deathSoundPlayed = false;
+
     @Override
     public void updateState(long deltaTime) {
         super.updateState(deltaTime);
         stateMachine.update(deltaTime);
+        if (isDestroyed() && !deathSoundPlayed) {
+            SoundManager.getInstance().playSound(Sound.BOSS_DEATH);
+            deathSoundPlayed = true;
+        }
     }
 
     /** all bosses should deal contact damage. */

@@ -4,6 +4,8 @@ import tbooop.commons.api.Point2d;
 import tbooop.model.dungeon.doors.api.AbstractDoor;
 import tbooop.model.dungeon.doors.api.DoorLockable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 /**
  * A special door spawns as locked and can be unlocked using a key.
@@ -39,6 +41,7 @@ public class SpecialDoor extends AbstractDoor implements DoorLockable {
     /** {@inheritDoc} */
     @Override
     public void unlock() {
+        SoundManager.getInstance().playSound(Sound.DOOR_UNLOCK);
         this.isLocked = false;
         this.open();
         // unlock the door on the other side as well
