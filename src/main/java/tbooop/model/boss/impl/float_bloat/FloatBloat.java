@@ -8,7 +8,7 @@ import tbooop.model.player.api.Player;
 public class FloatBloat extends AbstractBoss<FBSM.State> {
 
     public FloatBloat(Player p) {
-        super(new HealthImpl(45), 0.04, 14);
+        super(new HealthImpl(40), 0.04, 14);
         setStateMachine(new FBSM(this, p));
     }
 

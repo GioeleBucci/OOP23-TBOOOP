@@ -18,6 +18,7 @@ import tbooop.model.enemy.impl.ai.BouncingAi;
 import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.enemy.impl.ai.LinearAi;
 import tbooop.model.player.api.Player;
+import java.util.List;
 
 /**
  * Factory of enemies, its method create and return a particular
@@ -87,13 +88,18 @@ public class EnemyFactoryImpl implements EnemyFactory {
                 new ChasingAi(player), EnemyType.CRAZY, CRAZY_RADIUS), player)), CRAZY_PROJ_AMOUNT);
     }
 
+    List<Class<? extends Boss>> bossClasses = List.of(DukeOfEyes.class, Meaty.class, FloatBloat.class);
+    private int bossIndex = rand.nextInt(bossClasses.size());
+
     @Override
     public Boss boss() {
-        return new FloatBloat(player);
-        // if (rand.nextInt(2) == 0) { // TODO remove this
-        //     return new Meaty(player);
-        // }
-        // return new DukeOfEyes(player);
+        bossIndex = (bossIndex + 1) % bossClasses.size();
+        try {
+            return bossClasses.get(bossIndex).getConstructor(Player.class).newInstance(player);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

@@ -5,11 +5,12 @@ import java.util.Random;
 
 public class MovementUtils {
 
+    private static Random rand = new Random();
+
     private MovementUtils() {
     }
 
     public static Vector2d randomNorm() {
-        var rand = new Random();
         return new Vector2dImpl(
                 rand.nextDouble(-1, 1),
                 rand.nextDouble(-1, 1))
