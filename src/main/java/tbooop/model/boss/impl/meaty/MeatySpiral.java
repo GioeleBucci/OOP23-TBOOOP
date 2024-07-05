@@ -1,7 +1,7 @@
 package tbooop.model.boss.impl.meaty;
 
 import tbooop.commons.api.Vector2d;
-import tbooop.commons.api.Vector2dUtils;
+import tbooop.commons.api.MovementUtils;
 import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.meaty.MeatySM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
@@ -33,7 +33,7 @@ public class MeatySpiral extends AbstractState<MeatySM.State> {
 
     private double angle;
     private boolean isSwitched; // whether the spiral is switching or not
-    private Vector2d spiralDir = Vector2dUtils.randomNorm();
+    private Vector2d spiralDir = MovementUtils.randomNorm();
     private double windUp = SPIRAL_ANGLE_BASE;
     private long switchDirTime = rand.nextLong(SWITCH_DIRECTION_VARIATION) + SWITCH_DIRECTION_TIME;
 

@@ -1,7 +1,9 @@
 package tbooop.model.enemy.api.ai;
 
+import tbooop.commons.api.MovementUtils;
 import tbooop.commons.api.Point2d;
-import tbooop.commons.impl.Point2dImpl;
+import tbooop.commons.api.Vector2d;
+import tbooop.commons.impl.Vector2dImpl;
 
 import java.util.Objects;
 
@@ -10,7 +12,7 @@ import java.util.Objects;
  */
 public abstract class AbstractAi implements MovementAi {
 
-    private Point2d direction = new Point2dImpl(0, 0);
+    private Vector2d direction = new Vector2dImpl(0, 0);
 
     /**
      * Setter for the direction field.
@@ -18,7 +20,7 @@ public abstract class AbstractAi implements MovementAi {
      * @throws NullPointerException if newDir is null
      */
     protected void setDirection(final Point2d newDir) {
-        this.direction = Objects.requireNonNull(newDir);
+        this.direction = Objects.requireNonNull(newDir).toV2d();
     }
 
     /**
@@ -26,7 +28,7 @@ public abstract class AbstractAi implements MovementAi {
      * @return the ai's direction
      */
     protected Point2d getDirection() {
-        return this.direction;
+        return this.direction.toP2d();
     }
 
     /**
@@ -37,10 +39,7 @@ public abstract class AbstractAi implements MovementAi {
      * @return the next position
      */
     protected Point2d nextPos(final Point2d initialPosition, final long deltaTime, final double velocity) {
-        return this.direction
-            .mul(velocity)
-            .mul(deltaTime)
-            .add(initialPosition);
+        return MovementUtils.move(initialPosition, this.direction, velocity, deltaTime); 
     }
 
     /**

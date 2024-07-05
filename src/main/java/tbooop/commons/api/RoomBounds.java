@@ -33,8 +33,19 @@ public final class RoomBounds {
      * @return {@code true} if the position is out of bounds
      */
     public static boolean outOfBounds(final Point2d position) {
-        return position.getX() < 0 || position.getX() >= WIDTH
-                || position.getY() < 0 || position.getY() >= HEIGHT;
+        return nearOutOfBounds(position, 0);
+    }
+
+    /**
+     * Whether a circle with center in the passed position goes out of room bounds.
+     * 
+     * @param position the position to check (center of the circle)
+     * @param radius   the radius of the circle to check
+     * @return {@code true} if the position is out of bounds
+     */
+    public static boolean nearOutOfBounds(final Point2d position, double radius) {
+        return position.getX() < 0 + radius || position.getX() >= (WIDTH - radius)
+                || position.getY() < 0 + radius || position.getY() >= (HEIGHT - radius);
     }
 
     /**

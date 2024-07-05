@@ -1,7 +1,7 @@
 package tbooop.model.boss.impl.duke_of_eyes;
 
 import tbooop.commons.api.Vector2d;
-import tbooop.commons.api.Vector2dUtils;
+import tbooop.commons.api.MovementUtils;
 import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.duke_of_eyes.DoESM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
@@ -72,7 +72,7 @@ public class DoEAngered extends AbstractState<DoESM.State> {
         }
     }
 
-    private Vector2d dir = Vector2dUtils.randomNorm();
+    private Vector2d dir = MovementUtils.randomNorm();
 
     private void performAttack() {
         switch (attackType) {

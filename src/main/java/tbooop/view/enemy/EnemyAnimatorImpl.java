@@ -31,6 +31,7 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
     private static final double CRAZY_UPDATE_FREQ = 200.0;
     private static final double DOE_UPDATE_FREQ = 300.0;
     private static final double MEATY_UPDATE_FREQ = 175.0;
+    private static final double FLOAT_BLOAT_UPDATE_FREQ = 200.0;
     private final Map<GameObjectUnmodifiable, ImageView> gameObjMap;
     private final EnemyFrames enemyFrames = new EnemyFramesImpl();
     private final BossFrames bossFrames = new BossFramesImpl();
@@ -56,6 +57,8 @@ public class EnemyAnimatorImpl implements EnemyAnimator {
                 new FrameUpdaterImpl(bossFrames.dukeOfEyesFrames(), DOE_UPDATE_FREQ));
         frameUpdaters.put(EnemyType.MEATY,
                 new FrameUpdaterImpl(bossFrames.meatyFrames(), MEATY_UPDATE_FREQ));
+        frameUpdaters.put(EnemyType.FLOATBLOAT, new FrameUpdaterImpl(bossFrames.floatBloatFrames(),
+                FLOAT_BLOAT_UPDATE_FREQ));
     }
 
     /** {@inheritDoc} */

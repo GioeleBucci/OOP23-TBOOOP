@@ -21,4 +21,11 @@ public interface BossFrames {
      * @return a list of Meaty's frames
      */
     public List<Image> meatyFrames();
+
+    /**
+     * getter for FloatBloat's animation frames.
+     * 
+     * @return a list of FloatBloat's frames
+     */
+    public List<Image> floatBloatFrames();
 }

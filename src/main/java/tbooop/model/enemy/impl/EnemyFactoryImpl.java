@@ -9,6 +9,7 @@ import tbooop.commons.impl.HealthImpl;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.boss.api.Boss;
 import tbooop.model.boss.impl.duke_of_eyes.DukeOfEyes;
+import tbooop.model.boss.impl.float_bloat.FloatBloat;
 import tbooop.model.boss.impl.meaty.Meaty;
 import tbooop.model.enemy.api.Enemy;
 import tbooop.model.enemy.api.EnemyFactory;
@@ -88,10 +89,11 @@ public class EnemyFactoryImpl implements EnemyFactory {
 
     @Override
     public Boss boss() {
-        if (rand.nextInt(2) == 0) {
-            return new Meaty(player);
-        }
-        return new DukeOfEyes(player);
+        return new FloatBloat(player);
+        // if (rand.nextInt(2) == 0) { // TODO remove this
+        //     return new Meaty(player);
+        // }
+        // return new DukeOfEyes(player);
     }
 
 }

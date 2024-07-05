@@ -127,8 +127,8 @@ public class FloorManagerImpl implements FloorManager {
     /** {@inheritDoc} */
     @Override
     public synchronized void changeFloor() {
-        final Floor floor = new LevelFloor(currentFloorLevel++, enemyFactory);
-        // final Floor floor = new BossFloor(enemyFactory); // TODO remove
+        // final Floor floor = new LevelFloor(currentFloorLevel++, enemyFactory);
+        final Floor floor = new BossFloor(enemyFactory); // TODO remove
         this.currentRoom = floor.getStaringRoom();
         view.changeFloor();
         changeRoom(currentRoom);

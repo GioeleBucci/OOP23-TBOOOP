@@ -1,6 +1,6 @@
 package tbooop.model.boss.impl.duke_of_eyes;
 
-import tbooop.commons.api.Vector2dUtils;
+import tbooop.commons.api.MovementUtils;
 import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.duke_of_eyes.DoESM.State;
 import tbooop.model.boss.stateMachine.api.AbstractState;
@@ -24,7 +24,7 @@ public class DoERoam extends AbstractState<DoESM.State> {
         super(boss);
         this.boss = boss;
         this.p = p;
-        ai = new BouncingAi(Vector2dUtils.randomNorm().toP2d(), boss.getCollider().getRadius());
+        ai = new BouncingAi(MovementUtils.randomNorm().toP2d(), boss.getCollider().getRadius());
     }
 
     @Override

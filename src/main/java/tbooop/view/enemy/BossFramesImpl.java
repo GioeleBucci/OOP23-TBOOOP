@@ -10,11 +10,10 @@ public class BossFramesImpl implements BossFrames {
     @Override
     public List<Image> dukeOfEyesFrames() {
         return List.of(
-            new Image("boss/dukeOfEyes/doe1.png"),
-            new Image("boss/dukeOfEyes/doe2.png"),
-            new Image("boss/dukeOfEyes/doe3.png"),
-            new Image("boss/dukeOfEyes/doe4.png")
-        );
+                new Image("boss/dukeOfEyes/doe1.png"),
+                new Image("boss/dukeOfEyes/doe2.png"),
+                new Image("boss/dukeOfEyes/doe3.png"),
+                new Image("boss/dukeOfEyes/doe4.png"));
     }
 
     @Override
@@ -25,5 +24,13 @@ public class BossFramesImpl implements BossFrames {
                 new Image("boss/meaty/meaty3.png"),
                 new Image("boss/meaty/meaty4.png"));
     }
-    
+
+    @Override
+    public List<Image> floatBloatFrames() {
+        return List.of(
+                new Image("boss/floatBloat/floatbloat1.png"),
+                new Image("boss/floatBloat/floatbloat2.png"),
+                new Image("boss/floatBloat/floatbloat3.png"));
+    }
+
 }

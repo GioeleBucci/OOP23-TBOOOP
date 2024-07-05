@@ -1,6 +1,7 @@
 package tbooop.model.core.api;
 
 import tbooop.commons.api.Point2d;
+import tbooop.commons.api.RoomBounds;
 import tbooop.commons.impl.CircleColliderImpl;
 import tbooop.model.player.api.Player;
 import tbooop.commons.api.CircleCollider;
@@ -45,6 +46,9 @@ public abstract class GameObjectAbs implements GameObject {
     /** {@inheritDoc} */
     @Override
     public void setPosition(final Point2d newPos) {
+        if (RoomBounds.outOfBounds(newPos)) {
+            return;
+        }
         this.position = Objects.requireNonNull(newPos);
         this.collider = new CircleColliderImpl(newPos, colliderRadius);
     }

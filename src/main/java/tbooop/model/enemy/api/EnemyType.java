@@ -14,5 +14,6 @@ public enum EnemyType {
     CRAZY,
     // spooky bosses ahead !
     DUKE_OF_EYES,
+    FLOATBLOAT,
     MEATY;
 }

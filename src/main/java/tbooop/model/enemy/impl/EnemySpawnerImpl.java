@@ -7,7 +7,7 @@ import java.util.Random;
 
 import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
-import tbooop.commons.api.Vector2dUtils;
+import tbooop.commons.api.MovementUtils;
 import tbooop.commons.api.RoomBounds;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.enemy.api.Enemy;
@@ -64,7 +64,7 @@ public class EnemySpawnerImpl implements EnemySpawner {
     }
 
     private Point2d randomDirection() {
-        return Vector2dUtils.randomNorm().toP2d();
+        return MovementUtils.randomNorm().toP2d();
     }
 
     private Point2d randomPosition() {

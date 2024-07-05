@@ -3,7 +3,7 @@ package tbooop.model.enemy.attacks;
 import tbooop.commons.api.Direction;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
-import tbooop.commons.api.Vector2dUtils;
+import tbooop.commons.api.MovementUtils;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.commons.impl.Vector2dImpl;
 import tbooop.model.core.api.movable.Entity;
@@ -47,7 +47,7 @@ public class Attack {
      * @param spreadAngle the maximum scatter angle
      */
     public static void shotgun(Entity source, Point2d target, double projSpeed, int projAmount, double spreadAngle) {
-        Vector2d dir = Vector2dUtils.directionTowards(source.getPosition(), target);
+        Vector2d dir = MovementUtils.directionTowards(source.getPosition(), target);
         double angleOffset = spreadAngle / projAmount;
         for (int i = 0; i < projAmount; i++) {
             Vector2d newDir = dir.rotate((i * angleOffset) % 360).normalize();
@@ -130,7 +130,7 @@ public class Attack {
      * @param projSpeed  the projectile speed
      */
     public static void circle(Entity source, Point2d target, double radius, int projAmount, double projSpeed) {
-        Vector2d dir = Vector2dUtils.directionTowards(source.getPosition(), target);
+        Vector2d dir = MovementUtils.directionTowards(source.getPosition(), target);
         Point2d center = source.getPosition().add(dir.toP2d().mul(radius));
         double angle = 360. / projAmount;
         double randomAngleOffset = r.nextDouble(angle);
@@ -164,7 +164,7 @@ public class Attack {
                     .rotate((i * angle + randomAngleOffset) % 360)
                     .toP2d());
             source.addProjectile(new EnemyProjectile(
-                    Vector2dUtils.directionTowards(spawnPoint, target),
+                    MovementUtils.directionTowards(spawnPoint, target),
                     spawnPoint,
                     projSpeed));
         }
@@ -205,7 +205,7 @@ public class Attack {
         for (int i = 0; i < projectileAmount; i++) {
             angles.add((i * angle + randomAngleOffset) % 360);
         }
-        Vector2d targetVec = Vector2dUtils.directionTowards(source.getPosition(), target);
+        Vector2d targetVec = MovementUtils.directionTowards(source.getPosition(), target);
         double scatterAngle = maxGapDeviationAngle == 0 ? 0
                 : (targetVec.getAngle()
                         + r.nextDouble(-maxGapDeviationAngle, maxGapDeviationAngle)) % 360;
