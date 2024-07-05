@@ -163,7 +163,7 @@ public class FloorManagerImpl implements FloorManager {
         newRoom.getGameObjects().forEach(gobj -> {
             if (gobj instanceof Door) {
                 world.getGameObjects().add(gobj);
-            } else {
+            } else if (!gobj.isDestroyed()) {
                 world.addGameObject(gobj);
             }
         });
