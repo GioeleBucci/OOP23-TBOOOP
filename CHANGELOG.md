@@ -6,6 +6,7 @@
 ### Tweaks and changes
 
 ### Bugfixes
-- Fix a bug where the position of a GameObject could be set out of bounds
+- Fixed a bug where the position of a GameObject could be set out of bounds
 
 ### Dev notes 
+- Created a new `MovementUtils` class that provides useful methods for trajectory calculations  
