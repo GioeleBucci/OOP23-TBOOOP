@@ -8,6 +8,8 @@ import tbooop.commons.impl.HealthImpl;
 import tbooop.commons.impl.Point2dImpl;
 import tbooop.model.player.api.AbstractPlayer;
 import tbooop.model.player.api.projectile.PlayerProjectile;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 /**
  * A Player is a game object that can move on a 2D space,
@@ -123,6 +125,7 @@ public class PlayerImpl extends AbstractPlayer {
         if (this.timeSinceLastDamage > TIME_BETWEEN_DAMAGE) {
             this.timeSinceLastDamage = 0;
             super.takeDamage(amount);
+            SoundManager.getInstance().playSound(Sound.HURT);
         }
     }
 

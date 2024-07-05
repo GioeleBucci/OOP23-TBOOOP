@@ -8,6 +8,8 @@ import tbooop.commons.api.Projectile;
 import tbooop.commons.api.CircleCollider;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.player.api.Player;
+import tbooop.view.sound_manager.Sound;
+import tbooop.view.sound_manager.SoundManager;
 
 /**
  * An enemy decorator is an object that stores either a concrete
@@ -57,6 +59,9 @@ public abstract class EnemyDecorator implements Enemy {
     @Override
     public void updateState(final long deltaTime) {
         this.concreteEnemy.updateState(deltaTime);
+        if (this.isDestroyed()) {
+            SoundManager.getInstance().playSound(Sound.ENEMY_DEATH);
+        }
     }
 
     /** {@inheritDoc} */

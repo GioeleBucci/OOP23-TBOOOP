@@ -4,6 +4,7 @@ import java.util.List;
 
 public enum Sound {
     SHOOT("sfx/shoot.wav"),
+    HURT("sfx/hurt.wav"),
     ENEMY_DEATH("sfx/enemy_death1.wav", "sfx/enemy_death2.wav", "sfx/enemy_death3.wav"),
     KEY_PICKUP("sfx/key.wav"),
     ITEM_PICKUP("sfx/item.wav"),
