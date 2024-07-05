@@ -21,12 +21,15 @@ public abstract class AbstractBoss<EState extends Enum<EState>> extends Abstract
         this.stateMachine = stateMachine;
     }
 
+    private boolean deathSoundPlayed = false;
+
     @Override
     public void updateState(long deltaTime) {
         super.updateState(deltaTime);
         stateMachine.update(deltaTime);
-        if (isDestroyed()) {
+        if (isDestroyed() && !deathSoundPlayed) {
             SoundManager.getInstance().playSound(Sound.BOSS_DEATH);
+            deathSoundPlayed = true;
         }
     }
 
