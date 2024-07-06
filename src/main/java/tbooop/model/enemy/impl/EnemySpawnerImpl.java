@@ -20,10 +20,10 @@ import tbooop.model.enemy.api.EnemySpawner;
  */
 public class EnemySpawnerImpl implements EnemySpawner {
 
-    private static final double UPPER_BOUND = RoomBounds.HEIGHT * 0.2;
-    private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.8;
-    private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.2;
-    private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.8;
+    private static final double UPPER_BOUND = RoomBounds.HEIGHT * 0.3;
+    private static final double LOWER_BOUND = RoomBounds.HEIGHT * 0.7;
+    private static final double LEFT_BOUND = RoomBounds.WIDTH * 0.3;
+    private static final double RIGHT_BOUND = RoomBounds.WIDTH * 0.7;
     private static final int CARDINAL_DIRECTIONS = 4;
     private static final int ENEMY_TYPES = 4;
     private static final int SPAWN_MELEE = 0;
