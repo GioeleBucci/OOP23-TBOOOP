@@ -15,6 +15,7 @@ public class MusicPlayer {
     private static final String DEFAULT_MUSIC = "music/floor.mp3";
     private static final String SPECIAL_ROOM_MUSIC = "music/special_room.mp3";
     private static final String BOSS_MUSIC = "music/boss.mp3";
+    private static final String BOSS_DEFEATED_MUSIC = "music/boss_defeated.mp3";
     private static final String DEAD_MUSIC = "music/dead.mp3";
 
     private MediaPlayer mediaPlayer;
@@ -57,6 +58,10 @@ public class MusicPlayer {
      */
     public void playBossMusic() {
         changeTrack(BOSS_MUSIC, .85);
+    }
+
+    public void playBossDefeatedMusic() {
+        changeTrack(BOSS_DEFEATED_MUSIC, 1);
     }
 
     /**

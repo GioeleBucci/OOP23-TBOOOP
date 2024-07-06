@@ -13,6 +13,7 @@ import tbooop.commons.api.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
+import tbooop.model.dungeon.rooms.api.Room;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
@@ -111,6 +112,12 @@ public class RoomRenderer extends ViewComponentImpl {
             return;
         }
         if (newRoom.isBossRoom()) {
+            if (((Room) newRoom).getGameObjects()
+                    .stream()
+                    .anyMatch(g -> g.getTag().equals(GameTag.ENEMY) && g.isDestroyed())) {
+                MusicPlayer.getInstance().playBossDefeatedMusic();
+                return;
+            }
             MusicPlayer.getInstance().playBossMusic();
             return;
         }
