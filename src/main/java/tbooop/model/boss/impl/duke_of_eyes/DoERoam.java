@@ -40,7 +40,7 @@ public class DoERoam extends AbstractState<DoESM.State> {
 
     private void performRandomAttack() {
         if (rand.nextInt(3) == 0) {
-            Attack.shotgun(boss, p.getPosition(), PROJECTILE_SPEED * 2, 4, 25);
+            Attack.shotgun(boss, p.getPosition(), PROJECTILE_SPEED * 2.3, 3, 30);
             return;
         }
         Attack.ring(boss, PROJECTILE_SPEED, 15);
