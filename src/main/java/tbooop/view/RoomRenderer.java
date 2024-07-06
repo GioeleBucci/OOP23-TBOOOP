@@ -32,7 +32,7 @@ public class RoomRenderer extends ViewComponentImpl {
     private static final ImageView COMMANDS_TOOLTIP = new ImageView(new Image("tileset/commands.png"));
 
     private final Map<DoorUnmodifiable, ImageView> doorsSpriteMap = new HashMap<>();
-
+    private final MusicPlayer musicPlayer = new MusicPlayer();
     private final ViewElements view;
 
     /**
@@ -54,6 +54,7 @@ public class RoomRenderer extends ViewComponentImpl {
     /** {@inheritDoc} */
     @Override
     public void update() {
+        // nothing to do
     }
 
     /**
@@ -95,6 +96,19 @@ public class RoomRenderer extends ViewComponentImpl {
 
     private void onRoomSwap(final RoomUnmodifiable newRoom) {
         updateTooltipVisibility(newRoom);
+        playRoomMusic(newRoom);
+    }
+
+    private void playRoomMusic(final RoomUnmodifiable newRoom) {
+        if (newRoom.isSpecial()) {
+            musicPlayer.playSpecialRoomMusic();
+            return;
+        }
+        if (newRoom.isBossRoom()) {
+            musicPlayer.playBossMusic();
+            return;
+        }
+        musicPlayer.playDefaultMusic();
     }
 
     private void updateTooltipVisibility(final RoomUnmodifiable newRoom) {

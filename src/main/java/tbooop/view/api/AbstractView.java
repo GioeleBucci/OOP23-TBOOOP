@@ -34,7 +34,7 @@ public abstract class AbstractView extends Application implements View {
     public synchronized void start(final Stage stage) {
         this.stage = stage;
         stage.setResizable(false);
-        scene = new Scene(root, BASE_ROOM_W * 2.0, BASE_ROOM_H * 2.0);
+        scene = new Scene(root, BASE_ROOM_W * 2.5, BASE_ROOM_H * 2.5);
         scene.setFill(Color.BLACK);
         stage.setScene(scene);
         stage.setTitle("TBOOOP!");

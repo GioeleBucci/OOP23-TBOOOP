@@ -1,6 +1,5 @@
 package tbooop.model.boss.impl.float_bloat;
 
-import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.MovementUtils;
 import tbooop.model.boss.api.AbstractBoss;

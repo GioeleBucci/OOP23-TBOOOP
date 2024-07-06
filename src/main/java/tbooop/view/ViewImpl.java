@@ -66,9 +66,7 @@ public class ViewImpl extends AbstractView {
         super.getScene().setOnKeyReleased(e -> inputManager.keyReleased(e.getCode()));
         super.getStage().setOnCloseRequest(e -> System.exit(0));
         roomRenderer.init();
-        final Thread thread = new Thread(() -> {
-            controller.mainLoop();
-        });
+        final Thread thread = new Thread(controller::mainLoop);
         thread.start();
     }
 
