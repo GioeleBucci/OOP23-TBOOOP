@@ -28,7 +28,7 @@ public class TitleScreen {
         root.getChildren().add(deathScreen);
         scene.setOnKeyPressed((KeyEvent event) -> {
             if (System.currentTimeMillis() - startTime >= TIME_AMOUNT) {
-                final FadeTransition fadeTransition = new FadeTransition(Duration.seconds(2),
+                final FadeTransition fadeTransition = new FadeTransition(Duration.seconds(1.2),
                         mainScene.getRoot());
                 fadeTransition.setFromValue(0);
                 fadeTransition.setToValue(1);

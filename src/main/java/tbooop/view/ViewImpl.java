@@ -179,7 +179,7 @@ public class ViewImpl extends AbstractView {
     /** {@inheritDoc} */
     @Override
     public void showDeathScreen() {
-        super.getStage().setScene(new DeathScreen().getDeathScene(getStage().getWidth(), getStage().getHeight()));
+        super.getStage().setScene(DeathScreen.getDeathScene(getScene()));
     } 
 
 }

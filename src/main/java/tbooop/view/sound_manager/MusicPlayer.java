@@ -15,6 +15,7 @@ public class MusicPlayer {
     private static final String DEFAULT_MUSIC = "music/floor.mp3";
     private static final String SPECIAL_ROOM_MUSIC = "music/special_room.mp3";
     private static final String BOSS_MUSIC = "music/boss.mp3";
+    private static final String DEAD_MUSIC = "music/dead.mp3";
 
     private MediaPlayer mediaPlayer;
 
@@ -56,6 +57,13 @@ public class MusicPlayer {
      */
     public void playBossMusic() {
         changeTrack(BOSS_MUSIC, .85);
+    }
+
+    /**
+     * Plays the dead music track.
+     */
+    public void playDeadMusic() {
+        changeTrack(DEAD_MUSIC, .6);
     }
 
     /**
