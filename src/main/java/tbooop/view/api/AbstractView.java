@@ -2,14 +2,17 @@ package tbooop.view.api;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import tbooop.commons.api.RoomBounds;
+import tbooop.view.TitleScreen;
 
 /**
  * The main view.
@@ -36,13 +39,17 @@ public abstract class AbstractView extends Application implements View {
         stage.setResizable(false);
         scene = new Scene(root, BASE_ROOM_W * 2.5, BASE_ROOM_H * 2.5);
         scene.setFill(Color.BLACK);
-        stage.setScene(scene);
         stage.setTitle("TBOOOP!");
         stage.getIcons().add(new Image("icon/icon.png")); 
+        setTitleScreen();
         stage.show();
         setBackgroundImage("tileset/room.png");
         setWalkableArea();
         stageAspectRatio = stage.getWidth() / stage.getHeight();
+    }
+
+    private void setTitleScreen(){
+        stage.setScene(TitleScreen.getScreen(stage, scene));
     }
 
     /** {@inheritDoc} */

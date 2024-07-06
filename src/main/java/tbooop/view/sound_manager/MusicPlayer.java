@@ -1,4 +1,4 @@
-package tbooop.view;
+package tbooop.view.sound_manager;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -11,17 +11,30 @@ import javafx.scene.media.MediaPlayer;
  */
 public class MusicPlayer {
 
+    private static final String TITLE_MUSIC = "music/title.mp3";
     private static final String DEFAULT_MUSIC = "music/floor.mp3";
     private static final String SPECIAL_ROOM_MUSIC = "music/special_room.mp3";
     private static final String BOSS_MUSIC = "music/boss.mp3";
 
     private MediaPlayer mediaPlayer;
 
+    private MusicPlayer() {
+        setMediaPlayer(TITLE_MUSIC, .25);
+    }
+
+    private static class MusicPlayerHolder {
+        private static final MusicPlayer INSTANCE = new MusicPlayer();
+    }
+
+    public static MusicPlayer getInstance() {
+        return MusicPlayerHolder.INSTANCE;
+    }
+
     /**
-     * Constructs a new MusicPlayer.
+     * Plays the title music track.
      */
-    public MusicPlayer() {
-        setMediaPlayer(DEFAULT_MUSIC, 1.4);
+    public void playTitleMusic() {
+        changeTrack(TITLE_MUSIC, .25);
     }
 
     /**

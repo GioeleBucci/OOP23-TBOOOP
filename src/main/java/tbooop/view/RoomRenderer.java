@@ -16,6 +16,7 @@ import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
 import tbooop.model.dungeon.rooms.api.RoomUnmodifiable;
 import tbooop.view.api.ViewComponentImpl;
 import tbooop.view.api.ViewElements;
+import tbooop.view.sound_manager.MusicPlayer;
 
 /**
  * The RoomRenderer class is responsible for rendering the room and its doors in
@@ -32,7 +33,6 @@ public class RoomRenderer extends ViewComponentImpl {
     private static final ImageView COMMANDS_TOOLTIP = new ImageView(new Image("tileset/commands.png"));
 
     private final Map<DoorUnmodifiable, ImageView> doorsSpriteMap = new HashMap<>();
-    private final MusicPlayer musicPlayer = new MusicPlayer();
     private final ViewElements view;
 
     /**
@@ -94,21 +94,27 @@ public class RoomRenderer extends ViewComponentImpl {
         });
     }
 
+    private boolean firstSwap = true;
+
     private void onRoomSwap(final RoomUnmodifiable newRoom) {
         updateTooltipVisibility(newRoom);
+        if (firstSwap) {
+            firstSwap = false;
+            return;
+        }
         playRoomMusic(newRoom);
     }
 
     private void playRoomMusic(final RoomUnmodifiable newRoom) {
         if (newRoom.isSpecial()) {
-            musicPlayer.playSpecialRoomMusic();
+            MusicPlayer.getInstance().playSpecialRoomMusic();
             return;
         }
         if (newRoom.isBossRoom()) {
-            musicPlayer.playBossMusic();
+            MusicPlayer.getInstance().playBossMusic();
             return;
         }
-        musicPlayer.playDefaultMusic();
+        MusicPlayer.getInstance().playDefaultMusic();
     }
 
     private void updateTooltipVisibility(final RoomUnmodifiable newRoom) {
