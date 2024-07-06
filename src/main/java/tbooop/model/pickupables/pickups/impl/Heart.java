@@ -16,6 +16,7 @@ import tbooop.view.sound_manager.SoundManager;
 public class Heart extends AbstractPickup {
 
     private final PickupableName pickupTag = PickupableName.HEART;
+
     /**
      * Create a new istance of a Heart.
      * 
@@ -37,12 +38,16 @@ public class Heart extends AbstractPickup {
         super(position, colliderRadius, tag);
     }
 
-    /** {@inheritDoc} 
+    /**
+     * {@inheritDoc}
      * 
      * @param player
-    */
+     */
     @Override
     public void onPlayerCollision(final Player player) {
+        if (player.getHealth() == player.getMaxHealth()) {
+            return;
+        }
         onPickup(player);
         SoundManager.getInstance().playSound(Sound.HEART_PICKUP);
     }
@@ -53,7 +58,7 @@ public class Heart extends AbstractPickup {
      * increased by one.
      * 
      * @param player
-    */
+     */
     private void onPickup(final Player player) {
         if (!super.isConsumed()) {
             player.recovery();
