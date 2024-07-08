@@ -41,7 +41,9 @@ public class SpecialDoor extends AbstractDoor implements DoorLockable {
     /** {@inheritDoc} */
     @Override
     public void unlock() {
-        SoundManager.getInstance().playSound(Sound.DOOR_UNLOCK);
+        if (SoundManager.getInstance() != null) {
+            SoundManager.getInstance().playSound(Sound.DOOR_UNLOCK);
+        }
         this.isLocked = false;
         this.open();
         // unlock the door on the other side as well

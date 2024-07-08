@@ -125,7 +125,9 @@ public class PlayerImpl extends AbstractPlayer {
         if (this.timeSinceLastDamage > TIME_BETWEEN_DAMAGE) {
             this.timeSinceLastDamage = 0;
             super.takeDamage(amount);
-            SoundManager.getInstance().playSound(Sound.HURT);
+            if (SoundManager.getInstance() != null) {
+                SoundManager.getInstance().playSound(Sound.HURT);
+            }
         }
     }
 

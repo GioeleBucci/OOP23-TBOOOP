@@ -12,8 +12,16 @@ public class SoundManager {
         private static final SoundManager INSTANCE = new SoundManager();
     }
 
+    /**
+     * <b>NOTE</b> When calling this, a null check if you plan to test the class
+     * since when testing, the JavaFX toolkit won't be initialised.
+     */
     public static SoundManager getInstance() {
-        return SoundManagerHolder.INSTANCE;
+        if (javafx.application.Platform.isFxApplicationThread()) {
+            return SoundManagerHolder.INSTANCE;
+        } else {
+            return null;
+        }
     }
 
     public void playSound(Sound sound) {

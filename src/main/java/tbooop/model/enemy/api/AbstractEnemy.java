@@ -66,7 +66,7 @@ public abstract class AbstractEnemy extends AbstractEntity implements Enemy {
     @Override
     public void updateState(long deltaTime) {
         super.updateState(deltaTime);
-        if (this.isDestroyed() && !deathSoundPlayed) {
+        if (this.isDestroyed() && !deathSoundPlayed && SoundManager.getInstance() != null) {
             SoundManager.getInstance().playSound(Sound.ENEMY_DEATH);
             deathSoundPlayed = true;
         }

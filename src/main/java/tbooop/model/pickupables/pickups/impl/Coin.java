@@ -39,7 +39,9 @@ public class Coin extends AbstractPickup {
     @Override
     public void onPlayerCollision(final Player player) {
         onPickup(player);
-        SoundManager.getInstance().playSound(Sound.COIN_PICKUP);
+        if (SoundManager.getInstance() != null) {
+            SoundManager.getInstance().playSound(Sound.COIN_PICKUP);
+        }
     }
 
     /**

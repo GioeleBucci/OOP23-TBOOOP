@@ -49,7 +49,9 @@ public class Heart extends AbstractPickup {
             return;
         }
         onPickup(player);
-        SoundManager.getInstance().playSound(Sound.HEART_PICKUP);
+        if (SoundManager.getInstance() != null) {
+            SoundManager.getInstance().playSound(Sound.HEART_PICKUP);
+        }
     }
 
     /**

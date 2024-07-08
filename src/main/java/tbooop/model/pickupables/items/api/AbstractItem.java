@@ -95,6 +95,8 @@ public abstract class AbstractItem extends AbstractPickupable implements Item {
      * @param player
      */
     protected void onPickup(Player player) {
-        SoundManager.getInstance().playSound(Sound.ITEM_PICKUP);
+        if (SoundManager.getInstance() != null) {
+            SoundManager.getInstance().playSound(Sound.ITEM_PICKUP);
+        }
     }
 }

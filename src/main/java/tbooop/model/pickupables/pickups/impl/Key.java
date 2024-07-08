@@ -18,6 +18,7 @@ import tbooop.view.sound_manager.SoundManager;
 public class Key extends AbstractPickup {
 
     private final PickupableName pickupTag = PickupableName.KEY;
+
     /**
      * Create a new istance of a Key.
      * 
@@ -32,14 +33,17 @@ public class Key extends AbstractPickup {
         super(position, colliderRadius, tag);
     }
 
-    /** {@inheritDoc} 
+    /**
+     * {@inheritDoc}
      * 
      * @param player
-    */
+     */
     @Override
     public void onPlayerCollision(final Player player) {
         onPickup(player);
-        SoundManager.getInstance().playSound(Sound.KEY_PICKUP);
+        if (SoundManager.getInstance() != null) {
+            SoundManager.getInstance().playSound(Sound.KEY_PICKUP);
+        }
     }
 
     /**
@@ -48,7 +52,7 @@ public class Key extends AbstractPickup {
      * of keys owned by the player.
      * 
      * @param player
-    */
+     */
     private void onPickup(final Player player) {
         if (!super.isConsumed()) {
             player.pickupKey();
