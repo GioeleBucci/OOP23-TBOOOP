@@ -1,6 +1,10 @@
 # TBOOOP! A demake of The Binding of Isaac
 
 <p align="center">
+  <img src="https://github.com/GioeleBucci/TBOOOP/actions/workflows/test-runner.yml/badge.svg" alt="Tests">
+</p>
+
+<p align="center">
   <img src="https://imgur.com/u0BDjx7.png">
 </p>
 
