@@ -25,14 +25,14 @@ A demake of 'The Binding of Isaac', created as a project for the Object-Oriented
     <table>
         <tr>
             <td>
-                <img src="src/main/resources/pickupables/items/zap.png" alt="Zap Image" style="float: left; margin-right: 20px;">
+                <img src="src/main/resources/pickupables/items/zap.png" alt="Zap" style="float: left; margin-right: 20px;">
             </td>
             <td>
                 <b>Zap (10¢)</b><br>
                 <i>Speed Up</i>
             </td>
             <td>
-                <img src="src/main/resources/pickupables/items/glassHeart.png" alt="Glass Heart Image" style="float: left; margin-right: 20px;">
+                <img src="src/main/resources/pickupables/items/glassHeart.png" alt="Glass Heart" style="float: left; margin-right: 20px;">
             </td>
             <td>
                 <b>Glass Heart (15¢)</b><br>
@@ -41,14 +41,14 @@ A demake of 'The Binding of Isaac', created as a project for the Object-Oriented
         </tr>
         <tr>
             <td>
-                <img src="src/main/resources/pickupables/items/LockedRings.png" alt="Shield Image" style="float: left; margin-right: 20px;">
+                <img src="src/main/resources/pickupables/items/LockedRings.png" alt="Locked Rings" style="float: left; margin-right: 20px;">
             </td>
             <td>
                 <b>Locked Rings (15¢)</b><br>
                 <i>Damage Up</i>
             </td>
             <td>
-                <img src="src/main/resources/pickupables/items/forbiddenfruit.png" alt="Coin Image" style="float: left; margin-right: 20px;">
+                <img src="src/main/resources/pickupables/items/forbiddenfruit.png" alt="Forbidden Fruit" style="float: left; margin-right: 20px;">
             </td>
             <td>
                 <b>Golden Apple (15¢)</b><br>
@@ -57,7 +57,7 @@ A demake of 'The Binding of Isaac', created as a project for the Object-Oriented
         </tr>
         <tr>
             <td>
-                <img src="src/main/resources/pickupables/items/spicysauce.png" alt="Rocket Image" style="float: left; margin-right: 20px;">
+                <img src="src/main/resources/pickupables/items/spicysauce.png" alt="Spicy Sauce" style="float: left; margin-right: 20px;">
             </td>
             <td>
                 <b>Spicy Sauce (20¢)</b><br>
@@ -68,3 +68,9 @@ A demake of 'The Binding of Isaac', created as a project for the Object-Oriented
         </tr>
     </table>
 </div>
+
+### Screenshots
+<img src="https://imgur.com/fQvhMPp.png" width="500"/>
+<img src="https://imgur.com/gEFPmKP.png" width="500"/>
+<img src="https://imgur.com/IkmVkhi.png" width="500"/>
+<img src="https://imgur.com/1YM7i3R.png" width="500"/>
