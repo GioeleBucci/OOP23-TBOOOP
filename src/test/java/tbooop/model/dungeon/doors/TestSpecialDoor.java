@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.model.dungeon.doors.api.DoorPositions;
 import tbooop.model.dungeon.doors.impl.SpecialDoor;
 import tbooop.model.dungeon.rooms.api.Room;
@@ -27,7 +27,7 @@ class TestSpecialDoor {
         doorA = new SpecialDoor(DoorPositions.TOP.getPosition(), room);
         // doorA takes to room, and doorB takes back.
         doorB = new SpecialDoor(DoorPositions.BOTTOM.getPosition(), roomFactory.startingRoom());
-        room.addDoor(Direction.DOWN, doorB);
+        room.addDoor(CardinalDirection.DOWN, doorB);
     }
 
     @Test

@@ -4,7 +4,7 @@ import tbooop.commons.api.MovementUtils;
 import tbooop.commons.api.RoomBounds;
 import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.float_bloat.FBSM.State;
-import tbooop.model.boss.stateMachine.api.AbstractState;
+import tbooop.model.boss.stateMachine.impl.AbstractState;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.enemy.attacks.Attack;
 import tbooop.model.enemy.impl.ai.BouncingAi;

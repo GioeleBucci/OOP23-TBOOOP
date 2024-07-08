@@ -8,7 +8,7 @@ import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.RoomBounds;
 import tbooop.model.core.api.GameTag;
 import tbooop.model.core.api.unmovable.UnmovableAbs;
@@ -128,7 +128,7 @@ public class RoomRenderer extends ViewComponentImpl {
         COMMANDS_TOOLTIP.setVisible(newRoom.isFirstRoom());
     }
 
-    private void rotateDoor(final ImageView imgView, final Direction dir) {
+    private void rotateDoor(final ImageView imgView, final CardinalDirection dir) {
         switch (dir) {
             case DOWN -> imgView.setRotate(180);
             case LEFT -> imgView.setRotate(90 * -1);

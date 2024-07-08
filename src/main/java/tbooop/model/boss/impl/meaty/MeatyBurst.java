@@ -2,7 +2,7 @@ package tbooop.model.boss.impl.meaty;
 
 import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.meaty.MeatySM.State;
-import tbooop.model.boss.stateMachine.api.AbstractState;
+import tbooop.model.boss.stateMachine.impl.AbstractState;
 import tbooop.model.enemy.attacks.Attack;
 import tbooop.model.player.api.Player;
 import java.util.Random;

@@ -1,6 +1,6 @@
 package tbooop.model.boss.impl.duke_of_eyes;
 
-import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
+import tbooop.model.boss.stateMachine.impl.AbstractStateMachine;
 import tbooop.model.player.api.Player;
 
 import java.util.Map;

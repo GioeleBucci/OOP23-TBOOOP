@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.MovementUtils;
 import tbooop.commons.api.RoomBounds;
@@ -73,12 +73,12 @@ public class EnemySpawnerImpl implements EnemySpawner {
             rand.nextDouble(UPPER_BOUND, LOWER_BOUND));
     }
 
-    private Direction randomCardinalDirection() {
+    private CardinalDirection randomCardinalDirection() {
         final int pick = rand.nextInt(0, CARDINAL_DIRECTIONS + 1);
-        return pick == 0 ? Direction.UP
-            : pick == 1 ? Direction.DOWN
-            : pick == 2 ? Direction.LEFT
-            : Direction.RIGHT;
+        return pick == 0 ? CardinalDirection.UP
+            : pick == 1 ? CardinalDirection.DOWN
+            : pick == 2 ? CardinalDirection.LEFT
+            : CardinalDirection.RIGHT;
     }
 
 }

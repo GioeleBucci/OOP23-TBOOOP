@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import javafx.scene.input.KeyCode;
 import javafx.stage.Screen;
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.RoomBounds;
 import tbooop.controller.api.Controller;
 import tbooop.controller.api.PlayerCommand;
@@ -76,14 +76,14 @@ public final class InputManagerImpl implements InputManager {
             return;
         }
         switch (keybind.get()) {
-            case UP -> sendCommand(new MoveCommand(Direction.UP));
-            case DOWN -> sendCommand(new MoveCommand(Direction.DOWN));
-            case LEFT -> sendCommand(new MoveCommand(Direction.LEFT));
-            case RIGHT -> sendCommand(new MoveCommand(Direction.RIGHT));
-            case SHOOT_UP -> sendCommand(new ShootCommand(Direction.UP));
-            case SHOOT_DOWN -> sendCommand(new ShootCommand(Direction.DOWN));
-            case SHOOT_LEFT -> sendCommand(new ShootCommand(Direction.LEFT));
-            case SHOOT_RIGHT -> sendCommand(new ShootCommand(Direction.RIGHT));
+            case UP -> sendCommand(new MoveCommand(CardinalDirection.UP));
+            case DOWN -> sendCommand(new MoveCommand(CardinalDirection.DOWN));
+            case LEFT -> sendCommand(new MoveCommand(CardinalDirection.LEFT));
+            case RIGHT -> sendCommand(new MoveCommand(CardinalDirection.RIGHT));
+            case SHOOT_UP -> sendCommand(new ShootCommand(CardinalDirection.UP));
+            case SHOOT_DOWN -> sendCommand(new ShootCommand(CardinalDirection.DOWN));
+            case SHOOT_LEFT -> sendCommand(new ShootCommand(CardinalDirection.LEFT));
+            case SHOOT_RIGHT -> sendCommand(new ShootCommand(CardinalDirection.RIGHT));
             case FULLSCREEN -> view.getStage().setFullScreen(!view.getStage().isFullScreen());
             case EXIT_FULLSCREEN -> {
                 if (view.getStage().isFullScreen()) {

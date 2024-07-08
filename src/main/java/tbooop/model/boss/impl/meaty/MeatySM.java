@@ -1,6 +1,6 @@
 package tbooop.model.boss.impl.meaty;
 
-import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
+import tbooop.model.boss.stateMachine.impl.AbstractStateMachine;
 import tbooop.model.player.api.Player;
 import java.util.Map;
 

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.model.core.api.GameObject;
 import tbooop.model.dungeon.doors.api.Door;
 import tbooop.model.dungeon.doors.api.DoorUnmodifiable;
@@ -23,12 +23,12 @@ import java.util.Collection;
  */
 public abstract class AbstractRoom implements Room {
 
-    private final Map<Direction, Door> doorMap = new HashMap<>();
+    private final Map<CardinalDirection, Door> doorMap = new HashMap<>();
     private final Set<GameObject> gameObjects = new HashSet<>();
 
     /** {@inheritDoc} */
     @Override
-    public void addDoor(final Direction direction, final DoorUnmodifiable door) {
+    public void addDoor(final CardinalDirection direction, final DoorUnmodifiable door) {
         if (!doorMap.containsKey(direction)) {
             doorMap.put(direction, (Door) door);
             addGameObject(door);
@@ -37,7 +37,7 @@ public abstract class AbstractRoom implements Room {
 
     /** {@inheritDoc} */
     @Override
-    public Map<Direction, DoorUnmodifiable> getDoorMap() {
+    public Map<CardinalDirection, DoorUnmodifiable> getDoorMap() {
         return Collections.unmodifiableMap(doorMap);
     }
 

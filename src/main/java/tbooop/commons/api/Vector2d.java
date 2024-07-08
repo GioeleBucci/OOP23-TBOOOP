@@ -59,13 +59,6 @@ public interface Vector2d {
     Vector2d rotate(double degrees);
 
     /**
-     * Get a Point2d from this istance.
-     * 
-     * @return a new vector
-     */
-    Point2d toP2d();
-
-    /**
      * Get the angle of this vector.
      * 
      * @return the angle of this vector in degrees, from 0 to 360 (origin is the
@@ -73,4 +66,10 @@ public interface Vector2d {
      */
     double getAngle();
 
+    /**
+     * Get a Point2d from this istance.
+     * 
+     * @return a new vector
+     */
+    Point2d toP2d();
 }

@@ -2,7 +2,7 @@ package tbooop.model.boss.impl.float_bloat;
 
 import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.float_bloat.FBSM.State;
-import tbooop.model.boss.stateMachine.api.AbstractState;
+import tbooop.model.boss.stateMachine.impl.AbstractState;
 
 public class FBChargeUp extends AbstractState<FBSM.State> {
 

@@ -2,7 +2,7 @@ package tbooop.model.player.api;
 
 import java.util.Optional;
 
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Health;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.impl.Point2dImpl;
@@ -42,8 +42,8 @@ public abstract class AbstractPlayer extends AbstractEntity implements Player {
 
     /** {@inheritDoc} */
     @Override
-    public Optional<Direction> getCardinalDirection() {
-        for (final var point2d : Direction.getAll()) {
+    public Optional<CardinalDirection> getCardinalDirection() {
+        for (final var point2d : CardinalDirection.getAll()) {
             if (getDirection().toP2d().equals(point2d.toP2d())) {
                 return Optional.of(point2d);
             }

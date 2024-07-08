@@ -3,7 +3,7 @@ package tbooop.model.boss.impl.float_bloat;
 import tbooop.commons.api.Point2d;
 import tbooop.model.boss.api.AbstractBoss;
 import tbooop.model.boss.impl.float_bloat.FBSM.State;
-import tbooop.model.boss.stateMachine.api.AbstractState;
+import tbooop.model.boss.stateMachine.impl.AbstractState;
 import tbooop.model.enemy.api.ai.MovementAi;
 import tbooop.model.enemy.impl.ai.ChasingAi;
 import tbooop.model.player.api.Player;

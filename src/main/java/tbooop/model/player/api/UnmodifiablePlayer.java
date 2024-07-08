@@ -1,6 +1,6 @@
 package tbooop.model.player.api;
 
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.model.core.api.GameObjectUnmodifiable;
 import java.util.Optional;
 
@@ -13,7 +13,7 @@ public interface UnmodifiablePlayer extends GameObjectUnmodifiable {
      * Get one of four direction (UP,DOWN,LEFT,RIGHT).
      * @return Optional<CardinalDirection> one of four diection or Optional.empty()
      */
-    Optional<Direction> getCardinalDirection();
+    Optional<CardinalDirection> getCardinalDirection();
 
     /**
      * Get the max health.

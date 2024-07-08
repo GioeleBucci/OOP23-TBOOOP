@@ -1,6 +1,6 @@
 package tbooop.model.enemy.attacks;
 
-import tbooop.commons.api.Direction;
+import tbooop.commons.api.CardinalDirection;
 import tbooop.commons.api.Point2d;
 import tbooop.commons.api.Vector2d;
 import tbooop.commons.api.MovementUtils;
@@ -210,7 +210,7 @@ public class Attack {
                 : (targetVec.getAngle()
                         + r.nextDouble(-maxGapDeviationAngle, maxGapDeviationAngle)) % 360;
         removeUpToNElements(angles, gapSize, scatterAngle).forEach(a -> source.addProjectile(
-                new EnemyProjectile(Direction.RIGHT.toP2d().toV2d().rotate(a).normalize(),
+                new EnemyProjectile(CardinalDirection.RIGHT.toP2d().toV2d().rotate(a).normalize(),
                         source.getPosition(), projSpeed)));
     }
 

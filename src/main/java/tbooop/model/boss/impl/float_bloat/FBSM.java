@@ -1,7 +1,7 @@
 package tbooop.model.boss.impl.float_bloat;
 
 import tbooop.model.boss.api.AbstractBoss;
-import tbooop.model.boss.stateMachine.api.AbstractStateMachine;
+import tbooop.model.boss.stateMachine.impl.AbstractStateMachine;
 import tbooop.model.player.api.Player;
 
 import java.util.Map;
